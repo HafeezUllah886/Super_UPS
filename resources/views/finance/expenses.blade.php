@@ -15,8 +15,8 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Withdraws</h4>
-                <button class="btn btn-success" data-toggle="modal" data-target="#modal">New Withdraw</button>
+                <h4>Expenses</h4>
+                <button class="btn btn-success" data-toggle="modal" data-target="#modal">New Expense</button>
             </div>
         </div>
     </div>
@@ -38,15 +38,15 @@
                         </thead>
                         <tbody>
 
-                            @foreach ($withdraws as $dep)
+                            @foreach ($expenses as $dep)
                             <tr>
                                 <td> {{ $dep->ref }} </td>
-                                <td>{{ $dep->account->title }} ({{ $dep->account->type }})</td>
+                                <td>{{ $dep->account->title }} ({{ $dep->account->Category }})</td>
                                 <td>{{ date('d M Y', strtotime($dep->date))}}</td>
                                 <td>{{ $dep->desc}}</td>
                                 <td>{{ $dep->amount}}</td>
                                 <td>
-                                    <a href="{{ url('withdraw/delete/') }}/{{ $dep->ref }}" class="btn btn-danger">Delete</a>
+                                    <a href="{{ url('expense/delete/') }}/{{ $dep->ref }}" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -64,7 +64,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Create Withdraw</h5>
+                <h5 class="modal-title">Create Expense</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -78,7 +78,7 @@
                         <select name="account" id="account" class="form-control" required id="">
                             <option value=""></option>
                             @foreach ($accounts as $account)
-                               <option value="{{ $account->id }}">{{ $account->title }} ({{ $account->type }})</option>
+                               <option value="{{ $account->id }}">{{ $account->title }} ({{ $account->Category }})</option>
                             @endforeach
                         </select>
                     </div>

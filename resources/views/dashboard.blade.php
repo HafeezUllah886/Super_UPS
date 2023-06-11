@@ -23,6 +23,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                            {{ customerDues() }}
                                         </div>
                                     </div>
 
@@ -60,7 +61,7 @@
             </div>
             <div class="col-xl-2 col-md-2">
                 <div class="card border-left-info shadow  py-2">
-                    <a style="text-decoration:none;" href="">
+
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
@@ -68,6 +69,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                {{ totalCash() }}
                                             </div>
                                         </div>
 
@@ -78,12 +80,12 @@
                                 </div>
                             </div>
                         </div>
-                    </a>
+
                 </div>
             </div>
             <div class="col-xl-2 col-md-2 mb-0">
                 <div class="card border-left-info shadow  py-2">
-                    <a style="text-decoration:none;" href="">
+
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
@@ -91,7 +93,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
-
+                                                {{ todayCash() }}
                                             </div>
                                         </div>
 
@@ -102,12 +104,12 @@
                                 </div>
                             </div>
                         </div>
-                    </a>
+
                 </div>
             </div>
             <div class="col-xl-2 col-md-2 mb-0">
                 <div class="card border-left-info shadow  py-2">
-                    <a href="">
+
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
@@ -115,6 +117,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                {{ totalBank() }}
                                             </div>
                                         </div>
 
@@ -125,12 +128,12 @@
                                 </div>
                             </div>
                         </div>
-                    </a>
+
                 </div>
             </div>
             <div class="col-xl-2 col-md-2 mb-0">
                 <div class="card border-left-info shadow  py-2">
-                    <a style="text-decoration:none;" href="">
+
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
@@ -138,6 +141,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                {{ todayBank() }}
                                             </div>
                                         </div>
 
@@ -148,7 +152,7 @@
                                 </div>
                             </div>
                         </div>
-                    </a>
+
                 </div>
             </div>
 

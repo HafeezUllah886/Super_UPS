@@ -15,9 +15,9 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Accounts Listing</h4>
+                <h4>Vendors Listing</h4>
                 <div class="d-flex justify-content-end">
-                <button class="btn btn-success" data-toggle="modal" data-target="#modal">Add Account</button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#modal">Add Vendor</button>
                 </div>
 
             </div>
@@ -33,7 +33,8 @@
                             <tr>
                                 <th class="border-top-0">Ser</th>
                                 <th class="border-top-0">Title</th>
-                                <th class="border-top-0">Category</th>
+                                <th class="border-top-0">Phone</th>
+                                <th class="border-top-0">Address</th>
                                 <th class="border-top-0">Balance</th>
                                 <th>Action</th>
                             </tr>
@@ -49,10 +50,11 @@
                             <tr>
                                 <td> {{ $ser }} </td>
                                 <td>{{ $account->title }}</td>
-                                <td>{{ $account->Category }}</td>
+                                <td>{{ $account->phone }}</td>
+                                <td>{{ $account->address }}</td>
                                 <td> {{ getAccountBalance($account->id) }}</td>
                                 <td class="text-left">
-                                    <button onclick='edit_cat({{ $account->id }}, "{{ $account->title }}")' class="btn btn-primary">Edit</button>
+                                    <button onclick='edit_cat({{ $account->id }}, "{{ $account->title }}", "{{ $account->phone }}", "{{ $account->address  }}")' class="btn btn-primary">Edit</button>
                                     <a href="{{ url('accounts/statement/') }}/{{ $account->id }}" class="btn btn-info">View Statement</button>
                                     @if(getAccountBalance($account->id) == 0)
                                     <a href="{{ url('/account/delete/') }}/{{ $account->id }}" class="btn btn-danger confirmation">Delete</a>
@@ -75,25 +77,26 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add New Account</h5>
+                <h5 class="modal-title">Add New Vendor</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action={{ url('/accounts/Business') }}>
+            <form method="post" action={{ url('/accounts/Vendor') }}>
                 @csrf
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="title">Account Title</label>
+                        <label for="title">Vendor Title</label>
                         <input type="text" required name="title" id="title" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="cat">Account Category</label>
-                        <select name="cat" id="cat" class="form-control">
-                            <option value="Cash">Cash</option>
-                            <option value="Bank">Bank</option>
-                        </select>
+                        <label for="phone">Phone</label>
+                        <input type="text" name="phone" id="phone" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" name="address" id="address" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="amount">Initial Amount</label>
@@ -115,25 +118,26 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Account</h5>
+                <h5 class="modal-title">Edit Vendor</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
                 <div class="modal-body">
-                    <form action="{{ url('/account/edit/Business') }}" method="post">
+                    <form action="{{ url('/account/edit/Vendor') }}" method="post">
                         @csrf
                     <div class="form-group">
-                        <label for="edit_title"></label>
+                        <label for="edit_title">Vendor Title</label>
                         <input type="text" required id="edit_title"  name="title" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="edit_cat">Account Category</label>
-                        <select name="cat" id="edit_cat" class="form-control">
-                            <option value="Cash">Cash</option>
-                            <option value="Bank">Bank</option>
-                        </select>
+                        <label for="edit_phone">Phone</label>
+                        <input type="text" id="edit_phone"  name="phone" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_address">Address</label>
+                        <input type="text" id="edit_address"  name="address" class="form-control">
                     </div>
 
                 </div>
@@ -166,10 +170,11 @@
 
     });
 
-    function edit_cat(id, title, cat) {
+    function edit_cat(id, title, phone, address) {
         $('#edit_title').val(title);
+        $('#edit_phone').val(phone);
+        $('#edit_address').val(address);
         $('#edit_id').val(id);
-        $('#edit_cat').val(cat);
         $('#edit').modal('show');
     }
 

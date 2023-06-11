@@ -2,8 +2,8 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <h5>Opening Balance</h5>
-                <h4>0</h4>
+                <h5>Previous Balance</h5>
+                <h4>{{ $p_balance }}</h4>
             </div>
         </div>
     </div>

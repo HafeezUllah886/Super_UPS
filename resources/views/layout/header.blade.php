@@ -98,10 +98,8 @@
                     Vendors/Customers
                   </a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="">Add Vendor/Customer</a>
-
-                    <a class="dropdown-item" href="">Vendor Detail</a>
-                    <a class="dropdown-item" href="">Customer Detail</a>
+                    <a class="dropdown-item" href="{{ url('/vendors') }}">Vendors</a>
+                    <a class="dropdown-item" href="{{ '/customers' }}">Customers</a>
 
                   </div>
                 </li>
@@ -128,12 +126,7 @@
 
                   </div>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link" href="" id="navbardrop">
-                    Expense
-                  </a>
 
-                </li>
 
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">

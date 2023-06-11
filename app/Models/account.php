@@ -13,6 +13,7 @@ class account extends Model
             'title',
             'type',
             'phone',
+            'category',
             'address',
         ]
     );

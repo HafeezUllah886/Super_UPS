@@ -22,6 +22,8 @@ Route::get('/', [AuthController::class, "index"])->name('login');
 Route::post('/', [AuthController::class, "signin"]);
 
 Route::middleware('auth')->group(function (){
+    Route::get('/logout', [AuthController::class, 'out']);
+
     Route::get('/dashboard', [dashboardController::class, "dashboard"]);
     Route::get('/addProduct', [productController::class, "add"]);
 
@@ -41,10 +43,11 @@ Route::middleware('auth')->group(function (){
     Route::get('/product/restore/{id}', [productController::class, "restorePro"]);
 
     Route::get('/accounts', [AccountController::class, "accounts"]);
-    Route::post('/accounts', [AccountController::class, "storeAccount"]);
+    Route::post('/accounts/{type}', [AccountController::class, "storeAccount"]);
     Route::get('/account/delete/{id}', [AccountController::class, "deleteAccount"]);
     Route::get('/accounts/statement/{id}', [AccountController::class, "statementView"]);
     Route::get('/accounts/details/{id}/{from}/{to}', [AccountController::class, "details"]);
+    Route::post('/account/edit/{type}', [AccountController::class, "editAccount"]);
 
     Route::get('/deposit', [AccountController::class, "deposit"]);
     Route::post('/deposit', [AccountController::class, "storeDeposit"]);
@@ -53,5 +56,12 @@ Route::middleware('auth')->group(function (){
     Route::get('/withdraw', [AccountController::class, "withdraw"]);
     Route::post('/withdraw', [AccountController::class, "storeWithdraw"]);
     Route::get('/withdraw/delete/{ref}', [AccountController::class, "deleteWithdraw"]);
+
+    Route::get('/expense', [AccountController::class, "expense"]);
+    Route::post('/expense', [AccountController::class, "storeExpense"]);
+    Route::get('/expense/delete/{ref}', [AccountController::class, "deleteExpense"]);
+
+    Route::get('/vendors', [AccountController::class, "vendors"]);
+    Route::get('/customers', [AccountController::class, "customers"]);
 
 });

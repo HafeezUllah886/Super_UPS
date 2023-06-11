@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('account_id');
             $table->date('date');
-            $table->text('desc');
+            $table->text('desc')->nullable();
             $table->unsignedDecimal('amount', 10, 2);
             $table->unsignedBigInteger('ref');
             $table->foreign('account_id')->references('id')->on('accounts');

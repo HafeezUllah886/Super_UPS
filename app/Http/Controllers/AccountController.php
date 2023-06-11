@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\account;
 use App\Models\deposit;
+use App\Models\expense;
 use App\Models\transactions;
 use App\Models\withdraw;
 use Carbon\Carbon;
@@ -17,32 +18,73 @@ class AccountController extends Controller
         return view('finance.accounts')->with(compact('accounts'));
     }
 
-    public function storeAccount(request $req){
+    public function storeAccount(request $req, $type){
         $check = Account::where('title', $req->title)->count();
         if($check > 0){
             return back()->with('error', 'Account already exists');
         }
-        $account = account::create(
-            [
-                'title' => $req->title,
-                'type' => "Business",
-            ]
-        );
+        if($type == 'Business'){
+            $account = account::create(
+                [
+                    'title' => $req->title,
+                    'type' => $type,
+                    'category' => $req->cat,
+                ]
+            );
+        }
+        else
+        {
+            $account = account::create(
+                [
+                    'title' => $req->title,
+                    'type' => $type,
+                    'phone' => $req->phone,
+                    'address' => $req->address,
+                ]
+            );
+        }
+
         if($req->amount != 0) {
             createTransaction($account->id, date('Y-m-d'), "$req->amount", "0", "Initial Amount", getRef());
         }
-        return back()->with('success', 'Account created successfully');
+        return back()->with('success', 'Successfully Created');
+    }
+
+    public function editAccount(request $req, $type){
+        $check = Account::where('id' , '!=', $req->id)->where('title', $req->title)->count();
+        if($check > 0){
+            return back()->with('error', 'Already exists');
+        }
+        if($type == 'Business'){
+            $account = account::where('id', $req->id)->update(
+                [
+                    'title' => $req->title,
+                ]
+            );
+        }
+        else
+        {
+            $account = account::where('id', $req->id)->update(
+                [
+                    'title' => $req->title,
+                    'phone' => $req->phone,
+                    'address' => $req->address,
+                ]
+            );
+        }
+
+        return back()->with('success', 'Successfully Updated');
     }
 
     public function deleteAccount($id){
         if(getAccountBalance($id) != 0){
-            return back()->with('error', 'Account cannot be deleted');
+            return back()->with('error', 'Unable to delete');
         }
 
         transactions::where('account_id', $id)->delete();
         account::where('id', $id)->delete();
 
-        return back()->with('success', 'Account deleted successfully');
+        return back()->with('success', 'Deleted successfully');
     }
 
     public function statementView($id){
@@ -62,6 +104,7 @@ class AccountController extends Controller
             $p_balance += $item->cr;
             $p_balance -= $item->db;
         }
+
 
         $all = transactions::where('account_id', $id)->get();
 
@@ -130,5 +173,49 @@ class AccountController extends Controller
         transactions::where('ref', $ref)->delete();
 
         return back()->with('success', 'Withdraw was deleted');
+    }
+
+    public function vendors(){
+        $accounts = account::where('type', 'Vendor')->get();
+
+        return view('vendor.list')->with(compact('accounts'));
+    }
+
+    public function customers(){
+        $accounts = account::where('type', 'Customer')->get();
+
+        return view('customer.list')->with(compact('accounts'));
+    }
+
+
+    public function expense(){
+        $expenses = expense::orderBy('id', 'desc')->get();
+        $accounts = account::where('type', 'Business')->get();
+        return view('finance.expenses')->with(compact('expenses', 'accounts'));
+    }
+
+    public function storeExpense(request $req){
+        $ref = getRef();
+        $desc = "<strong>Expense</strong><br>" . $req->desc;
+        expense::create(
+            [
+                'account_id' => $req->account,
+                'date' => $req->date,
+                'amount' => $req->amount,
+                'desc' => $req->desc,
+                'ref' => $ref,
+            ]
+        );
+        createTransaction($req->account, $req->date, 0, $req->amount, $desc, $ref);
+
+        return back()->with('success', 'Expense saved');
+    }
+
+    public function deleteexpense($ref)
+    {
+        expense::where('ref', $ref)->delete();
+        transactions::where('ref', $ref)->delete();
+
+        return back()->with('success', 'Expense deleted');
     }
 }
