@@ -86,11 +86,9 @@
                   </a>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="">Sell</a>
-
                     <a class="dropdown-item" href="">Sale Detail</a>
                     <a class="dropdown-item" href="">Complete Sale Detail</a>
                     <a class="dropdown-item" href="">Return Invoice</a>
-
                   </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -108,7 +106,7 @@
                     Stock
                   </a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="">Add Stock</a>
+                    <a class="dropdown-item" href="{{ url('/purchase') }}">Add Stock</a>
 
                     <a class="dropdown-item" href="">Availble Stock</a>
                     <a class="dropdown-item" href="">Stock Detail</a>

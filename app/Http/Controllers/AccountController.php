@@ -6,6 +6,7 @@ use App\Models\account;
 use App\Models\deposit;
 use App\Models\expense;
 use App\Models\transactions;
+use App\Models\transfer;
 use App\Models\withdraw;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -211,11 +212,65 @@ class AccountController extends Controller
         return back()->with('success', 'Expense saved');
     }
 
-    public function deleteexpense($ref)
+    public function deleteExpense($ref)
     {
         expense::where('ref', $ref)->delete();
         transactions::where('ref', $ref)->delete();
 
         return back()->with('success', 'Expense deleted');
+    }
+
+    public function transfer(){
+        $from_accounts = account::where('type', '!=', 'Vendor')->get();
+        $to_accounts = account::where('type', '!=', 'Customer')->get();
+
+        $transfers = transfer::with('from_account', 'to_account')->orderBy('id', 'desc')->get();
+        return view('finance.transfer')->with(compact('from_accounts', 'to_accounts', 'transfers'));
+    }
+
+    public function storeTransfer(request $req){
+        if($req->from == $req->to)
+        {
+            return back()->with('error', "Please select different accounts to transfer");
+        }
+
+        $ref = getRef();
+
+        transfer::create(
+            [
+                'from' => $req->from,
+                'to' => $req->to,
+                'account_id' => $req->account,
+                'date' => $req->date,
+                'amount' => $req->amount,
+                'desc' => $req->desc,
+                'ref' => $ref,
+            ]
+        );
+
+        $from = account::find($req->from);
+        $to = account::find($req->to);
+
+        $desc = "<strong>Transfer to ".$to->title."</strong><br>" . $req->desc;
+        $desc1 = "<strong>Transfer from ".$from->title."</strong><br>" . $req->desc;
+
+        if($from->type == 'Customer' && $to->type == 'Business'){
+            createTransaction($req->from, $req->date, 0, $req->amount, $desc, $ref);
+            createTransaction($req->to, $req->date, $req->amount, 0, $desc1, $ref);
+        }
+        else{
+            createTransaction($req->from, $req->date, 0, $req->amount, $desc, $ref);
+            createTransaction($req->to, $req->date, 0, $req->amount, $desc1, $ref);
+        }
+
+        return back()->with('success', 'Amount Transfered');
+    }
+
+    public function deleteTransfer($ref)
+    {
+        transfer::where('ref', $ref)->delete();
+        transactions::where('ref', $ref)->delete();
+
+        return back()->with('success', 'Transfer deleted');
     }
 }

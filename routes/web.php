@@ -4,6 +4,8 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\productController;
+use App\Http\Controllers\purchaseController;
+use App\Http\Controllers\StockController;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -61,7 +63,14 @@ Route::middleware('auth')->group(function (){
     Route::post('/expense', [AccountController::class, "storeExpense"]);
     Route::get('/expense/delete/{ref}', [AccountController::class, "deleteExpense"]);
 
+    Route::get('/transfer', [AccountController::class, "transfer"]);
+    Route::post('/transfer', [AccountController::class, "storeTransfer"]);
+    Route::get('/transfer/delete/{ref}', [AccountController::class, "deleteTransfer"]);
+
     Route::get('/vendors', [AccountController::class, "vendors"]);
     Route::get('/customers', [AccountController::class, "customers"]);
+
+    Route::get('/purchase', [purchaseController::class, "purchase"]);
+    Route::get('/purchase/store', [purchaseController::class, "StoreDraft"]);
 
 });
