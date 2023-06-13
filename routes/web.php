@@ -71,6 +71,11 @@ Route::middleware('auth')->group(function (){
     Route::get('/customers', [AccountController::class, "customers"]);
 
     Route::get('/purchase', [purchaseController::class, "purchase"]);
+    Route::post('/purchase', [purchaseController::class, "storePurchase"]);
     Route::get('/purchase/store', [purchaseController::class, "StoreDraft"]);
+    Route::get('/purchase/draft/items', [purchaseController::class, "draftItems"]);
+    Route::get('/purchase/update/draft/qty/{id}/{qty}', [purchaseController::class, "updateDraftQty"]);
+    Route::get('/purchase/update/draft/rate/{id}/{rate}', [purchaseController::class, "updateDraftRate"]);
+    Route::get('/purchase/draft/delete/{id}', [purchaseController::class, "deleteDraft"]);
 
 });

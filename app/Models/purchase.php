@@ -15,6 +15,7 @@ class purchase extends Model
             'isPaid',
             'date',
             'desc',
+            'ref'
         ]
     );
 

@@ -16,8 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('vendor');
             $table->unsignedBigInteger('paidFrom')->nullable();
             $table->date('date');
-            $table->text('desc');
+            $table->text('desc')->nullable();
             $table->string('isPaid');
+            $table->unsignedBigInteger('ref');
             $table->foreign('vendor')->references('id')->on('accounts');
             $table->foreign('paidFrom')->references('id')->on('accounts');
             $table->timestamps();

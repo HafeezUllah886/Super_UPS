@@ -26,6 +26,7 @@
         <link href= {{ asset("assets/css/style.css") }} rel="stylesheet" type="text/css">
         {{-- data table --}}
         <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{{ asset('assets/plugins/notification/snackbar/snackbar.min.css') }}">
         {{-- data table --}}
         <style>
 
@@ -132,7 +133,7 @@
                   </a>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{ url('/accounts') }}">Accounts</a>
-                    <a class="dropdown-item" href="{{ url('/deposit') }}">Depost</a>
+                    <a class="dropdown-item" href="{{ url('/deposit') }}">Deposit</a>
                     <a class="dropdown-item" href="{{ url('/withdraw') }}">Withdraw</a>
                     <a class="dropdown-item" href="{{ url('/transfer') }}">Transfer</a>
                     <a class="dropdown-item" href="{{ url('/expense') }}">Expense</a>

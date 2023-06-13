@@ -32,9 +32,10 @@
         <script src= {{ asset("assets/plugins/morris/morris.min.js" ) }}></script>
         <script src= {{ asset("assets/plugins/raphael/raphael-min.js" ) }}></script>
         <script src= {{ asset("assets/plugins/jquery-sparkline/jquery.sparkline.min.js" ) }}></script>
-        
+
         <script src= {{ asset("assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js" ) }}></script>
         <script src= {{ asset("assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" ) }}></script>
+        <script src="{{ asset("assets/plugins/notification/snackbar/snackbar.min.js") }}"></script>
 
 
         {{-- <script src= {{ asset("assets/pages/crypto-dash.init.js" ) }}></script> --}}
@@ -44,10 +45,32 @@
 {{-- data table --}}
         <!-- App js -->
         <script src= {{ asset("assets/js/app.js" ) }}></script>
+        @if(Session::get('msg'))
+<script>
+    var msg = "{{Session::get('msg')}}";
+    Snackbar.show({
+    text: msg,
+    duration: 3000,
+    actionTextColor: '#fff',
+   backgroundColor: '#00ab55'
+});
+</script>
+@endif
+@if(Session::get('error'))
+<script>
+    var msg = "{{Session::get('error')}}";
+    Snackbar.show({
+    text: msg,
+    duration: 3000,
+    actionTextColor: '#fff',
+   backgroundColor: '#e7515a'
+});
+</script>
+@endif
         <script>
-             
-            $(document).ready(function() {        
-                
+
+            $(document).ready(function() {
+
     $('#datatable').DataTable({
         "bSort": false,
         // "bLengthChange": true,
@@ -59,7 +82,7 @@
     $('.select2').select2();
 
             $("#boxscroll").niceScroll({cursorborder:"",cursorcolor:"#cecece",boxzoom:true});
-            $("#boxscroll2").niceScroll({cursorborder:"",cursorcolor:"#cecece",boxzoom:true}); 
+            $("#boxscroll2").niceScroll({cursorborder:"",cursorcolor:"#cecece",boxzoom:true});
             });
 
         </script>
