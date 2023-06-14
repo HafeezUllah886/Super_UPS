@@ -229,6 +229,7 @@ class purchaseController extends Controller
     {
         purchase_details::where('ref', $ref)->delete();
         transactions::where('ref', $ref)->delete();
+        stock::where('ref', $ref)->delete();
         purchase::where('ref', $ref)->delete();
 
         return back()->with('error', "Purchase Deleted");
