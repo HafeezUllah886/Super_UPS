@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\account;
+use App\Models\purchase;
+use App\Models\purchase_details;
 use App\Models\ref;
 use App\Models\transactions;
 
@@ -120,4 +122,44 @@ function todayBank(){
 
    return $balance;
 
+}
+
+function getPurchaseBillTotal($id){
+    $items = purchase_details::where('bill_id', $id)->get();
+    $total = 0;
+    $amount = 0;
+    foreach($items as $item)
+    {
+        $amount = $item->rate * $item->qty;
+        $total += $amount;
+    }
+
+    return $total;
+}
+
+function updatePurchaseAmount($id){
+    $bill = purchase::where('id', $id)->first();
+    $total = getPurchaseBillTotal($id);
+    if($bill->isPaid == 'No')
+    {
+        $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->first();
+        $trans->cr = $total;
+        $trans->save();
+    }
+    elseif($bill->isPaid == 'Yes')
+    {
+        $trans = transactions::where('account_id', $bill->account->id)->where('ref', $bill->ref)->first();
+        $trans->db = $total;
+        $trans->save();
+    }
+    else
+    {
+        $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->first();
+        $trans->cr = $total;
+        $trans->save();
+
+        $trans1 = transactions::where('account_id', $bill->account->id)->where('ref', $bill->ref)->first();
+        $trans1->db = $bill->amount;
+        $trans1->save();
+    }
 }

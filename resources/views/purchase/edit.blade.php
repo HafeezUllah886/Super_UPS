@@ -1,5 +1,10 @@
 @extends('layout.dashboard')
 <script>
+ $(document).ready(function() {
+
+        abc();
+    });
+
      function abc() {
         var isPaid = $('#isPaid').find(":selected").val();
         if (isPaid == 'No') {
@@ -29,14 +34,24 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Purchasing</h4>
+                <h4>Edit Purchasing</h4>
             </div>
         </div>
     </div>
     <div class="col-md-12">
         <div class="card bg-white m-b-30">
             <div class="card-body">
-
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <table class="table">
+                            <tr>
+                                <td>Bill No. <strong>{{ $bill->id }}</strong></td>
+                                <td>Date: <strong>{{ date('d M Y', strtotime($bill->date)) }}</strong></td>
+                                <td>Vendor: <strong>{{ $bill->vendor_account->title }}</strong> </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
                 <form id="pro_form">
                 <div class="row">
                     <div class="col-md-3">
@@ -83,13 +98,13 @@
 
                         </tbody>
                     </table>
-                    <form method="post" class="mt-5">
+                    {{-- <form method="post" class="mt-5">
                         @csrf
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="date">Date</label>
-                                    <input type="date" name="date" value="{{ date('Y-m-d') }}" id="date" class="form-control">
+                                    <input type="date" name="date" value="{{ $bill->date }}" id="date" class="form-control">
                                     @error('date')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -101,7 +116,7 @@
                                     <select name="vendor" id="vendor" class="select2">
                                         <option value=""></option>
                                         @foreach ($vendors as $vendor)
-                                            <option value="{{ $vendor->id }}">{{ $vendor->title }} ({{ $vendor->type }})</option>
+                                            <option value="{{ $vendor->id }}" {{ $bill->vendor_account->id == $vendor->id ? 'Selected' : ''}}>{{ $vendor->title }}</option>
                                         @endforeach
                                     </select>
                                     @error('vendor')
@@ -113,9 +128,9 @@
                                 <div class="form-group">
                                     <label for="isPaid">is Paid</label>
                                     <select name="isPaid" id="isPaid" onchange="abc()" class="form-control">
-                                        <option>Yes</option>
-                                        <option>No</option>
-                                        <option>Partial</option>
+                                        <option {{ $bill->isPaid == "Yes" ? 'Selected' : ''}}>Yes</option>
+                                        <option {{ $bill->isPaid == "No" ? 'Selected' : ''}}>No</option>
+                                        <option {{ $bill->isPaid == "Partial" ? 'Selected' : ''}}>Partial</option>
                                     </select>
                                     @error('isPaid')
                                     <span class="text-danger">{{ $message }}</span>
@@ -125,7 +140,7 @@
                             <div class="col-md-2" id="amount_box">
                                 <div class="form-group">
                                     <label for="amount">Amount</label>
-                                    <input type="number" name="amount" id="amount" class="form-control">
+                                    <input type="number" name="amount" value="{{ $bill->amount }}" id="amount" class="form-control">
                                     @error('amount')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -137,7 +152,7 @@
                                     <select name="paidFrom" id="paidFrom" class=" select2">
                                         <option></option>
                                         @foreach ($paidFroms as $acct)
-                                            <option value="{{ $acct->id }}">{{ $acct->title }}</option>
+                                            <option value="{{ $acct->id }}" {{ @$bill->account->id == $acct->id ? 'Selected' : ''}}>{{ $acct->title }}</option>
                                         @endforeach
 
                                     </select>
@@ -152,18 +167,18 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="desc">Description</label>
-                                    <textarea name="desc" id="desc" class="form-control"></textarea>
+                                    <textarea name="desc" id="desc" class="form-control">{{ $bill->desc }}</textarea>
                                     @error('amount')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="col-md-6 ">
-                                    <button type="submit" class="btn btn-success btn-lg" style="margin-top: 30px">Save Bill</button>
+                                    <button type="submit" class="btn btn-success btn-lg" style="margin-top: 30px">Update</button>
 
                             </div>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
 
             </div>
@@ -182,17 +197,13 @@
 
 </style>
 <script>
-    $(document).ready(function() {
-        $("#amount_box").css('display', 'none');
-        get_items();
-    });
-
+get_items();
 $('#pro_form').submit(function(e){
     e.preventDefault();
     var data = $('#pro_form').serialize();
     $.ajax({
         method: 'get',
-        url: "{{url('/purchase/store')}}",
+        url: "{{url('/purchase/edit/store/')}}/{{$bill->id}}",
         data: data,
         success: function(abc){
             get_items();
@@ -215,7 +226,7 @@ $('#pro_form').submit(function(e){
 function get_items(){
     $.ajax({
         method: "GET",
-        url: "{{url('/purchase/draft/items')}}",
+        url: "{{url('/purchase/edit/items/')}}/{{ $bill->id }}",
         success: function(respose){
             $("#items").html(respose);
         }
@@ -226,7 +237,7 @@ function qty(id){
     var val = $("#qty"+id).val();
     $.ajax({
         method: "GET",
-        url: "{{url('/purchase/update/draft/qty/')}}/"+id+"/"+val,
+        url: "{{url('/purchase/update/edit/qty/')}}/"+id+"/"+val,
         success: function(respose){
             get_items();
             Snackbar.show({
@@ -245,7 +256,7 @@ function rate(id){
     var val = $("#rate"+id).val();
     $.ajax({
         method: "GET",
-        url: "{{url('/purchase/update/draft/rate/')}}/"+id+"/"+val,
+        url: "{{url('/purchase/update/edit/rate/')}}/"+id+"/"+val,
         success: function(respose){
             get_items();
             Snackbar.show({
@@ -258,10 +269,10 @@ function rate(id){
     });
 }
 
-function deleteDraft(id){
+function deleteEdit(id){
     $.ajax({
         method: "GET",
-        url: "{{url('/purchase/draft/delete/')}}/"+id,
+        url: "{{url('/purchase/edit/delete/')}}/"+id,
         success: function(respose){
             get_items();
             Snackbar.show({

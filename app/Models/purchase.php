@@ -15,15 +15,16 @@ class purchase extends Model
             'isPaid',
             'date',
             'desc',
+            'amount',
             'ref'
         ]
     );
 
-    public function vendor(){
+    public function vendor_account(){
         return $this->belongsTo(account::class, 'vendor', 'id');
     }
 
-    public function paidFrom(){
+    public function account(){
         return $this->belongsTo(account::class, 'paidFrom', 'id');
     }
 

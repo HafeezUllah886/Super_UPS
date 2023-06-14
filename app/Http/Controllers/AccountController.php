@@ -254,7 +254,7 @@ class AccountController extends Controller
         $desc = "<strong>Transfer to ".$to->title."</strong><br>" . $req->desc;
         $desc1 = "<strong>Transfer from ".$from->title."</strong><br>" . $req->desc;
 
-        if($from->type == 'Customer' && $to->type == 'Business'){
+        if($from->type == 'Customer' && $to->type == 'Business' || $from->type == 'Business' && $to->type == 'Business'){
             createTransaction($req->from, $req->date, 0, $req->amount, $desc, $ref);
             createTransaction($req->to, $req->date, $req->amount, 0, $desc1, $ref);
         }

@@ -79,4 +79,12 @@ Route::middleware('auth')->group(function (){
     Route::get('/purchase/draft/delete/{id}', [purchaseController::class, "deleteDraft"]);
     Route::get('/purchase/history', [purchaseController::class, "history"]);
 
+    Route::get('/purchase/edit/{id}', [purchaseController::class, "edit"]);
+    Route::get('/purchase/edit/items/{id}', [purchaseController::class, "editItems"]);
+    Route::get('/purchase/edit/store/{id}', [purchaseController::class, "editAddItems"]);
+    Route::get('/purchase/edit/delete/{id}', [purchaseController::class, "deleteEdit"]);
+    Route::get('/purchase/update/edit/qty/{id}/{qty}', [purchaseController::class, "updateEditQty"]);
+    Route::get('/purchase/update/edit/rate/{id}/{rate}', [purchaseController::class, "updateEditRate"]);
+    Route::get('/purchase/delete/{ref}', [purchaseController::class, "deletePurchase"]);
+
 });

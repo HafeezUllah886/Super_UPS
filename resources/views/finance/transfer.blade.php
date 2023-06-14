@@ -20,11 +20,11 @@
             </div>
         </div>
     </div>
-    
+
     <div class="col-md-12">
         <div class="card bg-white m-b-30">
             <div class="card-body table-responsive new-user">
-                
+
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable1">
                         <thead class="th-color">
@@ -100,7 +100,7 @@
                     </div>
                     <div class="form-group">
                         <label for="date">Date</label>
-                       <input type="date" name="date" id="date" class="form-control">
+                       <input type="date" name="date" id="date" value="{{ date('Y-m-d') }}" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="desc">Description</label>

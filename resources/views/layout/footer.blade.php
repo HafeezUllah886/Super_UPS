@@ -73,11 +73,6 @@
 
     $('#datatable').DataTable({
         "bSort": false,
-        // "bLengthChange": true,
-        // "bPaginate": false,
-        // "bFilter": false,
-        // "bInfo": false,
-
     });
     $(function () {
     $(".select2").selectize();

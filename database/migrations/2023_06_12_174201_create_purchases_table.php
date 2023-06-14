@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('date');
             $table->text('desc')->nullable();
             $table->string('isPaid');
+            $table->unsignedBigInteger('amount')->nullable();
             $table->unsignedBigInteger('ref');
             $table->foreign('vendor')->references('id')->on('accounts');
             $table->foreign('paidFrom')->references('id')->on('accounts');

@@ -22,6 +22,10 @@ class purchase_details extends Model
         return $this->belongsTo(products::class, 'product_id', 'id');
     }
 
+    public function bill(){
+        return $this->belongsTo(purchase::class, 'bill_id', 'id');
+    }
+
 
 
 }
