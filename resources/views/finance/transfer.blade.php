@@ -20,10 +20,11 @@
             </div>
         </div>
     </div>
+    
     <div class="col-md-12">
         <div class="card bg-white m-b-30">
             <div class="card-body table-responsive new-user">
-
+                
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable1">
                         <thead class="th-color">
@@ -77,7 +78,7 @@
 
                     <div class="form-group">
                         <label for="from">From</label>
-                        <select name="from" id="from" class="form-control" required id="">
+                        <select name="from" id="from" class="select2" required >
                             <option value=""></option>
                             @foreach ($from_accounts as $account)
                                <option value="{{ $account->id }}">{{ $account->title }} ({{ $account->type }})</option>
@@ -86,7 +87,7 @@
                     </div>
                     <div class="form-group">
                         <label for="to">To</label>
-                        <select name="to" id="to" class="form-control" required id="">
+                        <select name="to" id="to" class="select2" required>
                             <option value=""></option>
                             @foreach ($to_accounts as $account)
                                <option value="{{ $account->id }}">{{ $account->title }} ({{ $account->type }})</option>

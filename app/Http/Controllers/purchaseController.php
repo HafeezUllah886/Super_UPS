@@ -123,4 +123,9 @@ class purchaseController extends Controller
             createTransaction($req->paidFrom, $req->date, 0, $req->amount, $desc1, $ref);
          }
     }
+
+    public function history(){
+        $history = purchase::with('vendor', 'paidFrom', 'details')->orderBy('id', 'desc')->get();
+        return view('purchase.history')->with(compact('history'));
+    }
 }

@@ -15,8 +15,8 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Deposits</h4>
-                <button class="btn btn-success" data-toggle="modal" data-target="#modal">New Deposit</button>
+                <h4>Purhase History</h4>
+                <a href="{{url('/purchase')}}" class="btn btn-success">New Purchase</a>
             </div>
         </div>
     </div>
@@ -28,25 +28,27 @@
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable1">
                         <thead class="th-color">
                             <tr>
-                                <th class="border-top-0">Reference</th>
-                                <th class="border-top-0">Account</th>
+                                <th class="border-top-0">Bill No.</th>
+                                <th class="border-top-0">Vendor</th>
                                 <th class="border-top-0">Date</th>
-                                <th class="border-top-0">Description</th>
                                 <th class="border-top-0">Amount</th>
+                                <th class="border-top-0">Payment</th>
+                                <th class="border-top-0">Paid From</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @foreach ($deposits as $dep)
+                            @foreach ($history as $bill)
                             <tr>
-                                <td> {{ $dep->ref }} </td>
-                                <td>{{ $dep->account->title }} ({{ $dep->account->type }})</td>
-                                <td>{{ date('d M Y', strtotime($dep->date))}}</td>
-                                <td>{{ $dep->desc}}</td>
-                                <td>{{ $dep->amount}}</td>
+                                <td> {{ $bill->id }} </td>
+                                <td>{{ $bill->vendor->title }} ({{  $bill->vendor->type }})</td>
+                                <td>{{ date('d M Y', strtotime($bill->date))}}</td>
+                                <td></td>
+                                <td>{{ $bill->isPaid}}</td>
+                                <td>{{ $bill->paidFrom->title}}</td>
                                 <td>
-                                    <a href="{{ url('deposit/delete/') }}/{{ $dep->ref }}" class="btn btn-danger">Delete</a>
+                                    <a href="{{ url('deposit/delete/') }}" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                             @endforeach

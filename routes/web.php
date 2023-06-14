@@ -77,5 +77,6 @@ Route::middleware('auth')->group(function (){
     Route::get('/purchase/update/draft/qty/{id}/{qty}', [purchaseController::class, "updateDraftQty"]);
     Route::get('/purchase/update/draft/rate/{id}/{rate}', [purchaseController::class, "updateDraftRate"]);
     Route::get('/purchase/draft/delete/{id}', [purchaseController::class, "deleteDraft"]);
+    Route::get('/purchase/history', [purchaseController::class, "history"]);
 
 });

@@ -75,7 +75,7 @@
 
                     <div class="form-group">
                         <label for="account">Select Account</label>
-                        <select name="account" id="account" class="form-control" required id="">
+                        <select name="account" id="account" class="select2" required id="">
                             <option value=""></option>
                             @foreach ($accounts as $account)
                                <option value="{{ $account->id }}">{{ $account->title }} ({{ $account->type }})</option>

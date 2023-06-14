@@ -42,7 +42,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="product">Select Product</label>
-                            <select name="product" required id="product" class="form-control">
+                            <select name="product" required id="product" class="select2">
                                 <option value=""></option>
                                 @foreach ($products as $pro)
                                     <option value="{{ $pro->id }}">{{ $pro->name }}</option>
@@ -98,7 +98,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="vendor">Select Vendor</label>
-                                    <select name="vendor" id="vendor" class="form-control">
+                                    <select name="vendor" id="vendor" class="select2">
                                         <option value=""></option>
                                         @foreach ($vendors as $vendor)
                                             <option value="{{ $vendor->id }}">{{ $vendor->title }}</option>
@@ -134,7 +134,7 @@
                             <div class="col-md-3" id="paidIn_box">
                                 <div class="form-group">
                                     <label for="paidFrom">Paid From</label>
-                                    <select name="paidFrom" id="paidFrom" class="form-control">
+                                    <select name="paidFrom" id="paidFrom" class=" select2">
                                         <option></option>
                                         @foreach ($paidIns as $acct)
                                             <option value="{{ $acct->id }}">{{ $acct->title }}</option>
