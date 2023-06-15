@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\productController;
 use App\Http\Controllers\purchaseController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StockController;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -87,4 +88,24 @@ Route::middleware('auth')->group(function (){
     Route::get('/purchase/update/edit/rate/{id}/{rate}', [purchaseController::class, "updateEditRate"]);
     Route::get('/purchase/delete/{ref}', [purchaseController::class, "deletePurchase"]);
 
+
+    Route::get('/sale', [SaleController::class, "sale"]);
+    Route::post('/sale', [SaleController::class, "storeSale"]);
+    Route::get('/sale/store', [saleController::class, "StoreDraft"]);
+    Route::get('/sale/getPrice/{id}', [SaleController::class, "getPrice"]);
+    Route::get('/sale/draft/items', [saleController::class, "draftItems"]);
+    Route::get('/sale/update/draft/qty/{id}/{qty}', [saleController::class, "updateDraftQty"]);
+    Route::get('/sale/update/draft/rate/{id}/{price}', [saleController::class, "updateDraftRate"]);
+    Route::get('/sale/draft/delete/{id}', [saleController::class, "deleteDraft"]);
+    Route::get('/sale/history', [saleController::class, "history"]);
+    Route::get('/sale/delete/{ref}', [saleController::class, "deleteSale"]);
+
+    Route::get('/sale/edit/{id}', [saleController::class, "edit"]);
+    Route::get('/sale/edit/items/{id}', [saleController::class, "editItems"]);
+    Route::get('/sale/edit/store/{id}', [saleController::class, "editAddItems"]);
+    Route::get('/sale/edit/delete/{id}', [saleController::class, "deleteEdit"]);
+    Route::get('/sale/update/edit/qty/{id}/{qty}', [saleController::class, "updateEditQty"]);
+    Route::get('/sale/update/edit/price/{id}/{price}', [saleController::class, "updateEditPrice"]);
+
+    Route::get('/stock',[purchaseController::class, "stock1"]);
 });

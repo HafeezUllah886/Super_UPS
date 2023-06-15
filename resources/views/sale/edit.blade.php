@@ -15,7 +15,7 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Edit Purchasing</h4>
+                <h4>Edit Sale</h4>
             </div>
         </div>
     </div>
@@ -26,10 +26,10 @@
                     <div class="col-12">
                         <table class="table">
                             <tr>
-                                <td>Bill No. <strong>{{ $bill->id }}</strong></td>
+                                <td>Invoice No. <strong>{{ $bill->id }}</strong></td>
                                 <td>Date: <strong>{{ date('d M Y', strtotime($bill->date)) }}</strong></td>
-                                <td>Vendor: <strong>@if (@$bill->vendor_account->title)
-                                    {{ @$bill->vendor_account->title }} ({{  @$bill->vendor_account->type }})
+                                <td>Customer: <strong>@if (@$bill->customer_account->title)
+                                    {{ @$bill->customer_account->title }} ({{  @$bill->customer_account->type }})
 
                                 @else
                                 {{$bill->walking}} (Walk In)
@@ -44,7 +44,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="product">Select Product</label>
-                            <select name="product" required id="product" class="select2">
+                            <select name="product" required id="product" onchange="price1()" class="select2">
                                 <option value=""></option>
                                 @foreach ($products as $pro)
                                     <option value="{{ $pro->id }}">{{ $pro->name }}</option>
@@ -60,8 +60,8 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="rate">Purchase Rate</label>
-                            <input type="number" required name="rate" id="rate" class="form-control">
+                            <label for="price">Sale Price</label>
+                            <input type="number" required name="price" id="price" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -76,7 +76,7 @@
                                 <th class="border-top-0">Ser</th>
                                 <th class="border-top-0">Product Name</th>
                                 <th class="border-top-0">Quantity</th>
-                                <th class="border-top-0">Rate</th>
+                                <th class="border-top-0">Price</th>
                                 <th class="border-top-0">Amount</th>
                                 <th>Action</th>
                             </tr>
@@ -190,7 +190,7 @@ $('#pro_form').submit(function(e){
     var data = $('#pro_form').serialize();
     $.ajax({
         method: 'get',
-        url: "{{url('/purchase/edit/store/')}}/{{$bill->id}}",
+        url: "{{url('/sale/edit/store/')}}/{{$bill->id}}",
         data: data,
         success: function(abc){
             get_items();
@@ -213,7 +213,7 @@ $('#pro_form').submit(function(e){
 function get_items(){
     $.ajax({
         method: "GET",
-        url: "{{url('/purchase/edit/items/')}}/{{ $bill->id }}",
+        url: "{{url('/sale/edit/items/')}}/{{ $bill->id }}",
         success: function(respose){
             $("#items").html(respose);
         }
@@ -224,7 +224,7 @@ function qty(id){
     var val = $("#qty"+id).val();
     $.ajax({
         method: "GET",
-        url: "{{url('/purchase/update/edit/qty/')}}/"+id+"/"+val,
+        url: "{{url('/sale/update/edit/qty/')}}/"+id+"/"+val,
         success: function(respose){
             get_items();
             Snackbar.show({
@@ -239,11 +239,11 @@ function qty(id){
     });
 }
 
-function rate(id){
-    var val = $("#rate"+id).val();
+function price(id){
+    var val = $("#price"+id).val();
     $.ajax({
         method: "GET",
-        url: "{{url('/purchase/update/edit/rate/')}}/"+id+"/"+val,
+        url: "{{url('/sale/update/edit/price/')}}/"+id+"/"+val,
         success: function(respose){
             get_items();
             Snackbar.show({
@@ -259,7 +259,7 @@ function rate(id){
 function deleteEdit(id){
     $.ajax({
         method: "GET",
-        url: "{{url('/purchase/edit/delete/')}}/"+id,
+        url: "{{url('/sale/edit/delete/')}}/"+id,
         success: function(respose){
             get_items();
             Snackbar.show({
@@ -272,6 +272,19 @@ function deleteEdit(id){
             });
         }
     });
+}
+
+function price1(){
+
+var id = $('#product').find(":selected").val();
+ $.ajax({
+     method: 'get',
+     url: "{{ url('/sale/getPrice/') }}/"+id,
+     success: function(data){
+         $("#price").val(data);
+
+     }
+ });
 }
 </script>
 @endsection

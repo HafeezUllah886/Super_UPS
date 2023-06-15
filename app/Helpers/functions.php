@@ -4,6 +4,8 @@ use App\Models\account;
 use App\Models\purchase;
 use App\Models\purchase_details;
 use App\Models\ref;
+use App\Models\sale;
+use App\Models\sale_details;
 use App\Models\transactions;
 
 function getRef(){
@@ -137,6 +139,19 @@ function getPurchaseBillTotal($id){
     return $total;
 }
 
+function getSaleBillTotal($id){
+    $items = sale_details::where('bill_id', $id)->get();
+    $total = 0;
+    $amount = 0;
+    foreach($items as $item)
+    {
+        $amount = $item->price * $item->qty;
+        $total += $amount;
+    }
+
+    return $total;
+}
+
 function updatePurchaseAmount($id){
     $bill = purchase::where('id', $id)->first();
     $total = getPurchaseBillTotal($id);
@@ -151,7 +166,7 @@ function updatePurchaseAmount($id){
             $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->first();
             $trans->db = $total;
         }
-        
+
         $trans->save();
     }
     elseif($bill->isPaid == 'Yes')
@@ -171,8 +186,32 @@ function updatePurchaseAmount($id){
             $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->first();
             $trans->db = $total;
         }
-        
+
         $trans->save();
 
+    }
+}
+
+function updateSaleAmount($id){
+    $bill = sale::where('id', $id)->first();
+    $total = getSaleBillTotal($id);
+    if($bill->isPaid == 'No')
+    {
+
+            $trans = transactions::where('account_id', $bill->customer_account->id)->where('ref', $bill->ref)->first();
+            $trans->cr = $total;
+            $trans->save();
+    }
+    elseif($bill->isPaid == 'Yes')
+    {
+        $trans = transactions::where('account_id', $bill->account->id)->where('ref', $bill->ref)->first();
+        $trans->cr = $total;
+        $trans->save();
+    }
+    else
+    {
+            $trans = transactions::where('account_id', $bill->customer_account->id)->where('ref', $bill->ref)->first();
+            $trans->cr = $total;
+            $trans->save();
     }
 }

@@ -34,6 +34,7 @@
                             <tr>
                                 <th class="border-top-0">Ser</th>
                                 <th class="border-top-0">Product Name</th>
+                                <th class="border-top-0">Sale Price</th>
                                 <th class="border-top-0">Category</th>
                                 <th class="border-top-0">Company</th>
                                 <th>Action</th>
@@ -50,11 +51,12 @@
                             <tr>
                                 <td> {{ $ser }} </td>
                                 <td>{{ $pro->name }}</td>
+                                <td>{{ $pro->price }}</td>
                                 <td>{{ $pro->category->cat }}</td>
                                 <td>{{ $pro->company->name }}</td>
 
                                 <td>
-                                    <button onclick='edit_cat({{ $pro->id }}, "{{ $pro->name }}", {{ $pro->coy }}, {{ $pro->cat }})' class="btn btn-primary">Edit</button>
+                                    <button onclick='edit_cat({{ $pro->id }}, "{{ $pro->name }}", {{ $pro->coy }}, {{ $pro->cat }}, {{ $pro->price }})' class="btn btn-primary">Edit</button>
                                     <a href="{{ url('/product/delete/') }}/{{ $pro->id }}" class="btn btn-danger">Delete</a>
                                     </td>
                             </tr>
@@ -85,6 +87,10 @@
                     <div class="form-group">
                         <label for="name">Product Name</label>
                         <input type="text" required name="name" id="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Sale Price</label>
+                        <input type="number" required name="price" id="price" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="cat">Select Category</label>
@@ -130,6 +136,10 @@
                     <div class="form-group">
                         <label for="name">Product Name</label>
                         <input type="text" required id="edit_name"  name="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Sale Price</label>
+                        <input type="number" required id="edit_price"  name="price" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="cat">Select Category</label>
@@ -178,8 +188,9 @@
 
     });
 
-    function edit_cat(id, name, coy, cat) {
+    function edit_cat(id, name, coy, cat, price) {
         $('#edit_name').val(name);
+        $('#edit_price').val(price);
         $('#edit_coy').val(coy);
         $('#edit_cat').val(cat);
         $('#edit_id').val(id);

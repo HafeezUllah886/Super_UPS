@@ -12,7 +12,8 @@ class products extends Model
     protected $fillable = ([
         'coy',
         'cat',
-        'name'
+        'name',
+        'price'
     ]);
 
     public function company(){
@@ -21,5 +22,9 @@ class products extends Model
 
     public function category(){
         return $this->belongsTo(catergory::class, 'cat', 'id');
+    }
+
+    public function stock(){
+        return $this->hasMany(stock::class, 'product_id');
     }
 }

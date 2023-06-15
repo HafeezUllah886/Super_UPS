@@ -98,6 +98,7 @@ class productController extends Controller
         products::create(
             [
                 'name' => $req->name,
+                'price' => $req->price,
                 'coy' => $req->coy,
                 'cat' => $req->cat,
             ]
@@ -115,6 +116,7 @@ class productController extends Controller
         products::where('id', $req->id)->update(
             [
                 'name' => $req->name,
+                'price' => $req->price,
                 'coy' => $req->coy,
                 'cat' => $req->cat,
             ]

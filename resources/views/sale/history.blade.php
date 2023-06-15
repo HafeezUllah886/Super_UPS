@@ -6,8 +6,8 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Purhase History</h4>
-                <a href="{{url('/purchase')}}" class="btn btn-success">New Purchase</a>
+                <h4>Sale History</h4>
+                <a href="{{url('/sale')}}" class="btn btn-success">New Sale</a>
             </div>
         </div>
     </div>
@@ -19,7 +19,7 @@
                         <thead class="th-color">
                             <tr>
                                 <th class="border-top-0">Bill No.</th>
-                                <th class="border-top-0">Vendor</th>
+                                <th class="border-top-0">Customer</th>
                                 <th class="border-top-0">Date</th>
                                 <th class="border-top-0">Total Amount</th>
                                 <th class="border-top-0">Amount Paid</th>
@@ -33,21 +33,21 @@
                             @foreach ($history as $bill)
                             <tr>
                                 <td> {{ $bill->id }} </td>
-                                <td>@if (@$bill->vendor_account->title)
-                                    {{ @$bill->vendor_account->title }} ({{  @$bill->vendor_account->type }})
+                                <td>@if (@$bill->customer_account->title)
+                                    {{ @$bill->customer_account->title }} ({{  @$bill->customer_account->type }})
 
                                 @else
                                 {{$bill->walking}} (Walk In)
 
                                 @endif</td>
                                 <td>{{ date('d M Y', strtotime($bill->date))}}</td>
-                                <td>{{ getPurchaseBillTotal($bill->id) }}</td>
+                                <td>{{ getSaleBillTotal($bill->id) }}</td>
                                 <td>@if($bill->isPaid == 'Yes') {{ "Full Payment" }} @elseif($bill->isPaid == 'No') {{ "UnPaid" }} @else {{ $bill->amount }} @endif</td>
                                 <td>{{ $bill->isPaid}}</td>
                                 <td>{{ @$bill->account->title}}</td>
                                 <td>
-                                    <a href="{{ url('/purchase/delete/') }}/{{ $bill->ref }}" class="btn btn-danger confirmation">Delete</a>
-                                    <a href="{{ url('/purchase/edit/') }}/{{ $bill->id }}" class="btn btn-info">Edit</a>
+                                    <a href="{{ url('/sale/delete/') }}/{{ $bill->ref }}" class="btn btn-danger confirmation">Delete</a>
+                                    <a href="{{ url('/sale/edit/') }}/{{ $bill->id }}" class="btn btn-info">Edit</a>
                                 </td>
                             </tr>
                             @endforeach

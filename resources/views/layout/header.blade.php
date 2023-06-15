@@ -88,12 +88,21 @@
                     Sales
                   </a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="">Sell</a>
-                    <a class="dropdown-item" href="">Sale Detail</a>
-                    <a class="dropdown-item" href="">Complete Sale Detail</a>
-                    <a class="dropdown-item" href="">Return Invoice</a>
+                    <a class="dropdown-item" href="{{ url('/sale') }}">Create Sale</a>
+                    <a class="dropdown-item" href="{{ url('/sale/history') }}">Sale History</a>
                   </div>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                      Stock
+                    </a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="{{ url('/purchase') }}">Create Purchase</a>
+                      <a class="dropdown-item" href="{{url('/purchase/history')}}">Purchase History</a>
+                      <a class="dropdown-item" href="{{ url('/stock') }}">Stock Detail</a>
+
+                    </div>
+                  </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                     Vendors/Customers
@@ -104,30 +113,6 @@
 
                   </div>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Stock
-                  </a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{ url('/purchase') }}">Create Purchase</a>
-
-                    <a class="dropdown-item" href="{{url('/purchase/history')}}">Purchase History</a>
-                    <a class="dropdown-item" href="">Stock Detail</a>
-
-                  </div>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Quotation
-                  </a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="">Generate</a>
-
-                    <a class="dropdown-item" href="">Quotation Listing</a>
-
-                  </div>
-                </li>
-
 
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -162,26 +147,6 @@
                     </a>
 
                   </li>
-
-
-
-
-
-
-
-
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                  Users
-                </a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="">Add User</a>
-
-                  <a class="dropdown-item" href="">User Listing</a>
-
-                </div>
-              </li>
-
 
               </ul>
 

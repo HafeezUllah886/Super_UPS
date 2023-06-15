@@ -83,7 +83,7 @@ class purchaseController extends Controller
         $ref = getRef();
         $vendor = null;
         $walkIn = null;
-        $amount = null; 
+        $amount = null;
         $paidFrom = null;
         if($req->isPaid == 'Yes')
         {
@@ -93,7 +93,7 @@ class purchaseController extends Controller
             else
             {
                 $vendor = $req->vendor;
-                
+
             }
             $paidFrom = $req->paidFrom;
         }
@@ -105,7 +105,7 @@ class purchaseController extends Controller
             $paidFrom = $req->paidFrom;
             $amount = $req->amount;
         }
-       
+
         $purchase = purchase::create([
             'vendor' => $vendor,
             'walking' => $walkIn,
@@ -116,14 +116,14 @@ class purchaseController extends Controller
             'isPaid' => $req->isPaid,
             'ref' => $ref,
         ]);
-       
+
         $desc = "<strong>Purchased</strong><br/> Bill No. ".$purchase->id;
         $items = purchase_draft::all();
         $total = 0;
-        $amount = 0;
+        $amount1 = 0;
         foreach ($items as $item){
-            $amount = $item->rate * $item->qty;
-            $total += $amount;
+            $amount1 = $item->rate * $item->qty;
+            $total += $amount1;
             purchase_details::create([
                 'bill_id' => $purchase->id,
                 'product_id' => $item->product_id,
@@ -144,7 +144,7 @@ class purchaseController extends Controller
          $desc2 = "<strong>Products Purchased</strong><br/>Partial payment of Bill No. ".$purchase->id;
         if($req->vendor != 0){
          $check_vendor = account::find($req->vendor);
-         
+
          if($req->isPaid == 'Yes'){
             createTransaction($req->paidFrom, $req->date, 0, $total, $desc1, $ref);
          }
@@ -155,7 +155,7 @@ class purchaseController extends Controller
             else{
                 createTransaction($req->vendor, $req->date, 0, $total, $desc1, $ref);
             }
-            
+
          }
          else{
             if($check_vendor->type == "Vendor"){
@@ -171,7 +171,7 @@ class purchaseController extends Controller
         {
             createTransaction($req->paidFrom, $req->date, 0, $total, $desc1, $ref);
         }
-        
+
 
          purchase_draft::truncate();
 
@@ -255,5 +255,25 @@ class purchaseController extends Controller
         purchase::where('ref', $ref)->delete();
 
         return back()->with('error', "Purchase Deleted");
+    }
+
+    public function stock1(){
+        $products = products::all();
+        $data = [];
+        $balance = 0;
+        $value = 0;
+
+        foreach($products as $product)
+        {
+            foreach($product->stock as $stock){
+                $balance += $stock->cr;
+                $balance -= $stock->db;
+                $value = $balance * $product->price;
+            }
+
+            $data[] = ['product' => $product->name, 'cat' => $product->category->cat, 'coy' => $product->company->name, 'balance' => $balance, 'value' => $value, 'price' => $product->price];
+        }
+
+        return view('purchase.stock')->with(compact('data'));
     }
 }
