@@ -13,6 +13,25 @@
             $('#paidIn_box').css('display', 'block');
         }
     }
+
+    function walkIn1(){
+        console.log(vendor);
+        var vendor = $("#vendor").find(':selected').val();
+        
+        if(vendor == 0)
+        {
+            $('#walkIn_box').css("display", "block");
+            $('#isPaid').val('Yes');
+            $('#isPaid_box').css('display', 'none');
+            abc();
+        }
+        else
+        {
+            $('#walkIn_box').css("display", "none");
+            $('#isPaid_box').css('display', 'block');
+        }
+
+    }
 </script>
 @section('content')
 @if (session('success'))
@@ -91,15 +110,16 @@
                                     <label for="date">Date</label>
                                     <input type="date" name="date" value="{{ date('Y-m-d') }}" id="date" class="form-control">
                                     @error('date')
-                                    <span class="text-danger">{{ $message }}</span>
+                                        <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="vendor">Select Vendor</label>
-                                    <select name="vendor" id="vendor" class="select2">
+                                    <select name="vendor" id="vendor" onchange="walkIn1()" class="select2">
                                         <option value=""></option>
+                                        <option value="0">Walk-in Vendor</option>
                                         @foreach ($vendors as $vendor)
                                             <option value="{{ $vendor->id }}">{{ $vendor->title }} ({{ $vendor->type }})</option>
                                         @endforeach
@@ -109,7 +129,16 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-2" id="walkIn_box">
+                                <div class="form-group">
+                                    <label for="">Vendor Name</label>
+                                    <input type="text" name="walkIn" class="form-control">
+                                    @error('walkIn')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-2" id="isPaid_box">
                                 <div class="form-group">
                                     <label for="isPaid">is Paid</label>
                                     <select name="isPaid" id="isPaid" onchange="abc()" class="form-control">
@@ -184,6 +213,7 @@
 <script>
     $(document).ready(function() {
         $("#amount_box").css('display', 'none');
+         $('#walkIn_box').css("display", "none");
         get_items();
     });
 

@@ -70,50 +70,53 @@ class purchaseController extends Controller
         $req->validate([
             'date' => 'required',
             'vendor' => 'required',
+            'walkIn' => 'required_if:vendor,0',
             'amount' => 'required_if:isPaid,Partial',
             'paidFrom' => 'required_unless:isPaid,No',
         ],[
             'date.required' => 'Select Date',
             'vendor.required' => 'Select Vendor',
             'amount' => 'Enter Paid Amount',
-            'paidFrom' => 'Select Account'
+            'paidFrom' => 'Select Account',
+            'walkn' => 'Enter Vendor Name'
         ]);
         $ref = getRef();
-        if($req->isPaid == 'No')
+        $vendor = null;
+        $walkIn = null;
+        $amount = null; 
+        $paidFrom = null;
+        if($req->isPaid == 'Yes')
         {
-            $purchase = purchase::create([
-                'vendor' => $req->vendor,
-                'paidFrom' => null,
-                'date' => $req->date,
-                'desc' => $req->desc,
-                'amount' => null,
-                'isPaid' => $req->isPaid,
-                'ref' => $ref,
-            ]);
+            if($req->vendor == 0){
+                $walkIn = $req->walkIn;
+            }
+            else
+            {
+                $vendor = $req->vendor;
+                
+            }
+            $paidFrom = $req->paidFrom;
         }
-        elseif($req->isPaid == 'Yes')
-        {
-            $purchase = purchase::create([
-                'vendor' => $req->vendor,
-                'paidFrom' => $req->paidFrom,
-                'date' => $req->date,
-                'desc' => $req->desc,
-                'amount' => null,
-                'isPaid' => $req->isPaid,
-                'ref' => $ref,
-            ]);
+        elseif($req->isPaid == 'No'){
+            $vendor = $req->vendor;
         }
         else{
-            $purchase = purchase::create([
-                'vendor' => $req->vendor,
-                'paidFrom' => $req->paidFrom,
-                'date' => $req->date,
-                'desc' => $req->desc,
-                'amount' => $req->amount,
-                'isPaid' => $req->isPaid,
-                'ref' => $ref,
-            ]);
+            $vendor = $req->vendor;
+            $paidFrom = $req->paidFrom;
+            $amount = $req->amount;
         }
+       
+        $purchase = purchase::create([
+            'vendor' => $vendor,
+            'walking' => $walkIn,
+            'paidFrom' => $paidFrom,
+            'date' => $req->date,
+            'desc' => $req->desc,
+            'amount' => $amount,
+            'isPaid' => $req->isPaid,
+            'ref' => $ref,
+        ]);
+       
         $desc = "<strong>Purchased</strong><br/> Bill No. ".$purchase->id;
         $items = purchase_draft::all();
         $total = 0;
@@ -137,11 +140,11 @@ class purchaseController extends Controller
                 'ref' => $ref
             ]);
          }
-         
-        if($req->vendor != 0){
-         $check_vendor = account::find($req->vendor);
          $desc1 = "<strong>Products Purchased</strong><br/>Bill No. ".$purchase->id;
          $desc2 = "<strong>Products Purchased</strong><br/>Partial payment of Bill No. ".$purchase->id;
+        if($req->vendor != 0){
+         $check_vendor = account::find($req->vendor);
+         
          if($req->isPaid == 'Yes'){
             createTransaction($req->paidFrom, $req->date, 0, $total, $desc1, $ref);
          }
@@ -163,6 +166,10 @@ class purchaseController extends Controller
             }
             createTransaction($req->paidFrom, $req->date, 0, $req->amount, $desc1, $ref);
          }
+        }
+        else
+        {
+            createTransaction($req->paidFrom, $req->date, 0, $total, $desc1, $ref);
         }
         
 
