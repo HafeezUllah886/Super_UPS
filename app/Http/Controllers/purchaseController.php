@@ -137,19 +137,34 @@ class purchaseController extends Controller
                 'ref' => $ref
             ]);
          }
-
+         
+        if($req->vendor != 0){
+         $check_vendor = account::find($req->vendor);
          $desc1 = "<strong>Products Purchased</strong><br/>Bill No. ".$purchase->id;
          $desc2 = "<strong>Products Purchased</strong><br/>Partial payment of Bill No. ".$purchase->id;
          if($req->isPaid == 'Yes'){
             createTransaction($req->paidFrom, $req->date, 0, $total, $desc1, $ref);
          }
          elseif($req->isPaid == 'No'){
-            createTransaction($req->vendor, $req->date, $total, 0, $desc1, $ref);
+            if($check_vendor->type == "Vendor"){
+                createTransaction($req->vendor, $req->date, $total, 0, $desc1, $ref);
+            }
+            else{
+                createTransaction($req->vendor, $req->date, 0, $total, $desc1, $ref);
+            }
+            
          }
          else{
-            createTransaction($req->vendor, $req->date, $total, $req->amount, $desc2, $ref);
+            if($check_vendor->type == "Vendor"){
+                createTransaction($req->vendor, $req->date, $total, $req->amount, $desc2, $ref);
+            }
+            else{
+                createTransaction($req->vendor, $req->date, $req->amount, $total, $desc2, $ref);
+            }
             createTransaction($req->paidFrom, $req->date, 0, $req->amount, $desc1, $ref);
          }
+        }
+        
 
          purchase_draft::truncate();
 

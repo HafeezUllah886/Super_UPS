@@ -142,8 +142,16 @@ function updatePurchaseAmount($id){
     $total = getPurchaseBillTotal($id);
     if($bill->isPaid == 'No')
     {
-        $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->first();
-        $trans->cr = $total;
+        if($bill->vendor_account->type == 'Vendor')
+        {
+            $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->first();
+            $trans->cr = $total;
+        }
+        else{
+            $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->first();
+            $trans->db = $total;
+        }
+        
         $trans->save();
     }
     elseif($bill->isPaid == 'Yes')
@@ -154,12 +162,17 @@ function updatePurchaseAmount($id){
     }
     else
     {
-        $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->first();
-        $trans->cr = $total;
+        if($bill->vendor_account->type == 'Vendor')
+        {
+            $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->first();
+            $trans->cr = $total;
+        }
+        else{
+            $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->first();
+            $trans->db = $total;
+        }
+        
         $trans->save();
 
-        $trans1 = transactions::where('account_id', $bill->account->id)->where('ref', $bill->ref)->first();
-        $trans1->db = $bill->amount;
-        $trans1->save();
     }
 }

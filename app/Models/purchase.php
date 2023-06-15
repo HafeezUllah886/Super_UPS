@@ -11,6 +11,7 @@ class purchase extends Model
     protected $fillable = (
         [
             'vendor',
+            'walking',
             'paidFrom',
             'isPaid',
             'date',

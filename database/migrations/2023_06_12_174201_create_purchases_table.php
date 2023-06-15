@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('vendor');
+            $table->unsignedBigInteger('vendor')->nullable();
+            $table->string('walking')->nullable();
             $table->unsignedBigInteger('paidFrom')->nullable();
             $table->date('date');
             $table->text('desc')->nullable();
