@@ -5,7 +5,6 @@
     td {
         font-size: 15px !important
     }
-
     table-responsive {
         height: 600px ! important overflow:scroll;
     }
@@ -38,7 +37,6 @@
             </div>
             <div class="col-xl-3 col-md-3 mt-3">
                 <div class="card border-left-info shadow  py-2">
-
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
@@ -57,12 +55,10 @@
                                 </div>
                             </div>
                         </div>
-
                 </div>
             </div>
             <div class="col-xl-3 col-md-3 mt-3">
                 <div class="card border-left-info shadow  py-2">
-
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
@@ -81,7 +77,6 @@
                                 </div>
                             </div>
                         </div>
-
                 </div>
             </div>
             <div class="col-xl-3 col-md-3 mt-3">
@@ -105,7 +100,6 @@
                                 </div>
                             </div>
                         </div>
-
                 </div>
             </div>
             <div class="col-xl-3 col-md-3 mt-3">
@@ -161,36 +155,45 @@
     </div>
 
     {{-- End Top card section --}}
-    @if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-    @endif
-    @if (session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-    @endif
+
     <div class="container-fluid">
         <div class="row">
 
             <div class="col-md-6">
-                <h5 class="text-danger">Ledger</h5>
+                <h5 class="text-danger">Cash Ledger</h5>
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-hover text-center" id="datatable">
+                    <table class="table table-bordered table-striped table-hover text-center" id="datatable1">
                         <thead class="th-color">
                             <tr>
-                                {{-- <th>ID</th> --}}
+                                <th>ID</th>
                                 <th>Date</th>
-                                <th>Vendor/Customer</th>
-                                <th>Payment Type</th>
-
-                                <th>Details</th>
-                                <th>Amount</th>
+                                <th>Account</th>
+                                <th>Description</th>
+                                <th>Credit</th>
+                                <th>Debit</th>
+                                <th>Balance</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $balance = 0;
+                            @endphp
+                            @foreach ($trans as $tran)
+                            @php
+                                $balance += $tran->cr;
+                                $balance -= $tran->db;
+                            @endphp
+                                <tr>
+                                    <td>{{ $tran->id}}</td>
+                                    <td>{{ date('d M Y', strtotime($tran->date)) }}</td>
+                                    <td>{{ $tran->account->title }}</td>
+                                    <td>{!! $tran->desc !!}</td>
+                                    <td>{{ round($tran->cr,0) }}</td>
+                                    <td>{{ round($tran->db,0) }}</td>
+                                    <td>{{ round($balance,0) }}</td>
 
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -199,24 +202,39 @@
             <div class="col-md-6">
                 <h5 class="text-danger">Income & Expense Detail</h5>
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-hover text-center" id="datatable">
+                    <table class="table table-bordered table-striped table-hover text-center" id="datatable2">
                         <thead class="th-color">
                             <tr>
+                                <th>ID</th>
                                 <th>Date</th>
-                                <th>Customer/Vendor</th>
-                                <th>Details</th>
-                                <th>Payment Type</th>
-
-                                {{-- <th>Product</th>
-                                    <th>Qty</th>
-                                    <th>Price</th>
-                                    <th>Amount</th> --}}
+                                <th>Account</th>
+                                <th>Description</th>
                                 <th>Credit</th>
                                 <th>Debit</th>
-                                <th>Total</th>
-
+                                <th>Balance</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            @php
+                                $balance = 0;
+                            @endphp
+                            @foreach ($trans1 as $tran)
+                            @php
+                                $balance += $tran->cr;
+                                $balance -= $tran->db;
+                            @endphp
+                                <tr>
+                                    <td>{{ $tran->id}}</td>
+                                    <td>{{ date('d M Y', strtotime($tran->date)) }}</td>
+                                    <td>{{ $tran->account->title }}</td>
+                                    <td>{!! $tran->desc !!}</td>
+                                    <td>{{ round($tran->cr,0) }}</td>
+                                    <td>{{ round($tran->db,0) }}</td>
+                                    <td>{{ round($balance,0) }}</td>
+
+                                </tr>
+                            @endforeach
+                        </tbody>
 
                     </table>
                 </div>
@@ -225,4 +243,34 @@
         <br>
     </div>
 </div>
+@endsection
+@section('scripts')
+<script>
+    $('#datatable1').DataTable({
+        "bSort": true,
+        /* "bLengthChange": true,
+        "bPaginate": true,
+        "bFilter": true,
+        "bInfo": true, */
+        "order": [[0, 'desc']],
+        'columnDefs': [
+                { 'sortable': false, 'searchable': false, 'visible': false, 'type': 'num', 'targets': [0] }
+                ],
+    });
+    $('#datatable2').DataTable({
+        "bSort": true,
+        /* "bLengthChange": true,
+        "bPaginate": true,
+        "bFilter": true,
+        "bInfo": true, */
+        "order": [[0, 'desc']],
+        'columnDefs': [
+                { 'sortable': false, 'searchable': false, 'visible': false, 'type': 'num', 'targets': [0] }
+                ],
+    });
+    $("th").removeClass('sorting');
+    $("th").removeClass('sorting_desc');
+
+</script>
+
 @endsection
