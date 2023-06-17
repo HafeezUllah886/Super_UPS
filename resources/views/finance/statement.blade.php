@@ -1,16 +1,7 @@
 @extends('layout.dashboard')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @section('content')
-@if (session('success'))
-<div class="alert alert-success">
-    {{ session('success') }}
-</div>
-@endif
-@if (session('error'))
-<div class="alert alert-danger">
-    {{ session('error') }}
-</div>
-@endif
+
 <div class="row">
     <div class="col-12">
         <div class="card-header">
@@ -47,10 +38,7 @@
         </div>
     </div>
 </div>
-
 @endsection
-
-
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <style>

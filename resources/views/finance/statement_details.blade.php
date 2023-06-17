@@ -16,7 +16,7 @@
         </div>
     </div>
 </div>
-<div class="card-body table-responsive new-user">
+<div class="card-body">
 
     <div class="table-responsive" >
         <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable1">

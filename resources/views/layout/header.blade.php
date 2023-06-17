@@ -100,7 +100,6 @@
                       <a class="dropdown-item" href="{{ url('/purchase') }}">Create Purchase</a>
                       <a class="dropdown-item" href="{{url('/purchase/history')}}">Purchase History</a>
                       <a class="dropdown-item" href="{{ url('/stock') }}">Stock Detail</a>
-
                     </div>
                   </li>
                 <li class="nav-item dropdown">
@@ -110,7 +109,6 @@
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{ url('/vendors') }}">Vendors</a>
                     <a class="dropdown-item" href="{{ '/customers' }}">Customers</a>
-
                   </div>
                 </li>
 
@@ -126,46 +124,31 @@
                     <a class="dropdown-item" href="{{ url('/expense') }}">Expense</a>
                   </div>
                 </li>
-
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="{{ url('/category') }}" id="navbardrop">
                       Category
                     </a>
-
                   </li>
-
                   <li class="nav-item dropdown">
                     <a class="nav-link" href="{{ url('/company') }}" id="navbardrop">
                       Company
                     </a>
-
                   </li>
-
                   <li class="nav-item dropdown">
                     <a class="nav-link" href="{{ url('/products') }}" id="navbardrop">
                       Products
                     </a>
-
                   </li>
                 {{--   <li class="nav-item dropdown">
                     <a class="nav-link" href="{{ url('/settings') }}" id="navbardrop">
                       Settings
                     </a>
-
                   </li> --}}
-
               </ul>
-
-
-
-
                    <a class="btn btn-primary" href="{{ url('/logout') }}" >
                     <i class="fa fa-power-off" aria-hidden="true"></i>
                       {{-- <i class="la la-caret-right"></i>   &nbsp; <span> {{ __('Log Out') }} </span> --}}
                    </a>
-
-
             </div>
-
           </nav>
 

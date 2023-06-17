@@ -1,10 +1,6 @@
 
                 </div> <!-- content -->
 
-                <footer class="footer">
-                    © 2022 All Right Reserved By diamondsoftwareqta.com
-                </footer>
-
             </div>
             <!-- End Right content here -->
 
