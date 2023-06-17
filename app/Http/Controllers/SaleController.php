@@ -118,6 +118,7 @@ class SaleController extends Controller
             'date' => $req->date,
             'desc' => $req->desc,
             'amount' => $amount,
+            'discount' => $req->discount,
             'isPaid' => $req->isPaid,
             'ref' => $ref,
         ]);
@@ -146,19 +147,19 @@ class SaleController extends Controller
                 'ref' => $ref
             ]);
          }
-
+         $net_total = $total - $req->discount;
          $desc1 = "<strong>Products Sold</strong><br/>Invoice No. ".$sale->id;
          $desc2 = "<strong>Products Sold</strong><br/>Partial payment of Invoice No. ".$sale->id;
         if($req->customer != 0){
 
          if($req->isPaid == 'Yes'){
-            createTransaction($req->paidIn, $req->date, $total, 0, $desc1, $ref);
+            createTransaction($req->paidIn, $req->date, $net_total, 0, $desc1, $ref);
          }
          elseif($req->isPaid == 'No'){
-                createTransaction($req->customer, $req->date, $total, 0, $desc1, $ref);
+                createTransaction($req->customer, $req->date, $net_total, 0, $desc1, $ref);
          }
          else{
-            createTransaction($req->customer, $req->date, $total, $req->amount, $desc2, $ref);
+            createTransaction($req->customer, $req->date, $net_total, $req->amount, $desc2, $ref);
             createTransaction($req->paidIn, $req->date, $req->amount, 0, $desc1, $ref);
          }
         }
@@ -238,6 +239,15 @@ class SaleController extends Controller
         return "Quantity Updated";
     }
 
+    public function updateEditDiscount($id, $discount){
+        $item = sale::find($id);
+        $item->discount = $discount;
+        $item->save();
+
+        updateSaleAmount($id);
+        return "Discount Updated";
+    }
+
     public function updateEditPrice($id, $price){
         $item = sale_details::find($id);
         $item->price = $price;
@@ -256,5 +266,9 @@ class SaleController extends Controller
         return "Deleted";
     }
 
+    public function print($ref){
+        $invoice = sale::with('details', 'customer_account')->where('ref', $ref)->first();
+        return view('sale.print')->with(compact('invoice'));
+    }
 
 }

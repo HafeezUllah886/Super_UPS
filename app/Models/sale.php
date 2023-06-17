@@ -17,6 +17,7 @@ class sale extends Model
             'date',
             'desc',
             'amount',
+            'discount',
             'ref'
         ]
     );

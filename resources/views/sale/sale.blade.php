@@ -201,7 +201,23 @@
                                 </div>
                             </div>
                             <div class="col-md-6 ">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label for="discount">Discount</label>
+                                            <input type="number" name="discount" id="discount" class="form-control">
+                                            @error('discount')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <button type="submit" class="btn btn-success btn-lg" style="margin-top: 30px">Save Sale</button>
+                                </div>
+                                </div>
+
 
                             </div>
                         </div>

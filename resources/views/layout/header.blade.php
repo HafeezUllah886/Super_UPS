@@ -147,6 +147,12 @@
                     </a>
 
                   </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link" href="{{ url('/settings') }}" id="navbardrop">
+                      Settings
+                    </a>
+
+                  </li>
 
               </ul>
 

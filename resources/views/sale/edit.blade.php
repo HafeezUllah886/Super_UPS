@@ -35,6 +35,7 @@
                                 {{$bill->walking}} (Walk In)
 
                                 @endif</strong> </td>
+
                             </tr>
                         </table>
                     </div>
@@ -85,6 +86,10 @@
 
                         </tbody>
                     </table>
+                    <div class="form-group mt-3">
+                        <label for="discount">Discount</label>
+                        <input type="number" value="{{ $bill->discount }}" onfocusout="updateDiscount({{ $bill->id }})" name="discount" id="discount">
+                    </div>
                     {{-- <form method="post" class="mt-5">
                         @csrf
                         <div class="row">
@@ -229,6 +234,37 @@ function qty(id){
             get_items();
             Snackbar.show({
             text: "Quantity Updated",
+            duration: 3000,
+            /* actionTextColor: '#fff',
+            backgroundColor: '#e7515a' */
+            actionTextColor: '#fff',
+            backgroundColor: '#00ab55'
+            });
+        }
+    });
+}
+
+
+function get_items(){
+    $.ajax({
+        method: "GET",
+        url: "{{url('/sale/edit/items/')}}/{{ $bill->id }}",
+        success: function(respose){
+            $("#items").html(respose);
+        }
+    });
+}
+
+function updateDiscount(id){
+    console.log("updateDiscount");
+    var val = $("#discount").val();
+    $.ajax({
+        method: "GET",
+        url: "{{url('/sale/update/discount/')}}/"+id+"/"+val,
+        success: function(respose){
+            get_items();
+            Snackbar.show({
+            text: "Discount Updated",
             duration: 3000,
             /* actionTextColor: '#fff',
             backgroundColor: '#e7515a' */

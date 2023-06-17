@@ -46,6 +46,7 @@
                                 <td>{{ $bill->isPaid}}</td>
                                 <td>{{ @$bill->account->title}}</td>
                                 <td>
+                                    <a href="{{ url('/sale/print/') }}/{{ $bill->ref }}" class="btn btn-primary">Print</a>
                                     <a href="{{ url('/sale/delete/') }}/{{ $bill->ref }}" class="btn btn-danger confirmation">Delete</a>
                                     <a href="{{ url('/sale/edit/') }}/{{ $bill->id }}" class="btn btn-info">Edit</a>
                                 </td>

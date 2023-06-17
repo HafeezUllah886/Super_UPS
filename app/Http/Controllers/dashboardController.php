@@ -27,4 +27,8 @@ class dashboardController extends Controller
         $trans1 = transactions::whereIn('account_id', $accounts1)->get();
         return view('dashboard')->with(compact('trans', 'trans1'));
     }
+
+    public function settings(){
+
+    }
 }

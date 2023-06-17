@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('desc')->nullable();
             $table->string('isPaid');
             $table->unsignedBigInteger('amount')->nullable();
+            $table->unsignedInteger('discount')->nullable();
             $table->unsignedBigInteger('ref');
             $table->foreign('customer')->references('id')->on('accounts');
             $table->foreign('paidIn')->references('id')->on('accounts');

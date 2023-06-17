@@ -148,7 +148,8 @@ function getSaleBillTotal($id){
         $amount = $item->price * $item->qty;
         $total += $amount;
     }
-
+    $bill = sale::find($id);
+    $total = $total - $bill->discount;
     return $total;
 }
 

@@ -99,6 +99,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/sale/draft/delete/{id}', [saleController::class, "deleteDraft"]);
     Route::get('/sale/history', [saleController::class, "history"]);
     Route::get('/sale/delete/{ref}', [saleController::class, "deleteSale"]);
+    Route::get('/sale/print/{ref}', [SaleController::class, 'print']);
 
     Route::get('/sale/edit/{id}', [saleController::class, "edit"]);
     Route::get('/sale/edit/items/{id}', [saleController::class, "editItems"]);
@@ -106,6 +107,9 @@ Route::middleware('auth')->group(function (){
     Route::get('/sale/edit/delete/{id}', [saleController::class, "deleteEdit"]);
     Route::get('/sale/update/edit/qty/{id}/{qty}', [saleController::class, "updateEditQty"]);
     Route::get('/sale/update/edit/price/{id}/{price}', [saleController::class, "updateEditPrice"]);
+    Route::get('/sale/update/discount/{id}/{discount}', [saleController::class, "updateEditDiscount"]);
 
     Route::get('/stock',[purchaseController::class, "stock1"]);
+
+    Route::get('/settings',[dashboardController::class, "settings"]);
 });
