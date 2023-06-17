@@ -147,12 +147,12 @@
                     </a>
 
                   </li>
-                  <li class="nav-item dropdown">
+                {{--   <li class="nav-item dropdown">
                     <a class="nav-link" href="{{ url('/settings') }}" id="navbardrop">
                       Settings
                     </a>
 
-                  </li>
+                  </li> --}}
 
               </ul>
 
