@@ -94,7 +94,7 @@
                     </div>
                     <div class="form-group">
                         <label for="cat">Select Category</label>
-                        <select name="cat" class="select2" id="cat">
+                        <select name="cat" required class="select2" id="cat">
                             @foreach ($cats as $cat)
                                 <option value="{{ $cat->id }}">{{ $cat->cat }}</option>
                             @endforeach
@@ -102,7 +102,7 @@
                     </div>
                     <div class="form-group">
                         <label for="coy">Select Company</label>
-                        <select name="coy" class="select2" id="coy">
+                        <select name="coy" required class="select2" id="coy">
                             @foreach ($coys as $coy)
                                 <option value="{{ $coy->id }}">{{ $coy->name }}</option>
                             @endforeach
