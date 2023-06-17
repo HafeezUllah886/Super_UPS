@@ -134,6 +134,7 @@ class SaleController extends Controller
                 'product_id' => $item->product_id,
                 'price' => $item->price,
                 'qty' => $item->qty,
+                'date' => $req->date,
                 'ref' => $ref,
             ]);
 
@@ -228,6 +229,10 @@ class SaleController extends Controller
         $item = sale_details::find($id);
         $item->qty = $qty;
         $item->save();
+
+        $stock = stock::where('product_id', $item->product_id)->where('ref', $item->ref)->first();
+        $stock->db = $qty;
+        $stock->save();
 
         updateSaleAmount($item->bill->id);
         return "Quantity Updated";

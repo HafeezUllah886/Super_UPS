@@ -129,6 +129,7 @@ class purchaseController extends Controller
                 'product_id' => $item->product_id,
                 'rate' => $item->rate,
                 'qty' => $item->qty,
+                'date' => $req->date,
                 'ref' => $ref,
             ]);
 
@@ -235,6 +236,10 @@ class purchaseController extends Controller
         $item->qty = $qty;
         $item->save();
 
+            $stock = stock::where('product_id', $item->product_id)->where('ref', $item->ref)->first();
+            $stock->cr = $qty;
+            $stock->save();
+
         updatePurchaseAmount($item->bill->id);
         return "Qty Updated";
     }
@@ -270,8 +275,8 @@ class purchaseController extends Controller
                 $balance -= $stock->db;
                 $value = $balance * $product->price;
             }
-
             $data[] = ['product' => $product->name, 'cat' => $product->category->cat, 'coy' => $product->company->name, 'balance' => $balance, 'value' => $value, 'price' => $product->price];
+
         }
 
         return view('purchase.stock')->with(compact('data'));

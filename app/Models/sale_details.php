@@ -14,7 +14,8 @@ class sale_details extends Model
             'product_id',
             'price',
             'qty',
-            'ref'
+            'ref',
+            'date'
         ]
     );
 

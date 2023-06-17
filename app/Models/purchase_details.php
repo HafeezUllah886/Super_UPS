@@ -14,7 +14,8 @@ class purchase_details extends Model
             'product_id',
             'rate',
             'qty',
-            'ref'
+            'ref',
+            'date',
         ]
     );
 

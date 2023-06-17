@@ -14,7 +14,7 @@
     {{-- Top card section --}}
     <div class="card-body">
         <div class="row">
-            <div class="col-xl-2 col-md-2">
+            <div class="col-xl-3 col-md-3 mt-3">
                 <div class="card border-left-info shadow  py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
@@ -36,9 +36,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-2 col-md-2 mb-0">
+            <div class="col-xl-3 col-md-3 mt-3">
                 <div class="card border-left-info shadow  py-2">
-                    <a style="text-decoration:none;" href="">
+
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
@@ -46,6 +46,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                {{ todaySale(); }}
                                             </div>
                                         </div>
 
@@ -56,10 +57,10 @@
                                 </div>
                             </div>
                         </div>
-                    </a>
+
                 </div>
             </div>
-            <div class="col-xl-2 col-md-2">
+            <div class="col-xl-3 col-md-3 mt-3">
                 <div class="card border-left-info shadow  py-2">
 
                         <div class="card-body">
@@ -83,7 +84,7 @@
 
                 </div>
             </div>
-            <div class="col-xl-2 col-md-2 mb-0">
+            <div class="col-xl-3 col-md-3 mt-3">
                 <div class="card border-left-info shadow  py-2">
 
                         <div class="card-body">
@@ -107,7 +108,7 @@
 
                 </div>
             </div>
-            <div class="col-xl-2 col-md-2 mb-0">
+            <div class="col-xl-3 col-md-3 mt-3">
                 <div class="card border-left-info shadow  py-2">
 
                         <div class="card-body">
@@ -131,7 +132,7 @@
 
                 </div>
             </div>
-            <div class="col-xl-2 col-md-2 mb-0">
+            <div class="col-xl-3 col-md-3 mt-3">
                 <div class="card border-left-info shadow  py-2">
 
                         <div class="card-body">

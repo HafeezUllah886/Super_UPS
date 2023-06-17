@@ -214,4 +214,16 @@ function updateSaleAmount($id){
             $trans->cr = $total;
             $trans->save();
     }
+
+
+}
+
+function todaySale(){
+    $sales = sale_details::where('date', date('Y-m-d'))->get();
+    $total = 0;
+    foreach($sales as $item)
+    {
+        $total += $item->qty * $item-> price;
+    }
+    return $total;
 }
