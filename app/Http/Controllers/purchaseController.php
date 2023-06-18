@@ -172,7 +172,27 @@ class purchaseController extends Controller
         {
             createTransaction($req->paidFrom, $req->date, 0, $total, $desc1, $ref);
         }
-
+        $vender_name = null;
+        if($req->vender == 0)
+        {
+            $vender_name = $req->walkIn . "Walk In Customer";
+        }
+        else{
+            $act = account::find($req->vender);
+            $vender_name = $act->title;
+        }
+        $p_acct = account::find($req->paidFrom);
+        $p_type = null;
+        If($req->isPaid == 'No'){
+            $p_type = "Unpaid";
+        }
+        elseif($req->isPaid == 'Yes'){
+            $p_type = $p_acct->title . "/ Paid";
+        }
+        else{
+            $p_type = $p_acct->title . "/ Partial";
+        }
+        addLedger($req->date, $vender_name, $acct_name);
 
          purchase_draft::truncate();
 

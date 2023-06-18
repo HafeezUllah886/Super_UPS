@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\account;
+use App\Models\ledger;
 use App\Models\purchase;
 use App\Models\purchase_details;
 use App\Models\ref;
@@ -227,4 +228,26 @@ function todaySale(){
         $total += $item->qty * $item-> price;
     }
     return $total;
+}
+
+
+function addLedger($date, $head, $type, $details, $amount, $ref){
+    ledger::create(
+        [
+            'date' => $date,
+            'head' => $head,
+            'type' => $type,
+            'details' => $details,
+            'amount' => $amount,
+            'ref' => $ref
+        ]
+    );
+
+    return "Ledger Added";
+}
+
+function deleteLedger($ref)
+{
+    ledger::where('ref', $ref)->delete();
+    return "Ledger Deleted";
 }
