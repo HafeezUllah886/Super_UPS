@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('account_id');
-            $table->date('date');
+            $table->timestamp('date');
             $table->text('desc')->nullable();
             $table->unsignedDecimal('amount', 10, 2);
             $table->unsignedBigInteger('ref');

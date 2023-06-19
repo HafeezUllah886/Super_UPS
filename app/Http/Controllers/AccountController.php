@@ -46,7 +46,7 @@ class AccountController extends Controller
         }
 
         if($req->amount != 0) {
-            createTransaction($account->id, date('Y-m-d'), "$req->amount", "0", "Initial Amount", getRef());
+            createTransaction($account->id, now(), "$req->amount", "0", "Initial Amount", getRef());
         }
         return back()->with('success', 'Successfully Created');
     }

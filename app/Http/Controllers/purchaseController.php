@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\account;
+use App\Models\ledger;
 use App\Models\products;
 use App\Models\purchase;
 use App\Models\purchase_details;
@@ -172,27 +173,41 @@ class purchaseController extends Controller
         {
             createTransaction($req->paidFrom, $req->date, 0, $total, $desc1, $ref);
         }
-        $vender_name = null;
-        if($req->vender == 0)
-        {
-            $vender_name = $req->walkIn . "Walk In Customer";
-        }
-        else{
-            $act = account::find($req->vender);
-            $vender_name = $act->title;
-        }
+
+        $ledger_head = null;
+        $ledger_type = null;
+        $ledger_details = "Stock Purchased";
+        $ledger_amount = null;
+        $v_acct = account::find($req->vendor);
         $p_acct = account::find($req->paidFrom);
-        $p_type = null;
-        If($req->isPaid == 'No'){
-            $p_type = "Unpaid";
+        if($req->isPaid == "Yes"){
+           if($req->vendor == 0){
+            $ledger_head = $req->walkIn . "(Walk-In Customer)";
+           }
+           else
+           {
+            $ledger_head = $v_acct->title;
+           }
+           $ledger_type = $p_acct->title . "/Paid";
+           $ledger_amount = $total;
         }
-        elseif($req->isPaid == 'Yes'){
-            $p_type = $p_acct->title . "/ Paid";
+        elseif($req->isPaid == "No")
+        {
+            $ledger_head = $v_acct->title;
+            $ledger_type = $p_acct->title . "/Unpaid";
+            $ledger_amount = $total;
         }
         else{
-            $p_type = $p_acct->title . "/ Partial";
+            $ledger_head = $v_acct->title;
+            $ledger_type = $p_acct->title . "/Partial";
+            $ledger_amount = $req->amount;
         }
-        addLedger($req->date, $vender_name, $acct_name);
+       
+       
+        addLedger($req->date, $ledger_head, $ledger_type, $ledger_details, $ledger_amount, $ref);
+
+
+
 
          purchase_draft::truncate();
 
@@ -278,6 +293,7 @@ class purchaseController extends Controller
         transactions::where('ref', $ref)->delete();
         stock::where('ref', $ref)->delete();
         purchase::where('ref', $ref)->delete();
+        ledger::where('ref', $ref)->delete();
 
         return back()->with('error', "Purchase Deleted");
     }

@@ -88,7 +88,7 @@
                     </div>
                     <div class="form-group">
                         <label for="date">Date</label>
-                       <input type="date" name="date" id="date" value="{{ date('Y-m-d') }}" class="form-control">
+                       <input type="datetime-local" name="date" id="date" value="{{ now() }} class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="desc">Description</label>
