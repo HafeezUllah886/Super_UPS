@@ -21,8 +21,9 @@
             method: 'get',
             url: "{{ url('/sale/getPrice/') }}/"+id,
             success: function(data){
-                $("#price").val(data);
-
+               $('#stock').val(data.balance);
+               $('#price').val(data.price);
+               $('#qty').attr('max', data.balance);
             }
         });
     }
@@ -84,6 +85,12 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
+                            <label for="stock">Available Stock</label>
+                            <input type="number" disabled name="stock" id="stock" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
                             <label for="qty">Quantity</label>
                             <input type="number" required name="qty" id="qty" class="form-control">
                         </div>
@@ -121,7 +128,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="date">Date</label>
-                                    <input type="date" name="date" value="{{ date('Y-m-d') }}" id="date" class="form-control">
+                                    <input type="datetime-local" name="date" value="{{ now() }}" id="date" class="form-control">
                                     @error('date')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -132,7 +139,7 @@
                                     <label for="customer">Select Customer</label>
                                     <select name="customer" id="customer" onchange="walkIn1()" class="select2">
                                         <option value=""></option>
-                                        <option value="0">Walk-in Vendor</option>
+                                        <option value="0">Walk-in Customer</option>
                                         @foreach ($customers as $customer)
                                             <option value="{{ $customer->id }}">{{ $customer->title }} ({{ $customer->type }})</option>
                                         @endforeach

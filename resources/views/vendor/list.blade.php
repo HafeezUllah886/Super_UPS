@@ -55,11 +55,11 @@
                                 <td> {{ getAccountBalance($account->id) }}</td>
                                 <td class="text-left">
                                     <button onclick='edit_cat({{ $account->id }}, "{{ $account->title }}", "{{ $account->phone }}", "{{ $account->address  }}")' class="btn btn-primary">Edit</button>
-                                    <a href="{{ url('accounts/statement/') }}/{{ $account->id }}" class="btn btn-info">View Statement</button>
+                                    <a href="{{ url('accounts/statement/') }}/{{ $account->id }}" class="btn btn-info">View Statement</a>
                                     @if(getAccountBalance($account->id) == 0)
                                     <a href="{{ url('/account/delete/') }}/{{ $account->id }}" class="btn btn-danger confirmation">Delete</a>
                                     @endif
-
+                                        <button class="btn btn-success" onclick="tran({{ $account->id }})">Transfer</button>
                                     </td>
                             </tr>
                             @endforeach
@@ -150,6 +150,55 @@
         </div>
     </div>
 </div>
+
+{{-- Transfer Model Starts Here --}}
+<div class="modal" id="tran_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create Transfer</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" action="{{ url('/transfer') }}">
+                @csrf
+                <div class="modal-body">
+
+                        <input type="hidden" name="to" id="to" value="" >
+
+                    <div class="form-group">
+                        <label for="from">From</label>
+                        <select name="from" id="from" class="select2" required>
+                            <option value=""></option>
+                            @foreach ($to_accounts as $account)
+                               <option value="{{ $account->id }}">{{ $account->title }} ({{ $account->type }})</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cat">Amount</label>
+                       <input type="number" required name="amount" id="amount" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                       <input type="datetime-local" name="date" id="date" value="{{ now() }}" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="desc">Description</label>
+                        <textarea name="desc" id="desc" class="form-control"></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Transfer</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 
@@ -176,6 +225,11 @@
         $('#edit_address').val(address);
         $('#edit_id').val(id);
         $('#edit').modal('show');
+    }
+
+    function tran(id) {
+        $('#to').val(id);
+        $('#tran_modal').modal('show');
     }
 
 

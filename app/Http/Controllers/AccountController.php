@@ -115,7 +115,7 @@ class AccountController extends Controller
 
     public function deposit(){
         $deposits = deposit::orderBy('id', 'desc')->get();
-        $accounts = account::all();
+        $accounts = account::where('type', 'Business')->get();
         return view('finance.deposits')->with(compact('deposits', 'accounts'));
     }
 
@@ -147,7 +147,7 @@ class AccountController extends Controller
 
     public function withdraw(){
         $withdraws = withdraw::orderBy('id', 'desc')->get();
-        $accounts = account::all();
+        $accounts = account::where('type', 'Business')->get();
         return view('finance.withdraws')->with(compact('withdraws', 'accounts'));
     }
 
@@ -178,14 +178,15 @@ class AccountController extends Controller
 
     public function vendors(){
         $accounts = account::where('type', 'Vendor')->get();
+        $to_accounts = account::where('type', 'Business')->get();
 
-        return view('vendor.list')->with(compact('accounts'));
+        return view('vendor.list')->with(compact('accounts', 'to_accounts'));
     }
 
     public function customers(){
         $accounts = account::where('type', 'Customer')->get();
-
-        return view('customer.list')->with(compact('accounts'));
+        $to_accounts = account::where('type', 'Business')->get();
+        return view('customer.list')->with(compact('accounts', 'to_accounts'));
     }
 
 
@@ -209,6 +210,14 @@ class AccountController extends Controller
         );
         createTransaction($req->account, $req->date, 0, $req->amount, $desc, $ref);
 
+        $p_acct = account::find($req->account);
+        $ledger_head = "Expense";
+        $ledger_type = $p_acct->title;
+        $ledger_details = $req->desc;
+        $ledger_amount = $req->amount;
+
+        addLedger($req->date, $ledger_head, $ledger_type, $ledger_details, $ledger_amount, $ref);
+
         return back()->with('success', 'Expense saved');
     }
 
@@ -226,6 +235,7 @@ class AccountController extends Controller
 
         $transfers = transfer::with('from_account', 'to_account')->orderBy('id', 'desc')->get();
         return view('finance.transfer')->with(compact('from_accounts', 'to_accounts', 'transfers'));
+
     }
 
     public function storeTransfer(request $req){
@@ -263,6 +273,18 @@ class AccountController extends Controller
             createTransaction($req->to, $req->date, 0, $req->amount, $desc1, $ref);
         }
 
+        if($from->type == 'Customer' && $to->type == 'Business'){
+            addLedger($req->date, $from->title, $to->title, "Received from Customer", $req->amount, $ref);
+        }
+        if($from->type == 'Business' && $to->type == 'Customer'){
+            addLedger($req->date, $to->title, $from->title, "Payment to Customer", $req->amount, $ref);
+        }
+        if($from->type == 'Vendor' && $to->type == 'Business'){
+            addLedger($req->date, $from->title, $to->title, "Received from Vendor", $req->amount, $ref);
+        }
+        if($from->type == 'Business' && $to->type == 'Vendor'){
+            addLedger($req->date, $to->title, $from->title, "Payment to Vendor", $req->amount, $ref);
+        }
         return back()->with('success', 'Amount Transfered');
     }
 

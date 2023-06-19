@@ -173,7 +173,6 @@ class purchaseController extends Controller
         {
             createTransaction($req->paidFrom, $req->date, 0, $total, $desc1, $ref);
         }
-
         $ledger_head = null;
         $ledger_type = null;
         $ledger_details = "Stock Purchased";
@@ -182,7 +181,7 @@ class purchaseController extends Controller
         $p_acct = account::find($req->paidFrom);
         if($req->isPaid == "Yes"){
            if($req->vendor == 0){
-            $ledger_head = $req->walkIn . "(Walk-In Customer)";
+            $ledger_head = $req->walkIn . "(Walk-In)";
            }
            else
            {
@@ -194,7 +193,7 @@ class purchaseController extends Controller
         elseif($req->isPaid == "No")
         {
             $ledger_head = $v_acct->title;
-            $ledger_type = $p_acct->title . "/Unpaid";
+            $ledger_type = "/Unpaid";
             $ledger_amount = $total;
         }
         else{
@@ -202,18 +201,10 @@ class purchaseController extends Controller
             $ledger_type = $p_acct->title . "/Partial";
             $ledger_amount = $req->amount;
         }
-       
-       
         addLedger($req->date, $ledger_head, $ledger_type, $ledger_details, $ledger_amount, $ref);
-
-
-
-
          purchase_draft::truncate();
-
          return redirect('/purchase/history');
     }
-
     public function history(){
         $history = purchase::with('vendor_account', 'account')->orderBy('id', 'desc')->get();
         return view('purchase.history')->with(compact('history'));

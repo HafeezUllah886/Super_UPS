@@ -24,7 +24,7 @@
                                 <th class="border-top-0">Total Amount</th>
                                 <th class="border-top-0">Amount Paid</th>
                                 <th class="border-top-0">Payment</th>
-                                <th class="border-top-0">Paid From</th>
+                                <th class="border-top-0">Paid In</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

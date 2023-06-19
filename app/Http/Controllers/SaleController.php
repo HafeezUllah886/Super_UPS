@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\account;
+use App\Models\ledger;
 use App\Models\products;
 use App\Models\sale;
 use App\Models\sale_details;
@@ -22,7 +23,15 @@ class SaleController extends Controller
 
     public function getPrice($id){
         $product = products::find($id);
-        return $product->price;
+        $stock = stock::where('product_id', $id)->get();
+        $balance = 0;
+        foreach($stock as $item){
+            $balance += $item->cr;
+            $balance -= $item->db;
+        }
+        return response()->json(array(
+            'balance' => $balance, 'price' => $product->price
+        ));
     }
 
     public function StoreDraft(request $req){
@@ -165,9 +174,37 @@ class SaleController extends Controller
         }
         else
         {
-            createTransaction($req->paidIn, $req->date, $total, 0, $desc1, $ref);
+            createTransaction($req->paidIn, $req->date, $net_total, 0, $desc1, $ref);
         }
-
+        $ledger_head = null;
+        $ledger_type = null;
+        $ledger_details = "Products Sold";
+        $ledger_amount = null;
+        $c_acct = account::find($req->customer);
+        $p_acct = account::find($req->paidIn);
+        if($req->isPaid == "Yes"){
+           if($req->customer == 0){
+            $ledger_head = $req->walkIn . "(Walk-In)";
+           }
+           else
+           {
+            $ledger_head = $c_acct->title;
+           }
+           $ledger_type = $p_acct->title . "/Paid";
+           $ledger_amount = $net_total;
+        }
+        elseif($req->isPaid == "No")
+        {
+            $ledger_head = $c_acct->title;
+            $ledger_type = "Unpaid";
+            $ledger_amount = $net_total;
+        }
+        else{
+            $ledger_head = $c_acct->title;
+            $ledger_type = $p_acct->title . "/Partial";
+            $ledger_amount = $req->amount;
+        }
+        addLedger($req->date, $ledger_head, $ledger_type, $ledger_details, $ledger_amount, $ref);
 
          sale_draft::truncate();
 
@@ -184,6 +221,7 @@ class SaleController extends Controller
         transactions::where('ref', $ref)->delete();
         stock::where('ref', $ref)->delete();
         sale::where('ref', $ref)->delete();
+        ledger::where('ref', $ref)->delete();
 
         return back()->with('error', "Sale Deleted");
     }

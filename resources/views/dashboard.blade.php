@@ -160,38 +160,28 @@
         <div class="row">
 
             <div class="col-md-6">
-                <h5 class="text-danger">Cash Ledger</h5>
+                <h5 class="text-danger">Ledger Details</h5>
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover text-center" id="datatable1">
                         <thead class="th-color">
                             <tr>
                                 <th>ID</th>
                                 <th>Date</th>
-                                <th>Account</th>
-                                <th>Description</th>
-                                <th>Credit</th>
-                                <th>Debit</th>
-                                <th>Balance</th>
+                                <th>Head</th>
+                                <th>Payment Type</th>
+                                <th>Details</th>
+                                <th>Amount</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-                                $balance = 0;
-                            @endphp
-                            @foreach ($trans as $tran)
-                            @php
-                                $balance += $tran->cr;
-                                $balance -= $tran->db;
-                            @endphp
+                           @foreach ($ledger as $item)
                                 <tr>
-                                    <td>{{ $tran->id}}</td>
-                                    <td>{{ date('d M Y', strtotime($tran->date)) }}</td>
-                                    <td>{{ $tran->account->title }}</td>
-                                    <td>{!! $tran->desc !!}</td>
-                                    <td>{{ round($tran->cr,0) }}</td>
-                                    <td>{{ round($tran->db,0) }}</td>
-                                    <td>{{ round($balance,0) }}</td>
-
+                                    <td>{{ $item->id}}</td>
+                                    <td>{{ $item->date }}</td>
+                                    <td>{{ $item->head }}</td>
+                                    <td>{{ $item->type }}</td>
+                                    <td>{{ $item->details }}</td>
+                                    <td>{{ $item->amount }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
