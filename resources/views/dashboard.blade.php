@@ -18,7 +18,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Customer DUES</div>
+                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Customer DUES</div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
@@ -29,7 +29,29 @@
                                 </div>
                             </div>
                             <div class="col-auto">
-                                <i style="color: red" class="fa fa-money fa-2x text-red text-red-300"></i>
+                                <i class="fa fa-users fa-2x text-red text-danger"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-3 mt-3">
+                <div class="card border-left-info shadow  py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Vendor DUES</div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                            {{ vendorDues() }}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa fa-user fa-2x text-warning text-red-300"></i>
                             </div>
                         </div>
                     </div>
@@ -40,7 +62,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Today Sale</div>
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Today Sale</div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
@@ -51,7 +73,29 @@
                                     </div>
                                 </div>
                                 <div class="col-auto">
-                                    <i style="color: grey" class="fa fa-list-alt fa-2x text-gray-300"></i>
+                                    <i class="fa fa-list-alt fa-2x text-success"></i>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-3 mt-3">
+                <div class="card border-left-info shadow  py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Today Expense</div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                {{ todayExpense() }}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa fa-usd fa-2x text-danger"></i>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +117,7 @@
                                     </div>
                                 </div>
                                 <div class="col-auto">
-                                    <i style="color: red" class="fa fa-money fa-2x text-red text-red-300"></i>
+                                    <i class="fa fa-money fa-2x text-red text-info"></i>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +140,7 @@
                                     </div>
                                 </div>
                                 <div class="col-auto">
-                                    <i style="color: purple" class="fa fa-building fa-2x text-gray-300"></i>
+                                    <i style="color: purple" class="fa fa-money fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
@@ -119,7 +163,7 @@
                                     </div>
                                 </div>
                                 <div class="col-auto">
-                                    <i style="color: blue" class="fa fa-users fa-2x text-gray-300"></i>
+                                    <i style="color: blue" class="fa fa-university fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +187,7 @@
                                     </div>
                                 </div>
                                 <div class="col-auto">
-                                    <i style="color: green" class="fa fa-users fa-2x text-gray-300"></i>
+                                    <i style="color: green" class="fa fa-university fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>

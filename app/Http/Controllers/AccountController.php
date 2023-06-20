@@ -118,7 +118,7 @@ class AccountController extends Controller
 
     public function deposit(){
         $deposits = deposit::orderBy('id', 'desc')->get();
-        $accounts = account::where('type', 'Business')->get();
+        $accounts = account::all();
         return view('finance.deposits')->with(compact('deposits', 'accounts'));
     }
 
@@ -152,7 +152,7 @@ class AccountController extends Controller
 
     public function withdraw(){
         $withdraws = withdraw::orderBy('id', 'desc')->get();
-        $accounts = account::where('type', 'Business')->get();
+        $accounts = account::all();
         return view('finance.withdraws')->with(compact('withdraws', 'accounts'));
     }
 

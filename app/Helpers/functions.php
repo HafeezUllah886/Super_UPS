@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\account;
+use App\Models\expense;
 use App\Models\ledger;
 use App\Models\purchase;
 use App\Models\purchase_details;
@@ -62,6 +63,21 @@ function customerDues(){
 
    return $balance;
 }
+
+function vendorDues(){
+    $accounts = account::where('type', 'vendor')->get();
+    $cr = 0;
+    $db = 0;
+    $balance = 0;
+    foreach ($accounts as $account){
+         $cr = transactions::where('account_id', $account->id)->sum('cr');
+         $db = transactions::where('account_id', $account->id)->sum('db');
+
+         $balance += $cr - $db;
+    }
+
+    return $balance;
+ }
 
 function totalCash(){
     $accounts = account::where('Category', 'Cash')->get();
@@ -226,7 +242,7 @@ function updateSaleAmount($id){
 function todaySale(){
     $Date = Carbon::now()->format('Y-m-d');
     $sales = sale_details::whereDate('date', $Date)->get();
-   
+
     $total = 0;
     foreach($sales as $item)
     {
@@ -234,6 +250,14 @@ function todaySale(){
     }
     return $total;
 }
+
+function todayExpense(){
+    $Date = Carbon::now()->format('Y-m-d');
+    $exp = expense::whereDate('date', $Date)->sum('amount');
+
+    return round($exp,0);
+}
+
 
 
 function addLedger($date, $head, $type, $details, $amount, $ref){
