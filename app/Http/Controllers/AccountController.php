@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\account;
 use App\Models\deposit;
 use App\Models\expense;
+use App\Models\ledger;
 use App\Models\transactions;
 use App\Models\transfer;
 use App\Models\withdraw;
@@ -44,10 +45,12 @@ class AccountController extends Controller
                 ]
             );
         }
-
+        $ref = getRef();
         if($req->amount != 0) {
-            createTransaction($account->id, now(), "$req->amount", "0", "Initial Amount", getRef());
+            createTransaction($account->id, now(), "$req->amount", "0", "Initial Amount", $ref);
         }
+
+        addLedger($req->date, "Initial Amount", $req->title, "Account Created", $req->amount, $ref);
         return back()->with('success', 'Successfully Created');
     }
 
@@ -78,7 +81,7 @@ class AccountController extends Controller
     }
 
     public function deleteAccount($id){
-        if(getAccountBalance($id) != 0){
+        if(transactions::where('account_id', $id)->count() > 0){
             return back()->with('error', 'Unable to delete');
         }
 
@@ -131,8 +134,9 @@ class AccountController extends Controller
                 'ref' => $ref,
             ]
         );
+        $title = account::find($req->account);
         createTransaction($req->account, $req->date, $req->amount, 0, $desc, $ref);
-
+        addLedger($req->date, "Deposit", $title->title, "Amount Deposited", $req->amount, $ref);
         return back()->with('success', 'Amount deposit was successfull');
     }
 
@@ -140,6 +144,7 @@ class AccountController extends Controller
     {
         deposit::where('ref', $ref)->delete();
         transactions::where('ref', $ref)->delete();
+        ledger::where('ref', $ref)->delete();
 
         return back()->with('success', 'Deposit was deleted');
     }
@@ -163,8 +168,9 @@ class AccountController extends Controller
                 'ref' => $ref,
             ]
         );
+        $title = account::find($req->account);
         createTransaction($req->account, $req->date, 0, $req->amount, $desc, $ref);
-
+        addLedger($req->date, "Withdraw", $title->title, "Amount Withdrawn", $req->amount, $ref);
         return back()->with('success', 'Amount withdraw was successfull');
     }
 
@@ -172,6 +178,7 @@ class AccountController extends Controller
     {
         withdraw::where('ref', $ref)->delete();
         transactions::where('ref', $ref)->delete();
+        ledger::where('ref', $ref)->delete();
 
         return back()->with('success', 'Withdraw was deleted');
     }
@@ -225,6 +232,7 @@ class AccountController extends Controller
     {
         expense::where('ref', $ref)->delete();
         transactions::where('ref', $ref)->delete();
+        ledger::where('ref', $ref)->delete();
 
         return back()->with('success', 'Expense deleted');
     }

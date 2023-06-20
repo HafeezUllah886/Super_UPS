@@ -8,6 +8,7 @@ use App\Models\ref;
 use App\Models\sale;
 use App\Models\sale_details;
 use App\Models\transactions;
+use Carbon\Carbon;
 
 function getRef(){
     $ref = ref::first();
@@ -83,9 +84,10 @@ function todayCash(){
     $cr = 0;
    $db = 0;
    $balance = 0;
+   $Date = Carbon::now()->format('Y-m-d');
    foreach ($accounts as $account){
-        $cr = transactions::where('account_id', $account->id)->where('date', date('Y-m-d'))->sum('cr');
-        $db = transactions::where('account_id', $account->id)->where('date', date('Y-m-d'))->sum('db');
+        $cr = transactions::where('account_id', $account->id)->whereDate('date', $Date)->sum('cr');
+        $db = transactions::where('account_id', $account->id)->whereDate('date', $Date)->sum('db');
 
         $balance += $cr - $db;
    }
@@ -116,9 +118,10 @@ function todayBank(){
     $cr = 0;
    $db = 0;
    $balance = 0;
+   $Date = Carbon::now()->format('Y-m-d');
    foreach ($accounts as $account){
-        $cr = transactions::where('account_id', $account->id)->where('date', date('Y-m-d'))->sum('cr');
-        $db = transactions::where('account_id', $account->id)->where('date', date('Y-m-d'))->sum('db');
+        $cr = transactions::where('account_id', $account->id)->whereDate('date', $Date)->sum('cr');
+        $db = transactions::where('account_id', $account->id)->whereDate('date', $Date)->sum('db');
 
         $balance += $cr - $db;
    }
@@ -221,7 +224,9 @@ function updateSaleAmount($id){
 }
 
 function todaySale(){
-    $sales = sale_details::where('date', date('Y-m-d'))->get();
+    $Date = Carbon::now()->format('Y-m-d');
+    $sales = sale_details::whereDate('date', $Date)->get();
+   
     $total = 0;
     foreach($sales as $item)
     {

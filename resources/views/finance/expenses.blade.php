@@ -42,7 +42,7 @@
                             <tr>
                                 <td> {{ $dep->ref }} </td>
                                 <td>{{ $dep->account->title }} ({{ $dep->account->Category }})</td>
-                                <td>{{ date('d M Y', strtotime($dep->date))}}</td>
+                                <td>{{ $dep->date }}</td>
                                 <td>{{ $dep->desc}}</td>
                                 <td>{{ $dep->amount}}</td>
                                 <td>
@@ -92,7 +92,7 @@
                     </div>
                     <div class="form-group">
                         <label for="desc">Description</label>
-                        <textarea name="desc" id="desc" class="form-control"></textarea>
+                        <textarea name="desc" required id="desc" class="form-control"></textarea>
                     </div>
 
                 </div>

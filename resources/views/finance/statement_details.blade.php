@@ -44,7 +44,7 @@
                 @endphp
                 <tr>
                 <td>{{ $item->ref }}</td>
-                <td>{{ date("d M Y",strtotime($item->date)) }}</td>
+                <td>{{ $item->date }}</td>
                 <td>{!! $item->desc !!}</td>
                 <td class="text-end">{{ $item->cr == null ? '-' : round($item->cr,2)}}</td>
                 <td class="text-end">{{ $item->db == null ? '-' : round($item->db,2)}}</td>

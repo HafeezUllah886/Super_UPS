@@ -40,7 +40,7 @@
                                 {{$bill->walking}} (Walk In)
 
                                 @endif</td>
-                                <td>{{ date('d M Y', strtotime($bill->date))}}</td>
+                                <td>{{ $bill->date }}</td>
                                 <td>{{ getPurchaseBillTotal($bill->id) }}</td>
                                 <td>@if($bill->isPaid == 'Yes') {{ "Full Payment" }} @elseif($bill->isPaid == 'No') {{ "UnPaid" }} @else {{ $bill->amount }} @endif</td>
                                 <td>{{ $bill->isPaid}}</td>

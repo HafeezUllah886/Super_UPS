@@ -42,7 +42,7 @@
                             <tr>
                                 <td> {{ $dep->ref }} </td>
                                 <td>{{ $dep->account->title }} ({{ $dep->account->type }})</td>
-                                <td>{{ date('d M Y', strtotime($dep->date))}}</td>
+                                <td>{{ $dep->date}}</td>
                                 <td>{{ $dep->desc}}</td>
                                 <td>{{ $dep->amount}}</td>
                                 <td>

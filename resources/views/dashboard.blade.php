@@ -215,13 +215,12 @@
                             @endphp
                                 <tr>
                                     <td>{{ $tran->id}}</td>
-                                    <td>{{ date('d M Y', strtotime($tran->date)) }}</td>
+                                    <td>{{ $tran->date }}</td>
                                     <td>{{ $tran->account->title }}</td>
                                     <td>{!! $tran->desc !!}</td>
                                     <td>{{ round($tran->cr,0) }}</td>
                                     <td>{{ round($tran->db,0) }}</td>
                                     <td>{{ round($balance,0) }}</td>
-
                                 </tr>
                             @endforeach
                         </tbody>

@@ -163,6 +163,7 @@ class SaleController extends Controller
 
          if($req->isPaid == 'Yes'){
             createTransaction($req->paidIn, $req->date, $net_total, 0, $desc1, $ref);
+            createTransaction($req->customer, $req->date, $net_total, $net_total, $desc1, $ref);
          }
          elseif($req->isPaid == 'No'){
                 createTransaction($req->customer, $req->date, $net_total, 0, $desc1, $ref);
@@ -306,7 +307,16 @@ class SaleController extends Controller
 
     public function print($ref){
         $invoice = sale::with('details', 'customer_account')->where('ref', $ref)->first();
-        return view('sale.print')->with(compact('invoice'));
+        $details = sale_details::where('bill_id', $invoice->id)->get();
+        $previous_bal_cr = transactions::where('account_id', $invoice->customer)->where('ref', '<', $ref)->sum('cr');
+        $previous_bal_db = transactions::where('account_id', $invoice->customer)->where('ref', '<', $ref)->sum('db');
+        $prev_balance =$previous_bal_cr - $previous_bal_db;
+
+        $currant_bal_cr = transactions::where('account_id', $invoice->customer)->sum('cr');
+        $currant_bal_db = transactions::where('account_id', $invoice->customer)->sum('db');
+       
+        $cur_balance = $currant_bal_cr - $currant_bal_db;
+        return view('sale.print')->with(compact('invoice', 'details', 'prev_balance', 'cur_balance'));
     }
 
 }
