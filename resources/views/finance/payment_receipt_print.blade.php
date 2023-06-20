@@ -262,7 +262,7 @@
     <div class="container">
         <div class="container1">
             <div class="sub-container">
-                <div class="logo" style="width: 37%;">
+                {{-- <div class="logo" style="width: 37%;">
                     <img src="{{ asset('assets/images/app_logo.png') }}" alt="logo">
                 </div>
                 <div3 id="myDiv">
@@ -270,7 +270,7 @@
                     <span class="dot">
                         <p style="margin-top: 15px;">خوشحال خان</p>
                     </span>
-                </div3>
+                </div3> --}}
                 <div class="text1">
                     <h1 class="m-query1">Super UPS Center</h1>
                     <h3 class="m-query2">Shop No 12, insaf Solar Market, Angle Road, opp Civic Center, Quetta.
@@ -280,159 +280,42 @@
             </div>
         </div>
 
-        <!-- <div class="brand-section">
-            <div class="row">
-                <div class="col-6">
-                    <h1 class="text-white">FABCART</h1>
-                </div>
-                <div class="col-6">
-                    <div class="company-details">
-                        <p class="text-white">assdad asd  asda asdad a sd</p>
-                        <p class="text-white">assdad asd asd</p>
-                        <p class="text-white">+91 888555XXXX</p>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
         <div class="body-section">
-            <div class="row"></div>
-            <div class="row">
-                <div class="qoute">
-                    <h2 style="text-align: center;">INVOICE# &nbsp; {{ $invoice->id }}</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <!-- <h2 class="heading">Invoice No.: 001</h2> -->
-                    <h3 class="sub-heading">Invoice to:
-                        @if (@$invoice->customer_account->title)
-                            {{ @$invoice->customer_account->title }} ({{ @$invoice->customer_account->type }})
-                        @else
-                            {{ $invoice->walking }} (Walk In)
 
-                        @endif
-                    </h3>
-
-
-                </div>
-                <div class="col-6">
-                    <div class="company-details">
-                        <h3 class="text-dark">Date: {{ date('d M Y', strtotime($invoice->date)) }}</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="body-section">
-            <!-- <h3 class="heading">Ordered Items</h3>
-            <br> -->
-            <table class="table-bordered">
-                <thead>
-                    <tr>
-                        <th class="w-5">#</th>
-                        <th class="w-15">Item</th>
-                        <th class="w-10">Price</th>
-                        <th class="w-10">Quantity</th>
-                        <th class="w-10">Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php
-                        $total = 0;
-                        $ser = 0;
-                    @endphp
-
-                    @foreach ($details as $item)
-                        @php
-                            $ser += 1;
-                        @endphp
-                        <tr>
-                            <th scope="row">{{ $ser }}</th>
-                            <td>{{ $item->product->name }}</td>
-                            <td>{{ $item->price }}</td>
-                            <td>{{ $item->qty }}</td>
-                            <td>{{ $item->price * $item->qty }}</td>
-                        </tr>
-                        @php
-                            $total += $item->price * $item->qty;
-                        @endphp
-                    @endforeach
-
-                    <tr>
-                        <td colspan="4" class="text-right">
-                            <strong>Total</strong>
-                        </td>
-                        <td>
-                            <strong>{{ $total}}</strong>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" class="text-right">
-                            <strong>Discount</strong>
-                        </td>
-                        <td>
-                            <strong>{{ $invoice->discount == 0 ? 0 : $invoice->discount}}</strong>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" class="text-right">
-                            <strong>Net Total</strong>
-                        </td>
-                        <td>
-                            <strong>{{ $total - $invoice->discount }}</strong>
-                        </td>
-                    </tr>
-                    @if (@$invoice->customer_account->title)
-                    <tr>
-                        @php
-                            $paidAmount = $invoice->amount;
-                            if($invoice->amount == 0){
-                                $paidAmount = $total - ($invoice->amount + $invoice->discount);
-                            }
-                        @endphp
-                        <td colspan="4" class="text-right">
-                            <strong>Paid Amount</strong>
-                        </td>
-                        <td>
-                            <strong>{{ $paidAmount }}</strong>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" class="text-right">
-                            <strong>Remaining</strong>
-                        </td>
-                        <td>
-                            <h3> {{ $total - $paidAmount - $invoice->discount}}</h3>
-                        </td>
-                    </tr>
-                    @endif
-                </tbody>
-            </table>
-            <br>
-            <table style="width:500px;">
+            <table style="width: 100%;">
                 <tr>
-                    <td style="text-align: left; width:40%;"> <strong>Payment type:</strong> </td>
-                    <td style="text-align: left">{{$invoice->account->title}}</td>
+                    <td style="text-align: left; width:40%;"> <strong>Reference:</strong> </td>
+                    <td style="text-align: left">{{ $transfer->ref }}</td>
                 </tr>
                 <tr>
-                    <td style="text-align: left; width:40%;"> <strong>Details:</strong> </td>
-                    <td style="text-align: left">{{$invoice->desc}}</td>
+                    <td style="text-align: left; width:40%;"> <strong>Date:</strong> </td>
+                    <td style="text-align: left"> {{ date('d M Y', strtotime($transfer->date))}}</td>
                 </tr>
-                @if (@$invoice->customer_account->title)
+                <tr>
+                    <td style="text-align: left; width:40%;"> <strong>Payment From:</strong> </td>
+                    <td style="text-align: left"> {{ $transfer->from_account->title }}</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left; width:40%;"> <strong>Payment To:</strong> </td>
+                    <td style="text-align: left"> {{ $transfer->to_account->title }}</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left; width:40%;"> <strong>Amount Paid:</strong> </td>
+                    <td style="text-align: left"> {{ $transfer->amount }}</td>
+                </tr>
                 <tr>
                     <td style="text-align: left; width:40%;"> <strong>Previous Balance:</strong> </td>
-                    <td style="text-align: left">{{$prev_balance ?? 0}}</td>
+                    <td style="text-align: left"> {{ $prev_balance }}</td>
                 </tr>
                 <tr>
                     <td style="text-align: left; width:40%;"> <strong>Current Balance:</strong> </td>
-                    <td style="text-align: left">{{ $total - $paidAmount - $invoice->discount }}</td>
+                    <td style="text-align: left"> {{ $cur_balance }}</td>
                 </tr>
                 <tr>
-                    <td style="text-align: left; width:40%;"> <strong>Total Balance:</strong> </td>
-                    <td style="text-align: left">{{ $cur_balance }}</td>
+                    <td style="text-align: left; width:40%;"> <strong>Details:</strong> </td>
+                    <td style="text-align: left"> {{ $transfer->desc }}</td>
                 </tr>
-                @endif
+
             </table>
 
 
@@ -456,6 +339,6 @@
 <script>
     window.print();
     setTimeout(function() {
-        window.location.href = "{{ url('/sale/history')}}";
+        window.location.href = "{{ url('/transfer')}}";
     }, 1000);
 </script>

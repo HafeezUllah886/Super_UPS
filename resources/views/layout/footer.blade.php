@@ -34,11 +34,17 @@
         <script src="{{ asset("assets/plugins/notification/snackbar/snackbar.min.js") }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js" integrity="sha512-IOebNkvA/HZjMM7MxL0NYeLYEalloZ8ckak+NDtOViP7oiYzG5vn6WVXyrJDiJPhl4yRdmNAG49iuLmhkUdVsQ=="crossorigin="anonymous"referrerpolicy="no-referrer"></script>
 
-        
+
         {{-- <script src= {{ asset("assets/pages/crypto-dash.init.js" ) }}></script> --}}
 {{-- data table --}}
     <script src= "https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-   
+    <script src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
+
 {{-- data table --}}
         <!-- App js -->
         <script src= {{ asset("assets/js/app.js" ) }}></script>
@@ -69,7 +75,7 @@
             $(document).ready(function() {
 
     $('#datatable').DataTable({
-        
+
         "bSort": false,
 
     });

@@ -50,6 +50,7 @@
                                 <td>{{ $dep->amount}}</td>
                                 <td>
                                     <a href="{{ url('transfer/delete/') }}/{{ $dep->ref }}" class="btn btn-danger">Delete</a>
+                                    <a href="{{ url('transfer/print/') }}/{{ $dep->ref }}" class="btn btn-success">Print</a>
                                 </td>
                             </tr>
                             @endforeach

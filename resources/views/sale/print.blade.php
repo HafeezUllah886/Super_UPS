@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Super UPS CENTER</title>
     <style>
-      
+
 
         body {
             -webkit-print-color-adjust: exact;
@@ -279,7 +279,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- <div class="brand-section">
             <div class="row">
                 <div class="col-6">
@@ -341,7 +341,7 @@
                         $total = 0;
                         $ser = 0;
                     @endphp
-                    
+
                     @foreach ($details as $item)
                         @php
                             $ser += 1;
@@ -385,10 +385,17 @@
                     @if (@$invoice->customer_account->title)
                     <tr>
                         @php
-                            $paidAmount = $invoice->amount;
+                        $paidAmount = $invoice->amount;
+                        if(!$invoice->paidIn){
+                             $paidAmount = 0;
+                        }
+                        else{
+
                             if($invoice->amount == 0){
                                 $paidAmount = $total - ($invoice->amount + $invoice->discount);
                             }
+                        }
+
                         @endphp
                         <td colspan="4" class="text-right">
                             <strong>Paid Amount</strong>
@@ -412,7 +419,7 @@
             <table style="width:500px;">
                 <tr>
                     <td style="text-align: left; width:40%;"> <strong>Payment type:</strong> </td>
-                    <td style="text-align: left">{{$invoice->account->title}}</td>
+                    <td style="text-align: left">{{$invoice->account->title ?? "Unpaid"}}</td>
                 </tr>
                 <tr>
                     <td style="text-align: left; width:40%;"> <strong>Details:</strong> </td>
@@ -433,8 +440,8 @@
                 </tr>
                 @endif
             </table>
-           
-      
+
+
             <br><br>
             <h4 class="">Authorize Signature ___________________</h4>
             <p style="text-align:right;margin-right:2px;">superupscenter@gmail.com</p>

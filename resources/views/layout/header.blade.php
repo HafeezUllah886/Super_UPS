@@ -25,7 +25,7 @@
         <link href= {{ asset("assets/css/icons.css") }} rel="stylesheet" type="text/css">
         <link href= {{ asset("assets/css/style.css") }} rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css" integrity="sha512-pTaEn+6gF1IeWv3W1+7X7eM60TFu/agjgoHmYhAfLEU8Phuf6JKiiE8YmsNC0aCgQv4192s4Vai8YZ6VNM6vyQ=="crossorigin="anonymous" referrerpolicy="no-referrer"/>
-       
+
 
 
         {{-- data table --}}
@@ -48,6 +48,13 @@
           {
             height: 70vh !important;
             /* overflow:scroll; */
+          }
+          .expBtn{
+            margin-left: 20px;
+            border:none !important;
+            background:#3cab94 !important;
+            padding: 2px;
+            color: #fff;
           }
 
 

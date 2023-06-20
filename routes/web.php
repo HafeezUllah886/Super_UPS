@@ -67,6 +67,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/transfer', [AccountController::class, "transfer"]);
     Route::post('/transfer', [AccountController::class, "storeTransfer"]);
     Route::get('/transfer/delete/{ref}', [AccountController::class, "deleteTransfer"]);
+    Route::get('/transfer/print/{ref}', [AccountController::class, "printTransfer"]);
 
     Route::get('/vendors', [AccountController::class, "vendors"]);
     Route::get('/customers', [AccountController::class, "customers"]);

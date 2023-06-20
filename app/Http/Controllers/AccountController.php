@@ -293,7 +293,7 @@ class AccountController extends Controller
         if($from->type == 'Business' && $to->type == 'Vendor'){
             addLedger($req->date, $to->title, $from->title, "Payment to Vendor", $req->amount, $ref);
         }
-        return back()->with('success', 'Amount Transfered');
+        return redirect('/transfer/print/'.$ref);
     }
 
     public function deleteTransfer($ref)
@@ -302,5 +302,33 @@ class AccountController extends Controller
         transactions::where('ref', $ref)->delete();
 
         return back()->with('success', 'Transfer deleted');
+    }
+
+    public function printTransfer($ref){
+        $transfer = transfer::with('from_account', 'to_account')->where('ref', $ref)->first();
+        $pre_balance_cr = 0;
+        $pre_balance_db = 0;
+
+        $cur_balance_cr = 0;
+        $cur_balance_db = 0;
+        if($transfer->from_account->type == "Business"){
+            $pre_balance_cr = transactions::where('account_id', $transfer->to_account->id)->where('ref', '<', $ref)->sum('cr');
+            $pre_balance_db = transactions::where('account_id', $transfer->to_account->id)->where('ref', '<', $ref)->sum('db');
+
+            $cur_balance_cr = transactions::where('account_id', $transfer->to_account->id)->sum('cr');
+            $cur_balance_db = transactions::where('account_id', $transfer->to_account->id)->sum('db');
+        }
+        elseif($transfer->to_account->type == "Business"){
+            $pre_balance_cr = transactions::where('account_id', $transfer->from_account->id)->where('ref', '<', $ref)->sum('cr');
+            $pre_balance_db = transactions::where('account_id', $transfer->from_account->id)->where('ref', '<', $ref)->sum('db');
+
+            $cur_balance_cr = transactions::where('account_id', $transfer->from_account->id)->sum('cr');
+            $cur_balance_db = transactions::where('account_id', $transfer->from_account->id)->sum('db');
+        }
+
+        $prev_balance = $pre_balance_cr - $pre_balance_db;
+        $cur_balance = $cur_balance_cr - $cur_balance_db;
+
+        return view('finance.payment_receipt_print')->with(compact('transfer', 'prev_balance', 'cur_balance'));
     }
 }
