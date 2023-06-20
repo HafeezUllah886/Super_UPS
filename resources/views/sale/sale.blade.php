@@ -89,19 +89,19 @@
                             <input type="number" disabled name="stock" id="stock" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label for="qty">Quantity</label>
                             <input type="number" required name="qty" id="qty" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label for="price1">Price</label>
                             <input type="number" required name="price" id="price" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <button type="submit" class="btn btn-info" style="margin-top: 30px">Add Product</button>
                     </div>
                 </div>

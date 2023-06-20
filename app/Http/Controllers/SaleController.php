@@ -209,7 +209,7 @@ class SaleController extends Controller
 
          sale_draft::truncate();
 
-         return redirect('/sale/history');
+         return redirect('/sale/print/'.$ref);
     }
     public function history(){
         $history = sale::with('customer_account', 'account')->orderBy('id', 'desc')->get();
@@ -314,7 +314,7 @@ class SaleController extends Controller
 
         $currant_bal_cr = transactions::where('account_id', $invoice->customer)->sum('cr');
         $currant_bal_db = transactions::where('account_id', $invoice->customer)->sum('db');
-       
+
         $cur_balance = $currant_bal_cr - $currant_bal_db;
         return view('sale.print')->with(compact('invoice', 'details', 'prev_balance', 'cur_balance'));
     }
