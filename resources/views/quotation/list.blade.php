@@ -11,11 +11,11 @@
 @endphp
 <tr>
     <td>{{ $ser }}</td>
-    <td>{{ $item->product->name }}</td>
+    <td>{{ $item->product1->name }}</td>
     <td>{{ $item->qty }}</td>
     <td>{{ round($item->price,0) }}</td>
     <td>{{ $amount }}</td>
-    <td><button class="btn btn-danger" onclick="deleteList({{ $item->id }})">Delete</button></td>
+    <td><button class="btn btn-danger" onclick="deleteList({{ $item->id }}, {{ $item->quot }})">Delete</button></td>
 </tr>
 @endforeach
 <tr>

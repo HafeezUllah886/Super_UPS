@@ -23,7 +23,7 @@ class quotationDetails extends Model
         return $this->belongsTo(quotation::class, 'quot');
     }
 
-    public function product(){
-        return $this->belongsTo(products::class, 'product');
+    public function product1(){
+        return $this->belongsTo(products::class, 'product', 'id');
     }
 }

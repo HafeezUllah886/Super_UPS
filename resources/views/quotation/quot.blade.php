@@ -7,7 +7,7 @@
             $('#walkIn_box').css("display", "block");
             $('#phone_box').css("display", "block");
             $('#address_box').css("display", "block");
-            
+
         } else {
             $('#walkIn_box').css("display", "none");
             $('#phone_box').css("display", "none");
@@ -52,7 +52,7 @@
                                         <td>{{$quot->customer_account->title ?? $quot->walkIn . " (Walk-In)"}}</td>
                                         <td>{{$quot->customer_account->phone ?? $quot->phone}}</td>
                                         <td>{{$quot->customer_account->address ?? $quot->address}}</td>
-                                        <td></td>
+                                        <td>{{ $quot->discount }}</td>
                                         <td>{{$quot->date}}</td>
                                         <td></td>
                                         <td>
@@ -86,7 +86,7 @@
 
                         <div class="form-group">
                             <label for="customer">Customer</label>
-                            <select name="customer" id="customer" onchange="walkIn1()" class="select2" required id="">
+                            <select name="customer" id="customer" onchange="walkIn1()" class="select2" required>
                                 <option value="0">Walk-in Customer</option>
                                 @foreach ($accounts as $account)
                                     <option value="{{ $account->id }}">{{ $account->title }} ({{ $account->type }})

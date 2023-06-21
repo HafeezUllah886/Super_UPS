@@ -19,7 +19,7 @@ class QuotationController extends Controller
     public function storeQuotation(request $req){
         $ref = getRef();
         $customer = $req->customer;
-        if($req->cusomter == 0)
+        if($req->customer == "0")
         {
             $customer = null;
         }
@@ -37,7 +37,7 @@ class QuotationController extends Controller
 
     public function quotDetails($ref)
     {
-        
+
         $products = products::all();
         $quot = quotation::where('ref', $ref)->first();
         return view('quotation.quot_details')->with(compact('products', 'quot'));
@@ -46,5 +46,35 @@ class QuotationController extends Controller
     public function detailsList($ref)
     {
         $items = quotationDetails::where('ref', $ref)->get();
+        return view('quotation.list')->with(compact('items'));
+    }
+
+    public function storeDetails(request $req)
+    {
+        $check = quotationDetails::where('product', $req->product)->where('quot', $req->id)->count();
+        if($check > 0){
+            return "existing";
+        }
+
+        quotationDetails::create([
+            'quot' => $req->id,
+            'product' => $req->product,
+            'qty' => $req->qty,
+            'price' => $req->price,
+            'ref' => $req->ref,
+        ]);
+
+        return "done";
+    }
+
+    public function deleteDetails($id, $quot){
+        quotationDetails::where('product', $id)->where('quot', $quot)->delete();
+        return "done";
+    }
+
+    public function updateDiscount($ref, $discount){
+        quotation::where('ref', $ref)->update([
+            'discount' => $discount,
+        ]);
     }
 }

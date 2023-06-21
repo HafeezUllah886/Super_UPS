@@ -9,6 +9,7 @@ use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StockController;
 use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, "index"])->name('login');
 Route::post('/', [AuthController::class, "signin"]);
+Route::get('/clear-cache', function() {
+    Artisan::call('route:clear');
+    Artisan::call('config:cache');
+    Artisan::call('optimize');
+    Artisan::call('cache:clear');
+    return redirect()->back()->with('msg', 'Project Optimized');
+});
 
 Route::middleware('auth')->group(function (){
     Route::get('/logout', [AuthController::class, 'out']);
@@ -120,4 +128,7 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/quotation/details/{ref}', [QuotationController::class, "quotDetails"]);
     Route::get('/quotation/detail/list/{ref}', [QuotationController::class, "detailsList"]);
+    Route::get('/quotation/store/', [QuotationController::class, "storeDetails"]);
+    Route::get('/quotation/details/delete/{id}/{quot}', [QuotationController::class, "deleteDetails"]);
+    Route::get('/quotation/updateDiscount/{ref}/{discount}', [QuotationController::class, "updateDiscount"]);
 });

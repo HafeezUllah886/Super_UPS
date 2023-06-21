@@ -61,6 +61,8 @@
                             <label for="price1">Price</label>
                             <input type="number" required name="price" id="price" class="form-control">
                         </div>
+                        <input type="hidden" name="id" value="{{ $quot->id }}">
+                        <input type="hidden" name="ref" value="{{ $quot->ref }}">
                     </div>
                     <div class="col-md-2">
                         <button type="submit" class="btn btn-info" style="margin-top: 30px">Add Product</button>
@@ -83,7 +85,13 @@
 
                         </tbody>
                     </table>
-                  
+                    <div class="col-md-3 mt-3">
+                        <div class="form-group">
+                            <label for="discount">Discount</label>
+                            <input type="number" name="discount" value="{{ $quot->discount }}" onfocusout="updateDiscount()" class="form-control " id="discount">
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
@@ -102,18 +110,18 @@
 
 </style>
 <script>
-   
+
    get_items();
 $('#pro_form').submit(function(e){
     e.preventDefault();
     var data = $('#pro_form').serialize();
     $.ajax({
         method: 'get',
-        url: "{{url('/sale/store')}}",
+        url: "{{url('/quotation/store/')}}",
         data: data,
         success: function(abc){
             get_items();
-            if(abc == 'Existing')
+            if(abc == 'existing')
             {
                 Snackbar.show({
             text: "Already Added",
@@ -130,7 +138,7 @@ $('#pro_form').submit(function(e){
 
 
 function get_items(){
-    
+
     $.ajax({
         method: "GET",
         url: "{{url('/quotation/detail/list/')}}/{{$quot->ref}}",
@@ -141,11 +149,29 @@ function get_items(){
     });
 }
 
+function updateDiscount(){
+    var discount = $("#discount").val();
+$.ajax({
+    method: "GET",
+    url: "{{url('/quotation/updateDiscount/')}}/{{$quot->ref}}/"+discount,
+    success: function(respose){
+        Snackbar.show({
+            text: "Discount updated",
+            duration: 3000,
+            /* actionTextColor: '#fff',
+            backgroundColor: '#e7515a' */
+            actionTextColor: '#fff',
+            backgroundColor: '#00ab55'
+            });
+    }
+});
+}
 
-function deleteDraft(id){
+
+function deleteList(id, quot){
     $.ajax({
         method: "GET",
-        url: "{{url('/sale/draft/delete/')}}/"+id,
+        url: "{{url('/quotation/details/delete')}}/"+id+"/"+quot,
         success: function(respose){
             get_items();
             Snackbar.show({
