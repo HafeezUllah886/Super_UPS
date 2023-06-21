@@ -99,6 +99,7 @@
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{ url('/sale') }}">Create Sale</a>
                     <a class="dropdown-item" href="{{ url('/sale/history') }}">Sale History</a>
+                    <a class="dropdown-item" href="{{ url('/quotation') }}">Quotation</a>
                   </div>
                 </li>
                 <li class="nav-item dropdown">

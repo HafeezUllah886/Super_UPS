@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\productController;
 use App\Http\Controllers\purchaseController;
+use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StockController;
 use Illuminate\Routing\Controllers\Middleware;
@@ -113,4 +114,10 @@ Route::middleware('auth')->group(function (){
     Route::get('/stock',[purchaseController::class, "stock1"]);
 
     Route::get('/settings',[dashboardController::class, "settings"]);
+
+    Route::get('/quotation', [QuotationController::class, "quotation"]);
+    Route::post('/quotation', [QuotationController::class, "storeQuotation"]);
+
+    Route::get('/quotation/details/{ref}', [QuotationController::class, "quotDetails"]);
+    Route::get('/quotation/detail/list/{ref}', [QuotationController::class, "detailsList"]);
 });
