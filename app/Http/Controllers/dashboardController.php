@@ -21,7 +21,16 @@ class dashboardController extends Controller
           $accounts1[] = $act->id;
         }
         $trans1 = transactions::whereIn('account_id', $accounts1)->get();
-        return view('dashboard')->with(compact('ledger', 'trans1'));
+
+         /* Income and Expense */
+         $cash = account::with('transactions')->where('Category', 'Cash')->get();
+         $account = [];
+         foreach($all as $act)
+         {
+           $account[] = $act->id;
+         }
+         $cashs = transactions::whereIn('account_id', $account)->get();
+        return view('dashboard')->with(compact('ledger', 'trans1', 'cashs'));
     }
 
     public function settings(){

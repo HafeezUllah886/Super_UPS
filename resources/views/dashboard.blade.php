@@ -204,7 +204,7 @@
         <div class="row">
 
             <div class="col-md-6">
-                <h5 class="text-danger">Ledger Details</h5>
+                {{-- <h5 class="text-danger">Ledger Details</h5>
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover text-center" id="datatable1">
                         <thead class="th-color">
@@ -226,6 +226,42 @@
                                     <td>{{ $item->type }}</td>
                                     <td>{{ $item->details }}</td>
                                     <td>{{ $item->amount }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div> --}}
+                <h5 class="text-danger">Cash Ledger</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover text-center" id="datatable1">
+                        <thead class="th-color">
+                            <tr>
+                                <th>ID</th>
+                                <th>Date</th>
+                                <th>Account</th>
+                                <th>Description</th>
+                                <th>Credit</th>
+                                <th>Debit</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $cash_balance = 0;
+                            @endphp
+                            @foreach ($cashs as $cash)
+                            @php
+                                $cash_balance += $cash->cr;
+                                $cash_balance -= $cash->db;
+                            @endphp
+                                <tr>
+                                    <td>{{ $cash->id}}</td>
+                                    <td>{{ $cash->date }}</td>
+                                    <td>{{ $cash->account->title }}</td>
+                                    <td>{!! $cash->desc !!}</td>
+                                    <td>{{ round($cash->cr,0) }}</td>
+                                    <td>{{ round($cash->db,0) }}</td>
+                                    <td>{{ round($cash_balance,0) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
