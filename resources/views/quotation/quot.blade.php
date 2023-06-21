@@ -36,10 +36,9 @@
                                 <tr>
                                     <th class="border-top-0">Ref</th>
                                     <th class="border-top-0">Customer</th>
-                                    <th class="border-top-0">Phone</th>
-                                    <th class="border-top-0">Address</th>
                                     <th class="border-top-0">Discount</th>
                                     <th class="border-top-0">Date</th>
+                                    <th class="border-top-0">Valid Till</th>
                                     <th class="border-top-0">Amount</th>
                                     <th>Action</th>
                                 </tr>
@@ -50,11 +49,18 @@
                                     <tr>
                                         <td>{{$quot->ref}}</td>
                                         <td>{{$quot->customer_account->title ?? $quot->walkIn . " (Walk-In)"}}</td>
-                                        <td>{{$quot->customer_account->phone ?? $quot->phone}}</td>
-                                        <td>{{$quot->customer_account->address ?? $quot->address}}</td>
                                         <td>{{ $quot->discount }}</td>
                                         <td>{{$quot->date}}</td>
-                                        <td></td>
+                                        <td>{{$quot->validTill}}</td>
+                                        <td>
+                                            @php
+                                                $amount = 0;
+                                                foreach ($quot->details as $detail) {
+                                                    $amount += $detail->price * $detail->qty;
+                                                }
+                                                echo $amount;
+                                            @endphp
+                                        </td>
                                         <td>
                                             <a href="{{ url('quotation/details/') }}/{{$quot->ref}}" class="btn btn-success">Details</a>
                                             <a href="{{ url('expense/delete/') }}/" class="btn btn-danger">Delete</a>
@@ -110,6 +116,10 @@
                             <label for="date">Date</label>
                             <input type="datetime-local" name="date" required id="date" value="{{ now() }}"
                                 class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="valid">Valid Till</label>
+                            <input type="date" name="valid" required id="valid" required class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="desc">Description</label>

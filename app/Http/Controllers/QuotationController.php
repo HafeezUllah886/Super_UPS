@@ -28,6 +28,7 @@ class QuotationController extends Controller
             'walkIn' => $req->walkIn,
             'phone' => $req->phone,
             'address' => $req->address,
+            'validTill' => $req->valid,
             'desc' => $req->desc,
             'ref' => $ref,
         ]);
@@ -76,5 +77,11 @@ class QuotationController extends Controller
         quotation::where('ref', $ref)->update([
             'discount' => $discount,
         ]);
+    }
+
+    public function print($ref){
+        $quot = quotation::with('details', 'customer_account')->where('ref', $ref)->first();
+
+        return view('quotation.print')->with(compact('quot'));
     }
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('discount')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
+            $table->date('validTill');
             $table->text('desc')->nullable();
             $table->unsignedInteger('ref');
             $table->foreign('customer')->references('id')->on('accounts');

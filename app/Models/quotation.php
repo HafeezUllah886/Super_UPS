@@ -16,6 +16,7 @@ class quotation extends Model
             'discount',
             'phone',
             'address',
+            'validTill',
             'desc',
             'ref',
         ]
@@ -23,5 +24,9 @@ class quotation extends Model
 
     public function customer_account(){
         return $this->belongsTo(account::class, 'customer');
+    }
+
+    public function details(){
+        return $this->hasMany(quotationDetails::class, 'quot');
     }
 }

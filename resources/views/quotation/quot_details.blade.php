@@ -15,6 +15,7 @@
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <h4>Quotation Details</h4>
+                <a href="{{ url('/quotation/print/') }}/{{ $quot->ref }}" class="btn btn-warning">Print</a>
             </div>
         </div>
     </div>
