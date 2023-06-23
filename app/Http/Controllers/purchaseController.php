@@ -294,7 +294,7 @@ class purchaseController extends Controller
             }
             $data[] = ['product' => $product->name, 'cat' => $product->category->cat, 'coy' => $product->company->name, 'balance' => $balance, 'value' => $value, 'price' => $product->price];
         }
-
+        
         return view('purchase.stock')->with(compact('data'));
     }
 }
