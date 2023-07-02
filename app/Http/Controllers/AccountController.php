@@ -11,6 +11,7 @@ use App\Models\transfer;
 use App\Models\withdraw;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AccountController extends Controller
 {
@@ -91,9 +92,31 @@ class AccountController extends Controller
         return back()->with('success', 'Deleted successfully');
     }
 
-    public function statementView($id){
-        $account = account::find($id);
+    public function statementView($id, $pdf = false){
+        $account = account::with('transactions')->find($id);
+
         return view('finance.statement')->with(compact('account'));
+    }
+
+    public function downloadStatement($id, $from, $to)
+    {
+        $from = Carbon::createFromFormat('d-m-Y', $from)->format('Y-m-d');
+        $to = Carbon::createFromFormat('d-m-Y', $to)->format('Y-m-d');
+        $account = Account::with(['transactions' => function ($query) use ($from, $to) {
+            $query->whereBetween('date', [$from, $to]);
+        }])->find($id);
+
+        $prev_cr = transactions::where('account_id', $id)->whereDate('date', '<', $from)->sum('cr');
+        $prev_db = transactions::where('account_id', $id)->whereDate('date', '<', $from)->sum('db');
+        $prev_bal = $prev_cr - $prev_db;
+
+        $cur_bal = getAccountBalance($id);
+
+        $data = $account->toArray();
+
+        $pdf = PDF::loadView('finance.statementPDF', compact('data', 'prev_bal', 'cur_bal', 'from', 'to'));
+        $file_name = $account->title." - Statement.pdf";
+        return $pdf->download($file_name);
     }
 
     public function details($id, $from, $to)

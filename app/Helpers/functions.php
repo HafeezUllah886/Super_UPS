@@ -104,7 +104,6 @@ function todayCash(){
    foreach ($accounts as $account){
         $cr = transactions::where('account_id', $account->id)->whereDate('date', $Date)->sum('cr');
         $db = transactions::where('account_id', $account->id)->whereDate('date', $Date)->sum('db');
-
         $balance += $cr - $db;
    }
 

@@ -60,6 +60,8 @@ Route::middleware('auth')->group(function (){
     Route::get('/accounts/statement/{id}', [AccountController::class, "statementView"]);
     Route::get('/accounts/details/{id}/{from}/{to}', [AccountController::class, "details"]);
     Route::post('/account/edit/{type}', [AccountController::class, "editAccount"]);
+    Route::get('/account/statement/pdf/{id}/{from}/{to}', [AccountController::class, "downloadStatement"]);
+
 
     Route::get('/deposit', [AccountController::class, "deposit"]);
     Route::post('/deposit', [AccountController::class, "storeDeposit"]);
@@ -132,4 +134,13 @@ Route::middleware('auth')->group(function (){
     Route::get('/quotation/details/delete/{id}/{quot}', [QuotationController::class, "deleteDetails"]);
     Route::get('/quotation/updateDiscount/{ref}/{discount}', [QuotationController::class, "updateDiscount"]);
     Route::get('/quotation/print/{ref}', [QuotationController::class, "print"]);
+
+    Route::get('/dashboard/customer_dues', [DashboardController::class, 'customer_d']);
+    Route::get('/dashboard/vendors_dues', [DashboardController::class, 'vendors_d']);
+    Route::get('/dashboard/today_sale', [DashboardController::class, 'today_sale']);
+    Route::get('/dashboard/today_expense', [DashboardController::class, 'today_expense']);
+    Route::get('/dashboard/total_cash', [DashboardController::class, 'total_cash']);
+    Route::get('/dashboard/today_cash', [DashboardController::class, 'today_cash']);
+    Route::get('/dashboard/today_bank', [DashboardController::class, 'today_bank']);
+    Route::get('/dashboard/total_bank', [DashboardController::class, 'total_bank']);
 });

@@ -18,12 +18,13 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Customer DUES</div>
+                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1"> <a class="text-danger" href="{{ url('/dashboard/customer_dues') }}">Customer DUES</a> </div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
                                             {{ customerDues() }}
                                         </div>
+
                                     </div>
 
                                 </div>
@@ -40,7 +41,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Vendor DUES</div>
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"><a class="text-warning" href="{{ url('/dashboard/vendors_dues') }}">Vendor DUES</a></div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
@@ -62,7 +63,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Today Sale</div>
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><a class="text-success" href="{{ url('/dashboard/today_sale') }}"> Today Sale</a></div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
@@ -84,7 +85,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Today Expense</div>
+                                    <div class="text-xs font-weight-bold text-danger text-uppercase mb-1"><a class="text-danger" href="{{ url('/dashboard/today_expense') }}">Today Expense</a></div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
@@ -106,7 +107,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Cash</div>
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a class="text-info" href="{{ url('/dashboard/total_cash') }}">Total Cash</a></div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
@@ -129,7 +130,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Today Cash</div>
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a class="text-info" href="{{ url('/dashboard/today_cash') }}">Today Cash</a></div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
@@ -152,7 +153,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Bank</div>
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a class="text-info" href="{{ url('/dashboard/total_bank') }}">Total Bank</a></div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
@@ -176,7 +177,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Today Bank</div>
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a class="text-info" href="{{ url('/dashboard/today_bank') }}">Today Bank</a></div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
@@ -204,7 +205,7 @@
         <div class="row">
 
             <div class="col-md-6">
-              {{--   <h5 class="text-danger">Ledger Details</h5>
+                <h5 class="text-danger">Ledger Details</h5>
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover text-center" id="datatable1">
                         <thead class="th-color">
@@ -230,8 +231,8 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div> --}}
-                <h5 class="text-danger">Cash Ledger</h5>
+                </div>
+               {{--  <h5 class="text-danger">Cash Ledger</h5>
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover text-center" id="datatable1">
                         <thead class="th-color">
@@ -266,7 +267,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
+                </div> --}}
             </div>
 
             <div class="col-md-6">

@@ -6,8 +6,8 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Account Statement ({{ $account->title }})</h4>
-
+                <h4>Account Statement ({{ $account->title }} - {{ $account->type }})</h4>
+                <button id="download" class="btn btn-success">Download PDF</button>
             </div>
         </div>
     </div>
@@ -96,5 +96,11 @@
     }
     });
     }
+
+    $('#download').click(function (){
+        var from = $('#from').val();
+        var to = $('#to').val();
+        window.open("{{ url('/account/statement/pdf/') }}/"+{{$account->id}}+"/"+from+"/"+to,"_self");
+    });
 </script>
 @endsection

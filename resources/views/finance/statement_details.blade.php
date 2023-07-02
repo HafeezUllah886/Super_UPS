@@ -60,7 +60,7 @@
 </div>
 
 <script>
-     /*  $('#datatable1').DataTable({
+      $('table.display').DataTable({
         "bSort": true,
         "bLengthChange": true,
         "bPaginate": true,
@@ -68,22 +68,8 @@
         "bInfo": true,
         "order": [[0, 'desc']],
 
-    }); */
-
-
-    $(function () {
-        $('table.display').DataTable({
-            dom: 'lBfrtip',
-            buttons: [
-               /*  { extend: 'excelHtml5', text: 'Export To Excel', className: 'btn-primary', exportOptions: { columns: ':not(.notExport)'} }, */
-                {
-                    extend: 'pdfHtml5',
-                    text: 'Export to PDF',
-                    className: 'expBtn',
-
-                }
-            ],
-        });
     });
+
+
 
 </script>
