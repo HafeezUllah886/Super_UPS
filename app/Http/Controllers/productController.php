@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\catergory;
 use App\Models\company;
 use App\Models\products;
+use App\Models\purchase_details;
+use App\Models\sale_details;
+use App\Models\stock;
 use Illuminate\Http\Request;
 
 class productController extends Controller
@@ -137,5 +140,68 @@ class productController extends Controller
     public function restorePro($id){
         products::onlyTrashed()->find($id)->restore();
         return back()->with('success', 'Product has been Restored');
+    }
+
+    public function profit(){
+        $products = Products::all();
+
+        foreach ($products as $product) {
+            $purchases = purchase_details::where('product_id', $product->id)->get();
+            $sales = sale_details::where('product_id', $product->id)->get();
+
+            $daily_prices = [];
+            foreach ($purchases as $purchase) {
+                $daily_prices[$purchase->date] = $purchase->rate;
+            }
+            foreach ($sales as $sale) {
+                $daily_prices[$sale->date] = $sale->price;
+            }
+
+            $total_purchase_amount = 0;
+            $total_purchase_quantity = 0;
+            foreach ($purchases as $purchase) {
+                $total_purchase_amount += $purchase->qty * $daily_prices[$purchase->date];
+                $total_purchase_quantity += $purchase->qty;
+            }
+
+            $total_sale_amount = 0;
+            $total_sale_quantity = 0;
+            foreach ($sales as $sale) {
+                $total_sale_amount += $sale->qty * $daily_prices[$sale->date];
+                $total_sale_quantity += $sale->qty;
+            }
+
+            if ($total_sale_amount == 0) {
+                $profit = 0;
+              } else {
+                $profit = $total_sale_amount - $total_purchase_amount;
+              }
+              if ($total_purchase_quantity == 0) {
+                $average_purchase_price = 0;
+              } else {
+                $average_purchase_price = $total_purchase_amount / $total_purchase_quantity;
+              }
+
+              if ($total_sale_quantity == 0) {
+                $average_sale_price = 0;
+              } else {
+                $average_sale_price = $total_sale_amount / $total_sale_quantity;
+              }
+           
+           
+
+            $stock_cr = stock::where('product_id', $product->id)->sum('cr');
+            $stock_db = stock::where('product_id', $product->id)->sum('db');
+            $available_stock = $stock_cr - $stock_db;
+
+            $product->profit = $profit;
+            $product->purchase_quantity = $total_purchase_quantity;
+            $product->sale_quantity = $total_sale_quantity;
+            $product->average_purchase_price = $average_purchase_price;
+            $product->average_sale_price = $average_sale_price;
+            $product->available_stock = $available_stock;
+        }
+
+        return view('products.profit')->with(compact('products'));
     }
 }

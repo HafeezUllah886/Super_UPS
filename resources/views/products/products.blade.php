@@ -17,6 +17,7 @@
             <div class="d-flex justify-content-between">
                 <h4>Products Listing</h4>
                 <div class="d-flex justify-content-end">
+                <a href="{{ url('/profit') }}" class="btn btn-info mr-2" >Profit / Loss</a>
                 <a href="{{ url('/products/trashed') }}" class="btn btn-dark mr-2" >Trashed</a>
                 <button class="btn btn-success" data-toggle="modal" data-target="#modal">Add Product</button>
                 </div>

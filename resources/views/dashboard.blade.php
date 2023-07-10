@@ -200,7 +200,7 @@
     </div>
 
     {{-- End Top card section --}}
-
+  
     <div class="container-fluid">
         <div class="row">
 
