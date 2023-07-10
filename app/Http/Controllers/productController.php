@@ -6,6 +6,7 @@ use App\Models\catergory;
 use App\Models\company;
 use App\Models\products;
 use App\Models\purchase_details;
+use App\Models\sale;
 use App\Models\sale_details;
 use App\Models\stock;
 use Illuminate\Http\Request;
@@ -143,8 +144,9 @@ class productController extends Controller
     }
 
     public function profit(){
-        $products = Products::all();
 
+        $products = Products::all();
+        $discounts = sale::all()->sum('discount');
         foreach ($products as $product) {
             $purchases = purchase_details::where('product_id', $product->id)->get();
             $sales = sale_details::where('product_id', $product->id)->get();
@@ -187,8 +189,8 @@ class productController extends Controller
               } else {
                 $average_sale_price = $total_sale_amount / $total_sale_quantity;
               }
-           
-           
+
+
 
             $stock_cr = stock::where('product_id', $product->id)->sum('cr');
             $stock_db = stock::where('product_id', $product->id)->sum('db');
@@ -202,6 +204,6 @@ class productController extends Controller
             $product->available_stock = $available_stock;
         }
 
-        return view('products.profit')->with(compact('products'));
+        return view('products.profit')->with(compact('products', 'discounts'));
     }
 }

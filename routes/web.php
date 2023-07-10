@@ -82,6 +82,8 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/vendors', [AccountController::class, "vendors"]);
     Route::get('/customers', [AccountController::class, "customers"]);
+    Route::get('/customer/purchaseDetails/{id}', [AccountController::class, "customersPurchase"]);
+    Route::get('/customer/purchaseDetails/pdf/{id}', [AccountController::class, "customersPurchasePDF"]);
 
     Route::get('/purchase', [purchaseController::class, "purchase"]);
     Route::post('/purchase', [purchaseController::class, "storePurchase"]);

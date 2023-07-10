@@ -35,7 +35,7 @@
                             <tr>
                                 <th class="border-top-0">Ser</th>
                                 <th class="border-top-0">Product Name</th>
-                                <th class="border-top-0">Sale Price</th>
+                               {{--  <th class="border-top-0">Sale Price</th> --}}
                                 <th class="border-top-0">Category</th>
                                 <th class="border-top-0">Company</th>
                                 <th>Action</th>
@@ -52,7 +52,7 @@
                             <tr>
                                 <td> {{ $ser }} </td>
                                 <td>{{ $pro->name }}</td>
-                                <td>{{ $pro->price }}</td>
+                                {{-- <td>{{ $pro->price }}</td> --}}
                                 <td>{{ $pro->category->cat }}</td>
                                 <td>{{ $pro->company->name }}</td>
 

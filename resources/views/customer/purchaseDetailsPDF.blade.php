@@ -273,35 +273,17 @@
         <div class="body-section">
             <div class="row">
                 <div class="qoute">
-                    <h2 style="text-align: center;">ACCOUNT STATEMENT</h2>
+                    <h2 style="text-align: center;">PURCHASE DETAILS</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
                     <table style="margin-top:10px;">
                         <tr>
-                            <td style="text-align: left; width:20%;">Account Title: </td>
-                            <td style="text-align: left; width:30%;">{{ $data['title'] }} - {{ $data['type'] }}</td>
+                            <td style="text-align: left; width:20%;">Customer: </td>
+                            <td style="text-align: left; width:30%;">{{ $invoices[0]->customer_account->title }}</td>
                             <td style="text-align: left;">Date: </td>
                             <td style="text-align: left;">{{ date('d M Y') }}</td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left; width:20%;">From: </td>
-                            <td style="text-align: left; width:30%;">{{ date("d M Y", strtotime($from)) }}</td>
-                            <td style="text-align: left;">To: </td>
-                            <td style="text-align: left;">
-                                @if($to > today())
-                                {{ date("d M Y") }}
-                                @else
-                                {{ date("d M Y", strtotime($to)) }}
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left; width:20%;">Previous Balance </td>
-                            <td style="text-align: left; width:30%;">{{ $prev_bal }}</td>
-                            <td style="text-align: left;">Current Balance </td>
-                            <td style="text-align: left;">{{ $cur_bal }}</td>
                         </tr>
                     </table>
                 </div>
@@ -312,32 +294,36 @@
             <!-- <h3 class="heading">Ordered Items</h3>
             <br> -->
             <table class="table-bordered">
-                <thead>
+                <thead class="th-color">
                     <tr>
-                        <th >Ref #</th>
-                        <th>Date</th>
-                        <th>Remarks</th>
-                        <th>Credit</th>
-                        <th>Debit</th>
-                        <th>Balance</th>
+                        <th class="border-top-0">Ser</th>
+                        <th class="border-top-0">Date</th>
+                        <th class="border-top-0">Product</th>
+                        <th class="border-top-0">Price</th>
+                        <th class="border-top-0">Quantity</th>
+                        <th class="border-top-0">Amount</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php
-                        $bal = 0;
+                    $ser = 0;
+                    $amount = 0;
                     @endphp
-                    @foreach ($data['transactions'] as $item)
-                    @php
-                        $bal += $item['cr'] - $item['db'];
-                    @endphp
+                    @foreach ($invoices as $item)
+                        @foreach ($item->details as $product)
+                        @php
+                        $ser += 1;
+                        $amount = $product->price * $product->qty;
+                        @endphp
                         <tr>
-                            <th scope="row">{{ $item['ref'] }}</th>
-                            <td>{{ date("d M Y", strtotime($item['date'])) }}</td>
-                            <td>{!! $item['desc'] !!}</td>
-                            <td>{{ round($item['cr'],0) }}</td>
-                            <td>{{ round($item['db'],0) }}</td>
-                            <td>{{ $bal }}</td>
+                            <td> {{ $ser }} </td>
+                            <td>{{ date("d M Y", strtotime($item->date)) }}</td>
+                            <td>{{ $product->product->name }}</td>
+                            <td>{{ $product->price }}</td>
+                            <td>{{ $product->qty }}</td>
+                            <td>{{ $amount }}</td>
                         </tr>
+                        @endforeach
                     @endforeach
                 </tbody>
             </table>

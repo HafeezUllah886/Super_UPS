@@ -6,6 +6,7 @@ use App\Models\account;
 use App\Models\deposit;
 use App\Models\expense;
 use App\Models\ledger;
+use App\Models\sale;
 use App\Models\transactions;
 use App\Models\transfer;
 use App\Models\withdraw;
@@ -353,5 +354,17 @@ class AccountController extends Controller
         $cur_balance = $cur_balance_cr - $cur_balance_db;
 
         return view('finance.payment_receipt_print')->with(compact('transfer', 'prev_balance', 'cur_balance'));
+    }
+
+    public function customersPurchase($id){
+        $invoices = sale::with('details')->where('customer',$id)->orderBy('id', 'desc')->get();
+        return view('customer.purchaseDetails')->with(compact('invoices'));
+    }
+    public function customersPurchasePDF($id){
+        $invoices = sale::with('details')->where('customer',$id)->get();
+        $pdf = PDF::loadView('customer.purchaseDetailsPDF', compact('invoices'));
+        $file_name = $invoices[0]->customer_account->title." - Purchase Details.pdf";
+        return $pdf->download($file_name);
+
     }
 }

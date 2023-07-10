@@ -31,6 +31,6 @@ class sale extends Model
     }
 
     public function details(){
-        return $this->hasMany(sale_details::class, 'id', 'bill_id');
+        return $this->hasMany(sale_details::class,'bill_id');
     }
 }
