@@ -37,6 +37,12 @@ class purchaseController extends Controller
             ]
         );
 
+        products::where('id', $req->product)->update(
+            [
+                'price' => $req->price,
+            ]
+        );
+
         return "Done";
     }
 

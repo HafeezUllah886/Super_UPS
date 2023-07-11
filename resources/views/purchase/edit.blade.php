@@ -64,6 +64,7 @@
                             <input type="number" required name="rate" id="rate" class="form-control">
                         </div>
                     </div>
+                   
                     <div class="col-md-3">
                         <button type="submit" class="btn btn-info" style="margin-top: 30px">Add Product</button>
                     </div>

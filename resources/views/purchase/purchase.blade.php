@@ -69,16 +69,22 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label for="qty">Quantity</label>
                             <input type="number" required name="qty" id="qty" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label for="rate">Purchase Rate</label>
                             <input type="number" required name="rate" id="rate" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="price">Sale Price</label>
+                            <input type="number" required name="price" id="price" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-3">
