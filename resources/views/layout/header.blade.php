@@ -100,6 +100,7 @@
                     <a class="dropdown-item" href="{{ url('/sale') }}">Create Sale</a>
                     <a class="dropdown-item" href="{{ url('/sale/history') }}">Sale History</a>
                     <a class="dropdown-item" href="{{ url('/quotation') }}">Quotation</a>
+                    <a class="dropdown-item" href="{{ url('/return') }}">Return</a>
                   </div>
                 </li>
                 <li class="nav-item dropdown">

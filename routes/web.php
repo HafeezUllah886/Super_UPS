@@ -7,6 +7,7 @@ use App\Http\Controllers\productController;
 use App\Http\Controllers\purchaseController;
 use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\SaleReturnController;
 use App\Http\Controllers\StockController;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Artisan;
@@ -147,4 +148,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/dashboard/total_bank', [DashboardController::class, 'total_bank']);
 
     Route::get('/profit', [productController::class, 'profit']);
+
+    Route::get('/return', [SaleReturnController::class, 'index']);
+
 });
