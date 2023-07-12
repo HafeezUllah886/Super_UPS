@@ -150,5 +150,6 @@ Route::middleware('auth')->group(function (){
     Route::get('/profit', [productController::class, 'profit']);
 
     Route::get('/return', [SaleReturnController::class, 'index']);
+    Route::post('/return', [SaleReturnController::class, 'search']);
 
 });

@@ -7,7 +7,7 @@
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <h4>Sale Returns</h4>
-                <a href="{{url('/sale')}}" class="btn btn-success">Create New</a>
+                <button class="btn btn-success" data-toggle="modal" data-target="#modal">Create New</button>
             </div>
         </div>
     </div>
@@ -41,9 +41,9 @@
                                 <td>{{ $return->date }}</td>
                                 <td>{{ $return->amount }}</td>
 
-                              
+
                                 <td>
-                                
+
 
                                 </td>
                             </tr>
@@ -56,7 +56,34 @@
         </div>
     </div>
 </div>
+{{-- Model Starts Here --}}
+<div class="modal" id="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create Return</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post">
+                @csrf
+                <div class="modal-body">
 
+                    <div class="form-group">
+                        <label for="bill">Bill / Invoice No.</label>
+                        <input type="number" required name="bill" id="bill" class="form-control">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('scripts')
