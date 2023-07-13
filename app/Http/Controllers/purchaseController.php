@@ -293,11 +293,10 @@ class purchaseController extends Controller
         $value = 0;
 
         foreach ($products as $product) {
-            foreach ($product->stock as $stock) {
-                $balance += $stock->cr;
-                $balance -= $stock->db;
-                $value = $balance * $product->price;
-            }
+            $stock_cr = stock::where('product_id', $product->id)->sum('cr');
+            $stock_db = stock::where('product_id', $product->id)->sum('db');
+            $balance = $stock_cr - $stock_db;
+            $value = $balance * $product->price;
             $data[] = ['product' => $product->name, 'cat' => $product->category->cat, 'coy' => $product->company->name, 'balance' => $balance, 'value' => $value, 'price' => $product->price];
         }
         

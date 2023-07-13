@@ -33,4 +33,8 @@ class sale extends Model
     public function details(){
         return $this->hasMany(sale_details::class,'bill_id');
     }
+
+    public function saleReturns(){
+        return $this->hasOne(saleReturn::class,'bill_id');
+    }
 }

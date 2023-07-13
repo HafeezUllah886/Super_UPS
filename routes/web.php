@@ -151,5 +151,8 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/return', [SaleReturnController::class, 'index']);
     Route::post('/return', [SaleReturnController::class, 'search']);
+    Route::get('/return/view/{id}', [SaleReturnController::class, 'view']);
+    Route::post('/return/save/{bill}', [SaleReturnController::class, 'saveReturn']);
+    Route::get('/return/delete/{ref}', [SaleReturnController::class, 'delete']);
 
 });

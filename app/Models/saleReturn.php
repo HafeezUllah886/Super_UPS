@@ -13,7 +13,8 @@ class saleReturn extends Model
             'bill_id',
             'date',
             'paidBy',
-            'amount'
+            'amount',
+            'ref'
         ]
     );  
 

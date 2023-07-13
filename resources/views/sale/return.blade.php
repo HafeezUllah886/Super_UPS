@@ -30,7 +30,7 @@
 
                             @foreach ($saleReturns as $return)
                             <tr>
-                                <td> {{ $return->bill_no}} </td>
+                                <td> {{ $return->bill_id}} </td>
                                 <td>@if (@$return->bill->customer_account->title)
                                     {{ @$return->bill->customer_account->title }}
 
@@ -39,9 +39,9 @@
 
                                 @endif</td>
                                 <td>{{ $return->date }}</td>
+                                <td>{{ $return->account->title }}</td>
                                 <td>{{ $return->amount }}</td>
-
-
+                                <td> <a href="{{url('/return/delete/')}}/{{$return->ref}}" class="text-danger confirmation">Delete</a> </td>
                                 <td>
 
 
@@ -96,7 +96,7 @@
 <script>
     var elems = document.getElementsByClassName('confirmation');
     var confirmIt = function (e) {
-        if (!confirm('Are you sure to delete account?')) e.preventDefault();
+        if (!confirm('Are you sure to delete return?')) e.preventDefault();
     };
     for (var i = 0, l = elems.length; i < l; i++) {
         elems[i].addEventListener('click', confirmIt, false);

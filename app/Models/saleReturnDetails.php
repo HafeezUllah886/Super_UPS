@@ -13,7 +13,8 @@ class saleReturnDetails extends Model
             'return_id',
             'product_id',
             'qty',
-            'price'
+            'price',
+            'ref'
         ]
     );
 
