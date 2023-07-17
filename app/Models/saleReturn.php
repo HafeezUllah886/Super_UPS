@@ -14,9 +14,10 @@ class saleReturn extends Model
             'date',
             'paidBy',
             'amount',
+            'deduction',
             'ref'
         ]
-    );  
+    );
 
     public function bill(){
         return $this->belongsTo(sale::class, 'bill_id', 'id');

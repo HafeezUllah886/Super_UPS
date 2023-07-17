@@ -38,8 +38,8 @@
 
                                 @endif</td>
                                 <td>{{ $bill->date }}</td>
-                                <td>{{ $bill->discount }}</td>
-                                <td id="billAmount"></td>
+                                <td>{{ $bill->discount ?? "0" }}</td>
+                                <td id="billAmount">{{ $total }}</td>
                                 <td>{{ $bill->isPaid }}</td>
                             </tr>
                         </tbody>
@@ -79,10 +79,10 @@
                                 <td> <input type="hidden" value="{{$products->product_id}}" name="id[]">{{ $products->product->name}} </td>
                                 <td> <input type="number" readonly class="form-control  text-center" name="price[]" value="{{$products->price}}" id="price{{ $ser }}"> </td>
                                 <td> <input type="number" readonly class="form-control text-center" value="{{$products->qty}}" id="qty{{ $ser }}"> </td>
-                                <td><input type="number" class="form-control text-center" onchange="updateAmount({{ $ser }}, {{ $products->price }})" name="returnQty[]" id="returnQty{{ $ser }}" value="0" max="{{$products->qty}}"></td>
+                                <td><input type="number" class="form-control text-center" onchange="updateAmount({{ $ser }}, {{ $products->price }})"  min="0" name="returnQty[]" id="returnQty{{ $ser }}" value="0" max="{{$products->qty}}"></td>
                                 <td> <input type="number" class="form-control text-center" readonly id="amount{{ $ser }}" name="amount[]" value="0"> </td>
                             </tr>
-                            
+
                             @endforeach
                             <tr>
                                 <td colspan="4" class="text-right">Total</td>
@@ -94,16 +94,34 @@
 
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="deduction">Deduction</label>
+                            <input type="number" name="deduction" value="0" onchange="updateAmount()" min="0" id="deduction" class="form-control">
+                            @error('deduction')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="payable">Payable Amount</label>
+                            <input type="number" readonly name="payable" id="payable" class="form-control">
+                            @error('payable')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label for="netAmount">Return Amount</label>
-                            <input type="number" name="amount" value="0" id="netAmount" class="form-control">
+                            <input type="number" {{ @$bill->customer_account->title != "" ? "" : "readonly" }} name="amount" value="0" min="0" id="netAmount" class="form-control">
                             @error('amount')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label for="paidFrom">Paid From</label>
                                 <select name="paidFrom" id="paidFrom" class="form-control">
@@ -117,16 +135,17 @@
                                 @enderror
                         </div>
                     </div>
-                    <div class="col-md-3">
+
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label for="date">Return Date</label>
-                            <input type="date" name="date" value="{{date("Y-m-d")}}" class="form-control">
+                            <input type="datetime-local" name="date" value="{{now()}}" class="form-control">
                             @error('date')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                        <button type="submit" class="btn btn-success mt-4">Save Return</button>
                     </div>
                 </div>
@@ -136,8 +155,8 @@
 
 
     </div>
-    
-  
+
+
 </div>
 
 @endsection
@@ -150,7 +169,7 @@
 
 </style>
 <script>
-    $(document).ready(function(){
+   /*  $(document).ready(function(){
     var total = 0;
     var count = 1;
     var priceInput, qtyInput;
@@ -166,7 +185,7 @@
       count++;
     }
         $("#billAmount").html(total);
-    });
+    }); */
    function updateAmount(id, price){
         var returnQty = $("#returnQty"+id).val();
         var qty = $("#qty"+id).val();
@@ -185,8 +204,13 @@
         }
         });
         $("#totalAmount").html(sum);
-        var netAmount = sum - {{$bill->discount}};
-        $("#netAmount").val(netAmount);
+        var netAmount = sum - {{$bill->discount ?? 0}};
+
+        var deduction = $('#deduction').val();
+        $("#payable").val(netAmount - deduction);
+        $("#netAmount").val(netAmount - deduction);
+        $("#netAmount").attr("max", netAmount - deduction);
+
     }
 
 </script>
