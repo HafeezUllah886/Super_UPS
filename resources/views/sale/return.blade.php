@@ -1,7 +1,5 @@
 @extends('layout.dashboard')
-
 @section('content')
-
 <div class="row">
     <div class="col-12">
         <div class="card-header">
@@ -27,30 +25,24 @@
                             </tr>
                         </thead>
                         <tbody>
-
                             @foreach ($saleReturns as $return)
                             <tr>
                                 <td> {{ $return->bill_id}} </td>
                                 <td>@if (@$return->bill->customer_account->title)
                                     {{ @$return->bill->customer_account->title }}
-
                                 @else
                                 {{$return->bill->walking}} (Walk In)
-
                                 @endif</td>
                                 <td>{{ $return->date }}</td>
-                                <td>{{ $return->account->title }}</td>
+                                <td>{{ @$return->account->title }}</td>
                                 <td>{{ $return->amount }}</td>
                                 <td> <a href="{{url('/return/delete/')}}/{{$return->ref}}" class="text-danger confirmation">Delete</a> </td>
                                 <td>
-
-
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
@@ -74,7 +66,6 @@
                         <label for="bill">Bill / Invoice No.</label>
                         <input type="number" required name="bill" id="bill" class="form-control">
                     </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Create</button>
