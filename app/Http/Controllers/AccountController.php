@@ -114,7 +114,7 @@ class AccountController extends Controller
 
         $data = $account->toArray();
 
-        $pdf = PDF::loadView('finance.statementPDF', compact('data', 'prev_bal', 'cur_bal', 'from', 'to'));
+        $pdf = PDF::loadView('finance.statementPDF', compact('data', 'prev_bal', 'cur_bal', 'from', 'to', 'account'));
         $file_name = $account->title." - Statement.pdf";
         return $pdf->download($file_name);
     }

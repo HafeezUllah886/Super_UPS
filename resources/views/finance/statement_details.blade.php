@@ -24,7 +24,7 @@
                 <th>Ref</th>
                 <th>Date</th>
                 <th>Desc</th>
-                @if ($account->type == 'Customer')
+                @if ($account->type != 'Business')
                     <th>Details</th>
                 @endif
                 <th class="text-end">CR +</th>
@@ -49,7 +49,7 @@
                 <td>{{ $item->ref }}</td>
                 <td>{{ $item->date }}</td>
                 <td>{!! $item->desc !!}</td>
-                @if ($account->type == 'Customer')
+                @if ($account->type != 'Business')
                    <td>
                     @if ($item->type == 'Sale')
                         @php
@@ -72,7 +72,7 @@
                                     <td>{{$subTotal}}</td>
                                 </tr>
                             @endforeach
-                        
+
                         </table>
                         <strong>Discount: </strong>{{$data[0]->bill->discount}}
                     @endif
@@ -97,10 +97,10 @@
                                 <td>{{$subTotal}}</td>
                             </tr>
                         @endforeach
-                    
+
                     </table>
-                @endif
-                    </td> 
+                    @endif
+                    </td>
                 @endif
 
                 <td class="text-end">{{ $item->cr == null ? '-' : round($item->cr,2)}}</td>
