@@ -152,24 +152,24 @@ class purchaseController extends Controller
         if ($req->vendor != 0) {
             $check_vendor = account::find($req->vendor);
             if ($req->isPaid == 'Yes') {
-                createTransaction($req->paidFrom, $req->date, 0, $total, $desc1, $ref);
-                createTransaction($req->vendor, $req->date, $total, $total, $desc1, $ref);
+                createTransaction($req->paidFrom, $req->date, 0, $total, $desc1, "Purchase", $ref);
+                createTransaction($req->vendor, $req->date, $total, $total, $desc1, "Purchase", $ref);
             } elseif ($req->isPaid == 'No') {
                 if ($check_vendor->type == "Vendor") {
-                    createTransaction($req->vendor, $req->date, $total, 0, $desc1, $ref);
+                    createTransaction($req->vendor, $req->date, $total, 0, $desc1, "Purchase", $ref);
                 } else {
-                    createTransaction($req->vendor, $req->date, 0, $total, $desc1, $ref);
+                    createTransaction($req->vendor, $req->date, 0, $total, $desc1, "Purchase", $ref);
                 }
             } else {
                 if ($check_vendor->type == "Vendor") {
-                    createTransaction($req->vendor, $req->date, $total, $req->amount, $desc2, $ref);
+                    createTransaction($req->vendor, $req->date, $total, $req->amount, $desc2, "Purchase", $ref);
                 } else {
-                    createTransaction($req->vendor, $req->date, $req->amount, $total, $desc2, $ref);
+                    createTransaction($req->vendor, $req->date, $req->amount, $total, $desc2, "Purchase", $ref);
                 }
-                createTransaction($req->paidFrom, $req->date, 0, $req->amount, $desc1, $ref);
+                createTransaction($req->paidFrom, $req->date, 0, $req->amount, $desc1, "Purchase", $ref);
             }
         } else {
-            createTransaction($req->paidFrom, $req->date, 0, $total, $desc1, $ref);
+            createTransaction($req->paidFrom, $req->date, 0, $total, $desc1, "Purchase", $ref);
         }
         $ledger_head = null;
         $ledger_type = null;

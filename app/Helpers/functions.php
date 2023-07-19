@@ -26,7 +26,7 @@ function getRef(){
     return $ref->ref;
 }
 
-function createTransaction($account_id, $date, $cr, $db, $desc, $ref){
+function createTransaction($account_id, $date, $cr, $db, $desc, $type, $ref){
     transactions::create(
         [
             'account_id' => $account_id,
@@ -34,6 +34,7 @@ function createTransaction($account_id, $date, $cr, $db, $desc, $ref){
             'cr' => $cr,
             'db' => $db,
             'desc' => $desc,
+            'type' => $type,
             'ref' => $ref,
         ]
     );

@@ -107,15 +107,15 @@ class SaleReturnController extends Controller
 
         if(($req->payable - $req->amount) == 0)
         {
-         createTransaction($req->paidFrom, today(), 0,$req->amount, "Sale Return", $ref);
+         createTransaction($req->paidFrom, today(), 0,$req->amount, "Sale Return", "Sale Return", $ref);
         }
         else{
-            createTransaction($req->paidFrom, today(), $req->amount,0, "Sale Return", $ref);
-            createTransaction($customer->customer, today(),$req->amount, $req->payable, "Sale Return", $ref);
+            createTransaction($req->paidFrom, today(), $req->amount,0, "Sale Return", "Sale Return", $ref);
+            createTransaction($customer->customer, today(),$req->amount, $req->payable, "Sale Return", "Sale Return", $ref);
         }
     }
     else{
-        createTransaction($customer->customer, today(), $req->amount, 0, "Sale Return", $ref);
+        createTransaction($customer->customer, today(), $req->amount, 0, "Sale Return", "Sale Return", $ref);
     }
 
        if($customer->customer){

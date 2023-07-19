@@ -162,20 +162,20 @@ class SaleController extends Controller
         if($req->customer != 0){
 
          if($req->isPaid == 'Yes'){
-            createTransaction($req->paidIn, $req->date, $net_total, 0, $desc1, $ref);
-            createTransaction($req->customer, $req->date, $net_total, $net_total, $desc1, $ref);
+            createTransaction($req->paidIn, $req->date, $net_total, 0, $desc1, "Sale", $ref);
+            createTransaction($req->customer, $req->date, $net_total, $net_total, $desc1, "Sale", $ref);
          }
          elseif($req->isPaid == 'No'){
-                createTransaction($req->customer, $req->date, $net_total, 0, $desc1, $ref);
+                createTransaction($req->customer, $req->date, $net_total, 0, $desc1, "Sale", $ref);
          }
          else{
-            createTransaction($req->customer, $req->date, $net_total, $req->amount, $desc2, $ref);
-            createTransaction($req->paidIn, $req->date, $req->amount, 0, $desc1, $ref);
+            createTransaction($req->customer, $req->date, $net_total, $req->amount, $desc2, "Sale", $ref);
+            createTransaction($req->paidIn, $req->date, $req->amount, 0, $desc1, "Sale", $ref);
          }
         }
         else
         {
-            createTransaction($req->paidIn, $req->date, $net_total, 0, $desc1, $ref);
+            createTransaction($req->paidIn, $req->date, $net_total, 0, $desc1, "Sale", $ref);
         }
         $ledger_head = null;
         $ledger_type = null;

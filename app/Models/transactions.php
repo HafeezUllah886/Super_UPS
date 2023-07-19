@@ -15,6 +15,7 @@ class transactions extends Model
             'cr',
             'db',
             'desc',
+            'type',
             'ref'
         ]
     );

@@ -49,7 +49,7 @@ class AccountController extends Controller
         }
         $ref = getRef();
         if($req->amount != 0) {
-            createTransaction($account->id, now(), "$req->amount", "0", "Initial Amount", $ref);
+            createTransaction($account->id, now(), "$req->amount", "0", "Initial Amount", "Initial", $ref);
         }
 
         addLedger($req->date, "Initial Amount", $req->title, "Account Created", $req->amount, $ref);
@@ -95,7 +95,6 @@ class AccountController extends Controller
 
     public function statementView($id, $pdf = false){
         $account = account::with('transactions')->find($id);
-
         return view('finance.statement')->with(compact('account'));
     }
 
@@ -133,11 +132,10 @@ class AccountController extends Controller
             $p_balance -= $item->db;
         }
 
-
         $all = transactions::where('account_id', $id)->get();
+        $account = account::find($id);
 
-
-        return view('finance.statement_details')->with(compact('items', 'p_balance', 'id'));
+        return view('finance.statement_details')->with(compact('items', 'p_balance', 'id', 'account'));
     }
 
     public function deposit(){
@@ -159,7 +157,7 @@ class AccountController extends Controller
             ]
         );
         $title = account::find($req->account);
-        createTransaction($req->account, $req->date, $req->amount, 0, $desc, $ref);
+        createTransaction($req->account, $req->date, $req->amount, 0, $desc, "Deposit", $ref);
         addLedger($req->date, "Deposit", $title->title, "Amount Deposited", $req->amount, $ref);
         return back()->with('success', 'Amount deposit was successfull');
     }
@@ -193,7 +191,7 @@ class AccountController extends Controller
             ]
         );
         $title = account::find($req->account);
-        createTransaction($req->account, $req->date, 0, $req->amount, $desc, $ref);
+        createTransaction($req->account, $req->date, 0, $req->amount, $desc, 'Withdraw', $ref);
         addLedger($req->date, "Withdraw", $title->title, "Amount Withdrawn", $req->amount, $ref);
         return back()->with('success', 'Amount withdraw was successfull');
     }
@@ -239,7 +237,7 @@ class AccountController extends Controller
                 'ref' => $ref,
             ]
         );
-        createTransaction($req->account, $req->date, 0, $req->amount, $desc, $ref);
+        createTransaction($req->account, $req->date, 0, $req->amount, $desc, "Expense", $ref);
 
         $p_acct = account::find($req->account);
         $ledger_head = "Expense";
@@ -297,12 +295,12 @@ class AccountController extends Controller
         $desc1 = "<strong>Transfer from ".$from->title."</strong><br>" . $req->desc;
 
         if($from->type == 'Customer' && $to->type == 'Business' || $from->type == 'Business' && $to->type == 'Business'){
-            createTransaction($req->from, $req->date, 0, $req->amount, $desc, $ref);
-            createTransaction($req->to, $req->date, $req->amount, 0, $desc1, $ref);
+            createTransaction($req->from, $req->date, 0, $req->amount, $desc, "Transfer", $ref);
+            createTransaction($req->to, $req->date, $req->amount, 0, $desc1, "Transfer", $ref);
         }
         else{
-            createTransaction($req->from, $req->date, 0, $req->amount, $desc, $ref);
-            createTransaction($req->to, $req->date, 0, $req->amount, $desc1, $ref);
+            createTransaction($req->from, $req->date, 0, $req->amount, $desc, "Transfer", $ref);
+            createTransaction($req->to, $req->date, 0, $req->amount, $desc1, "Transfer", $ref);
         }
 
         if($from->type == 'Customer' && $to->type == 'Business'){

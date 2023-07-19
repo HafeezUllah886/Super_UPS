@@ -21,12 +21,15 @@
     <div class="table-responsive" >
         <table class="table table-bordered table-striped table-hover text-center mb-0 display" id="datatable1">
             <thead>
-                <th>Reference</th>
+                <th>Ref</th>
                 <th>Date</th>
-                <th>Description</th>
-                <th class="text-end">Cradit +</th>
-                <th class="text-end">Debit -</th>
-                <th class="text-end">Balance</th>
+                <th>Desc</th>
+                @if ($account->type == 'Customer')
+                    <th>Details</th>
+                @endif
+                <th class="text-end">CR +</th>
+                <th class="text-end">DB -</th>
+                <th class="text-end">Bal</th>
             </thead>
             <tbody >
                 @php
@@ -46,6 +49,60 @@
                 <td>{{ $item->ref }}</td>
                 <td>{{ $item->date }}</td>
                 <td>{!! $item->desc !!}</td>
+                @if ($account->type == 'Customer')
+                   <td>
+                    @if ($item->type == 'Sale')
+                        @php
+                            $data = \App\Models\sale_details::with('product')->where('ref', $item->ref)->get();
+                            $subTotal = 0;
+                        @endphp
+                        <table class="table">
+                            <th>Product</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Amount</th>
+                            @foreach ($data as $data1)
+                            @php
+                                $subTotal = $data1->qty * $data1->price;
+                            @endphp
+                                <tr>
+                                    <td>{{$data1->product->name}}</td>
+                                    <td>{{$data1->qty}}</td>
+                                    <td>{{round($data1->price,0)}}</td>
+                                    <td>{{$subTotal}}</td>
+                                </tr>
+                            @endforeach
+                        
+                        </table>
+                        <strong>Discount: </strong>{{$data[0]->bill->discount}}
+                    @endif
+                    @if ($item->type == 'Purchase')
+                    @php
+                        $data = \App\Models\purchase_details::with('product')->where('ref', $item->ref)->get();
+                        $subTotal = 0;
+                    @endphp
+                    <table class="table">
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Amount</th>
+                        @foreach ($data as $data1)
+                        @php
+                            $subTotal = $data1->qty * $data1->rate;
+                        @endphp
+                            <tr>
+                                <td>{{$data1->product->name}}</td>
+                                <td>{{$data1->qty}}</td>
+                                <td>{{round($data1->rate,2)}}</td>
+                                <td>{{$subTotal}}</td>
+                            </tr>
+                        @endforeach
+                    
+                    </table>
+                @endif
+                    </td> 
+                @endif
+
                 <td class="text-end">{{ $item->cr == null ? '-' : round($item->cr,2)}}</td>
                 <td class="text-end">{{ $item->db == null ? '-' : round($item->db,2)}}</td>
                 <td class="text-end">{{ round($balance,2) }}</td>
