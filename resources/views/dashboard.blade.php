@@ -209,14 +209,12 @@
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover text-center" id="datatable1">
                         <thead class="th-color">
-                            <tr>
                                 <th>ID</th>
                                 <th>Date</th>
                                 <th>Head</th>
                                 <th>Payment Type</th>
                                 <th>Details</th>
                                 <th>Amount</th>
-                            </tr>
                         </thead>
                         <tbody>
                            @foreach ($ledger as $item)
@@ -231,6 +229,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <a href="{{ url('/dashboard/ledgerDetails') }}" class="btn btn-success">View Details</a>
                 </div>
                {{--  <h5 class="text-danger">Cash Ledger</h5>
                 <div class="table-responsive">
@@ -307,6 +306,7 @@
                         </tbody>
 
                     </table>
+                    <a href="#" class="btn btn-success">View Details</a>
                 </div>
             </div>
         </div>

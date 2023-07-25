@@ -21,7 +21,8 @@
                                 <th class="border-top-0">Bill No.</th>
                                 <th class="border-top-0">Vendor</th>
                                 <th class="border-top-0">Date</th>
-                                <th class="border-top-0">Total Amount</th>
+                                <th class="border-top-0">Details</th>
+                                <th class="border-top-0">Amount</th>
                                 <th class="border-top-0">Amount Paid</th>
                                 <th class="border-top-0">Payment</th>
                                 <th class="border-top-0">Paid From</th>
@@ -41,6 +42,26 @@
 
                                 @endif</td>
                                 <td>{{ $bill->date }}</td>
+                                <td>
+                                    <table class="table">
+                                        <th>Product</th>
+                                        <th>Qty</th>
+                                        <th>Price</th>
+                                        <th>Amount</th>
+                                        @foreach ($bill->details as $data1)
+                                        @php
+                                        $subTotal = $data1->qty * $data1->rate;
+                                        @endphp
+                                        <tr>
+                                            <td>{{$data1->product->name}}</td>
+                                            <td>{{$data1->qty}}</td>
+                                            <td>{{round($data1->rate,2)}}</td>
+                                            <td>{{$subTotal}}</td>
+                                        </tr>
+                                        @endforeach
+
+                                    </table>
+                                </td>
                                 <td>{{ getPurchaseBillTotal($bill->id) }}</td>
                                 <td>@if($bill->isPaid == 'Yes') {{ "Full Payment" }} @elseif($bill->isPaid == 'No') {{ "UnPaid" }} @else {{ $bill->amount }} @endif</td>
                                 <td>{{ $bill->isPaid}}</td>

@@ -89,4 +89,9 @@ class dashboardController extends Controller
         })->get();
         return view('dash_extra.today_bank')->with(compact('transactions'));
     }
+
+    public function ledgerDetails(){
+        $ledger = ledger::orderBy('id', 'desc')->get();
+        return view('dash_extra.ledgerDetails')->with(compact('ledger'));
+    }
 }
