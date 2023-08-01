@@ -260,11 +260,10 @@ class AccountController extends Controller
     }
 
     public function transfer(){
-        $from_accounts = account::where('type', '!=', 'Vendor')->get();
-        $to_accounts = account::where('type', '!=', 'Customer')->get();
+        $accounts = account::all();
 
         $transfers = transfer::with('from_account', 'to_account')->orderBy('id', 'desc')->get();
-        return view('finance.transfer')->with(compact('from_accounts', 'to_accounts', 'transfers'));
+        return view('finance.transfer')->with(compact('accounts', 'transfers'));
 
     }
 
@@ -294,14 +293,30 @@ class AccountController extends Controller
         $desc = "<strong>Transfer to ".$to->title."</strong><br>" . $req->desc;
         $desc1 = "<strong>Transfer from ".$from->title."</strong><br>" . $req->desc;
 
-        if($from->type == 'Customer' && $to->type == 'Business' || $from->type == 'Business' && $to->type == 'Business'){
+        if($from->type == 'Business' && $to->type == 'Business'
+            || $from->type == 'Customer' && $to->type == 'Customer'
+            || $from->type == 'Business' && $to->type == 'Customer'
+            || $from->type == 'Customer' && $to->type == 'Business'){
             createTransaction($req->from, $req->date, 0, $req->amount, $desc, "Transfer", $ref);
             createTransaction($req->to, $req->date, $req->amount, 0, $desc1, "Transfer", $ref);
         }
-        else{
+        if($from->type == 'Vendor' && $to->type == 'Vendor')
+           {
+            createTransaction($req->from, $req->date, $req->amount, 0, $desc, "Transfer", $ref);
+            createTransaction($req->to, $req->date, 0, $req->amount, $desc1, "Transfer", $ref);
+        }
+
+        if($from->type == 'Vendor' && $to->type == 'Business'
+            || $from->type == 'Vendor' && $to->type == 'Customer'){
+            createTransaction($req->from, $req->date, $req->amount, 0, $desc, "Transfer", $ref);
+            createTransaction($req->to, $req->date, $req->amount, 0, $desc1, "Transfer", $ref);
+        }
+        if($from->type == 'Business' && $to->type == 'Vendor'
+            || $from->type == 'Customer' && $to->type == 'Vendor'){
             createTransaction($req->from, $req->date, 0, $req->amount, $desc, "Transfer", $ref);
             createTransaction($req->to, $req->date, 0, $req->amount, $desc1, "Transfer", $ref);
         }
+
 
         if($from->type == 'Customer' && $to->type == 'Business'){
             addLedger($req->date, $from->title, $to->title, "Received from Customer", $req->amount, $ref);

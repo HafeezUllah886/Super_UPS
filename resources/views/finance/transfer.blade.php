@@ -81,7 +81,7 @@
                         <label for="from">From</label>
                         <select name="from" id="from" class="select2" required >
                             <option value=""></option>
-                            @foreach ($from_accounts as $account)
+                            @foreach ($accounts as $account)
                                <option value="{{ $account->id }}">{{ $account->title }} ({{ $account->type }})</option>
                             @endforeach
                         </select>
@@ -90,7 +90,7 @@
                         <label for="to">To</label>
                         <select name="to" id="to" class="select2" required>
                             <option value=""></option>
-                            @foreach ($to_accounts as $account)
+                            @foreach ($accounts as $account)
                                <option value="{{ $account->id }}">{{ $account->title }} ({{ $account->type }})</option>
                             @endforeach
                         </select>
