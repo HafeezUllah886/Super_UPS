@@ -20,7 +20,7 @@
                                 <th class="border-top-0">Customer</th>
                                 <th class="border-top-0">Date</th>
                                 <th class="border-top-0">PaidBy</th>
-                                <th class="border-top-0">Amount paid</th>
+                                <th class="border-top-0">Amount Payable</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

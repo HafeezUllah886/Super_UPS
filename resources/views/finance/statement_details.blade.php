@@ -76,6 +76,31 @@
                         </table>
                         <strong>Discount: </strong>{{$data[0]->bill->discount}}
                     @endif
+                    @if ($item->type == 'Sale Return')
+                        @php
+                            $data = \App\Models\saleReturnDetails::with('product')->where('ref', $item->ref)->get();
+                            $subTotal = 0;
+                        @endphp
+                        <table class="table">
+                            <th>Product</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Amount</th>
+                            @foreach ($data as $data1)
+                            @php
+                                $subTotal = $data1->qty * $data1->price;
+                            @endphp
+                                <tr>
+                                    <td>{{$data1->product->name}}</td>
+                                    <td>{{$data1->qty}}</td>
+                                    <td>{{round($data1->price,0)}}</td>
+                                    <td>{{$subTotal}}</td>
+                                </tr>
+                            @endforeach
+
+                        </table>
+                        <strong>Deduction: </strong>{{$data[0]->returnBill->deduction}}
+                    @endif
                     @if ($item->type == 'Purchase')
                     @php
                         $data = \App\Models\purchase_details::with('product')->where('ref', $item->ref)->get();
@@ -123,7 +148,7 @@
         "bPaginate": true,
         "bFilter": true,
         "bInfo": true,
-        "order": [[0, 'desc']],
+       "order": [[1, 'desc']],
 
     });
 
