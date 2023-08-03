@@ -306,7 +306,7 @@
                         </tbody>
 
                     </table>
-                    <a href="#" class="btn btn-success">View Details</a>
+                    <a href="{{ url('/dashboard/incomeExpenseDetails') }}" class="btn btn-success">View Details</a>
                 </div>
             </div>
         </div>

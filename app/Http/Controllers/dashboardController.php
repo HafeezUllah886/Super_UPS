@@ -94,4 +94,15 @@ class dashboardController extends Controller
         $ledger = ledger::orderBy('id', 'desc')->get();
         return view('dash_extra.ledgerDetails')->with(compact('ledger'));
     }
+
+    public function incomeExpDetails(){
+        $all = account::with('transactions')->where('type', 'Business')->get();
+        $accounts1 = [];
+        foreach($all as $act)
+        {
+          $accounts1[] = $act->id;
+        }
+        $trans1 = transactions::whereIn('account_id', $accounts1)->get();
+        return view('dash_extra.income_exp_details', compact('trans1'));
+    }
 }
