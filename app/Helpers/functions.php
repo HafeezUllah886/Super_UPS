@@ -184,10 +184,12 @@ function updatePurchaseAmount($id){
         {
             $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->first();
             $trans->cr = $total;
+            $trans->date = $bill->date;
         }
         else{
             $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->first();
             $trans->db = $total;
+            $trans->date = $bill->date;
         }
 
         $trans->save();
@@ -196,6 +198,7 @@ function updatePurchaseAmount($id){
     {
         $trans = transactions::where('account_id', $bill->account->id)->where('ref', $bill->ref)->first();
         $trans->db = $total;
+        $trans->date = $bill->date;
         $trans->save();
     }
     else
@@ -204,10 +207,12 @@ function updatePurchaseAmount($id){
         {
             $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->first();
             $trans->cr = $total;
+            $trans->date = $bill->date;
         }
         else{
             $trans = transactions::where('account_id', $bill->vendor_account->id)->where('ref', $bill->ref)->first();
             $trans->db = $total;
+            $trans->date = $bill->date;
         }
 
         $trans->save();
@@ -223,18 +228,21 @@ function updateSaleAmount($id){
 
             $trans = transactions::where('account_id', $bill->customer_account->id)->where('ref', $bill->ref)->first();
             $trans->cr = $total;
+            $trans->date = $bill->date;
             $trans->save();
     }
     elseif($bill->isPaid == 'Yes')
     {
         $trans = transactions::where('account_id', $bill->account->id)->where('ref', $bill->ref)->first();
         $trans->cr = $total;
+        $trans->date = $bill->date;
         $trans->save();
     }
     else
     {
             $trans = transactions::where('account_id', $bill->customer_account->id)->where('ref', $bill->ref)->first();
             $trans->cr = $total;
+            $trans->date = $bill->date;
             $trans->save();
     }
 

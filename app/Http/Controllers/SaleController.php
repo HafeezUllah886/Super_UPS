@@ -308,12 +308,12 @@ class SaleController extends Controller
     public function print($ref){
         $invoice = sale::with('details', 'customer_account')->where('ref', $ref)->first();
         $details = sale_details::where('bill_id', $invoice->id)->get();
-        $previous_bal_cr = transactions::where('account_id', $invoice->customer)->where('ref', '<', $ref)->sum('cr');
-        $previous_bal_db = transactions::where('account_id', $invoice->customer)->where('ref', '<', $ref)->sum('db');
+        $previous_bal_cr = transactions::where('account_id', $invoice->customer)->where('date', '<', $invoice->date)->sum('cr');
+        $previous_bal_db = transactions::where('account_id', $invoice->customer)->where('date', '<', $invoice->date)->sum('db');
         $prev_balance =$previous_bal_cr - $previous_bal_db;
 
-        $currant_bal_cr = transactions::where('account_id', $invoice->customer)->sum('cr');
-        $currant_bal_db = transactions::where('account_id', $invoice->customer)->sum('db');
+        $currant_bal_cr = transactions::where('account_id', $invoice->customer)->where('date', '<=', $invoice->date)->sum('cr');
+        $currant_bal_db = transactions::where('account_id', $invoice->customer)->where('date', '<=', $invoice->date)->sum('db');
 
         $cur_balance = $currant_bal_cr - $currant_bal_db;
         return view('sale.print')->with(compact('invoice', 'details', 'prev_balance', 'cur_balance'));
