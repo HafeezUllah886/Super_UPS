@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\catergory;
 use App\Models\company;
+use App\Models\expense;
 use App\Models\products;
 use App\Models\purchase_details;
 use App\Models\sale;
@@ -147,6 +148,7 @@ class productController extends Controller
 
         $products = Products::all();
         $discounts = sale::all()->sum('discount');
+        $expense = expense::sum('amount');
         foreach ($products as $product) {
             $purchases = purchase_details::where('product_id', $product->id)->get();
             $sales = sale_details::where('product_id', $product->id)->get();
@@ -204,6 +206,6 @@ class productController extends Controller
             $product->available_stock = $available_stock;
         }
 
-        return view('products.profit')->with(compact('products', 'discounts'));
+        return view('products.profit')->with(compact('products', 'discounts', 'expense'));
     }
 }

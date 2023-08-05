@@ -62,8 +62,12 @@
                             <td> <strong>{{ $discounts }}</strong> </td>
                         </tr>
                         <tr>
+                            <td colspan="7" style="text-align: right;"> <strong>Expenses</strong> </td>
+                            <td> <strong>{{ round($expense) }}</strong> </td>
+                        </tr>
+                        <tr>
                             <td colspan="7" style="text-align: right;"> <strong>Net Profit</strong> </td>
-                            <td> <strong>{{ $total - $discounts }}</strong> </td>
+                            <td> <strong>{{ $total - $discounts - $expense }}</strong> </td>
                         </tr>
                         </tbody>
                     </table>
