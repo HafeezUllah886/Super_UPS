@@ -203,6 +203,7 @@ class productController extends Controller
             $product->sale_quantity = $total_sale_quantity;
             $product->average_purchase_price = $average_purchase_price;
             $product->average_sale_price = $average_sale_price;
+            $product->ppu = $average_sale_price - $average_purchase_price;
             $product->available_stock = $available_stock;
         }
 

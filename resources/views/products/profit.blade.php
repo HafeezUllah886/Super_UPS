@@ -22,10 +22,12 @@
                             {{--     <th class="border-top-0">Total Purchased</th> --}}
                                 <th class="border-top-0">Avg Purchase Rate</th>
                                 <th class="border-top-0">Avg Sale Price</th>
+                                <th class="border-top-0">PPU</th>
                                 <th class="border-top-0">Total Sold</th>
+                                <th class="border-top-0">Profit</th>
                                 <th class="border-top-0">Stock</th>
                                 <th class="border-top-0">Stock Value</th>
-                                <th class="border-top-0">Profit</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -37,8 +39,8 @@
                             @foreach ($products as $product)
                             @php
                                 $ser += 1;
-                                $total += $product->profit;
-                                $net_profit = $product->available_stock * $product->price + $product->profit;
+                                $total += $product->sale_quantity * $product->ppu;
+                                $net_profit = 0;
                             @endphp
                             <tr>
                                 <td> {{ $ser }} </td>
@@ -46,28 +48,29 @@
                                {{--  <td> {{ $product->purchase_quantity}} </td> --}}
                                 <td> {{ round($product->average_purchase_price,2)}} </td>
                                 <td> {{ round($product->average_sale_price,2)}} </td>
+                                <td> {{ round($product->ppu,2)}} </td>
                                 <td> {{ $product->sale_quantity}} </td>
+                                <td> {{ round($product->sale_quantity * $product->ppu,2) }} </td>
                                 <td> {{ $product->available_stock}} </td>
                                 <td> {{ $product->available_stock * $product->price}} </td>
-                                <td> {{ $product->profit}} </td>
                             </tr>
                             @endforeach
                             <tr>
-                            <td colspan="7" style="text-align: right;"> <strong>Total</strong> </td>
-                            <td> <strong>{{ $total }}</strong> </td>
+                            <td colspan="6" style="text-align: right;"> <strong>Total</strong> </td>
+                            <td> <strong>{{ round($total,2) }}</strong> </td>
                         </tr>
 
                         <tr>
-                            <td colspan="7" style="text-align: right;"> <strong>Discounts</strong> </td>
-                            <td> <strong>{{ $discounts }}</strong> </td>
+                            <td colspan="6" style="text-align: right;"> <strong>Discounts</strong> </td>
+                            <td> <strong>{{ round($discounts,2) }}</strong> </td>
                         </tr>
                         <tr>
-                            <td colspan="7" style="text-align: right;"> <strong>Expenses</strong> </td>
-                            <td> <strong>{{ round($expense) }}</strong> </td>
+                            <td colspan="6" style="text-align: right;"> <strong>Expenses</strong> </td>
+                            <td> <strong>{{ round($expense,2) }}</strong> </td>
                         </tr>
                         <tr>
-                            <td colspan="7" style="text-align: right;"> <strong>Net Profit</strong> </td>
-                            <td> <strong>{{ $total - $discounts - $expense }}</strong> </td>
+                            <td colspan="6" style="text-align: right;"> <strong>Net Profit</strong> </td>
+                            <td> <strong>{{ round($total - $discounts - $expense,2) }}</strong> </td>
                         </tr>
                         </tbody>
                     </table>
