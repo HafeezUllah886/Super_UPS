@@ -54,9 +54,9 @@
                                 <td class="text-left">
                                     <button onclick='edit_cat({{ $account->id }}, "{{ $account->title }}")' class="btn btn-primary">Edit</button>
                                     <a href="{{ url('accounts/statement/') }}/{{ $account->id }}" class="btn btn-info">View Statement</button>
-                                    @if(getAccountBalance($account->id) == 0)
+                                    {{-- @if(getAccountBalance($account->id) == 0)
                                     <a href="{{ url('/account/delete/') }}/{{ $account->id }}" class="btn btn-danger confirmation">Delete</a>
-                                    @endif
+                                    @endif --}}
 
                                     </td>
                             </tr>
