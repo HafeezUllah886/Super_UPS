@@ -75,6 +75,7 @@
                         <thead class="th-color">
                             <tr>
                                 <th class="border-top-0">Ser</th>
+                                <th class="border-top-0">Category</th>
                                 <th class="border-top-0">Product Name</th>
                                 <th class="border-top-0">Quantity</th>
                                 <th class="border-top-0">Price</th>

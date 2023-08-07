@@ -11,6 +11,7 @@
 @endphp
 <tr>
     <td>{{ $ser }}</td>
+    <td>{{ $item->product1->category->cat }}</td>
     <td>{{ $item->product1->name }}</td>
     <td>{{ $item->qty }}</td>
     <td>{{ round($item->price,0) }}</td>

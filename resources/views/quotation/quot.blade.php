@@ -65,7 +65,7 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                            
+
                                         </td>
                                         <td>{{ $quot->discount }}</td>
                                         <td>{{$quot->date}}</td>
