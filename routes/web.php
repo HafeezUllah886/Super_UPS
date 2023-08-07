@@ -137,6 +137,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/quotation/details/delete/{id}/{quot}', [QuotationController::class, "deleteDetails"]);
     Route::get('/quotation/updateDiscount/{ref}/{discount}', [QuotationController::class, "updateDiscount"]);
     Route::get('/quotation/print/{ref}', [QuotationController::class, "print"]);
+    Route::get('/quotation/delete/{ref}', [QuotationController::class, "delete"]);
 
     Route::get('/dashboard/customer_dues', [DashboardController::class, 'customer_d']);
     Route::get('/dashboard/vendors_dues', [DashboardController::class, 'vendors_d']);

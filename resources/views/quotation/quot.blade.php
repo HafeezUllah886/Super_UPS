@@ -36,6 +36,7 @@
                                 <tr>
                                     <th class="border-top-0">Ref</th>
                                     <th class="border-top-0">Customer</th>
+                                    <th class="border-top-0">Products</th>
                                     <th class="border-top-0">Discount</th>
                                     <th class="border-top-0">Date</th>
                                     <th class="border-top-0">Valid Till</th>
@@ -49,6 +50,23 @@
                                     <tr>
                                         <td>{{$quot->ref}}</td>
                                         <td>{{$quot->customer_account->title ?? $quot->walkIn . " (Walk-In)"}}</td>
+                                        <td>
+                                            <table class="w-100">
+                                                <th>Product</th>
+                                                <th>Qty</th>
+                                                <th>Rate</th>
+                                                <tbody>
+                                                    @foreach ($quot->details as $details)
+                                                    <tr>
+                                                        <td>{{$details->product1->name}}</td>
+                                                        <td>{{$details->qty}}</td>
+                                                        <td>{{$details->price}}</td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                            
+                                        </td>
                                         <td>{{ $quot->discount }}</td>
                                         <td>{{$quot->date}}</td>
                                         <td>{{$quot->validTill}}</td>
@@ -63,7 +81,7 @@
                                         </td>
                                         <td>
                                             <a href="{{ url('quotation/details/') }}/{{$quot->ref}}" class="btn btn-success">Details</a>
-                                            <a href="{{ url('expense/delete/') }}/" class="btn btn-danger">Delete</a>
+                                            <a href="{{ url('quotation/delete/') }}/{{$quot->ref}}" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

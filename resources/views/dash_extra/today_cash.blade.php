@@ -61,13 +61,13 @@
 
                                 </table>
                                 <strong>Discount: </strong>{{$data[0]->bill->discount}}
-                            @endif
-                            @if ($trans->type == 'Purchase')
-                            @php
+                                @endif
+                                @if ($trans->type == 'Purchase')
+                                @php
                                 $data = \App\Models\purchase_details::with('product')->where('ref', $trans->ref)->get();
                                 $subTotal = 0;
-                            @endphp
-                            <table class="table">
+                                @endphp
+                                <table class="table">
                                 <th>Product</th>
                                 <th>Qty</th>
                                 <th>Price</th>
@@ -84,14 +84,14 @@
                                     </tr>
                                 @endforeach
 
-                            </table>
-                            @endif
-                            @if ($trans->type == 'Sale Return')
-                            @php
-                            $data = \App\Models\saleReturnDetails::with('product')->where('ref', $trans->ref)->get();
-                            $subTotal = 0;
-                            @endphp
-                            <table class="table">
+                                </table>
+                                @endif
+                                @if ($trans->type == 'Sale Return')
+                                @php
+                                $data = \App\Models\saleReturnDetails::with('product')->where('ref', $trans->ref)->get();
+                                $subTotal = 0;
+                                @endphp
+                                <table class="table">
                                 <th>Product</th>
                                 <th>Qty</th>
                                 <th>Price</th>
@@ -108,8 +108,8 @@
                                 </tr>
                                 @endforeach
 
-                            </table>
-                        @endif
+                                </table>
+                                @endif
                             </td>
                             <td>{{ $trans->cr }}</td>
                             <td>{{ $trans->db }}</td>

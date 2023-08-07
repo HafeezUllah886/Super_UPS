@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class QuotationController extends Controller
 {
     public function quotation(){
-        $quots = quotation::all();
+        $quots = quotation::with('details')->get();
         $accounts = account::where('type', "!=", "Business")->get();
         return view('quotation.quot')->with(compact('quots', 'accounts'));
     }
@@ -83,5 +83,11 @@ class QuotationController extends Controller
         $quot = quotation::with('details', 'customer_account')->where('ref', $ref)->first();
 
         return view('quotation.print')->with(compact('quot'));
+    }
+
+    public function delete($ref){
+        quotationDetails::where('ref', $ref)->delete();
+        quotation::where('ref', $ref)->delete();
+        return back()->with('error', 'Quotation Deleted');
     }
 }
