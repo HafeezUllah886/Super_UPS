@@ -463,5 +463,5 @@
     window.print();
     setTimeout(function() {
         window.location.href = "{{ url('/sale/history')}}";
-    }, 1000);
+    }, 3000);
 </script>
