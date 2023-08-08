@@ -16,7 +16,7 @@
     <td>{{ $item->qty }}</td>
     <td>{{ round($item->price,0) }}</td>
     <td>{{ $amount }}</td>
-    <td><button class="btn btn-danger" onclick="deleteList({{ $item->id }}, {{ $item->quot }})">Delete</button></td>
+    <td><a class="btn btn-danger" href="{{ url('/quotation/details/delete/') }}/{{ $item->id }}" >Delete</a></td>
 </tr>
 @endforeach
 <tr>

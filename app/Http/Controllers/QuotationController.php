@@ -68,9 +68,9 @@ class QuotationController extends Controller
         return "done";
     }
 
-    public function deleteDetails($id, $quot){
-        quotationDetails::where('product', $id)->where('quot', $quot)->delete();
-        return "done";
+    public function deleteDetails($id){
+        quotationDetails::find($id)->delete();
+        return back()->with('error', 'Product Deleted');
     }
 
     public function updateDiscount($ref, $discount){
