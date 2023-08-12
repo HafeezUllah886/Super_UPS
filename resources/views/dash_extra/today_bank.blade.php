@@ -15,8 +15,9 @@
             <table class="table" id="datatable1">
                 <thead>
                     <th>Id</th>
-                    <th>Account</th>
                     <th>Date</th>
+                    <th>Account</th>
+
                     <th>Desc</th>
                     <th>Details</th>
                     <th>Credit</th>
@@ -33,8 +34,9 @@
                     @endphp
                         <tr>
                             <td>{{ $trans->id }}</td>
-                            <td>{{ $trans->account->title }}</td>
                             <td>{{ $trans->date }}</td>
+                            <td>{{ $trans->account->title }}</td>
+
                             <td>{!! $trans->desc !!}</td>
                             <td>
                                 @if ($trans->type == 'Sale')
@@ -60,56 +62,56 @@
                                     @endforeach
 
                                 </table>
-                                <strong>Discount: </strong>{{$data[0]->bill->discount}}
-                            @endif
-                            @if ($trans->type == 'Purchase')
-                            @php
-                                $data = \App\Models\purchase_details::with('product')->where('ref', $trans->ref)->get();
-                                $subTotal = 0;
-                            @endphp
-                            <table class="table">
-                                <th>Product</th>
-                                <th>Qty</th>
-                                <th>Price</th>
-                                <th>Amount</th>
-                                @foreach ($data as $data1)
-                                @php
-                                    $subTotal = $data1->qty * $data1->rate;
-                                @endphp
-                                    <tr>
-                                        <td>{{$data1->product->name}}</td>
-                                        <td>{{$data1->qty}}</td>
-                                        <td>{{round($data1->rate,2)}}</td>
-                                        <td>{{$subTotal}}</td>
-                                    </tr>
-                                @endforeach
+                                <strong>Discount: </strong>{{$data[0]->bill->discount ?? '0'}}
+                                    @endif
+                                    @if ($trans->type == 'Purchase')
+                                    @php
+                                        $data = \App\Models\purchase_details::with('product')->where('ref', $trans->ref)->get();
+                                        $subTotal = 0;
+                                    @endphp
+                                    <table class="table">
+                                        <th>Product</th>
+                                        <th>Qty</th>
+                                        <th>Price</th>
+                                        <th>Amount</th>
+                                        @foreach ($data as $data1)
+                                        @php
+                                            $subTotal = $data1->qty * $data1->rate;
+                                        @endphp
+                                            <tr>
+                                                <td>{{$data1->product->name}}</td>
+                                                <td>{{$data1->qty}}</td>
+                                                <td>{{round($data1->rate,2)}}</td>
+                                                <td>{{$subTotal}}</td>
+                                            </tr>
+                                        @endforeach
 
-                            </table>
-                            @endif
-                            @if ($trans->type == 'Sale Return')
-                            @php
-                            $data = \App\Models\saleReturnDetails::with('product')->where('ref', $trans->ref)->get();
-                            $subTotal = 0;
-                            @endphp
-                            <table class="table">
-                                <th>Product</th>
-                                <th>Qty</th>
-                                <th>Price</th>
-                                <th>Amount</th>
-                                @foreach ($data as $data1)
-                                @php
-                                $subTotal = $data1->qty * $data1->price;
-                                @endphp
-                                <tr>
-                                    <td>{{$data1->product->name}}</td>
-                                    <td>{{$data1->qty}}</td>
-                                    <td>{{round($data1->price,2)}}</td>
-                                    <td>{{$subTotal}}</td>
-                                </tr>
-                                @endforeach
+                                    </table>
+                                    @endif
+                                    @if ($trans->type == 'Sale Return')
+                                    @php
+                                    $data = \App\Models\saleReturnDetails::with('product')->where('ref', $trans->ref)->get();
+                                    $subTotal = 0;
+                                    @endphp
+                                    <table class="table">
+                                        <th>Product</th>
+                                        <th>Qty</th>
+                                        <th>Price</th>
+                                        <th>Amount</th>
+                                        @foreach ($data as $data1)
+                                        @php
+                                        $subTotal = $data1->qty * $data1->price;
+                                        @endphp
+                                        <tr>
+                                            <td>{{$data1->product->name}}</td>
+                                            <td>{{$data1->qty}}</td>
+                                            <td>{{round($data1->price,2)}}</td>
+                                            <td>{{$subTotal}}</td>
+                                        </tr>
+                                        @endforeach
 
-                            </table>
-                        @endif
+                                    </table>
+                                @endif
                             </td>
                             <td>{{ $trans->cr }}</td>
                             <td>{{ $trans->db }}</td>

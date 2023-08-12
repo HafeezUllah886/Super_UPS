@@ -19,8 +19,9 @@
                         <thead class="th-color">
                             <tr>
                                 <th class="border-top-0">Bill No.</th>
-                                <th class="border-top-0">Vendor</th>
                                 <th class="border-top-0">Date</th>
+                                <th class="border-top-0">Vendor</th>
+
                                 <th class="border-top-0">Details</th>
                                 <th class="border-top-0">Amount</th>
                                 <th class="border-top-0">Amount Paid</th>
@@ -34,6 +35,7 @@
                             @foreach ($history as $bill)
                             <tr>
                                 <td> {{ $bill->id }} </td>
+                                <td>{{ $bill->date }}</td>
                                 <td>@if (@$bill->vendor_account->title)
                                     {{ @$bill->vendor_account->title }} ({{  @$bill->vendor_account->type }})
 
@@ -41,7 +43,7 @@
                                 {{$bill->walking}} (Walk In)
 
                                 @endif</td>
-                                <td>{{ $bill->date }}</td>
+
                                 <td>
                                     <table class="table">
                                         <th>Product</th>

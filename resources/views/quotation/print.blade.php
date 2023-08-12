@@ -410,5 +410,5 @@
     window.print();
     setTimeout(function() {
         window.location.href = "{{ url('/quotation')}}";
-    }, 1000);
+    }, 5000);
 </script>

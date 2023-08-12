@@ -50,7 +50,7 @@ class AccountController extends Controller
         $ref = getRef();
         if($req->amount != 0) {
             createTransaction($account->id, now(), "$req->amount", "0", "Initial Amount", "Initial", $ref);
-            addLedger($req->date, "Initial Amount", $req->title, "Account Created", $req->amount, $ref);
+            addLedger(date('Y-m-d'), "Initial Amount", $req->title, "Account Created", $req->amount, $ref);
         }
 
 

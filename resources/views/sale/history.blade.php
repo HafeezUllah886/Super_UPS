@@ -19,8 +19,9 @@
                         <thead class="th-color">
                             <tr>
                                 <th class="border-top-0">Bill No.</th>
-                                <th class="border-top-0">Customer</th>
                                 <th class="border-top-0">Date</th>
+                                <th class="border-top-0">Customer</th>
+
                                 <th class="border-top-0">Amount</th>
                                 <th class="border-top-0">Details</th>
                                 <th class="border-top-0">Amount Paid</th>
@@ -34,14 +35,14 @@
                             @foreach ($history as $bill)
                             <tr>
                                 <td> {{ $bill->id }} </td>
+                                <td>{{ $bill->date }}</td>
                                 <td>@if (@$bill->customer_account->title)
                                     {{ @$bill->customer_account->title }} ({{  @$bill->customer_account->type }})
-
                                 @else
                                 {{$bill->walking}} (Walk In)
 
                                 @endif</td>
-                                <td>{{ $bill->date }}</td>
+
                                 <td>{{ getSaleBillTotal($bill->id) }}</td>
                                 <td>
                                     <table class="table">
