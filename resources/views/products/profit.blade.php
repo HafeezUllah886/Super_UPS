@@ -13,6 +13,7 @@
     <div class="col-md-12">
         <div class="card bg-white m-b-30">
             <div class="card-body table-responsive new-user">
+                <strong>APP</strong> = Avg Purchase Price, <strong>ASP</strong> = Avg Sale Price, <strong> PPU</strong> = Profit Per Unit
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable">
                         <thead class="th-color">
@@ -20,14 +21,14 @@
                                 <th class="border-top-0">Ser</th>
                                 <th class="border-top-0">Product Name</th>
                             {{--     <th class="border-top-0">Total Purchased</th> --}}
-                                <th class="border-top-0">Avg Purchase Rate</th>
-                                <th class="border-top-0">Avg Sale Price</th>
+                                <th class="border-top-0">APP</th>
+                                <th class="border-top-0">ASP</th>
                                 <th class="border-top-0">PPU</th>
-                                <th class="border-top-0">Total Sold</th>
+                                <th class="border-top-0">Sold</th>
+                                <th class="border-top-0">Return</th>
                                 <th class="border-top-0">Profit</th>
                                 <th class="border-top-0">Stock</th>
                                 <th class="border-top-0">Stock Value</th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -39,7 +40,7 @@
                             @foreach ($products as $product)
                             @php
                                 $ser += 1;
-                                $total += $product->sale_quantity * $product->ppu;
+                                $total += ($product->sale_quantity - $product->return) * $product->ppu;
                                 $net_profit = 0;
                             @endphp
                             <tr>
@@ -50,26 +51,27 @@
                                 <td> {{ round($product->average_sale_price,2)}} </td>
                                 <td> {{ round($product->ppu,2)}} </td>
                                 <td> {{ $product->sale_quantity}} </td>
-                                <td> {{ round($product->sale_quantity * $product->ppu,2) }} </td>
+                                <td> {{ $product->return}} </td>
+                                <td> {{ round(($product->sale_quantity - $product->return) * $product->ppu,2) }} </td>
                                 <td> {{ $product->available_stock}} </td>
                                 <td> {{ $product->available_stock * $product->price}} </td>
                             </tr>
                             @endforeach
                             <tr>
-                            <td colspan="6" style="text-align: right;"> <strong>Total</strong> </td>
+                            <td colspan="7" style="text-align: right;"> <strong>Total</strong> </td>
                             <td> <strong>{{ round($total,2) }}</strong> </td>
                         </tr>
 
                         <tr>
-                            <td colspan="6" style="text-align: right;"> <strong>Discounts</strong> </td>
+                            <td colspan="7" style="text-align: right;"> <strong>Discounts</strong> </td>
                             <td> <strong>{{ round($discounts,2) }}</strong> </td>
                         </tr>
                         <tr>
-                            <td colspan="6" style="text-align: right;"> <strong>Expenses</strong> </td>
+                            <td colspan="7" style="text-align: right;"> <strong>Expenses</strong> </td>
                             <td> <strong>{{ round($expense,2) }}</strong> </td>
                         </tr>
                         <tr>
-                            <td colspan="6" style="text-align: right;"> <strong>Net Profit</strong> </td>
+                            <td colspan="7" style="text-align: right;"> <strong>Net Profit</strong> </td>
                             <td> <strong>{{ round($total - $discounts - $expense,2) }}</strong> </td>
                         </tr>
                         </tbody>
