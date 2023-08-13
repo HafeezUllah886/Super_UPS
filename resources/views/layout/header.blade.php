@@ -80,7 +80,7 @@
 
         <!-- Loader -->
         <div id="preloader"><div id="status"><div class="spinner"></div></div></div>
-        <nav style="background: linear-gradient(to bottom, #ea0a0a 0%, #a13a1d 100%) !important" class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav style="background: linear-gradient(to bottom, #1caf2e 0%, #05480d 100%) !important" class="navbar navbar-expand-lg navbar-light bg-light">
             <a style="width: 17%;" class="navbar-brand" href="#">
               <img class="logo-nav" src="{{ asset("assets/images/app_logo.png") }}"/>
             </a>
