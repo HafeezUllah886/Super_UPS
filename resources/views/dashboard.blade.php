@@ -231,7 +231,7 @@
                     </table>
                     <a href="{{ url('/dashboard/ledgerDetails') }}" class="btn btn-success">View Details</a>
                 </div>
-               {{--  <h5 class="text-danger">Cash Ledger</h5>
+
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover text-center" id="datatable1">
                         <thead class="th-color">
