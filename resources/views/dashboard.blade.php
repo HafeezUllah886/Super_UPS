@@ -205,7 +205,7 @@
         <div class="row">
 
             <div class="col-md-6">
-                <h5 class="text-danger">Ledger Details</h5>
+                {{-- <h5 class="text-danger">Ledger Details</h5>
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover text-center" id="datatable1">
                         <thead class="th-color">
@@ -230,8 +230,8 @@
                         </tbody>
                     </table>
                     <a href="{{ url('/dashboard/ledgerDetails') }}" class="btn btn-success">View Details</a>
-                </div>
-               {{--  <h5 class="text-danger">Cash Ledger</h5>
+                </div> --}}
+                <h5 class="text-danger">Cash Ledger</h5>
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover text-center" id="datatable1">
                         <thead class="th-color">
@@ -266,7 +266,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div> --}}
+                </div>
             </div>
 
             <div class="col-md-6">
