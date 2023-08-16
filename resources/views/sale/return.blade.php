@@ -56,11 +56,12 @@
                                                 <td>{{ $amount }}</td>
                                             </tr>
                                             @if($return->bill->discount)
-                                            <tr>
-                                                <td colspan="4">Discount: <strong>{{ $return->bill->discount }}</strong></td>
-                                            </tr>
+
                                             @endif
                                         @endforeach
+                                        <tr>
+                                            <td colspan="4">Discount: <strong>{{ $return->bill->discount }}</strong></td>
+                                        </tr>
                                     </tbody>
                                     </table>
                                 </td>
