@@ -264,9 +264,10 @@
                     <img src="{{ asset('assets/images/app_logo.png') }}" alt="logo">
                 </div>
                 <div class="text1">
-                    <h1 class="m-query1">Super UPS Center</h1>
-                    <h3 class="m-query2">Shop No 12, insaf Solar Market, Angle Road, opp Civic Center, Quetta.
-                        <br>Phone:&nbsp; 0300-3883054,&nbsp;0309-8105556,&nbsp;081-2827774</h3>
+                    <h1 class="m-query1">UPS / Battery Center</h1>
+                    <h3 class="m-query2">Shop # 123, Abc Road, Quetta
+                        <br>Phone:&nbsp; 0312,3456789,&nbsp;0312,3456789
+                    </h3>
                 </div>
             </div>
         </div>
