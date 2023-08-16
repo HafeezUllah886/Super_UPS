@@ -64,7 +64,7 @@
                                     @endforeach
 
                                 </table>
-                                <strong>{{ __('lang.Discount') }}: </strong>{{$data[0]->bill->discount}}
+                                <strong>{{ __('lang.Discount') }}: </strong>{{$data[0]->bill->discount ?? '0'}}
                                 @endif
                                 @if ($trans->type == 'Purchase')
                                 @php
