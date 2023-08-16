@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super UPS CENTER</title>
+    <title>Dilshad Shoe Company</title>
     <style>
 
 
@@ -38,7 +38,7 @@
         }
 
         .brand-section {
-            background-color: #b80000;
+            background-color: #898811;
             padding: 10px 10px;
         }
 
@@ -67,13 +67,13 @@
 
         .body-section {
             padding: 16px;
-            border-left: 2px solid #b80000;
-            border-right: 2px solid #b80000;
+            border-left: 2px solid #898811;
+            border-right: 2px solid #898811;
 
         }
 
         .body-section1 {
-            background-color: #b80000;
+            background-color: #898811;
             color: white;
             border-radius: 4px;
         }
@@ -146,14 +146,14 @@
         }
 
         .container1 {
-            border: 2px solid rgb(184, 0, 0);
+            border: 2px solid #898811;
             color: #ffffff;
             height: 90px;
             border-radius: 6px;
         }
 
         .sub-container {
-            background-color: #b80000;
+            background-color: #898811;
             ;
             margin: 5px;
             padding-bottom: 2px;
@@ -190,7 +190,7 @@
             width: 40%;
             margin: auto;
             text-align: center;
-            background-color: #b80000;
+            background-color: #898811;
             color: white;
             border-radius: 5px;
             font-size: 12px;
@@ -242,7 +242,7 @@
 
             height: 60px;
             width: 65px;
-            background-color: #b80000;
+            background-color: #898811;
             color: white;
             /* color: #b80000; */
             border-radius: 50%;
@@ -261,12 +261,17 @@
         <div class="container1">
             <div class="sub-container">
                 <div class="logo" style="width: 37%;">
-                    <img src="{{ asset('assets/images/app_logo.png') }}" alt="logo">
+                    <img src="{{ asset('assets/images/app_logo.png') }}" style="height:120px;width:120px;margin:-20px 20px;" alt="logo">
                 </div>
+                {{-- <div id="myDiv">
+                    <span class="dot">
+                        <p style="margin-top: 15px;">خوشحال خان</p>
+                    </span>
+                </div> --}}
                 <div class="text1">
-                    <h1 class="m-query1">UPS / Battery Center</h1>
-                    <h3 class="m-query2">Shop # 123, Abc Road, Quetta
-                        <br>Phone:&nbsp; 0312,3456789,&nbsp;0312,3456789
+                    <h1 class="m-query1">DILSHAD SHOE COMPANY</h1>
+                    <h3 class="m-query2">Sarafa Bazar, Quetta
+                        <br>Phone:&nbsp; 0300-3901256, 081-2843907, 0310-4433787<br>0331-0222240, 0316-8199980, 0313-8372003
                     </h3>
                 </div>
             </div>
