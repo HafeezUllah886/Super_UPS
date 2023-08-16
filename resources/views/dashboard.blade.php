@@ -268,7 +268,6 @@
                     </table>
                 </div>  --}}
             </div>
-
             <div class="col-md-6">
                 <h5 class="text-danger">{{ __('lang.Income&ExpenseDetails') }}</h5>
                 <div class="table-responsive">
