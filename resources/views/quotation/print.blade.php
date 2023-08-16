@@ -149,10 +149,6 @@
             color: #ffffff;
             height: 90px;
             border-radius: 6px;
-
-
-
-
         }
 
         .sub-container {
@@ -163,8 +159,6 @@
             display: flex;
             height: 78px;
             border-radius: 6px;
-
-
         }
 
         .m-query1 {
@@ -181,7 +175,6 @@
             width: 92%;
             height: 148px;
             margin-left: 2px;
-
         }
 
         .text1 {
@@ -226,8 +219,6 @@
                 margin-top: -50px;
                 margin-left: 8px;
             }
-
-
         }
 
         .div3 {}
