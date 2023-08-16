@@ -39,14 +39,12 @@
                                     <th class="border-top-0">Customer</th>
                                     <th class="border-top-0">Products</th>
                                     <th class="border-top-0">Discount</th>
-
                                     <th class="border-top-0">Valid Till</th>
                                     <th class="border-top-0">Amount</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-
                                 @foreach ($quots as $quot)
                                     <tr>
                                         <td>{{$quot->ref}}</td>
@@ -67,7 +65,6 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
-
                                         </td>
                                         <td>{{ $quot->discount }}</td>
 
@@ -89,13 +86,11 @@
                                 @endforeach
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     {{-- Model Starts Here --}}
     <div class="modal" id="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -109,7 +104,6 @@
                 <form method="post">
                     @csrf
                     <div class="modal-body">
-
                         <div class="form-group">
                             <label for="customer">Customer</label>
                             <select name="customer" id="customer" onchange="walkIn1()" class="select2" required>
@@ -156,8 +150,6 @@
         </div>
     </div>
 @endsection
-
-
 @section('scripts')
     <style>
         .dataTables_paginate {
@@ -171,7 +163,6 @@
             "bPaginate": true,
             "bFilter": true,
             "bInfo": true,
-
         });
     </script>
 @endsection
