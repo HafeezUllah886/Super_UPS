@@ -38,7 +38,7 @@
         }
 
         .brand-section {
-            background-color: #b80000;
+            background-color: #1caf2e;
             padding: 10px 10px;
         }
 
@@ -67,13 +67,13 @@
 
         .body-section {
             padding: 16px;
-            border-left: 2px solid #b80000;
-            border-right: 2px solid #b80000;
+            border-left: 2px solid #1caf2e;
+            border-right: 2px solid #1caf2e;
 
         }
 
         .body-section1 {
-            background-color: #b80000;
+            background-color: #1caf2e;
             color: white;
             border-radius: 4px;
         }
@@ -146,14 +146,14 @@
         }
 
         .container1 {
-            border: 2px solid rgb(184, 0, 0);
+            border: 2px solid #1caf2e;
             color: #ffffff;
             height: 90px;
             border-radius: 6px;
         }
 
         .sub-container {
-            background-color: #b80000;
+            background-color: #1caf2e;
             ;
             margin: 5px;
             padding-bottom: 2px;
@@ -190,7 +190,7 @@
             width: 40%;
             margin: auto;
             text-align: center;
-            background-color: #b80000;
+            background-color: #1caf2e;
             color: white;
             border-radius: 5px;
             font-size: 12px;
@@ -242,7 +242,7 @@
 
             height: 60px;
             width: 65px;
-            background-color: #b80000;
+            background-color: #1caf2e;
             color: white;
             /* color: #b80000; */
             border-radius: 50%;
@@ -261,12 +261,12 @@
         <div class="container1">
             <div class="sub-container">
                 <div class="logo" style="width: 37%;">
-                    <img src="{{ asset('assets/images/app_logo.png') }}" alt="logo">
+                    <img src="{{ asset('assets/images/app_logo.png') }}" style="height:100px !important; margin-top:-10px;" alt="logo">
                 </div>
                 <div class="text1">
-                    <h1 class="m-query1">Super UPS Center</h1>
-                    <h3 class="m-query2">Shop No 12, insaf Solar Market, Angle Road, opp Civic Center, Quetta.
-                        <br>Phone:&nbsp; 0300-3883054,&nbsp;0309-8105556,&nbsp;081-2827774</h3>
+                    <h1 class="m-query1">Atta & Co</h1>
+                    <h3 class="m-query2">Spini Road Quetta
+                        {{-- <br>Phone:&nbsp; 0300-3883054,&nbsp;0309-8105556,&nbsp;081-2827774 --}}</h3>
                 </div>
             </div>
         </div>
@@ -321,7 +321,7 @@
                         <th>Details</th>
                         @endif
                         <th>CR +</th>
-                        <th>DB _</th>
+                        <th>DB -</th>
                         <th>Bal</th>
                     </tr>
                 </thead>
