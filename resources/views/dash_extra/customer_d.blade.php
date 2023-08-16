@@ -12,8 +12,8 @@
     </div>
     <div class="col-md-12">
         <div class="card bg-white m-b-30">
-            <table class="table" id="datatable1">
-                <thead>
+            <table class="table" id="datatable1" >
+                <thead class="th-color">
                     <th>Id</th>
                     <th>Date</th>
                     <th>Account</th>
