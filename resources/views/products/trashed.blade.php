@@ -15,7 +15,7 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Delted Products</h4>
+                <h4>Deleted Products</h4>
                 <div class="d-flex justify-content-end">
                     <a href="{{ url('/products') }}" class="btn btn-dark mr-2" >Go Back</a>
                 </div>
