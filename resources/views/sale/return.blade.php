@@ -17,8 +17,10 @@
                         <thead class="th-color">
                             <tr>
                                 <th class="border-top-0">Invoice #</th>
-                                <th class="border-top-0">Customer</th>
                                 <th class="border-top-0">Date</th>
+                                <th class="border-top-0">Customer</th>
+                                <th class="border-top-0">Details</th>
+
                                 <th class="border-top-0">PaidBy</th>
                                 <th class="border-top-0">Amount Payable</th>
                                 <th>Action</th>
@@ -28,12 +30,40 @@
                             @foreach ($saleReturns as $return)
                             <tr>
                                 <td> {{ $return->bill_id}} </td>
+                                <td>{{ $return->date }}</td>
                                 <td>@if (@$return->bill->customer_account->title)
                                     {{ @$return->bill->customer_account->title }}
                                 @else
                                 {{$return->bill->walking}} (Walk In)
                                 @endif</td>
-                                <td>{{ $return->date }}</td>
+                                <td>
+                                    <table>
+                                        <thead>
+                                        <th>Product</th>
+                                        <th>Qty</th>
+                                        <th>Price</th>
+                                        <th>Amount</th>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($return->details as $details)
+                                            @php
+                                                $amount = $details->qty * $details->price;
+                                            @endphp
+                                            <tr>
+                                                <td>{{ $details->product->name }}</td>
+                                                <td>{{ $details->qty }}</td>
+                                                <td>{{ $details->price }}</td>
+                                                <td>{{ $amount }}</td>
+                                            </tr>
+                                            @if($return->bill->discount)
+                                            <tr>
+                                                <td colspan="4">Discount: <strong>{{ $return->bill->discount }}</strong></td>
+                                            </tr>
+                                            @endif
+                                        @endforeach
+                                    </tbody>
+                                    </table>
+                                </td>
                                 <td>{{ @$return->account->title }}</td>
                                 <td>{{ $return->amount }}</td>
                                 <td> <a href="{{url('/return/delete/')}}/{{$return->ref}}" class="text-danger confirmation">Delete</a> </td>

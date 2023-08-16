@@ -460,10 +460,9 @@
 </html>
 <script>
     window.print();
-    $(document).ready(function (){
+
         setTimeout(function() {
         window.location.href = "{{ url('/sale/history')}}";
-    }, 3000);
-    });
-    
+    }, 5000);
+
 </script>

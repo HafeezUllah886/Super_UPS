@@ -19,10 +19,10 @@
                         <thead class="th-color">
                             <tr>
                                 <th class="border-top-0">Bill No.</th>
-                                <th class="border-top-0">Customer</th>
                                 <th class="border-top-0">Date</th>
-                                <th class="border-top-0">Amount</th>
+                                <th class="border-top-0">Customer</th>
                                 <th class="border-top-0">Details</th>
+                                <th class="border-top-0">Amount</th>
                                 <th class="border-top-0">Amount Paid</th>
                                 <th class="border-top-0">Payment</th>
                                 <th class="border-top-0">Paid In</th>
@@ -34,15 +34,15 @@
                             @foreach ($history as $bill)
                             <tr>
                                 <td> {{ $bill->id }} </td>
+                                <td>{{ $bill->date }}</td>
                                 <td>@if (@$bill->customer_account->title)
                                     {{ @$bill->customer_account->title }} ({{  @$bill->customer_account->type }})
-
                                 @else
                                 {{$bill->walking}} (Walk In)
 
                                 @endif</td>
-                                <td>{{ $bill->date }}</td>
-                                <td>{{ getSaleBillTotal($bill->id) }}</td>
+
+
                                 <td>
                                     <table class="table">
                                         <th>Product</th>
@@ -60,9 +60,15 @@
                                             <td>{{$subTotal}}</td>
                                         </tr>
                                         @endforeach
+                                        @if($bill->discount)
+                                        <tr>
+                                            <td colspan="4">Discount: <strong>{{ $bill->discount }}</strong></td>
+                                        </tr>
+                                        @endif
 
                                     </table>
                                 </td>
+                                <td>{{ getSaleBillTotal($bill->id) }}</td>
                                 <td>@if($bill->isPaid == 'Yes') {{ "Full Payment" }} @elseif($bill->isPaid == 'No') {{ "UnPaid" }} @else {{ $bill->amount }} @endif</td>
                                 <td>{{ $bill->isPaid}}</td>
                                 <td>{{ @$bill->account->title}}</td>

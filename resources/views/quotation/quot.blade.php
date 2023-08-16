@@ -35,10 +35,11 @@
                             <thead class="th-color">
                                 <tr>
                                     <th class="border-top-0">Ref</th>
+                                    <th class="border-top-0">Date</th>
                                     <th class="border-top-0">Customer</th>
                                     <th class="border-top-0">Products</th>
                                     <th class="border-top-0">Discount</th>
-                                    <th class="border-top-0">Date</th>
+
                                     <th class="border-top-0">Valid Till</th>
                                     <th class="border-top-0">Amount</th>
                                     <th>Action</th>
@@ -49,6 +50,7 @@
                                 @foreach ($quots as $quot)
                                     <tr>
                                         <td>{{$quot->ref}}</td>
+                                        <td>{{$quot->date}}</td>
                                         <td>{{$quot->customer_account->title ?? $quot->walkIn . " (Walk-In)"}}</td>
                                         <td>
                                             <table class="w-100">
@@ -68,7 +70,7 @@
 
                                         </td>
                                         <td>{{ $quot->discount }}</td>
-                                        <td>{{$quot->date}}</td>
+
                                         <td>{{$quot->validTill}}</td>
                                         <td>
                                             @php

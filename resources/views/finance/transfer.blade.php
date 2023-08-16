@@ -30,9 +30,10 @@
                         <thead class="th-color">
                             <tr>
                                 <th class="border-top-0">Reference</th>
+                                <th class="border-top-0">Date</th>
                                 <th class="border-top-0">From</th>
                                 <th class="border-top-0">To</th>
-                                <th class="border-top-0">Date</th>
+
                                 <th class="border-top-0">Description</th>
                                 <th class="border-top-0">Amount</th>
                                 <th>Action</th>
@@ -43,9 +44,10 @@
                             @foreach ($transfers as $dep)
                             <tr>
                                 <td> {{ $dep->ref }} </td>
+                                <td>{{ date('d M Y', strtotime($dep->date))}}</td>
                                 <td>{{ $dep->from_account->title }} ({{ $dep->from_account->type }})</td>
                                 <td>{{ $dep->to_account->title }} ({{ $dep->to_account->type }})</td>
-                                <td>{{ date('d M Y', strtotime($dep->date))}}</td>
+
                                 <td>{{ $dep->desc}}</td>
                                 <td>{{ $dep->amount}}</td>
                                 <td>

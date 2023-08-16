@@ -9,6 +9,8 @@ use App\Models\products;
 use App\Models\purchase_details;
 use App\Models\sale;
 use App\Models\sale_details;
+use App\Models\saleReturn;
+use App\Models\saleReturnDetails;
 use App\Models\stock;
 use Illuminate\Http\Request;
 
@@ -149,6 +151,14 @@ class productController extends Controller
         $products = Products::all();
         $discounts = sale::all()->sum('discount');
         $expense = expense::sum('amount');
+        $returns = saleReturn::all();
+        $min_discount = 0;
+        foreach($returns as $return){
+            if($return->details->sum('qty') == $return->bill->details->sum('qty'))
+            {
+                $min_discount += $return->bill->discount;
+            }
+        }
         foreach ($products as $product) {
             $purchases = purchase_details::where('product_id', $product->id)->get();
             $sales = sale_details::where('product_id', $product->id)->get();
@@ -192,7 +202,7 @@ class productController extends Controller
                 $average_sale_price = $total_sale_amount / $total_sale_quantity;
               }
 
-
+            $return = saleReturnDetails::where('product_id', $product->id)->count('qty');
 
             $stock_cr = stock::where('product_id', $product->id)->sum('cr');
             $stock_db = stock::where('product_id', $product->id)->sum('db');
@@ -205,7 +215,9 @@ class productController extends Controller
             $product->average_sale_price = $average_sale_price;
             $product->ppu = $average_sale_price - $average_purchase_price;
             $product->available_stock = $available_stock;
+            $product->return = $return;
         }
+        $discounts -= $min_discount;
 
         return view('products.profit')->with(compact('products', 'discounts', 'expense'));
     }

@@ -342,5 +342,5 @@
 
         setTimeout(function() {
         window.location.href = "{{ url('/transfer')}}";
-    }, 1000);
+    }, 5000);
 </script>

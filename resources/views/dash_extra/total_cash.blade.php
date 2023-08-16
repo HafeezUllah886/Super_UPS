@@ -15,8 +15,9 @@
             <table class="table" id="datatable1">
                 <thead>
                     <th>Id</th>
-                    <th>Account</th>
                     <th>Date</th>
+                    <th>Account</th>
+
                     <th>Description</th>
                     <th>Details</th>
                     <th>Credit</th>
@@ -33,8 +34,9 @@
                     @endphp
                         <tr>
                             <td>{{ $trans->id }}</td>
-                            <td>{{ $trans->account->title }}</td>
                             <td>{{ $trans->date }}</td>
+                            <td>{{ $trans->account->title }}</td>
+
                             <td>{!! $trans->desc !!}</td>
                             <td>
                                 @if ($trans->type == 'Sale')

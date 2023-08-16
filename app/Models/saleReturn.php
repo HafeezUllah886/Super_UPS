@@ -26,4 +26,8 @@ class saleReturn extends Model
     public function account(){
         return $this->belongsTo(account::class, 'paidBy', 'id');
     }
+
+    public function details(){
+        return $this->hasMany(saleReturnDetails::class, 'return_id');
+    }
 }

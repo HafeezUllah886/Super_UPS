@@ -86,7 +86,7 @@
                                     @endforeach
 
                                 </table>
-                                <strong>Discount: </strong>{{$data[0]->bill->discount}}
+                                <strong>Discount: </strong>{{$data[0]->bill->discount ?? '0'}}
                             @endif
                             @if ($tran->type == 'Sale Return')
                             @php

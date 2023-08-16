@@ -29,8 +29,9 @@
                         <thead class="th-color">
                             <tr>
                                 <th class="border-top-0">Reference</th>
-                                <th class="border-top-0">Account</th>
                                 <th class="border-top-0">Date</th>
+                                <th class="border-top-0">Account</th>
+
                                 <th class="border-top-0">Description</th>
                                 <th class="border-top-0">Amount</th>
                                 <th>Action</th>
@@ -41,8 +42,9 @@
                             @foreach ($expenses as $dep)
                             <tr>
                                 <td> {{ $dep->ref }} </td>
-                                <td>{{ $dep->account->title }} ({{ $dep->account->Category }})</td>
                                 <td>{{ $dep->date }}</td>
+                                <td>{{ $dep->account->title }} ({{ $dep->account->Category }})</td>
+
                                 <td>{{ $dep->desc}}</td>
                                 <td>{{ $dep->amount}}</td>
                                 <td>
