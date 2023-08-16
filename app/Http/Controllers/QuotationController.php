@@ -28,6 +28,7 @@ class QuotationController extends Controller
             'walkIn' => $req->walkIn,
             'phone' => $req->phone,
             'address' => $req->address,
+            'date' => $req->date,
             'validTill' => $req->valid,
             'desc' => $req->desc,
             'ref' => $ref,
