@@ -49,7 +49,7 @@
                             <select name="product" required id="product" onchange="price1()" class="select2">
                                 <option value=""></option>
                                 @foreach ($products as $pro)
-                                    <option value="{{ $pro->id }}" data-price="{{ $pro->price }}">{{ $pro->name }}</option>
+                                    <option value="{{ $pro->id }}" data-price="{{ $pro->price }}">{{ $pro->name }} | {{$pro->size}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -80,6 +80,7 @@
                                 <th class="border-top-0">{{ __('lang.Ser') }}</th>
                                 <th class="border-top-0">{{ __('lang.Category') }}</th>
                                 <th class="border-top-0">{{ __('lang.Product') }}</th>
+                                <th class="border-top-0">{{ __('lang.Size') }}</th>
                                 <th class="border-top-0">{{ __('lang.Quantity') }}</th>
                                 <th class="border-top-0">{{ __('lang.Price') }}</th>
                                 <th class="border-top-0">{{ __('lang.Amount') }}</th>

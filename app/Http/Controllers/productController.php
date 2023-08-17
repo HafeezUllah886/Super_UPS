@@ -97,7 +97,7 @@ class productController extends Controller
 
     public function storePro(request $req)
     {
-        $check = products::where('name', $req->name)->count();
+        $check = products::where('name', $req->name)->where('size', $req->size)->count();
 
         if($check > 0)
         {
@@ -107,6 +107,7 @@ class productController extends Controller
             [
                 'name' => $req->name,
                 'price' => $req->price,
+                'size' => $req->size,
                 'coy' => $req->coy,
                 'cat' => $req->cat,
             ]
@@ -115,7 +116,7 @@ class productController extends Controller
     }
 
     public function editPro(request $req){
-        $check = products::where('name', $req->name)->where('id', '!=', $req->id)->count();
+        $check = products::where('name', $req->name)->where('size', $req->size)->where('id', '!=', $req->id)->count();
 
         if($check > 0)
         {
@@ -125,6 +126,7 @@ class productController extends Controller
             [
                 'name' => $req->name,
                 'price' => $req->price,
+                'size' => $req->size,
                 'coy' => $req->coy,
                 'cat' => $req->cat,
             ]
@@ -242,4 +244,13 @@ class productController extends Controller
     return view('products.profit')->with(compact('products', 'discounts', 'expense', 'from', 'to'));
     }
 
+    public function getPro(request $req){
+        $pro = products::find($req->id);
+
+        return response()->json(
+            [
+                'pro' => $pro
+            ]
+        );
+    }
 }

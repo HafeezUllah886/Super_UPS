@@ -36,7 +36,7 @@
                             <tr>
                                 <th class="border-top-0">{{__('lang.Ser')}}</th>
                                 <th class="border-top-0">{{__('lang.Product')}}</th>
-                            {{--     <th class="border-top-0">Total Purchased</th> --}}
+                                <th class="border-top-0">{{__('lang.Size')}}</th>
                                 <th class="border-top-0">APP</th>
                                 <th class="border-top-0">ASP</th>
                                 <th class="border-top-0">PPU</th>
@@ -62,7 +62,7 @@
                             <tr>
                                 <td> {{ $ser }} </td>
                                 <td> {{ $product->name }} </td>
-                               {{--  <td> {{ $product->purchase_quantity}} </td> --}}
+                                <td> {{ $product->size}} </td>
                                 <td> {{ round($product->average_purchase_price,2)}} </td>
                                 <td> {{ round($product->average_sale_price,2)}} </td>
                                 <td> {{ round($product->ppu,2)}} </td>

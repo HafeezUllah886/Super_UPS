@@ -14,19 +14,10 @@
     <!-- Scripts -->
 
 </head>
-@if (session('success'))
-<div class="alert alert-success">
-    {{ session('success') }}
-</div>
-@endif
-@if (session('error'))
-<div class="alert alert-danger">
-    {{ session('error') }}
-</div>
-@endif
-<body>
-    <div class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+
+<body >
+    <div class="font-sans text-gray-900 antialiased" >
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0" style="background-color: #6a6a05">
             <div>
                 <a href="https://pos.superupscenter.com/">
                     <img width="170px" height="150px" src="{{ asset('assets/images/app_logo.png') }}"> </a>

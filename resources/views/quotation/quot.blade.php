@@ -56,12 +56,14 @@
                                         <td>
                                             <table class="w-100">
                                                 <th>{{__('lang.Product')}}</th>
+                                                <th>{{__('lang.Size')}}</th>
                                                 <th>{{__('lang.Qty')}}</th>
                                                 <th>{{__('lang.Price')}}</th>
                                                 <tbody>
                                                     @foreach ($quot->details as $details)
                                                     <tr>
                                                         <td>{{$details->product1->name}}</td>
+                                                        <td>{{$details->product1->size}}</td>
                                                         <td>{{$details->qty}}</td>
                                                         <td>{{$details->price}}</td>
                                                     </tr>

@@ -13,7 +13,8 @@ class products extends Model
         'coy',
         'cat',
         'name',
-        'price'
+        'price',
+        'size'
     ]);
 
     public function company(){

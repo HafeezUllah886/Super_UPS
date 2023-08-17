@@ -330,6 +330,7 @@
                         <th class="w-5">#</th>
                         <th class="w-15">Category</th>
                         <th class="w-15">Item</th>
+                        <th class="w-15">Size</th>
                         <th class="w-10">Price</th>
                         <th class="w-10">Quantity</th>
                         <th class="w-10">Amount</th>
@@ -351,13 +352,14 @@
                         <td>{{ $ser }}</td>
                         <td>{{ $details->product1->category->cat }}</td>
                         <td>{{ $details->product1->name }}</td>
+                        <td>{{ $details->product1->size }}</td>
                         <td>{{ $details->price }}</td>
                         <td>{{ $details->qty }}</td>
                         <td>{{ $amount }}</td>
                     </tr>
                     @endforeach
                     <tr>
-                        <td colspan="4" class="text-right">
+                        <td colspan="5" class="text-right">
                             <strong>Total</strong>
                         </td>
                         <td>
@@ -365,7 +367,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="text-right">
+                        <td colspan="5" class="text-right">
                             <strong>Discount</strong>
                         </td>
                         <td>
@@ -373,7 +375,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="text-right">
+                        <td colspan="5" class="text-right">
                             <strong>Net Total</strong>
                         </td>
                         <td>

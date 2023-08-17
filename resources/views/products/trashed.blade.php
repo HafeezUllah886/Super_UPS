@@ -35,6 +35,7 @@
                             <tr>
                                 <th class="border-top-0">{{__('lang.Ser')}}</th>
                                 <th class="border-top-0">{{__('lang.Product')}}</th>
+                                <th class="border-top-0">{{__('lang.Size')}}</th>
                                 <th class="border-top-0">{{__('lang.Category')}}</th>
                                 <th class="border-top-0">{{__('lang.Company')}}</th>
                                 <th>{{__('lang.Action')}}</th>
@@ -51,6 +52,7 @@
                             <tr>
                                 <td> {{ $ser }} </td>
                                 <td>{{ $pro->name }}</td>
+                                <td>{{ $pro->size }}</td>
                                 <td>{{ $pro->category->cat }}</td>
                                 <td>{{ $pro->company->name }}</td>
 

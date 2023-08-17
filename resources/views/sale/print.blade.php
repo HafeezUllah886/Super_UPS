@@ -309,6 +309,7 @@
                         <th class="w-5">#</th>
                         <th class="w-15">Category</th>
                         <th class="w-15">Item</th>
+                        <th class="w-15">Size</th>
                         <th class="w-10">Price</th>
                         <th class="w-10">Quantity</th>
                         <th class="w-10">Total</th>
@@ -328,6 +329,7 @@
                             <th scope="row">{{ $ser }}</th>
                             <td>{{ $item->product->category->cat }}</td>
                             <td>{{ $item->product->name }}</td>
+                            <td>{{ $item->product->size }}</td>
                             <td>{{ $item->price }}</td>
                             <td>{{ $item->qty }}</td>
                             <td>{{ $item->price * $item->qty }}</td>

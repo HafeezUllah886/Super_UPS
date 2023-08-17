@@ -42,6 +42,7 @@
                             <tr>
                                 <th class="border-top-0">{{ __('lang.Ser') }}</th>
                                 <th class="border-top-0">{{ __('lang.Product') }}</th>
+                                <th class="border-top-0">{{ __('lang.Size') }}</th>
                                 <th class="border-top-0">{{ __('lang.SalePrice') }}</th>
                                 <th class="border-top-0">{{ __('lang.Category') }}</th>
                                 <th class="border-top-0">{{ __('lang.Company') }}</th>
@@ -59,12 +60,14 @@
                             <tr>
                                 <td> {{ $ser }} </td>
                                 <td>{{ $pro->name }}</td>
+                                <td>{{ $pro->size }}</td>
                                 <td>{{ $pro->price }}</td>
                                 <td>{{ $pro->category->cat }}</td>
                                 <td>{{ $pro->company->name }}</td>
 
                                 <td>
-                                    <button onclick='edit_cat({{ $pro->id }}, "{{ $pro->name }}", {{ $pro->coy }}, {{ $pro->cat }}, {{ $pro->price }})' class="btn btn-primary">{{ __('lang.Edit') }}</button>
+                                    
+                                    <button onclick='edit_pro({{ $pro->id }})' class="btn btn-primary">Edit</button>
                                     <a href="{{ url('/product/delete/') }}/{{ $pro->id }}" class="btn btn-danger">Delete</a>
                                     </td>
                             </tr>
@@ -95,6 +98,10 @@
                     <div class="form-group">
                         <label for="name">{{ __('lang.Product') }}</label>
                         <input type="text" required name="name" id="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="size">{{ __('lang.Size') }}</label>
+                        <input type="text" name="size" id="size" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="price">{{ __('lang.SalePrice') }}</label>
@@ -144,6 +151,10 @@
                     <div class="form-group">
                         <label for="name">{{ __('lang.Product') }}</label>
                         <input type="text" required id="edit_name"  name="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="size">{{ __('lang.Size') }}</label>
+                        <input type="text" id="edit_size"  name="size" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="price">{{ __('lang.SalePrice') }}</label>
@@ -196,26 +207,25 @@
 
     });
 
-    function edit_cat(id, name, coy, cat, price) {
-        $('#edit_name').val(name);
-        $('#edit_price').val(price);
-        $('#edit_coy').val(coy);
-        $('#edit_cat').val(cat);
-        $('#edit_id').val(id);
-        $('#edit').modal('show');
+    function edit_pro(id) {
+        $.ajax({
+        method: 'get',
+        url: "{{url('/products/get_pro')}}",
+        data: {id:id},
+        success: function(abc){
+            console.log(abc.pro['size']);
+            $('#edit_name').val(abc.pro['name']);
+            $('#edit_price').val(abc.pro['price']);
+            $('#edit_size').attr('value', abc.pro['size']); 
+            $('#edit_coy').val(abc.pro['coy']);
+            $('#edit_cat').val(abc.pro['cat']);
+            $('#edit_id').val(abc.pro['id']);
+            $('#edit').modal('show');
+        }
+    });
+       
     }
 
-    /* function save_edit(){
-        var id = $('#edit_id').val();
-        var cat = $('#edit_cat').val();
-
-        $.ajax({
-            'method': 'get',
-            'url': '{{ url("/category/edit/") }}/'+id+'/'+cat,
-            'success' : function(data){
-
-            }
-        });
-    } */
+    
 </script>
 @endsection

@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/products', [productController::class, "products"]);
     Route::post('/products', [productController::class, "storePro"]);
     Route::post('/product/edit', [productController::class, "editPro"]);
+    Route::get('/products/get_pro', [productController::class, "getPro"]);
     Route::get('/product/delete/{id}', [productController::class, "deletePro"]);
     Route::get('/products/trashed', [productController::class, "trashedPro"]);
     Route::get('/product/restore/{id}', [productController::class, "restorePro"]);
