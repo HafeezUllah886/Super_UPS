@@ -15,7 +15,7 @@
     </div>
     <div class="col-md-12">
         <div class="card bg-white m-b-30">
-            <table class="table" id="datatable1">
+            <table class="table table-hover" id="datatable1">
                 <thead class="th-color">
                     <th>{{ __('lang.Ref') }}</th>
                     <th>{{ __('lang.Date') }}</th>
@@ -29,14 +29,18 @@
                 <tbody>
                     @php
                         $bal = 0;
+                        $total_cr = 0;
+                        $total_db = 0;
                     @endphp
                     @foreach ($transactions as $trans)
                     @php
-                        $bal += $trans->cr;
-                        $bal -= $trans->db;
+                        $bal += $trans->cr - $trans->db;
+                        $total_cr += $trans->cr;
+                        $total_db += $trans->db;
+
                     @endphp
-                        <tr>
-                            <td>{{ $trans->ref }}</td>
+                        <tr @if($trans->db > 0) style="background:#FFC4C9;" @endif>
+                            <td>{{ $trans->id }}</td>
                             <td>{{ $trans->date }}</td>
                             <td>{{ $trans->account->title }}</td>
 
@@ -127,6 +131,13 @@
                             <td>{{ round($bal) }}</td>
                         </tr>
                     @endforeach
+                    <tr class="th-color">
+                        <td colspan="5" class="text-right">Total: &nbsp;
+                        </td>
+                        <td>{{ $total_cr }}</td>
+                        <td>{{ $total_db }}</td>
+                        <td>{{ $bal }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -151,7 +162,7 @@
         "bPaginate": false,
         "bFilter": true,
         "bInfo": true,
-        /* "order": [[0, 'asc']], */
+        "order": [[0, 'asc']],
     });
 
 </script>
