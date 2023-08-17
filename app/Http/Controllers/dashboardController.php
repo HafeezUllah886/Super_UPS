@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\account;
 use App\Models\expense;
 use App\Models\ledger;
+use App\Models\purchase;
 use App\Models\sale;
 use App\Models\transactions;
 
@@ -68,6 +69,10 @@ class dashboardController extends Controller
         return view('dash_extra.today_sale')->with(compact('history'));
     }
 
+        public function today_purchase(){
+            $history = purchase::with('vendor_account', 'account')->whereDate('date', today())->orderBy('id', 'desc')->get();
+            return view('dash_extra.today_purchase')->with(compact('history'));
+        }
     public function today_expense(){
         $expenses = expense::whereDate('date', today())->orderBy('id', 'desc')->get();
         $accounts = account::where('type', 'Business')->get();

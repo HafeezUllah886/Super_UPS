@@ -74,20 +74,20 @@
                             </tr>
                             @endforeach
                             <tr>
-                            <td colspan="7" style="text-align: right;"> <strong>{{__('lang.Total')}}</strong> </td>
+                            <td colspan="8" style="text-align: right;"> <strong>{{__('lang.Total')}}</strong> </td>
                             <td> <strong>{{ round($total,2) }}</strong> </td>
                         </tr>
 
                         <tr>
-                            <td colspan="7" style="text-align: right;"> <strong>{{__('lang.Discount')}}</strong> </td>
+                            <td colspan="8" style="text-align: right;"> <strong>{{__('lang.Discount')}}</strong> </td>
                             <td> <strong>{{ round($discounts,2) }}</strong> </td>
                         </tr>
                         <tr>
-                            <td colspan="7" style="text-align: right;"> <strong>{{__('lang.Expenses')}}</strong> </td>
+                            <td colspan="8" style="text-align: right;"> <strong>{{__('lang.Expenses')}}</strong> </td>
                             <td> <strong>{{ round($expense,2) }}</strong> </td>
                         </tr>
                         <tr>
-                            <td colspan="7" style="text-align: right;"> <strong>{{__('lang.NetProfit')}}</strong> </td>
+                            <td colspan="8" style="text-align: right;"> <strong>{{__('lang.NetProfit')}}</strong> </td>
                             <td> <strong>{{ round($total - $discounts - $expense,2) }}</strong> </td>
                         </tr>
                         </tbody>

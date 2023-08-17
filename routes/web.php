@@ -152,6 +152,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/dashboard/customer_dues', [DashboardController::class, 'customer_d']);
     Route::get('/dashboard/vendors_dues', [DashboardController::class, 'vendors_d']);
     Route::get('/dashboard/today_sale', [DashboardController::class, 'today_sale']);
+    Route::get('/dashboard/today_purchase', [DashboardController::class, 'today_purchase']);
     Route::get('/dashboard/today_expense', [DashboardController::class, 'today_expense']);
     Route::get('/dashboard/total_cash', [DashboardController::class, 'total_cash']);
     Route::get('/dashboard/today_cash', [DashboardController::class, 'today_cash']);

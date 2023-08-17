@@ -266,6 +266,18 @@ function todaySale(){
     return $total;
 }
 
+function todayPurchase(){
+    $Date = Carbon::now()->format('Y-m-d');
+    $purchases = purchase_details::whereDate('date', $Date)->get();
+
+    $total = 0;
+    foreach($purchases as $item)
+    {
+        $total += $item->qty * $item->rate;
+    }
+    return $total;
+}
+
 function todayExpense(){
     $Date = Carbon::now()->format('Y-m-d');
     $exp = expense::whereDate('date', $Date)->sum('amount');

@@ -49,6 +49,7 @@
                                 @endphp
                                 <table class="table">
                                     <th>{{ __('lang.Product') }}</th>
+                                    <th>{{ __('lang.Size') }}</th>
                                     <th>{{ __('lang.Qty') }}</th>
                                     <th>{{ __('lang.Price') }}</th>
                                     <th>{{ __('lang.Amount') }}</th>
@@ -58,6 +59,7 @@
                                     @endphp
                                     <tr>
                                         <td>{{$data1->product->name}}</td>
+                                        <td>{{$data1->product->size}}</td>
                                         <td>{{$data1->qty}}</td>
                                         <td>{{round($data1->rate,2)}}</td>
                                         <td>{{$subTotal}}</td>
@@ -73,6 +75,7 @@
                                 @endphp
                                 <table class="table">
                                     <th>{{ __('lang.Product') }}</th>
+                                    <th>{{ __('lang.Size') }}</th>
                                     <th>{{ __('lang.Qty') }}</th>
                                     <th>{{ __('lang.Price') }}</th>
                                     <th>{{ __('lang.Amount') }}</th>
@@ -82,6 +85,7 @@
                                     @endphp
                                     <tr>
                                         <td>{{$data1->product->name}}</td>
+                                        <td>{{$data1->product->size}}</td>
                                         <td>{{$data1->qty}}</td>
                                         <td>{{round($data1->price,0)}}</td>
                                         <td>{{$subTotal}}</td>
@@ -98,6 +102,7 @@
                             @endphp
                             <table class="table">
                                 <th>{{ __('lang.Product') }}</th>
+                                <th>{{ __('lang.Size') }}</th>
                                 <th>{{ __('lang.Qty') }}</th>
                                 <th>{{ __('lang.Price') }}</th>
                                 <th>{{ __('lang.Amount') }}</th>
@@ -107,6 +112,7 @@
                                 @endphp
                                 <tr>
                                     <td>{{$data1->product->name}}</td>
+                                    <td>{{$data1->product->size}}</td>
                                     <td>{{$data1->qty}}</td>
                                     <td>{{round($data1->price,2)}}</td>
                                     <td>{{$subTotal}}</td>
