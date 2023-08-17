@@ -99,6 +99,7 @@
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable1">
                         <thead class="th-color">
                             <tr>
+<<<<<<< HEAD
                                 <th class="border-top-0">{{ __('lang.Ser') }}</th>
                                 <th class="border-top-0">{{ __('lang.Product') }}</th>
                                 <th class="border-top-0">{{ __('lang.Size') }}</th>
@@ -106,6 +107,15 @@
                                 <th class="border-top-0">{{ __('lang.Price') }}</th>
                                 <th class="border-top-0">{{ __('lang.Amount') }}</th>
                                 <th>{{ __('lang.Action') }}</th>
+=======
+                                <th class="border-top-0">Ser</th>
+                                <th class="border-top-0">Product</th>
+                                <th class="border-top-0">Size</th>
+                                <th class="border-top-0">Quantity</th>
+                                <th class="border-top-0">Rate</th>
+                                <th class="border-top-0">Amount</th>
+                                <th>Action</th>
+>>>>>>> 797384e (adding size)
                             </tr>
                         </thead>
                         <tbody id="items">

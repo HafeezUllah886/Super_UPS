@@ -53,10 +53,17 @@
                                         <td>{{$quot->customer_account->title ?? $quot->walkIn . " (Walk-In)"}}</td>
                                         <td>
                                             <table class="w-100">
+<<<<<<< HEAD
                                                 <th>{{__('lang.Product')}}</th>
                                                 <th>{{__('lang.Size')}}</th>
                                                 <th>{{__('lang.Qty')}}</th>
                                                 <th>{{__('lang.Price')}}</th>
+=======
+                                                <th>Product</th>
+                                                <th>Size</th>
+                                                <th>Qty</th>
+                                                <th>Rate</th>
+>>>>>>> 797384e (adding size)
                                                 <tbody>
                                                     @foreach ($quot->details as $details)
                                                     <tr>

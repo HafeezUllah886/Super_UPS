@@ -18,6 +18,7 @@
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable">
                         <thead class="th-color">
                             <tr>
+
                                 <th class="border-top-0">{{ __('lang.Ser') }}</th>
                                 <th class="border-top-0">{{ __('lang.Product') }}</th>
                                 <th class="border-top-0">{{ __('lang.Size') }}</th>
@@ -26,6 +27,7 @@
                                 <th class="border-top-0">{{ __('lang.AvailableStock') }}</th>
                                 <th class="border-top-0">{{ __('lang.Price') }}</th>
                                 <th class="border-top-0">{{ __('lang.StockValue') }}</th>
+
                             </tr>
                         </thead>
                         <tbody>

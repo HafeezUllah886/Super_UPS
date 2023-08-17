@@ -20,6 +20,7 @@
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable">
                         <thead class="th-color">
                             <tr>
+<<<<<<< HEAD
                                 <th class="border-top-0">{{ __('lang.BillNo') }}</th>
                                 <th class="border-top-0">{{ __('lang.Date') }}</th>
                                 <th class="border-top-0">{{ __('lang.Vendor') }}</th>
@@ -30,6 +31,17 @@
                                 <th class="border-top-0">{{ __('lang.Payment') }}</th>
                                 <th class="border-top-0">{{ __('lang.PaidBy') }}</th>
                                 <th>{{ __('lang.Action') }}</th>
+=======
+                                <th class="border-top-0">Bill No.</th>
+                                <th class="border-top-0">Date</th>
+                                <th class="border-top-0">Vendor</th>
+                                <th class="border-top-0">Details</th>
+                                <th class="border-top-0">Amount</th>
+                                <th class="border-top-0">Amount Paid</th>
+                                <th class="border-top-0">Payment</th>
+                                <th class="border-top-0">Paid From</th>
+                                <th>Action</th>
+>>>>>>> 797384e (adding size)
                             </tr>
                         </thead>
                         <tbody>
@@ -48,11 +60,19 @@
 
                                 <td>
                                     <table class="table">
+<<<<<<< HEAD
                                         <th>{{ __('lang.Product') }}</th>
                                         <th>{{ __('lang.Size') }}</th>
                                         <th>{{ __('lang.Qty') }}</th>
                                         <th>{{ __('lang.Price') }}</th>
                                         <th>{{ __('lang.Amount') }}</th>
+=======
+                                        <th>Product</th>
+                                        <th>Size</th>
+                                        <th>Qty</th>
+                                        <th>Price</th>
+                                        <th>Amount</th>
+>>>>>>> 797384e (adding size)
                                         @foreach ($bill->details as $data1)
                                         @php
                                         $subTotal = $data1->qty * $data1->rate;
