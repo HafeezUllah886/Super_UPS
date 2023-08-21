@@ -329,6 +329,7 @@
                 <thead>
                     <tr>
                         <th class="w-5">#</th>
+                        <th class="w-15">Category</th>
                         <th class="w-15">Item</th>
                         <th class="w-10">Price</th>
                         <th class="w-10">Quantity</th>
@@ -347,6 +348,7 @@
                         @endphp
                         <tr>
                             <th scope="row">{{ $ser }}</th>
+                            <td>{{ $item->product->category->cat }}</td>
                             <td>{{ $item->product->name }}</td>
                             <td>{{ $item->price }}</td>
                             <td>{{ $item->qty }}</td>
@@ -358,15 +360,16 @@
                     @endforeach
 
                     <tr>
-                        <td colspan="4" class="text-right">
+                        <td colspan="5" class="text-right">
                             <strong>Total</strong>
                         </td>
                         <td>
                             <strong>{{ $total}}</strong>
                         </td>
                     </tr>
+                    @if($invoice->discount > 0)
                     <tr>
-                        <td colspan="4" class="text-right">
+                        <td colspan="5" class="text-right">
                             <strong>Discount</strong>
                         </td>
                         <td>
@@ -374,13 +377,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="text-right">
+                        <td colspan="5" class="text-right">
                             <strong>Net Total</strong>
                         </td>
                         <td>
                             <strong>{{ $total - $invoice->discount }}</strong>
                         </td>
                     </tr>
+                    @endif
+
                     @if (@$invoice->customer_account->title)
                     <tr>
                         @php
@@ -396,7 +401,7 @@
                         }
 
                         @endphp
-                        <td colspan="4" class="text-right">
+                        <td colspan="5" class="text-right">
                             <strong>Paid Amount</strong>
                         </td>
                         <td>
@@ -404,7 +409,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="text-right">
+                        <td colspan="5" class="text-right">
                             <strong>Remaining</strong>
                         </td>
                         <td>
