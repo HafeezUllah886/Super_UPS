@@ -136,14 +136,14 @@
     $(document).ready(function() {
 
     });
-    $('#datatable1').DataTable({
+    $('#datatable2').DataTable({
         "bSort": true
         , "bLengthChange": true
         , "bPaginate": true
         , "bFilter": true
         , "bInfo": true
         , "order": [
-            [0, 'desc']
+            [1, 'desc']
         ]
     , });
 
