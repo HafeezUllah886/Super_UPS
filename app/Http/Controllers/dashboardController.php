@@ -7,7 +7,11 @@ use App\Models\expense;
 use App\Models\ledger;
 use App\Models\sale;
 use App\Models\transactions;
+
 use Illuminate\Http\Request;
+use App;
+use App\Models\User;
+use Session;
 
 class dashboardController extends Controller
 {
@@ -37,6 +41,7 @@ class dashboardController extends Controller
 
     public function settings(){
 
+        return view('settings.settings');
     }
 
     public function customer_d(){
@@ -104,5 +109,16 @@ class dashboardController extends Controller
         }
         $trans1 = transactions::whereIn('account_id', $accounts1)->get();
         return view('dash_extra.income_exp_details', compact('trans1'));
+    }
+
+
+    public function changeLanguage(request $req){
+        App::setLocale($req->lang);
+        Session::put('locale',$req->lang);
+        $user = User::where('id',auth()->user()->id)->first();
+        $user->lang = $req->lang;
+        $user->save();
+
+        return redirect()->back()->with('msg', 'Language Changed');
     }
 }

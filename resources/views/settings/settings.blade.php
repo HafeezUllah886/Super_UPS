@@ -15,95 +15,86 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Deposits</h4>
-                <button class="btn btn-success" data-toggle="modal" data-target="#modal">New Deposit</button>
+                <h4>Settings</h4>
             </div>
         </div>
     </div>
     <div class="col-md-12">
-        <div class="card bg-white m-b-30">
-            <div class="card-body table-responsive new-user">
-
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable1">
-                        <thead class="th-color">
-                            <tr>
-                                <th class="border-top-0">Reference</th>
-                                <th class="border-top-0">Account</th>
-                                <th class="border-top-0">Date</th>
-                                <th class="border-top-0">Description</th>
-                                <th class="border-top-0">Amount</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            @foreach ($deposits as $dep)
-                            <tr>
-                                <td> {{ $dep->ref }} </td>
-                                <td>{{ $dep->account->title }} ({{ $dep->account->type }})</td>
-                                <td>{{ date('d M Y', strtotime($dep->date))}}</td>
-                                <td>{{ $dep->desc}}</td>
-                                <td>{{ $dep->amount}}</td>
-                                <td>
-                                    <a href="{{ url('deposit/delete/') }}/{{ $dep->ref }}" class="btn btn-danger">Delete</a>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Profile Settings</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{url('/settings/profile/update')}}" method="post">
+                            <div class="form-group">
+                                <label for="userName">User Name</label>
+                                <input type="text" class="form-control" value="{{auth()->user()->name}}" name="userName" id="">
+                            </div>
+                            <div class="form-group">
+                                <label for="userName">Email</label>
+                                <input type="email" class="form-control" value="{{auth()->user()->email}}" name="email" id="">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Change Password</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{url('/settings/password/update')}}" method="post">
+                            <div class="form-group">
+                                <label for="userName">Current Password</label>
+                                <input type="password" class="form-control" autocomplete="new-password"  name="cPassword" id="">
+                            </div>
+                            <div class="form-group">
+                                <label for="userName">New Password</label>
+                                <input type="password" class="form-control" autocomplete="new-password"  name="nPassword" id="">
+                            </div>
+                            <div class="form-group">
+                                <label for="userName">Confirm Password</label>
+                                <input type="password" class="form-control" autocomplete="new-password"  name="rPassword" id="">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Language Settings</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{url('/settings/language/update')}}" method="post">
+                            <div class="form-group">
+                                <label for="userName">Select Language</label>
+                                <select name="lang" class="form-control">
+                                    <option value="en">English</option>
+                                    <option value="ur">اردو</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Update</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-{{-- Model Starts Here --}}
-<div class="modal" id="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Create Deposit</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form method="post">
-                @csrf
-                <div class="modal-body">
-
-                    <div class="form-group">
-                        <label for="account">Select Account</label>
-                        <select name="account" id="account" class="select2" required>
-                            <option value=""></option>
-                            @foreach ($accounts as $account)
-                               <option value="{{ $account->id }}">{{ $account->title }} ({{ $account->type }})</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="cat">Amount</label>
-                       <input type="number" required name="amount" id="amount" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Date</label>
-                       <input type="date" name="date" id="date" value="{{ date('Y-m-d') }}" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="desc">Description</label>
-                        <textarea name="desc" id="desc" class="form-control"></textarea>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Create</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 @endsection
 
