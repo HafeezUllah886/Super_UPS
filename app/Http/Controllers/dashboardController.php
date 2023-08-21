@@ -16,6 +16,10 @@ use Session;
 class dashboardController extends Controller
 {
     public function dashboard(){
+
+        $get_lang = auth()->user()->lang;
+            App::setLocale($get_lang);
+            Session::put('locale',$get_lang);
         /* Ledger Entries */
         $ledger = ledger::orderBy('id', 'desc')->get();
 

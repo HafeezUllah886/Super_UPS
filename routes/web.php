@@ -127,7 +127,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/stock',[purchaseController::class, "stock1"]);
 
     Route::get('/settings',[dashboardController::class, "settings"]);
-    Route::get('/settings/language/update',[dashboardController::class, "changeLanguage"]);
+    Route::post('/settings/language/update',[dashboardController::class, "changeLanguage"]);
 
     Route::get('/quotation', [QuotationController::class, "quotation"]);
     Route::post('/quotation', [QuotationController::class, "storeQuotation"]);

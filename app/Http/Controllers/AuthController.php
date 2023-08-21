@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App;
+use Session;
 class AuthController extends Controller
 {
     public function index(){
@@ -20,6 +22,8 @@ class AuthController extends Controller
         );
         if(Auth()->attempt($req->only('email','password'))){
             $req->session()->regenerate();
+            
+    
             return redirect()->intended('/dashboard');
         }
         return "Wrong username or password";

@@ -28,8 +28,9 @@
                     </div>
                     <div class="card-body">
                         <form action="{{url('/settings/profile/update')}}" method="post">
+                            @csrf
                             <div class="form-group">
-                                <label for="userName">User Name</label>
+                                <label for="userName">{{ __('lang.UserName') }}</label>
                                 <input type="text" class="form-control" value="{{auth()->user()->name}}" name="userName" id="">
                             </div>
                             <div class="form-group">
@@ -50,6 +51,7 @@
                     </div>
                     <div class="card-body">
                         <form action="{{url('/settings/password/update')}}" method="post">
+                            @csrf
                             <div class="form-group">
                                 <label for="userName">Current Password</label>
                                 <input type="password" class="form-control" autocomplete="new-password"  name="cPassword" id="">
@@ -73,14 +75,16 @@
                 <div class="card">
                     <div class="card-header">
                         <h5>Language Settings</h5>
+                        
                     </div>
                     <div class="card-body">
                         <form action="{{url('/settings/language/update')}}" method="post">
+                            @csrf
                             <div class="form-group">
                                 <label for="userName">Select Language</label>
                                 <select name="lang" class="form-control">
-                                    <option value="en">English</option>
-                                    <option value="ur">اردو</option>
+                                    <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : ''}}>English</option>
+                                    <option value="ur" {{ session()->get('locale') == 'ur' ? 'selected' : ''}}>اردو</option>
                                 </select>
                             </div>
                             
