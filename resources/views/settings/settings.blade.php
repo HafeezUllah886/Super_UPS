@@ -11,6 +11,8 @@
     {{ session('error') }}
 </div>
 @endif
+
+
 <div class="row">
     <div class="col-12">
         <div class="card-header">
@@ -75,7 +77,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h5>Language Settings</h5>
-                        
+
                     </div>
                     <div class="card-body">
                         <form action="{{url('/settings/language/update')}}" method="post">
@@ -87,7 +89,7 @@
                                     <option value="ur" {{ session()->get('locale') == 'ur' ? 'selected' : ''}}>اردو</option>
                                 </select>
                             </div>
-                            
+
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">Update</button>
                             </div>

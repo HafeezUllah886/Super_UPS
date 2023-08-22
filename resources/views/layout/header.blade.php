@@ -75,7 +75,11 @@
 </style>
     </head>
 
-
+    @php
+    if (session()->has('locale')) {
+        App::setLocale(session()->get('locale'));
+    }
+    @endphp
     <body class="fixed-left">
 
         <!-- Loader -->
@@ -90,69 +94,69 @@
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item active">
-                  <a class="nav-link" href="{{url('/dashboard')}}">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="{{url('/dashboard')}}">{{ __('lang.Home') }} <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Sales
+                    {{ __('lang.Sale') }}
                   </a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{ url('/sale') }}">Create Sale</a>
-                    <a class="dropdown-item" href="{{ url('/sale/history') }}">Sale History</a>
-                    <a class="dropdown-item" href="{{ url('/quotation') }}">Quotation</a>
-                    <a class="dropdown-item" href="{{ url('/return') }}">Return</a>
+                    <a class="dropdown-item" href="{{ url('/sale') }}">{{ __('lang.CreateSale') }}</a>
+                    <a class="dropdown-item" href="{{ url('/sale/history') }}">{{ __('lang.SaleHistory') }}</a>
+                    <a class="dropdown-item" href="{{ url('/quotation') }}">{{ __('lang.Quotation') }}</a>
+                    <a class="dropdown-item" href="{{ url('/return') }}">{{ __('lang.Return') }}</a>
                   </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                      Stock
+                        {{ __('lang.Stock') }}
                     </a>
                     <div class="dropdown-menu">
-                      <a class="dropdown-item" href="{{ url('/purchase') }}">Create Purchase</a>
-                      <a class="dropdown-item" href="{{url('/purchase/history')}}">Purchase History</a>
-                      <a class="dropdown-item" href="{{ url('/stock') }}">Stock Detail</a>
+                      <a class="dropdown-item" href="{{ url('/purchase') }}">{{ __('lang.CreatePurchase') }}</a>
+                      <a class="dropdown-item" href="{{url('/purchase/history')}}">{{ __('lang.PurchaseHistory') }}</a>
+                      <a class="dropdown-item" href="{{ url('/stock') }}">{{ __('lang.StockDetail') }}</a>
                     </div>
                   </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Vendors/Customers
+                    {{ __('lang.Vendors/Customers') }}
                   </a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{ url('/vendors') }}">Vendors</a>
-                    <a class="dropdown-item" href="{{ '/customers' }}">Customers</a>
+                    <a class="dropdown-item" href="{{ url('/vendors') }}">{{ __('lang.Vendors') }}</a>
+                    <a class="dropdown-item" href="{{ '/customers' }}">{{ __('lang.Customers') }}</a>
                   </div>
                 </li>
 
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Finance
+                    {{ __('lang.Finance') }}
                   </a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{ url('/accounts') }}">Accounts</a>
-                    <a class="dropdown-item" href="{{ url('/deposit') }}">Deposit</a>
-                    <a class="dropdown-item" href="{{ url('/withdraw') }}">Withdraw</a>
-                    <a class="dropdown-item" href="{{ url('/transfer') }}">Transfer</a>
-                    <a class="dropdown-item" href="{{ url('/expense') }}">Expense</a>
+                    <a class="dropdown-item" href="{{ url('/accounts') }}">{{ __('lang.Accounts') }}</a>
+                    <a class="dropdown-item" href="{{ url('/deposit') }}">{{ __('lang.Deposit') }}</a>
+                    <a class="dropdown-item" href="{{ url('/withdraw') }}">{{ __('lang.Withdraw') }}</a>
+                    <a class="dropdown-item" href="{{ url('/transfer') }}">{{ __('lang.Transfer') }}</a>
+                    <a class="dropdown-item" href="{{ url('/expense') }}">{{ __('lang.Expense') }}</a>
                   </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="{{ url('/category') }}" id="navbardrop">
-                      Category
+                        {{ __('lang.Category') }}
                     </a>
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link" href="{{ url('/company') }}" id="navbardrop">
-                      Company
+                        {{ __('lang.Company') }}
                     </a>
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link" href="{{ url('/products') }}" id="navbardrop">
-                      Products
+                        {{ __('lang.Products') }}
                     </a>
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link" href="{{ url('/settings') }}" id="navbardrop">
-                      Settings
+                        {{ __('lang.Settings') }}
                     </a>
                   </li>
               </ul>

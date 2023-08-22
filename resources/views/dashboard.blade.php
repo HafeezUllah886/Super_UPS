@@ -18,7 +18,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1"> <a class="text-danger" href="{{ url('/dashboard/customer_dues') }}">Customer DUES</a> </div>
+                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1"> <a class="text-danger" href="{{ url('/dashboard/customer_dues') }}">{{ __('lang.CustomerDues') }}</a> </div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
@@ -41,7 +41,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"><a class="text-warning" href="{{ url('/dashboard/vendors_dues') }}">Vendor DUES</a></div>
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"><a class="text-warning" href="{{ url('/dashboard/vendors_dues') }}">{{ __('lang.VendorDues') }}</a></div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
@@ -63,7 +63,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><a class="text-success" href="{{ url('/dashboard/today_sale') }}"> Today Sale</a></div>
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><a class="text-success" href="{{ url('/dashboard/today_sale') }}"> {{ __('lang.TodaySale') }}</a></div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
@@ -85,7 +85,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-danger text-uppercase mb-1"><a class="text-danger" href="{{ url('/dashboard/today_expense') }}">Today Expense</a></div>
+                                    <div class="text-xs font-weight-bold text-danger text-uppercase mb-1"><a class="text-danger" href="{{ url('/dashboard/today_expense') }}">{{ __('lang.TodayExpense') }}</a></div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
@@ -107,7 +107,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a class="text-info" href="{{ url('/dashboard/total_cash') }}">Total Cash</a></div>
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a class="text-info" href="{{ url('/dashboard/total_cash') }}">{{ __('lang.TotalCash') }}</a></div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
@@ -130,7 +130,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a class="text-info" href="{{ url('/dashboard/today_cash') }}">Today Cash</a></div>
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a class="text-info" href="{{ url('/dashboard/today_cash') }}">{{ __('lang.TodayCash') }}</a></div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
@@ -153,7 +153,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a class="text-info" href="{{ url('/dashboard/total_bank') }}">Total Bank</a></div>
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a class="text-info" href="{{ url('/dashboard/total_bank') }}">{{ __('lang.TotalBank') }}</a></div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
@@ -177,7 +177,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a class="text-info" href="{{ url('/dashboard/today_bank') }}">Today Bank</a></div>
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a class="text-info" href="{{ url('/dashboard/today_bank') }}">{{ __('lang.TodayBank') }}</a></div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
