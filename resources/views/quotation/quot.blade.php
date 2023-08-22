@@ -37,7 +37,6 @@
                         <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable1">
                             <thead class="th-color">
                                 <tr>
-
                                     <th class="border-top-0">{{__('lang.Date')}}</th>
                                     <th class="border-top-0">{{__('lang.Customer')}}</th>
                                     <th class="border-top-0">{{__('lang.Products')}}</th>
@@ -50,7 +49,6 @@
                             <tbody>
                                 @foreach ($quots as $quot)
                                     <tr>
-
                                         <td>{{$quot->date}}</td>
                                         <td>{{$quot->customer_account->title ?? $quot->walkIn . " (Walk-In)"}}</td>
                                         <td>
