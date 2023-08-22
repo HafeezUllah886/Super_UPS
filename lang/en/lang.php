@@ -8,10 +8,17 @@ return [
     'AddProduct' => 'Add Product',
     'AddNewProduct' => 'Add New Product',
     'Add' => 'Add',
+    'Account' => 'Account',
     'Accounts' => 'Accounts',
+    'Amount' => 'Amount',
+    'Action' => 'Action',
+    'AvailableStock' => 'Available Stock',
+    'AmountPaid' => 'Amount Paid',
 
     'BasicSettings' => 'Basic Settings',
     'BaseUnit' => 'Base Unit',
+    'Balance' => 'Balance',
+    'BillNo' => 'Bill No.',
 
     'ChangePassword' => 'Change Password',
     'Change' => 'Change',
@@ -29,9 +36,20 @@ return [
     'Customers' => 'Customers',
     'Category' => 'Category',
     'Company' => 'Company',
+    'Credit' => 'Credit',
+    'CustomerName' => 'Customer Name',
+    'Customer' => 'Customer',
+    'CreateNew' => 'Create New',
+    'Create' => 'Create',
+    'Close' => 'Close',
 
     'Dashboard' => 'Dashboard',
     'Deposit' => 'Deposit',
+    'Date' => 'Date',
+    'Details' => 'Details',
+    'Desc' => 'Desc',
+    'Debit' => 'Debit',
+    'Discount' => 'Discount',
 
     'EnterBusinessName' => 'Enter Business Name',
     'EnterAddrOne' => 'Enter Address Line One',
@@ -50,11 +68,15 @@ return [
     'History' => 'History',
     'Height' => 'Height',
     'Home' => 'Home',
+    'Head' => 'Head',
 
     'Image' => 'Image',
+    'Income&ExpenseDetails' => 'Income & Expense Details',
+    'IsPaid' => 'Is Paid?',
 
     'Logout' => 'Logout',
     'LanguageSettings' => 'Language Settings',
+    'LedgerDetails' => 'Ledger Details',
 
     'MobileNumber' => 'Mobile Number',
     'MonthlyExpenses' => 'Monthly Expenses',
@@ -62,6 +84,7 @@ return [
 
     'NewPasswordPlace' => 'Enter new password',
     'NewPassword' => 'New Password',
+    'No' => 'No',
 
     'PhoneNumber' => 'Phone Number',
     'Products' => 'Products',
@@ -72,8 +95,14 @@ return [
     'PurchasePrice' => 'Purchase Price',
     'PurchaseHistory' => 'Purchase History',
     'Purchase' => 'Purchase',
+    'PaymentType' => 'Payment Type',
+    'Product' => 'Product',
+    'Partial' => 'Partial',
+    'PaidIn' => 'Paid In',
+    'Payment' => 'Payment',
 
     'Quotation' => 'Quotation',
+    'Quantity' => 'Quantity',
 
     'Return' => 'Return',
 
@@ -91,6 +120,9 @@ return [
     'Scale' => 'Scale',
     'Sqf' => 'Square Feet',
     'Sale' => 'Sale',
+    'Ser' => 'Ser',
+    'SelectProduct' => 'Select Product',
+    'SelectCustomer' => 'Select Customer',
 
     'Transfer' => 'Transfer',
     'TotalCash' => 'Total Cash',
@@ -110,9 +142,12 @@ return [
     'Vendors/Customers' => 'Vendors/Customers',
     'Vendors' => 'Vendors',
     'VendorDues' => 'Vendor Dues',
+    'ValidTill' => 'Valid Till',
 
     'Warehouse' => 'Warehouse',
     'Width' => 'Width',
     'Withdraw' => 'Withdraw',
+    'WalkInCustomer' => 'Walk-in Customer',
 
+    'Yes' => 'Yes',
 ];

@@ -16,13 +16,16 @@
 
     }
 </script>
+@php
+        App::setLocale(auth()->user()->lang);
+    @endphp
 @section('content')
     <div class="row">
         <div class="col-12">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
-                    <h4>Quotations</h4>
-                    <button class="btn btn-success" data-toggle="modal" data-target="#modal">Create New</button>
+                    <h4>{{__('lang.Quotation')}}</h4>
+                    <button class="btn btn-success" data-toggle="modal" data-target="#modal">{{__('lang.CreateNew')}}</button>
                 </div>
             </div>
         </div>
@@ -34,27 +37,27 @@
                         <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable1">
                             <thead class="th-color">
                                 <tr>
-                                    <th class="border-top-0">Ref</th>
-                                    <th class="border-top-0">Date</th>
-                                    <th class="border-top-0">Customer</th>
-                                    <th class="border-top-0">Products</th>
-                                    <th class="border-top-0">Discount</th>
-                                    <th class="border-top-0">Valid Till</th>
-                                    <th class="border-top-0">Amount</th>
-                                    <th>Action</th>
+                                   
+                                    <th class="border-top-0">{{__('lang.Date')}}</th>
+                                    <th class="border-top-0">{{__('lang.Customer')}}</th>
+                                    <th class="border-top-0">{{__('lang.Products')}}</th>
+                                    <th class="border-top-0">{{__('lang.Discount')}}</th>
+                                    <th class="border-top-0">{{__('lang.ValidTill')}}</th>
+                                    <th class="border-top-0">{{__('lang.Amount')}}</th>
+                                    <th>{{__('lang.Action')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($quots as $quot)
                                     <tr>
-                                        <td>{{$quot->ref}}</td>
+                                        
                                         <td>{{$quot->date}}</td>
                                         <td>{{$quot->customer_account->title ?? $quot->walkIn . " (Walk-In)"}}</td>
                                         <td>
                                             <table class="w-100">
-                                                <th>Product</th>
-                                                <th>Qty</th>
-                                                <th>Rate</th>
+                                                <th>{{__('lang.Product')}}</th>
+                                                <th>{{__('lang.Qty')}}</th>
+                                                <th>{{__('lang.Price')}}</th>
                                                 <tbody>
                                                     @foreach ($quot->details as $details)
                                                     <tr>
@@ -79,8 +82,8 @@
                                             @endphp
                                         </td>
                                         <td>
-                                            <a href="{{ url('quotation/details/') }}/{{$quot->ref}}" class="btn btn-success">Details</a>
-                                            <a href="{{ url('quotation/delete/') }}/{{$quot->ref}}" class="btn btn-danger">Delete</a>
+                                            <a href="{{ url('quotation/details/') }}/{{$quot->ref}}" class="btn btn-success">{{__('lang.Details')}}</a>
+                                            <a href="{{ url('quotation/delete/') }}/{{$quot->ref}}" class="btn btn-danger">{{__('lang.Delete')}}</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -96,7 +99,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Create Quotation</h5>
+                    <h5 class="modal-title">{{__('lang.CreateQuotation')}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -105,9 +108,9 @@
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="customer">Customer</label>
+                            <label for="customer">{{__('lang.Customer')}}</label>
                             <select name="customer" id="customer" onchange="walkIn1()" class="select2" required>
-                                <option value="0">Walk-in Customer</option>
+                                <option value="0">{{__('lang.WalkInCustomer')}}</option>
                                 @foreach ($accounts as $account)
                                     <option value="{{ $account->id }}">{{ $account->title }} ({{ $account->type }})
                                     </option>
@@ -115,35 +118,35 @@
                             </select>
                         </div>
                         <div class="form-group" id="walkIn_box">
-                            <label for="">Customer Name</label>
+                            <label for="">{{__('lang.CustomerName')}}</label>
                             <input type="text" name="walkIn" class="form-control">
                         </div>
                         <div class="form-group" id="phone_box">
-                            <label for="phone">Phone #</label>
+                            <label for="phone">{{__('lang.PhoneNumber')}}</label>
                             <input type="text" name="phone" class="form-control">
                         </div>
                         <div class="form-group" id="address_box">
-                            <label for="address">Address</label>
+                            <label for="address">{{__('lang.Address')}}</label>
                             <input type="text" name="address" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="date">Date</label>
+                            <label for="date">{{__('lang.Date')}}</label>
                             <input type="datetime-local" name="date" required id="date" value="{{ now() }}"
                                 class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="valid">Valid Till</label>
+                            <label for="valid">{{__('lang.ValidTill')}}</label>
                             <input type="date" name="valid" required id="valid" required class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="desc">Description</label>
+                            <label for="desc">{{__('lang.Desc')}}</label>
                             <textarea name="desc" id="desc" class="form-control"></textarea>
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Create</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">{{__('lang.Create')}}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('lang.Close')}}</button>
                     </div>
                 </form>
             </div>

@@ -76,9 +76,7 @@
     </head>
 
     @php
-    if (session()->has('locale')) {
-        App::setLocale(session()->get('locale'));
-    }
+        App::setLocale(auth()->user()->lang);
     @endphp
     <body class="fixed-left">
 

@@ -1,3 +1,4 @@
+
 @php
     $ser = 0;
     $amount = 0;
@@ -15,11 +16,11 @@
     <td><input type="number" value="{{ $item->qty }}" id="qty{{ $item->id }}" onfocusout="qty({{ $item->id }})"></td>
     <td><input type="number" value="{{ $item->price }}" id="price{{ $item->id }}" onfocusout="price({{ $item->id }})"></td>
     <td>{{ $amount }}</td>
-    <td><button class="btn btn-danger" onclick="deleteEdit({{ $item->id }})">Delete</button></td>
+    <td><button class="btn btn-danger" onclick="deleteEdit({{ $item->id }})">{{__('lang.Delete')}}</button></td>
 </tr>
 @endforeach
 <tr>
-    <td colspan="4" style="text-align: right;"><strong>Total</strong></td>
+    <td colspan="4" style="text-align: right;"><strong>{{__('lang.Total')}}</strong></td>
     <td style="text-align: center;"><strong>{{ $total }}</strong></td>
     <td></td>
 </tr>

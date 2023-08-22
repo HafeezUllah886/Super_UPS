@@ -7,11 +7,19 @@ return [
     'AddNewProduct' => 'نیا پروڈکٹ شامل کریں',
     'AddProduct' => 'پروڈکٹ شامل کریں',
     'AddrOne' => 'ایڈریس لائن ون',
+    'Address' => 'ایڈریس',
     'AddrThree' => 'ایڈریس لائن تھری',
     'AddrTwo' => 'ایڈریس لائن ٹو',
+    'Amount' => 'رقم',
+    'Account' => 'اکاؤنٹ',
+    'Action' => 'ایکشن',
+    'AvailableStock' => 'دستیاب اسٹاک',
+    'AmountPaid' => 'ادا کردہ رقم',
 
     'BaseUnit' => 'بیس یونٹ',
     'BasicSettings' => 'بنیادی ترتیبات',
+    'Balance' => 'بیلنس',
+    'BillNo' => 'بل نمبر',
 
     'Change' => 'تبدیل کریں',
     'ChangeLanguage' => 'زبان تبدیل کریں',
@@ -29,9 +37,20 @@ return [
     'Customers' => 'کسٹمرز',
     'Category' => 'کیٹیگری',
     'Company' => 'کمپنی',
+    'Credit' => 'کریڈٹ',
+    'CustomerName' => 'کسٹمر کا نام',
+    'Customer' => 'کسٹمر',
+    'CreateNew' => 'نیا بنائیں',
+    'Create' => 'بنائیں',
+    'Close' => 'بند کریں',
 
     'Deposit' => 'رقم جمع کریں',
     'Dashboard' => 'ڈیش بورڈ',
+    'Date' => 'تاریخ',
+    'Details' => 'تفصیلات',
+    'Desc' => 'تفصیل',
+    'Debit' => 'ڈیبٹ',
+    'Discount' => 'رعایت',
 
     'EditProduct' => 'مصنوعات میں تبدیلیاں',
     'Email' => 'ای میل',
@@ -49,12 +68,16 @@ return [
 
     'History' => 'پچھلا ریکارڈ',
     'Home' => 'ہوم',
+    'Head' => 'ہیڈ',
 
     'Image' => 'تصویر',
+    'Income&ExpenseDetails' => 'آمدن اور اخراج کی تفصیل',
+    'IsPaid' => 'ادا کیا گیا؟',
 
     'LanguageSettings' => 'زبان کی ترتیبات',
     'Length' => 'لمبائی',
     'Logout' => 'لاگ آوٹ',
+    'LedgerDetails' => 'لاجر کی تفصیلات',
 
     'MobileNumber' => 'موبائل نمبر',
     'MonthlyExpenses' => 'ماہانہ اخراجات',
@@ -62,6 +85,7 @@ return [
 
     'NewPassword' => 'نیا پاس ورڈ',
     'NewPasswordPlace' => 'نیا پاس ورڈ درج کریں',
+    'No' => 'نہیں',
 
     'PhoneNumber' => 'فون نمبر',
     'Price' => 'قیمت',
@@ -71,8 +95,14 @@ return [
     'ProjectName' => 'پراجیکٹ کا نام',
     'Purchase' => 'خرید',
     'PurchaseHistory' => 'خریداری کی ہسٹری',
+    'PaymentType' => 'دائیگی کی قسم',
+    'Product' => 'پروڈکٹ',
+    'Partial' => 'جزوی',
+    'PaidIn' => 'میں ادا کیا',
+    'Payment' => 'ادائیگی',
 
     'Quotation' => 'کوٹیشن',
+    'Quantity' => 'مقدار',
 
     'Return' => 'واپسی',
 
@@ -88,6 +118,9 @@ return [
     'Stock' => 'اسٹاک',
     'StockDetail' => 'اسٹاک کی تفصیل',
     'SupplierDues' => 'سپلائر کے واجبات',
+    'Ser' => 'سیریل',
+    'SelectCustomer' => 'کسٹمر منتخب کریں',
+    'SelectProduct' => 'پروڈکٹ منتخب کریں',
 
     'ThisMonth' => 'اس مہینے',
     'TotalBank' => 'کل بینک بیلنس',
@@ -106,11 +139,13 @@ return [
     'Vendors/Customers' => 'وینڈرز/ کسٹمرز',
     'Vendors' => 'وینڈرز',
     'VendorDues' => 'وینڈر کے واجبات',
+    'ValidTill' => 'قابل اطلاق تاریخ',
 
     'Warehouse' => 'گودام',
     'Width' => 'چوڑائی',
     'Withdraw' => 'رقم نکلوائیں',
+    'WalkInCustomer' => 'واک ان کسٹمر',
 
-
+    'Yes' => 'ہاں',
 ];
 
