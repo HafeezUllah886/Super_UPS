@@ -1,5 +1,7 @@
 @extends('layout.dashboard')
-
+@php
+        App::setLocale(auth()->user()->lang);
+    @endphp
 @section('content')
 @if (session('success'))
 <div class="alert alert-success">
@@ -15,8 +17,8 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Withdraws</h4>
-                <button class="btn btn-success" data-toggle="modal" data-target="#modal">New Withdraw</button>
+                <h4>{{ __('lang.Withdraw') }}</h4>
+                <button class="btn btn-success" data-toggle="modal" data-target="#modal">{{ __('lang.CreateNew') }}</button>
             </div>
         </div>
     </div>
@@ -28,13 +30,12 @@
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable1">
                         <thead class="th-color">
                             <tr>
-                                <th class="border-top-0">Reference</th>
-                                <th class="border-top-0">Date</th>
-                                <th class="border-top-0">Account</th>
-
-                                <th class="border-top-0">Description</th>
-                                <th class="border-top-0">Amount</th>
-                                <th>Action</th>
+                                <th class="border-top-0">{{ __('lang.Ref') }}</th>
+                                <th class="border-top-0">{{ __('lang.Date') }}</th>
+                                <th class="border-top-0">{{ __('lang.Account') }}</th>
+                                <th class="border-top-0">{{ __('lang.Desc') }}</th>
+                                <th class="border-top-0">{{ __('lang.Amount') }}</th>
+                                <th>{{ __('lang.Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -66,7 +67,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Create Withdraw</h5>
+                <h5 class="modal-title">{{ __('lang.Withdraw') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -76,7 +77,7 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="account">Select Account</label>
+                        <label for="account">{{ __('lang.SelectAccount') }}</label>
                         <select name="account" id="account" class="select2" required id="">
                             <option value=""></option>
                             @foreach ($accounts as $account)
@@ -85,22 +86,22 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="cat">Amount</label>
+                        <label for="cat">{{ __('lang.Amount') }}</label>
                        <input type="number" required name="amount" id="amount" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="date">Date</label>
+                        <label for="date">{{ __('lang.Date') }}</label>
                        <input type="datetime-local" name="date" id="date" value="{{ now() }}" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="desc">Description</label>
+                        <label for="desc">{{ __('lang.Desc') }}</label>
                         <textarea name="desc" id="desc" class="form-control"></textarea>
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Create</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">{{ __('lang.Create') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('lang.Close') }}</button>
                 </div>
             </form>
         </div>

@@ -1,5 +1,7 @@
 @extends('layout.dashboard')
-
+@php
+        App::setLocale(auth()->user()->lang);
+    @endphp
 @section('content')
 @if (session('success'))
 <div class="alert alert-success">
@@ -15,8 +17,8 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Company Listing</h4>
-                <button class="btn btn-success" data-toggle="modal" data-target="#modal">Add Company</button>
+                <h4>{{ __('lang.Company') }}</h4>
+                <button class="btn btn-success" data-toggle="modal" data-target="#modal">{{ __('lang.CreateNew') }}</button>
             </div>
         </div>
     </div>
@@ -28,9 +30,9 @@
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable1">
                         <thead class="th-color">
                             <tr>
-                                <th class="border-top-0">Ser</th>
-                                <th class="border-top-0">Company name</th>
-                                <th>Action</th>
+                                <th class="border-top-0">{{ __('lang.Ser') }}</th>
+                                <th class="border-top-0">{{ __('lang.CompanyName') }}</th>
+                                <th>{{ __('lang.Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,7 +46,7 @@
                             <tr>
                                 <td> {{ $ser }} </td>
                                 <td>{{ $coy->name }}</td>
-                                <td><button onclick="edit_cat({{ $coy->id }}, '{{ $coy->name }}')" class="btn btn-primary">Edit</button></< /td>
+                                <td><button onclick="edit_cat({{ $coy->id }}, '{{ $coy->name }}')" class="btn btn-primary">{{ __('lang.Edit') }}</button></< /td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -61,7 +63,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Company</h5>
+                <h5 class="modal-title">{{ __('lang.Company') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -71,14 +73,14 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="name">Company Name</label>
+                        <label for="name">{{ __('lang.CompanyName') }}</label>
                         <input type="text" required name="name" id="name" class="form-control">
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Add</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">{{ __('lang.Add') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('lang.Close') }}</button>
                 </div>
             </form>
         </div>
@@ -90,7 +92,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Company</h5>
+                <h5 class="modal-title">{{ __('lang.EditCompany') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -100,15 +102,15 @@
                     <form action="{{ url('/company/edit') }}" method="post">
                         @csrf
                     <div class="form-group">
-                        <label for="cat">Company Name</label>
+                        <label for="cat">{{ __('lang.CompanyName') }}</label>
                         <input type="text" required id="edit_name"  name="name" class="form-control">
                     </div>
 
                 </div>
                 <input type="hidden" id="edit_id" name="id">
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-info">Save</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-info">{{ __('lang.Save') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('lang.Close') }}</button>
                 </div>
             </form>
         </div>

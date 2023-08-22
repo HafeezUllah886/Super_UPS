@@ -1,13 +1,15 @@
 @extends('layout.dashboard')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @section('content')
-
+@php
+        App::setLocale(auth()->user()->lang);
+    @endphp
 <div class="row">
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Account Statement ({{ $account->title }} - {{ $account->type }})</h4>
-                <button id="download" class="btn btn-success">Download PDF</button>
+                <h4>{{ __('lang.AccountStatement') }} ({{ $account->title }} - {{ $account->type }})</h4>
+                <button id="download" class="btn btn-success">PDF</button>
             </div>
         </div>
     </div>
@@ -17,13 +19,13 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="from">From</label>
+                            <label for="from">{{ __('lang.FromDate') }}</label>
                             <input type="date" name="from" id="from" onchange="get_items()" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="to">To</label>
+                            <label for="to">{{ __('lang.ToDate') }}</label>
                             <input type="date" name="to" id="to" onchange="get_items()" class="form-control">
                         </div>
                     </div>

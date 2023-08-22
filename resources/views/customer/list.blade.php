@@ -1,5 +1,7 @@
 @extends('layout.dashboard')
-
+@php
+        App::setLocale(auth()->user()->lang);
+    @endphp
 @section('content')
 @if (session('success'))
 <div class="alert alert-success">
@@ -15,9 +17,9 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Customers Listing</h4>
+                <h4>{{ __('lang.Customers') }}</h4>
                 <div class="d-flex justify-content-end">
-                <button class="btn btn-success" data-toggle="modal" data-target="#modal">Add Customer</button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#modal">{{ __('lang.CreateNew') }}</button>
                 </div>
 
             </div>
@@ -31,12 +33,12 @@
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable1">
                         <thead class="th-color">
                             <tr>
-                                <th class="border-top-0">Ser</th>
-                                <th class="border-top-0">Title</th>
-                                <th class="border-top-0">Phone</th>
-                                <th class="border-top-0">Address</th>
-                                <th class="border-top-0">Balance</th>
-                                <th>Action</th>
+                                <th class="border-top-0">{{ __('lang.Ser') }}</th>
+                                <th class="border-top-0">{{ __('lang.Title') }}</th>
+                                <th class="border-top-0">{{ __('lang.PhoneNumber') }}</th>
+                                <th class="border-top-0">{{ __('lang.Address') }}</th>
+                                <th class="border-top-0">{{ __('lang.Balance') }}</th>
+                                <th>{{ __('lang.Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,14 +56,14 @@
                                 <td>{{ $account->address }}</td>
                                 <td> {{ getAccountBalance($account->id) }}</td>
                                 <td class="text-left">
-                                    <button onclick='edit_cat({{ $account->id }}, "{{ $account->title }}", "{{ $account->phone }}", "{{ $account->address  }}")' class="btn btn-primary">Edit</button>
-                                    <a href="{{ url('accounts/statement/') }}/{{ $account->id }}" class="btn btn-info">View Statement</a>
+                                    <button onclick='edit_cat({{ $account->id }}, "{{ $account->title }}", "{{ $account->phone }}", "{{ $account->address  }}")' class="btn btn-primary">{{ __('lang.Edit') }}</button>
+                                    <a href="{{ url('accounts/statement/') }}/{{ $account->id }}" class="btn btn-info">{{ __('lang.ViewStatement') }}</a>
                                    {{--  @if(getAccountBalance($account->id) == 0)
                                     <a href="{{ url('/account/delete/') }}/{{ $account->id }}" class="btn btn-danger confirmation">Delete</a>
 
                                     @endif --}}
-                                    <button class="btn btn-success" onclick="tran({{ $account->id }})">Transfer</button>
-                                    <a href="{{ url('/customer/purchaseDetails/') }}/{{ $account->id }}" class="btn btn-warning">Purchase Details</a>
+                                    <button class="btn btn-success" onclick="tran({{ $account->id }})">{{ __('lang.Transfer') }}</button>
+                                    <a href="{{ url('/customer/purchaseDetails/') }}/{{ $account->id }}" class="btn btn-warning">{{ __('lang.PurchaseDetails') }}</a>
                                     </td>
                             </tr>
                             @endforeach
@@ -79,7 +81,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add New Customer</h5>
+                <h5 class="modal-title">{{ __('lang.AddNewCustomer') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -89,26 +91,26 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="title">Customer Title</label>
+                        <label for="title">{{ __('lang.Title') }}</label>
                         <input type="text" required name="title" id="title" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="phone">Phone</label>
+                        <label for="phone">{{ __('lang.PhoneNumber') }}</label>
                         <input type="text" name="phone" id="phone" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="address">Address</label>
+                        <label for="address">{{ __('lang.Address') }}</label>
                         <input type="text" name="address" id="address" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="amount">Initial Amount</label>
+                        <label for="amount">{{ __('lang.InitialAmount') }}</label>
                         <input type="number" required min="0" name="amount" value="0" id="amount" class="form-control">
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Create</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">{{ __('lang.Create') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('lang.Close') }}</button>
                 </div>
             </form>
         </div>
@@ -120,7 +122,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Customer</h5>
+                <h5 class="modal-title">{{ __('lang.EditCustomer') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -130,23 +132,23 @@
                     <form action="{{ url('/account/edit/Customer') }}" method="post">
                         @csrf
                     <div class="form-group">
-                        <label for="edit_title">Vendor Title</label>
+                        <label for="edit_title">{{ __('lang.Title') }}</label>
                         <input type="text" required id="edit_title"  name="title" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="edit_phone">Phone</label>
+                        <label for="edit_phone">{{ __('lang.PhoneNumber') }}</label>
                         <input type="text" id="edit_phone"  name="phone" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="edit_address">Address</label>
+                        <label for="edit_address">{{ __('lang.Address') }}</label>
                         <input type="text" id="edit_address"  name="address" class="form-control">
                     </div>
 
                 </div>
                 <input type="hidden" id="edit_id" name="id">
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-info">Save</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-info">{{ __('lang.Save') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('lang.Closes') }}</button>
                 </div>
             </form>
         </div>
@@ -158,7 +160,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Create Transfer</h5>
+                <h5 class="modal-title">{{ __('lang.CreateTransfer') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -170,7 +172,7 @@
                         <input type="hidden" name="from" id="from" value="" >
 
                     <div class="form-group">
-                        <label for="to">To</label>
+                        <label for="to">{{ __('lang.To') }}</label>
                         <select name="to" id="to" class="select2" required>
                             <option value=""></option>
                             @foreach ($to_accounts as $account)
@@ -179,22 +181,22 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="cat">Amount</label>
+                        <label for="cat">{{ __('lang.Amount') }}</label>
                        <input type="number" required name="amount" id="amount" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="date">Date</label>
+                        <label for="date">{{ __('lang.Date') }}</label>
                        <input type="datetime-local" name="date" id="date" value="{{ now() }}" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="desc">Description</label>
+                        <label for="desc">{{ __('lang.Desc') }}</label>
                         <textarea name="desc" id="desc" class="form-control"></textarea>
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Transfer</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">{{ __('lang.Transfer') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('lang.Close') }}</button>
                 </div>
             </form>
         </div>

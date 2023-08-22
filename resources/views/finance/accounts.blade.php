@@ -1,5 +1,7 @@
 @extends('layout.dashboard')
-
+@php
+        App::setLocale(auth()->user()->lang);
+    @endphp
 @section('content')
 @if (session('success'))
 <div class="alert alert-success">
@@ -15,9 +17,9 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Accounts Listing</h4>
+                <h4>{{ __('lang.Accounts') }}</h4>
                 <div class="d-flex justify-content-end">
-                <button class="btn btn-success" data-toggle="modal" data-target="#modal">Add Account</button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#modal">{{ __('lang.CreateNew') }}</button>
                 </div>
 
             </div>
@@ -31,11 +33,11 @@
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable1">
                         <thead class="th-color">
                             <tr>
-                                <th class="border-top-0">Ser</th>
-                                <th class="border-top-0">Title</th>
-                                <th class="border-top-0">Category</th>
-                                <th class="border-top-0">Balance</th>
-                                <th>Action</th>
+                                <th class="border-top-0">{{ __('lang.Ser') }}</th>
+                                <th class="border-top-0">{{ __('lang.Title') }}</th>
+                                <th class="border-top-0">{{ __('lang.Category') }}</th>
+                                <th class="border-top-0">{{ __('lang.Balance') }}</th>
+                                <th>{{ __('lang.Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,8 +54,8 @@
                                 <td>{{ $account->Category }}</td>
                                 <td> {{ getAccountBalance($account->id) }}</td>
                                 <td class="text-left">
-                                    <button onclick='edit_cat({{ $account->id }}, "{{ $account->title }}")' class="btn btn-primary">Edit</button>
-                                    <a href="{{ url('accounts/statement/') }}/{{ $account->id }}" class="btn btn-info">View Statement</button>
+                                    <button onclick='edit_cat({{ $account->id }}, "{{ $account->title }}")' class="btn btn-primary">{{ __('lang.Edit') }}</button>
+                                    <a href="{{ url('accounts/statement/') }}/{{ $account->id }}" class="btn btn-info">{{ __('lang.ViewStatement') }}</button>
                                     {{-- @if(getAccountBalance($account->id) == 0)
                                     <a href="{{ url('/account/delete/') }}/{{ $account->id }}" class="btn btn-danger confirmation">Delete</a>
                                     @endif --}}
@@ -75,7 +77,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add New Account</h5>
+                <h5 class="modal-title">{{ __('lang.AddNewAccount') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -85,25 +87,25 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="title">Account Title</label>
+                        <label for="title">{{ __('lang.Title') }}</label>
                         <input type="text" required name="title" id="title" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="cat">Account Category</label>
+                        <label for="cat">{{ __('lang.Category') }}</label>
                         <select name="cat" id="cat" class="form-control">
                             <option value="Cash">Cash</option>
                             <option value="Bank">Bank</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="amount">Initial Amount</label>
+                        <label for="amount">{{ __('lang.InitialAmount') }}</label>
                         <input type="number" required min="0" name="amount" value="0" id="amount" class="form-control">
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Create</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">{{ __('lang.Create') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('lang.Close') }}</button>
                 </div>
             </form>
         </div>
@@ -115,7 +117,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Account</h5>
+                <h5 class="modal-title">{{ __('lang.EditAccount') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -125,11 +127,11 @@
                     <form action="{{ url('/account/edit/Business') }}" method="post">
                         @csrf
                     <div class="form-group">
-                        <label for="edit_title"></label>
+                        <label for="edit_title">{{ __('lang.Title') }}</label>
                         <input type="text" required id="edit_title"  name="title" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="edit_cat">Account Category</label>
+                        <label for="edit_cat">{{ __('lang.Category') }}</label>
                         <select name="cat" id="edit_cat" class="form-control">
                             <option value="Cash">Cash</option>
                             <option value="Bank">Bank</option>
@@ -139,8 +141,8 @@
                 </div>
                 <input type="hidden" id="edit_id" name="id">
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-info">Save</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-info">{{ __('lang.Save') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('lang.Close') }}</button>
                 </div>
             </form>
         </div>

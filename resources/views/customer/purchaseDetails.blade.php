@@ -1,5 +1,7 @@
 @extends('layout.dashboard')
-
+@php
+        App::setLocale(auth()->user()->lang);
+    @endphp
 @section('content')
 @if (session('success'))
 <div class="alert alert-success">
@@ -15,8 +17,8 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Purchase Details</h4>
-                <a href="{{ url('/customer/purchaseDetails/pdf/') }}/{{ $invoices[0]->customer }}" class="btn btn-success">Export PDF</a>
+                <h4>{{ __('lang.PurchaseDetails') }}</h4>
+                <a href="{{ url('/customer/purchaseDetails/pdf/') }}/{{ $invoices[0]->customer }}" class="btn btn-success">PDF</a>
             </div>
         </div>
     </div>
@@ -28,12 +30,12 @@
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable1">
                         <thead class="th-color">
                             <tr>
-                                <th class="border-top-0">Ser</th>
-                                <th class="border-top-0">Date</th>
-                                <th class="border-top-0">Product</th>
-                                <th class="border-top-0">Price</th>
-                                <th class="border-top-0">Quantity</th>
-                                <th class="border-top-0">Amount</th>
+                                <th class="border-top-0">{{ __('lang.Ser') }}</th>
+                                <th class="border-top-0">{{ __('lang.Date') }}</th>
+                                <th class="border-top-0">{{ __('lang.Product') }}</th>
+                                <th class="border-top-0">{{ __('lang.Price') }}</th>
+                                <th class="border-top-0">{{ __('lang.Quantity') }}</th>
+                                <th class="border-top-0">{{ __('lang.Amount') }}</th>
                             </tr>
                         </thead>
                         <tbody>

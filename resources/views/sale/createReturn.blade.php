@@ -83,7 +83,7 @@
                                 <td> <input type="number" readonly class="form-control  text-center" name="price[]" value="{{$products->price}}" id="price{{ $ser }}"> </td>
                                 <td> <input type="number" readonly class="form-control text-center" value="{{$products->qty}}" id="qty{{ $ser }}"> </td>
                                 <td><input type="number" class="form-control text-center" onchange="updateAmount({{ $ser }}, {{ $products->price }})"  min="0" name="returnQty[]" id="returnQty{{ $ser }}" value="0" max="{{$products->qty}}"></td>
-                                <td> <input type="number" class="form-control text-center" readonly id="amount{{ $ser }}" name="amount[]" value="0"> </td>
+                                <td> <input type="number" class="form-control text-center" readonly id="amount{{ $ser }}" name="amount[]" required> </td>
                             </tr>
 
                             @endforeach
@@ -191,14 +191,16 @@
     }); */
    function updateAmount(id, price){
         var returnQty = $("#returnQty"+id).val();
+
         var qty = $("#qty"+id).val();
-        if(returnQty > qty){
+        console.log(qty);
+        console.log(returnQty);
+       /*  if(returnQty > qty){
             $("#returnQty"+id).val(qty);
             returnQty = qty;
-        }
+        } */
         var amount = returnQty * price;
         $("#amount"+id).val(amount);
-
         var sum = 0;
         $('input[id^="amount"]').each(function() {
         var value = parseFloat($(this).val());
@@ -208,7 +210,6 @@
         });
         $("#totalAmount").html(sum);
         var netAmount = sum - {{$bill->discount ?? 0}};
-
         var deduction = $('#deduction').val();
         $("#payable").val(netAmount - deduction);
         $("#netAmount").val(netAmount - deduction);

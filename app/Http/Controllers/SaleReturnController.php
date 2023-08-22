@@ -48,7 +48,7 @@ class SaleReturnController extends Controller
     public function saveReturn(request $req, $bill){
         $req->validate([
             'amount' => "required",
-            'paidFrom' => 'required_unless:amount,0',
+            'paidFrom' => 'required',
             'date' => 'required',
         ]);
         $account = null;
@@ -56,6 +56,16 @@ class SaleReturnController extends Controller
             $account = $req->paidFrom;
         }
         $ref = getRef();
+        $ids = $req->input('id');
+        $prices = $req->input('price');
+        $qtys= $req->input('returnQty');
+        $check = 0;
+        foreach($ids as $key => $id){
+            $check += $qtys[$key];
+        }
+        if($check < 1){
+            return back()->with('error', "Please provide a some return quantity");
+        }
         $return = saleReturn::create(
             [
                 'bill_id' => $bill,
@@ -68,10 +78,10 @@ class SaleReturnController extends Controller
         );
 
         $return_id = $return->id;
-        $ids = $req->input('id');
-        $prices = $req->input('price');
-        $qtys= $req->input('returnQty');
+
+
         foreach($ids as $key => $id){
+            $check += $qtys[$key];
             $price = $prices[$key];
             $qty = $qtys[$key];
             if($qty > 0){
@@ -94,6 +104,7 @@ class SaleReturnController extends Controller
                 );
             }
         }
+
 
        $customer = sale::where('id', $return->bill_id)->first();
 

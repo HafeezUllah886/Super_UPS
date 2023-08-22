@@ -1,16 +1,20 @@
+@php
+        App::setLocale(auth()->user()->lang);
+    @endphp
 <div class="row">
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <h5>Previous Balance</h5>
+                <h5>{{ __('lang.PreviousBalance') }}</h5>
                 <h4>{{ $p_balance }}</h4>
             </div>
         </div>
     </div>
+
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <h5>Current Balance</h5>
+                <h5>{{ __('lang.CurrentBalance') }}</h5>
                 <h4>{{ getAccountBalance($id) }}</h4>
             </div>
         </div>
@@ -21,15 +25,15 @@
     <div class="table-responsive" >
         <table class="table table-bordered table-striped table-hover text-center mb-0 display" id="datatable1">
             <thead>
-                <th>Ref</th>
-                <th>Date</th>
-                <th>Desc</th>
+                <th>{{ __('lang.Ref') }}</th>
+                <th>{{ __('lang.Date') }}</th>
+                <th>{{ __('lang.Desc') }}</th>
                 @if ($account->type != 'Business')
-                    <th>Details</th>
+                    <th>{{ __('lang.Details') }}</th>
                 @endif
-                <th class="text-end">CR +</th>
-                <th class="text-end">DB -</th>
-                <th class="text-end">Bal</th>
+                <th class="text-end">{{ __('lang.Credit') }}</th>
+                <th class="text-end">{{ __('lang.Debit') }}</th>
+                <th class="text-end">{{ __('lang.Balance') }}</th>
             </thead>
             <tbody >
                 @php
@@ -57,10 +61,10 @@
                             $subTotal = 0;
                         @endphp
                         <table class="table">
-                            <th>Product</th>
-                            <th>Qty</th>
-                            <th>Price</th>
-                            <th>Amount</th>
+                            <th>{{ __('lang.Product') }}</th>
+                            <th>{{ __('lang.Qty') }}</th>
+                            <th>{{ __('lang.Price') }}</th>
+                            <th>{{ __('lang.Amount') }}</th>
                             @foreach ($data as $data1)
                             @php
                                 $subTotal = $data1->qty * $data1->price;
@@ -82,10 +86,10 @@
                             $subTotal = 0;
                         @endphp
                         <table class="table">
-                            <th>Product</th>
-                            <th>Qty</th>
-                            <th>Price</th>
-                            <th>Amount</th>
+                            <th>{{ __('lang.Product') }}</th>
+                            <th>{{ __('lang.Qty') }}</th>
+                            <th>{{ __('lang.Price') }}</th>
+                            <th>{{ __('lang.Amount') }}</th>
                             @foreach ($data as $data1)
                             @php
                                 $subTotal = $data1->qty * $data1->price;
@@ -107,10 +111,10 @@
                         $subTotal = 0;
                     @endphp
                     <table class="table">
-                        <th>Product</th>
-                        <th>Qty</th>
-                        <th>Price</th>
-                        <th>Amount</th>
+                        <th>{{ __('lang.Product') }}</th>
+                            <th>{{ __('lang.Qty') }}</th>
+                            <th>{{ __('lang.Price') }}</th>
+                            <th>{{ __('lang.Amount') }}</th>
                         @foreach ($data as $data1)
                         @php
                             $subTotal = $data1->qty * $data1->rate;

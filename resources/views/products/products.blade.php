@@ -1,5 +1,7 @@
 @extends('layout.dashboard')
-
+@php
+        App::setLocale(auth()->user()->lang);
+    @endphp
 @section('content')
 @if (session('success'))
 <div class="alert alert-success">
@@ -15,11 +17,11 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Products Listing</h4>
+                <h4>{{ __('lang.Products') }}</h4>
                 <div class="d-flex justify-content-end">
-                <a href="{{ url('/profit') }}" class="btn btn-info mr-2" >Profit / Loss</a>
-                <a href="{{ url('/products/trashed') }}" class="btn btn-dark mr-2" >Trashed</a>
-                <button class="btn btn-success" data-toggle="modal" data-target="#modal">Add Product</button>
+                <a href="{{ url('/profit') }}" class="btn btn-info mr-2" >{{ __('lang.Profit/Loss') }}</a>
+                <a href="{{ url('/products/trashed') }}" class="btn btn-dark mr-2" >{{ __('lang.Trashed') }}</a>
+                <button class="btn btn-success" data-toggle="modal" data-target="#modal">{{ __('lang.CreateNew') }}</button>
                 </div>
 
             </div>
@@ -33,12 +35,12 @@
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable1">
                         <thead class="th-color">
                             <tr>
-                                <th class="border-top-0">Ser</th>
-                                <th class="border-top-0">Product Name</th>
-                               {{--  <th class="border-top-0">Sale Price</th> --}}
-                                <th class="border-top-0">Category</th>
-                                <th class="border-top-0">Company</th>
-                                <th>Action</th>
+                                <th class="border-top-0">{{ __('lang.Ser') }}</th>
+                                <th class="border-top-0">{{ __('lang.Product') }}</th>
+                                <th class="border-top-0">{{ __('lang.SalePrice') }}</th>
+                                <th class="border-top-0">{{ __('lang.Category') }}</th>
+                                <th class="border-top-0">{{ __('lang.Company') }}</th>
+                                <th>{{ __('lang.Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,12 +54,12 @@
                             <tr>
                                 <td> {{ $ser }} </td>
                                 <td>{{ $pro->name }}</td>
-                                {{-- <td>{{ $pro->price }}</td> --}}
+                                <td>{{ $pro->price }}</td>
                                 <td>{{ $pro->category->cat }}</td>
                                 <td>{{ $pro->company->name }}</td>
 
                                 <td>
-                                    <button onclick='edit_cat({{ $pro->id }}, "{{ $pro->name }}", {{ $pro->coy }}, {{ $pro->cat }}, {{ $pro->price }})' class="btn btn-primary">Edit</button>
+                                    <button onclick='edit_cat({{ $pro->id }}, "{{ $pro->name }}", {{ $pro->coy }}, {{ $pro->cat }}, {{ $pro->price }})' class="btn btn-primary">{{ __('lang.Edit') }}</button>
                                     <a href="{{ url('/product/delete/') }}/{{ $pro->id }}" class="btn btn-danger">Delete</a>
                                     </td>
                             </tr>
@@ -76,7 +78,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add New Product</h5>
+                <h5 class="modal-title">{{ __('lang.AddNewProduct') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -86,15 +88,15 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="name">Product Name</label>
+                        <label for="name">{{ __('lang.Product') }}</label>
                         <input type="text" required name="name" id="name" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="price">Sale Price</label>
+                        <label for="price">{{ __('lang.SalePrice') }}</label>
                         <input type="number" required name="price" id="price" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="cat">Select Category</label>
+                        <label for="cat">{{ __('lang.Category') }}</label>
                         <select name="cat" required class="select2" id="cat">
                             @foreach ($cats as $cat)
                                 <option value="{{ $cat->id }}">{{ $cat->cat }}</option>
@@ -102,7 +104,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="coy">Select Company</label>
+                        <label for="coy">{{ __('lang.Company') }}</label>
                         <select name="coy" required class="select2" id="coy">
                             @foreach ($coys as $coy)
                                 <option value="{{ $coy->id }}">{{ $coy->name }}</option>
@@ -112,8 +114,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Add</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">{{ __('lang.Add') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('lang.Close') }}</button>
                 </div>
             </form>
         </div>
@@ -125,7 +127,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Product</h5>
+                <h5 class="modal-title">{{ __('lang.EditProduct') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -135,15 +137,15 @@
                     <form action="{{ url('/product/edit') }}" method="post">
                         @csrf
                     <div class="form-group">
-                        <label for="name">Product Name</label>
+                        <label for="name">{{ __('lang.Product') }}</label>
                         <input type="text" required id="edit_name"  name="name" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="price">Sale Price</label>
+                        <label for="price">{{ __('lang.SalePrice') }}</label>
                         <input type="number" required id="edit_price"  name="price" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="cat">Select Category</label>
+                        <label for="cat">{{ __('lang.Category') }}</label>
                         <select name="cat" class="form-control" id="edit_cat">
                             @foreach ($cats as $cat)
                                 <option value="{{ $cat->id }}">{{ $cat->cat }}</option>
@@ -151,7 +153,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="coy">Select Company</label>
+                        <label for="coy">{{ __('lang.Company') }}</label>
                         <select name="coy" class="form-control" id="edit_coy">
                             @foreach ($coys as $coy)
                                 <option value="{{ $coy->id }}">{{ $coy->name }}</option>
@@ -162,8 +164,8 @@
                 </div>
                 <input type="hidden" id="edit_id" name="id">
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-info">Save</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-info">{{ __('lang.Save') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('lang.Close') }}</button>
                 </div>
             </form>
         </div>

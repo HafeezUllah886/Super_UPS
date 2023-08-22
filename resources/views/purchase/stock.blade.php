@@ -1,12 +1,14 @@
 @extends('layout.dashboard')
 
 @section('content')
-
+@php
+        App::setLocale(auth()->user()->lang);
+    @endphp
 <div class="row">
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Available Stock</h4>
+                <h4>{{ __('lang.AvailableStock') }}</h4>
             </div>
         </div>
     </div>
@@ -17,13 +19,13 @@
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable">
                         <thead class="th-color">
                             <tr>
-                                <th class="border-top-0">Ser</th>
-                                <th class="border-top-0">Product Name</th>
-                                <th class="border-top-0">Category</th>
-                                <th class="border-top-0">Company</th>
-                                <th class="border-top-0">Available Stock</th>
-                                <th class="border-top-0">Unit Price</th>
-                                <th class="border-top-0">Stock Value</th>
+                                <th class="border-top-0">{{ __('lang.Ser') }}</th>
+                                <th class="border-top-0">{{ __('lang.Product') }}</th>
+                                <th class="border-top-0">{{ __('lang.Category') }}</th>
+                                <th class="border-top-0">{{ __('lang.Company') }}</th>
+                                <th class="border-top-0">{{ __('lang.AvailableStock') }}</th>
+                                <th class="border-top-0">{{ __('lang.Price') }}</th>
+                                <th class="border-top-0">{{ __('lang.StockValue') }}</th>
 
                             </tr>
                         </thead>

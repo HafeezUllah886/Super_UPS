@@ -205,16 +205,16 @@
         <div class="row">
 
             <div class="col-md-6">
-                <h5 class="text-danger">Ledger Details</h5>
+                <h5 class="text-danger">{{ __('lang.LedgerDetails')}}</h5>
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover text-center" id="datatable1">
                         <thead class="th-color">
-                                <th>ID</th>
-                                <th>Date</th>
-                                <th>Head</th>
-                                <th>Payment Type</th>
-                                <th>Details</th>
-                                <th>Amount</th>
+                                <th>{{ __('lang.Ser') }}</th>
+                                <th>{{ __('lang.Date') }}</th>
+                                <th>{{ __('lang.Head') }}</th>
+                                <th>{{ __('lang.PaymentType') }}</th>
+                                <th>{{ __('lang.Details') }}</th>
+                                <th>{{ __('lang.Amount') }}</th>
                         </thead>
                         <tbody>
                            @foreach ($ledger as $item)
@@ -229,7 +229,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <a href="{{ url('/dashboard/ledgerDetails') }}" class="btn btn-success">View Details</a>
+                    <a href="{{ url('/dashboard/ledgerDetails') }}" class="btn btn-success">{{ __('lang.Details') }}</a>
                 </div>
                 {{--
                     <h5 class="text-danger">Cash Ledger</h5>
@@ -271,18 +271,18 @@
             </div>
 
             <div class="col-md-6">
-                <h5 class="text-danger">Income & Expense Detail</h5>
+                <h5 class="text-danger">{{ __('lang.Income&ExpenseDetails') }}</h5>
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover text-center" id="datatable2">
                         <thead class="th-color">
                             <tr>
-                                <th>ID</th>
-                                <th>Date</th>
-                                <th>Account</th>
-                                <th>Description</th>
-                                <th>Credit</th>
-                                <th>Debit</th>
-                                <th>Balance</th>
+                                <th>{{ __('lang.Ser') }}</th>
+                                <th>{{ __('lang.Date') }}</th>
+                                <th>{{ __('lang.Account') }}</th>
+                                <th>{{ __('lang.Desc') }}</th>
+                                <th>{{ __('lang.Credit') }}</th>
+                                <th>{{ __('lang.Debit') }}</th>
+                                <th>{{ __('lang.Balance') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -307,7 +307,7 @@
                         </tbody>
 
                     </table>
-                    <a href="{{ url('/dashboard/incomeExpenseDetails') }}" class="btn btn-success">View Details</a>
+                    <a href="{{ url('/dashboard/incomeExpenseDetails') }}" class="btn btn-success">{{ __('lang.Details') }}</a>
                 </div>
             </div>
         </div>

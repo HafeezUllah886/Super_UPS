@@ -14,6 +14,10 @@ return [
     'Action' => 'Action',
     'AvailableStock' => 'Available Stock',
     'AmountPaid' => 'Amount Paid',
+    'AddNewVendor' => 'Add New Vendor',
+    'AddNewCustomer' => 'Add New Customer',
+    'AddNewAccount' => 'Add New Account',
+    'AccountStatement' => 'Account Statement',
 
     'BasicSettings' => 'Basic Settings',
     'BaseUnit' => 'Base Unit',
@@ -35,6 +39,7 @@ return [
     'Code' => 'Code',
     'Customers' => 'Customers',
     'Category' => 'Category',
+    'CategoryName' => 'Category Name',
     'Company' => 'Company',
     'Credit' => 'Credit',
     'CustomerName' => 'Customer Name',
@@ -43,6 +48,8 @@ return [
     'Create' => 'Create',
     'Close' => 'Close',
     'CreateReturn' => 'Create Return',
+    'CurrentBalance' => 'Current Balance',
+    'CompanyName' => 'Company Name',
 
     'Dashboard' => 'Dashboard',
     'Deposit' => 'Deposit',
@@ -64,8 +71,16 @@ return [
     'EditProduct' => 'Edit Product',
     'EditSale' => 'Edit Sale',
     'EditPurchase' => 'Edit Purchase',
+    'Edit' => 'Edit',
+    'EditVendor' => 'Edit Vendor',
+    'EditCustomer' => 'Edit Customer',
+    'EditAccount' => 'Edit Account',
+    'EditCategory' => 'Edit Category',
+    'EditCompany' => 'Edit Company',
 
     'Finance' => 'Finance',
+    'From' => 'From',
+    'FromDate' => 'From Date',
 
     'GoBack' => 'Go Back',
 
@@ -79,6 +94,7 @@ return [
     'IsPaid' => 'Is Paid?',
     'InvoiceNo' => 'Invoice No.',
     'InvoiceDetails' => 'Invoice Details',
+    'InitialAmount' => 'Initial Amount',
 
     'Logout' => 'Logout',
     'LanguageSettings' => 'Language Settings',
@@ -111,6 +127,9 @@ return [
     'PayableAmount' => 'Payable Amount',
     'ProductDetails' => 'Product Details',
     'PurchaseRate' => 'Purchase Rate',
+    'PurchaseDetails' => 'Purchase Details',
+    'PreviousBalance' => 'Previous Balance',
+    'Profit/Loss' => 'Profit/Loss',
 
     'Quotation' => 'Quotation',
     'Quantity' => 'Quantity',
@@ -121,6 +140,7 @@ return [
     'ReturnQty' => 'Return Qty',
     'ReturnAmount' => 'Return Amount',
     'ReturnDate' => 'Return Date',
+    'Ref' => 'Ref',
 
     'SupplierDues' => 'Supplier Dues',
     'Settings' => 'Settings',
@@ -144,6 +164,7 @@ return [
     'SelectAccount' => 'Select Account',
     'SalePrice' => 'Sale Price',
     'SelectVendor' => 'Select Vendor',
+    'StockValue' => 'StockValue',
 
     'Transfer' => 'Transfer',
     'TotalCash' => 'Total Cash',
@@ -153,6 +174,10 @@ return [
     'TodayExpense' => 'Today Expense',
     'TodayCash' => 'Today Cash',
     'TodayBank' => 'Today Bank',
+    'Title' => 'Title',
+    'To' => 'To',
+    'ToDate' => 'To Date',
+    'Trashed' => 'Trashed',
 
     'UserName' => 'User Name',
     'User' => 'User',
@@ -165,6 +190,7 @@ return [
     'Vendors' => 'Vendor',
     'VendorDues' => 'Vendor Dues',
     'ValidTill' => 'Valid Till',
+    'ViewStatement' => 'View Statement',
 
     'Warehouse' => 'Warehouse',
     'Width' => 'Width',
