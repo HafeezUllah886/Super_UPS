@@ -17,7 +17,7 @@
     function walkIn1(){
         console.log(vendor);
         var vendor = $("#vendor").find(':selected').val();
-        
+
         if(vendor == 0)
         {
             $('#walkIn_box').css("display", "block");
@@ -33,6 +33,9 @@
 
     }
 </script>
+@php
+        App::setLocale(auth()->user()->lang);
+    @endphp
 @section('content')
 @if (session('success'))
 <div class="alert alert-success">
@@ -48,7 +51,7 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Purchasing</h4>
+                <h4>{{ __('lang.Purchase') }}</h4>
             </div>
         </div>
     </div>
@@ -60,7 +63,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="product">Select Product</label>
+                            <label for="product">{{ __('lang.SelectProduct') }}</label>
                             <select name="product" required id="product" class="select2">
                                 <option value=""></option>
                                 @foreach ($products as $pro)
@@ -71,24 +74,24 @@
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label for="qty">Quantity</label>
+                            <label for="qty">{{ __('lang.Quantity') }}</label>
                             <input type="number" required name="qty" id="qty" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label for="rate">Purchase Rate</label>
+                            <label for="rate">{{ __('lang.PurchaseRate') }}</label>
                             <input type="number" required name="rate" id="rate" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label for="price">Sale Price</label>
+                            <label for="price">{{ __('lang.SalePrice') }}</label>
                             <input type="number" required name="price" id="price" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <button type="submit" class="btn btn-info" style="margin-top: 30px">Add Product</button>
+                        <button type="submit" class="btn btn-info" style="margin-top: 30px">{{ __('lang.AddProduct') }}</button>
                     </div>
                 </div>
             </form>
@@ -96,12 +99,12 @@
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable1">
                         <thead class="th-color">
                             <tr>
-                                <th class="border-top-0">Ser</th>
-                                <th class="border-top-0">Product Name</th>
-                                <th class="border-top-0">Quantity</th>
-                                <th class="border-top-0">Rate</th>
-                                <th class="border-top-0">Amount</th>
-                                <th>Action</th>
+                                <th class="border-top-0">{{ __('lang.Ser') }}</th>
+                                <th class="border-top-0">{{ __('lang.Product') }}</th>
+                                <th class="border-top-0">{{ __('lang.Quantity') }}</th>
+                                <th class="border-top-0">{{ __('lang.Price') }}</th>
+                                <th class="border-top-0">{{ __('lang.Amount') }}</th>
+                                <th>{{ __('lang.Action') }}</th>
                             </tr>
                         </thead>
                         <tbody id="items">
@@ -113,7 +116,7 @@
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="date">Date</label>
+                                    <label for="date">{{ __('lang.Date') }}</label>
                                     <input type="datetime-local" name="date" value="{{ now() }}" id="date" class="form-control">
                                     @error('date')
                                         <span class="text-danger">{{ $message }}</span>
@@ -122,10 +125,10 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="vendor">Select Vendor</label>
+                                    <label for="vendor">{{ __('lang.SelectVendor') }}</label>
                                     <select name="vendor" id="vendor" onchange="walkIn1()" class="select2">
                                         <option value=""></option>
-                                        <option value="0">Walk-in Vendor</option>
+                                        <option value="0">{{ __('lang.WalkInVendor') }}</option>
                                         @foreach ($vendors as $vendor)
                                             <option value="{{ $vendor->id }}">{{ $vendor->title }} ({{ $vendor->type }})</option>
                                         @endforeach
@@ -137,7 +140,7 @@
                             </div>
                             <div class="col-md-2" id="walkIn_box">
                                 <div class="form-group">
-                                    <label for="">Vendor Name</label>
+                                    <label for="">{{ __('lang.VendorName') }}</label>
                                     <input type="text" name="walkIn" class="form-control">
                                     @error('walkIn')
                                     <span class="text-danger">{{ $message }}</span>
@@ -146,11 +149,11 @@
                             </div>
                             <div class="col-md-2" id="isPaid_box">
                                 <div class="form-group">
-                                    <label for="isPaid">is Paid</label>
+                                    <label for="isPaid">{{ __('lang.IsPaid') }}</label>
                                     <select name="isPaid" id="isPaid" onchange="abc()" class="form-control">
-                                        <option>Yes</option>
-                                        <option>No</option>
-                                        <option>Partial</option>
+                                        <option value="Yes">{{ __('lang.Yes') }}</option>
+                                        <option value="No">{{ __('lang.No') }}</option>
+                                        <option value="Partial">{{ __('lang.Partial') }}</option>
                                     </select>
                                     @error('isPaid')
                                     <span class="text-danger">{{ $message }}</span>
@@ -159,7 +162,7 @@
                             </div>
                             <div class="col-md-2" id="amount_box">
                                 <div class="form-group">
-                                    <label for="amount">Amount</label>
+                                    <label for="amount">{{ __('lang.Amount') }}</label>
                                     <input type="number" name="amount" id="amount" class="form-control">
                                     @error('amount')
                                     <span class="text-danger">{{ $message }}</span>
@@ -168,7 +171,7 @@
                             </div>
                             <div class="col-md-3" id="paidIn_box">
                                 <div class="form-group">
-                                    <label for="paidFrom">Paid From</label>
+                                    <label for="paidFrom">{{ __('lang.PaidBy') }}</label>
                                     <select name="paidFrom" id="paidFrom" class=" select2">
                                         <option></option>
                                         @foreach ($paidFroms as $acct)
@@ -186,7 +189,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="desc">Description</label>
+                                    <label for="desc">{{ __('lang.Desc') }}</label>
                                     <textarea name="desc" id="desc" class="form-control"></textarea>
                                     @error('amount')
                                     <span class="text-danger">{{ $message }}</span>
@@ -194,7 +197,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 ">
-                                    <button type="submit" class="btn btn-success btn-lg" style="margin-top: 30px">Save Bill</button>
+                                    <button type="submit" class="btn btn-success btn-lg" style="margin-top: 30px">{{ __('lang.Save') }}</button>
 
                             </div>
                         </div>

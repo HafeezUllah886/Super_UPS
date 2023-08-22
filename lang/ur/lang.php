@@ -43,6 +43,7 @@ return [
     'CreateNew' => 'نیا بنائیں',
     'Create' => 'بنائیں',
     'Close' => 'بند کریں',
+    'CreateReturn' => 'ریٹرن بنائیں',
 
     'Deposit' => 'رقم جمع کریں',
     'Dashboard' => 'ڈیش بورڈ',
@@ -51,6 +52,7 @@ return [
     'Desc' => 'تفصیل',
     'Debit' => 'ڈیبٹ',
     'Discount' => 'رعایت',
+    'Deduction' => 'کٹوتی',
 
     'EditProduct' => 'مصنوعات میں تبدیلیاں',
     'Email' => 'ای میل',
@@ -61,6 +63,8 @@ return [
     'EnterMobileNumber' => 'موبائل نمبر درج کریں',
     'EnterPhoneNumber' => 'فون نمبر درج کریں',
     'Expense' => 'خرچہ',
+    'EditSale' => 'ایڈیٹ سیل',
+    'EditPurchase' => 'ایڈیٹ پرچیز',
 
     'Finance' => 'فائنانس',
 
@@ -73,6 +77,8 @@ return [
     'Image' => 'تصویر',
     'Income&ExpenseDetails' => 'آمدن اور اخراج کی تفصیل',
     'IsPaid' => 'ادا کیا گیا؟',
+    'InvoiceNo' => 'رسید نمبر',
+    'InvoiceDetails' => 'انوائس کی تفصیلات',
 
     'LanguageSettings' => 'زبان کی ترتیبات',
     'Length' => 'لمبائی',
@@ -100,11 +106,21 @@ return [
     'Partial' => 'جزوی',
     'PaidIn' => 'میں ادا کیا',
     'Payment' => 'ادائیگی',
+    'Print' => 'پرنٹ',
+    'PaidBy' => 'سے ادا کیا',
+    'PayableAmount' => 'قابل ادائیگی رقم',
+    'ProductDetails' => 'پروڈکٹ کی تفصیلات',
+    'PurchaseRate' => 'قیمت خرید',
 
     'Quotation' => 'کوٹیشن',
     'Quantity' => 'مقدار',
+    'Qty' => 'مقدار',
+    'QuotationDetails' => 'کوٹیشن کی تفصیلات',
 
     'Return' => 'واپسی',
+    'ReturnQty' => 'واپسی کی مقدار',
+    'ReturnAmount' => 'واپسی کی رقم',
+    'ReturnDate' => 'واپسی کی تاریخ',
 
     'Sale' => 'فروخت',
     'SaleHistory' => 'سیل ہسٹری',
@@ -121,6 +137,11 @@ return [
     'Ser' => 'سیریل',
     'SelectCustomer' => 'کسٹمر منتخب کریں',
     'SelectProduct' => 'پروڈکٹ منتخب کریں',
+    'SaleReturns' => 'فروخت کی واپسی',
+    'SoldQty' => 'فروخت کی مقدار',
+    'SelectAccount' => 'اکاؤنٹ منتخب کریں',
+    'SelectVendor' => 'وینڈر کو منتخب کریں',
+    'SalePrice' => 'قیمت فروخت',
 
     'ThisMonth' => 'اس مہینے',
     'TotalBank' => 'کل بینک بیلنس',
@@ -138,6 +159,7 @@ return [
 
     'Vendors/Customers' => 'وینڈرز/ کسٹمرز',
     'Vendors' => 'وینڈرز',
+    'Vendor' => 'وینڈر',
     'VendorDues' => 'وینڈر کے واجبات',
     'ValidTill' => 'قابل اطلاق تاریخ',
 
@@ -145,6 +167,7 @@ return [
     'Width' => 'چوڑائی',
     'Withdraw' => 'رقم نکلوائیں',
     'WalkInCustomer' => 'واک ان کسٹمر',
+    'WalkInVendor' => 'واک ان وینڈر',
 
     'Yes' => 'ہاں',
 ];

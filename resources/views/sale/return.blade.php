@@ -1,11 +1,14 @@
+@php
+        App::setLocale(auth()->user()->lang);
+    @endphp
 @extends('layout.dashboard')
 @section('content')
 <div class="row">
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Sale Returns</h4>
-                <button class="btn btn-success" data-toggle="modal" data-target="#modal">Create New</button>
+                <h4>{{ __('lang.SaleReturns') }}</h4>
+                <button class="btn btn-success" data-toggle="modal" data-target="#modal">{{ __('lang.CreateReturn') }}</button>
             </div>
         </div>
     </div>
@@ -16,14 +19,13 @@
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable">
                         <thead class="th-color">
                             <tr>
-                                <th class="border-top-0">Invoice #</th>
-                                <th class="border-top-0">Date</th>
-                                <th class="border-top-0">Customer</th>
-                                <th class="border-top-0">Details</th>
-
-                                <th class="border-top-0">PaidBy</th>
-                                <th class="border-top-0">Amount Payable</th>
-                                <th>Action</th>
+                                <th class="border-top-0">{{ __('lang.InvoiceNo') }}</th>
+                                <th class="border-top-0">{{ __('lang.Date') }}</th>
+                                <th class="border-top-0">{{ __('lang.Customer') }}</th>
+                                <th class="border-top-0">{{ __('lang.Details') }}</th>
+                                <th class="border-top-0">{{ __('lang.PaidBy') }}</th>
+                                <th class="border-top-0">{{ __('lang.PayableAmount') }}</th>
+                                <th>{{ __('lang.Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,10 +41,10 @@
                                 <td>
                                     <table>
                                         <thead>
-                                        <th>Product</th>
-                                        <th>Qty</th>
-                                        <th>Price</th>
-                                        <th>Amount</th>
+                                        <th>{{ __('lang.Product') }}</th>
+                                        <th>{{ __('lang.Qty') }}</th>
+                                        <th>{{ __('lang.Price') }}</th>
+                                        <th>{{ __('lang.Amount') }}</th>
                                     </thead>
                                     <tbody>
                                         @foreach ($return->details as $details)
@@ -60,7 +62,7 @@
                                             @endif
                                         @endforeach
                                         <tr>
-                                            <td colspan="4">Discount: <strong>{{ $return->bill->discount }}</strong></td>
+                                            <td colspan="4">{{ __('lang.Discount') }}: <strong>{{ $return->bill->discount }}</strong></td>
                                         </tr>
                                     </tbody>
                                     </table>
@@ -84,7 +86,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Create Return</h5>
+                <h5 class="modal-title">{{ __('lang.CreateReturn') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -94,13 +96,13 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="bill">Bill / Invoice No.</label>
+                        <label for="bill">{{ __('lang.InvoiceNo') }}</label>
                         <input type="number" required name="bill" id="bill" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Create</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">{{ __('lang.Create') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('lang.Close') }}</button>
                 </div>
             </form>
         </div>

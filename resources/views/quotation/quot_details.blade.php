@@ -10,12 +10,15 @@
     {{ session('error') }}
 </div>
 @endif
+@php
+        App::setLocale(auth()->user()->lang);
+    @endphp
 <div class="row">
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Quotation Details</h4>
-                <a href="{{ url('/quotation/print/') }}/{{ $quot->ref }}" class="btn btn-warning">Print</a>
+                <h4>{{ __('lang.QuotationDetails') }}</h4>
+                <a href="{{ url('/quotation/print/') }}/{{ $quot->ref }}" class="btn btn-warning">{{ __('lang.Print') }}</a>
             </div>
         </div>
     </div>
@@ -24,11 +27,11 @@
             <div class="card-body">
                 <table class="table">
                     <tr>
-                        <td> <strong>Customer:</strong>  </td>
+                        <td> <strong>{{ __('lang.Customer') }}:</strong>  </td>
                         <td>{{$quot->customer_account->title ?? $quot->walkIn." (Walk-in)"}}</td>
-                        <td><strong>Phone:</strong> </td>
+                        <td><strong>{{ __('lang.PhoneNumber') }}:</strong> </td>
                         <td>{{$quot->customer_account->phone ?? $quot->phone}}</td>
-                        <td><strong>Address:</strong> </td>
+                        <td><strong>{{ __('lang.Address') }}:</strong> </td>
                         <td>{{$quot->customer_account->address ?? $quot->address}}</td>
                     </tr>
                 </table>
@@ -42,7 +45,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="product">Select Product</label>
+                            <label for="product">{{ __('lang.SelectProduct') }}</label>
                             <select name="product" required id="product" onchange="price1()" class="select2">
                                 <option value=""></option>
                                 @foreach ($products as $pro)
@@ -53,20 +56,20 @@
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label for="qty">Quantity</label>
+                            <label for="qty">{{ __('lang.Quantity') }}</label>
                             <input type="number" required name="qty" id="qty" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label for="price1">Price</label>
+                            <label for="price1">{{ __('lang.Price') }}</label>
                             <input type="number" required name="price" id="price" class="form-control">
                         </div>
                         <input type="hidden" name="id" value="{{ $quot->id }}">
                         <input type="hidden" name="ref" value="{{ $quot->ref }}">
                     </div>
                     <div class="col-md-2">
-                        <button type="submit" class="btn btn-info" style="margin-top: 30px">Add Product</button>
+                        <button type="submit" class="btn btn-info" style="margin-top: 30px">{{ __('lang.AddProduct') }}</button>
                     </div>
                 </div>
             </form>
@@ -74,13 +77,13 @@
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable1">
                         <thead class="th-color">
                             <tr>
-                                <th class="border-top-0">Ser</th>
-                                <th class="border-top-0">Category</th>
-                                <th class="border-top-0">Product Name</th>
-                                <th class="border-top-0">Quantity</th>
-                                <th class="border-top-0">Price</th>
-                                <th class="border-top-0">Amount</th>
-                                <th>Action</th>
+                                <th class="border-top-0">{{ __('lang.Ser') }}</th>
+                                <th class="border-top-0">{{ __('lang.Category') }}</th>
+                                <th class="border-top-0">{{ __('lang.Product') }}</th>
+                                <th class="border-top-0">{{ __('lang.Quantity') }}</th>
+                                <th class="border-top-0">{{ __('lang.Price') }}</th>
+                                <th class="border-top-0">{{ __('lang.Amount') }}</th>
+                                <th>{{ __('lang.Action') }}</th>
                             </tr>
                         </thead>
                         <tbody id="items">
@@ -89,7 +92,7 @@
                     </table>
                     <div class="col-md-3 mt-3">
                         <div class="form-group">
-                            <label for="discount">Discount</label>
+                            <label for="discount">{{ __('lang.Discount') }}</label>
                             <input type="number" name="discount" value="{{ $quot->discount }}" onfocusout="updateDiscount()" class="form-control " id="discount">
                         </div>
                     </div>

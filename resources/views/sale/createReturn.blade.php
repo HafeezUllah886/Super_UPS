@@ -1,3 +1,6 @@
+@php
+        App::setLocale(auth()->user()->lang);
+    @endphp
 @extends('layout.dashboard')
 
 @section('content')
@@ -6,7 +9,7 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Sale Returns</h4>
+                <h4>{{ __('lang.SaleReturns') }}</h4>
             </div>
         </div>
     </div>
@@ -14,18 +17,18 @@
         <div class="card bg-white">
             <div class="card-body ">
                 <div class="card-header">
-                    <h5>Invouce / Bill Details</h5>
+                    <h5>{{ __('lang.InvoiceDetails') }}</h5>
                 </div>
                 <div class="">
                     <table class="table table-bordered table-striped table-hover text-center mb-0">
                         <thead class="th-color">
                             <tr>
-                                <th class="border-top-0">Invoice #</th>
-                                <th class="border-top-0">Customer</th>
-                                <th class="border-top-0">Sale Date</th>
-                                <th class="border-top-0">Discount</th>
-                                <th class="border-top-0">Bill Amount</th>
-                                <th class="border-top-0">Ispaid</th>
+                                <th class="border-top-0">{{ __('lang.InvoiceNo') }}</th>
+                                <th class="border-top-0">{{ __('lang.Customer') }}</th>
+                                <th class="border-top-0">{{ __('lang.Date') }}</th>
+                                <th class="border-top-0">{{ __('lang.Discount') }}</th>
+                                <th class="border-top-0">{{ __('lang.Amount') }}</th>
+                                <th class="border-top-0">{{ __('lang.IsPaid') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,7 +55,7 @@
         <div class="card bg-white">
             <div class="card-body ">
                 <div class="card-header">
-                    <h5>Products Details</h5>
+                    <h5>{{ __('lang.ProductDetails') }}</h5>
                 </div>
             <form method="post" action="{{url('/return/save/')}}/{{$bill->id}}">
                 @csrf
@@ -60,11 +63,11 @@
                     <table class="table table-bordered table-striped table-hover text-center mb-0">
                         <thead class="th-color">
                             <tr>
-                                <th class="border-top-0">Product</th>
-                                <th class="border-top-0">Price</th>
-                                <th class="border-top-0">Sold Qty</th>
-                                <th class="border-top-0">Return Qty</th>
-                                <th class="border-top-0">Return Amount</th>
+                                <th class="border-top-0">{{ __('lang.Product') }}</th>
+                                <th class="border-top-0">{{ __('lang.Price') }}</th>
+                                <th class="border-top-0">{{ __('lang.SoldQty') }}</th>
+                                <th class="border-top-0">{{ __('lang.ReturnQty') }}</th>
+                                <th class="border-top-0">{{ __('lang.ReturnAmount') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -96,7 +99,7 @@
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label for="deduction">Deduction</label>
+                            <label for="deduction">{{ __('lang.Deduction') }}</label>
                             <input type="number" name="deduction" value="0" onchange="updateAmount()" min="0" id="deduction" class="form-control">
                             @error('deduction')
                                 <span class="text-danger">{{ $message }}</span>
@@ -105,7 +108,7 @@
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label for="payable">Payable Amount</label>
+                            <label for="payable">{{ __('lang.PayableAmount') }}</label>
                             <input type="number" readonly name="payable" id="payable" class="form-control">
                             @error('payable')
                                 <span class="text-danger">{{ $message }}</span>
@@ -114,7 +117,7 @@
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label for="netAmount">Return Amount</label>
+                            <label for="netAmount">{{ __('lang.ReturnAmount') }}</label>
                             <input type="number" {{ @$bill->customer_account->title != "" ? "" : "readonly" }} name="amount" value="0" min="0" id="netAmount" class="form-control">
                             @error('amount')
                                 <span class="text-danger">{{ $message }}</span>
@@ -123,9 +126,9 @@
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label for="paidFrom">Paid From</label>
+                            <label for="paidFrom">{{ __('lang.PaidBy') }}</label>
                                 <select name="paidFrom" id="paidFrom" class="form-control">
-                                    <option value="">Select Account</option>
+                                    <option value="">{{ __('lang.SelectAccount') }}</option>
                                     @foreach ($paidFroms as $acct)
                                         <option value="{{ $acct->id }}">{{ $acct->title }}</option>
                                     @endforeach
@@ -138,7 +141,7 @@
 
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label for="date">Return Date</label>
+                            <label for="date">{{ __('lang.ReturnDate') }}</label>
                             <input type="datetime-local" name="date" value="{{now()}}" class="form-control">
                             @error('date')
                                 <span class="text-danger">{{ $message }}</span>
@@ -146,7 +149,7 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                       <button type="submit" class="btn btn-success mt-4">Save Return</button>
+                       <button type="submit" class="btn btn-success mt-4">{{ __('lang.Save') }}</button>
                     </div>
                 </div>
             </form>

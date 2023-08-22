@@ -37,7 +37,7 @@
                         <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable1">
                             <thead class="th-color">
                                 <tr>
-                                   
+
                                     <th class="border-top-0">{{__('lang.Date')}}</th>
                                     <th class="border-top-0">{{__('lang.Customer')}}</th>
                                     <th class="border-top-0">{{__('lang.Products')}}</th>
@@ -50,7 +50,7 @@
                             <tbody>
                                 @foreach ($quots as $quot)
                                     <tr>
-                                        
+
                                         <td>{{$quot->date}}</td>
                                         <td>{{$quot->customer_account->title ?? $quot->walkIn . " (Walk-In)"}}</td>
                                         <td>
@@ -83,7 +83,7 @@
                                         </td>
                                         <td>
                                             <a href="{{ url('quotation/details/') }}/{{$quot->ref}}" class="btn btn-success">{{__('lang.Details')}}</a>
-                                            <a href="{{ url('quotation/delete/') }}/{{$quot->ref}}" class="btn btn-danger">{{__('lang.Delete')}}</a>
+                                            <a href="{{ url('quotation/delete/') }}/{{$quot->ref}}" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

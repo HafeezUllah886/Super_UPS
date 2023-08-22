@@ -1,5 +1,7 @@
 @extends('layout.dashboard')
-
+@php
+        App::setLocale(auth()->user()->lang);
+    @endphp
 @section('content')
 @if (session('success'))
 <div class="alert alert-success">
@@ -15,7 +17,7 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Edit Purchasing</h4>
+                <h4>{{ __('lang.EditPurchase') }}</h4>
             </div>
         </div>
     </div>
@@ -26,9 +28,9 @@
                     <div class="col-12">
                         <table class="table">
                             <tr>
-                                <td>Bill No. <strong>{{ $bill->id }}</strong></td>
-                                <td>Date: <strong>{{ date('d M Y', strtotime($bill->date)) }}</strong></td>
-                                <td>Vendor: <strong>@if (@$bill->vendor_account->title)
+                                <td>{{ __('lang.BillNo') }} <strong>{{ $bill->id }}</strong></td>
+                                <td>{{ __('lang.Date') }}: (<strong>{{ date('d M Y', strtotime($bill->date)) }}</strong>)</td>
+                                <td>{{ __('lang.Vendor') }}: <strong>@if (@$bill->vendor_account->title)
                                     {{ @$bill->vendor_account->title }} ({{  @$bill->vendor_account->type }})
 
                                 @else
@@ -43,7 +45,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="product">Select Product</label>
+                            <label for="product">{{ __('lang.SelectProduct') }}</label>
                             <select name="product" required id="product" class="select2">
                                 <option value=""></option>
                                 @foreach ($products as $pro)
@@ -54,19 +56,19 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="qty">Quantity</label>
+                            <label for="qty">{{ __('lang.Quantity') }}</label>
                             <input type="number" required name="qty" id="qty" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="rate">Purchase Rate</label>
+                            <label for="rate">{{ __('lang.PurchasePrice') }}</label>
                             <input type="number" required name="rate" id="rate" class="form-control">
                         </div>
                     </div>
-                   
+
                     <div class="col-md-3">
-                        <button type="submit" class="btn btn-info" style="margin-top: 30px">Add Product</button>
+                        <button type="submit" class="btn btn-info" style="margin-top: 30px">{{ __('lang.AddProduct') }}</button>
                     </div>
                 </div>
             </form>
@@ -74,12 +76,12 @@
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable1">
                         <thead class="th-color">
                             <tr>
-                                <th class="border-top-0">Ser</th>
-                                <th class="border-top-0">Product Name</th>
-                                <th class="border-top-0">Quantity</th>
-                                <th class="border-top-0">Rate</th>
-                                <th class="border-top-0">Amount</th>
-                                <th>Action</th>
+                                <th class="border-top-0">{{ __('lang.Ser') }}</th>
+                                <th class="border-top-0">{{ __('lang.Product') }}</th>
+                                <th class="border-top-0">{{ __('lang.Quantity') }}</th>
+                                <th class="border-top-0">{{ __('lang.Price') }}</th>
+                                <th class="border-top-0">{{ __('lang.Amount') }}</th>
+                                <th>{{ __('lang.Action') }}</th>
                             </tr>
                         </thead>
                         <tbody id="items">

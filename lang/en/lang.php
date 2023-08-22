@@ -42,6 +42,7 @@ return [
     'CreateNew' => 'Create New',
     'Create' => 'Create',
     'Close' => 'Close',
+    'CreateReturn' => 'Create Return',
 
     'Dashboard' => 'Dashboard',
     'Deposit' => 'Deposit',
@@ -50,6 +51,7 @@ return [
     'Desc' => 'Desc',
     'Debit' => 'Debit',
     'Discount' => 'Discount',
+    'Deduction' => 'Deduction',
 
     'EnterBusinessName' => 'Enter Business Name',
     'EnterAddrOne' => 'Enter Address Line One',
@@ -60,6 +62,8 @@ return [
     'Email' => 'Email',
     'Expense' => 'Expense',
     'EditProduct' => 'Edit Product',
+    'EditSale' => 'Edit Sale',
+    'EditPurchase' => 'Edit Purchase',
 
     'Finance' => 'Finance',
 
@@ -73,6 +77,8 @@ return [
     'Image' => 'Image',
     'Income&ExpenseDetails' => 'Income & Expense Details',
     'IsPaid' => 'Is Paid?',
+    'InvoiceNo' => 'Invoice No.',
+    'InvoiceDetails' => 'Invoice Details',
 
     'Logout' => 'Logout',
     'LanguageSettings' => 'Language Settings',
@@ -100,11 +106,21 @@ return [
     'Partial' => 'Partial',
     'PaidIn' => 'Paid In',
     'Payment' => 'Payment',
+    'Print' => 'Print',
+    'PaidBy' => 'PaidBy',
+    'PayableAmount' => 'Payable Amount',
+    'ProductDetails' => 'Product Details',
+    'PurchaseRate' => 'Purchase Rate',
 
     'Quotation' => 'Quotation',
     'Quantity' => 'Quantity',
+    'Qty' => 'Qty',
+    'QuotationDetails' => 'Quotation Details',
 
     'Return' => 'Return',
+    'ReturnQty' => 'Return Qty',
+    'ReturnAmount' => 'Return Amount',
+    'ReturnDate' => 'Return Date',
 
     'SupplierDues' => 'Supplier Dues',
     'Settings' => 'Settings',
@@ -123,6 +139,11 @@ return [
     'Ser' => 'Ser',
     'SelectProduct' => 'Select Product',
     'SelectCustomer' => 'Select Customer',
+    'SaleReturns' => 'Sale Return',
+    'SoldQty' => 'Sold Qty',
+    'SelectAccount' => 'Select Account',
+    'SalePrice' => 'Sale Price',
+    'SelectVendor' => 'Select Vendor',
 
     'Transfer' => 'Transfer',
     'TotalCash' => 'Total Cash',
@@ -141,6 +162,7 @@ return [
 
     'Vendors/Customers' => 'Vendors/Customers',
     'Vendors' => 'Vendors',
+    'Vendors' => 'Vendor',
     'VendorDues' => 'Vendor Dues',
     'ValidTill' => 'Valid Till',
 
