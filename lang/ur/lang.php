@@ -137,6 +137,7 @@ return [
     'PasswordConfimationMsg' => 'براہ کرم آگے بڑھنے سے پہلے پاس ورڈ کی تصدیق کریں',
     'Password' => 'پاس ورڈ',
     'Proceed' => 'آگے بڑھو',
+    'PurchasePrice' => 'قیمت خرید',
 
     'Quotation' => 'کوٹیشن',
     'Quantity' => 'مقدار',
@@ -187,6 +188,7 @@ return [
     'Total' => 'ٹوٹل',
     'TotalAmount' => 'کل رقم',
     'TotalSold' => 'کُل فروخت',
+    'TodayPurchase' => 'آج کی خریداری',
 
     'Unit' => 'یونٹ',
     'Update' => 'اپ ڈیٹ',

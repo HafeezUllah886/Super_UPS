@@ -42,6 +42,7 @@
                                     <table>
                                         <thead>
                                         <th>{{ __('lang.Product') }}</th>
+                                        <th>{{ __('lang.Size') }}</th>
                                         <th>{{ __('lang.Qty') }}</th>
                                         <th>{{ __('lang.Price') }}</th>
                                         <th>{{ __('lang.Amount') }}</th>
@@ -53,6 +54,7 @@
                                             @endphp
                                             <tr>
                                                 <td>{{ $details->product->name }}</td>
+                                                <td>{{ $details->product->size }}</td>
                                                 <td>{{ $details->qty }}</td>
                                                 <td>{{ round($details->price) }}</td>
                                                 <td>{{ $amount }}</td>
@@ -63,7 +65,6 @@
                                             </tr>
                                             @endif
                                         @endforeach
-
                                     </tbody>
                                     </table>
                                 </td>

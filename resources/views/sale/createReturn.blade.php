@@ -64,6 +64,7 @@
                         <thead class="th-color">
                             <tr>
                                 <th class="border-top-0">{{ __('lang.Product') }}</th>
+                                <th class="border-top-0">{{ __('lang.Size') }}</th>
                                 <th class="border-top-0">{{ __('lang.Price') }}</th>
                                 <th class="border-top-0">{{ __('lang.SoldQty') }}</th>
                                 <th class="border-top-0">{{ __('lang.ReturnQty') }}</th>
@@ -80,6 +81,7 @@
                             @endphp
                             <tr>
                                 <td> <input type="hidden" value="{{$products->product_id}}" name="id[]">{{ $products->product->name}} </td>
+                                <td> <input type="hidden" value="{{$products->size}}" name="size">{{ $products->product->size}} </td>
                                 <td> <input type="number" readonly class="form-control  text-center" name="price[]" value="{{$products->price}}" id="price{{ $ser }}"> </td>
                                 <td> <input type="number" readonly class="form-control text-center" value="{{$products->qty}}" id="qty{{ $ser }}"> </td>
                                 <td><input type="number" class="form-control text-center" onchange="updateAmount({{ $ser }}, {{ $products->price }})"  min="0" name="returnQty[]" id="returnQty{{ $ser }}" value="0" max="{{$products->qty}}"></td>
