@@ -140,8 +140,8 @@ return [
     'PurchasePrice' => 'قیمت خرید',
 
     'Quotation' => 'کوٹیشن',
-    'Quantity' => 'مقدار',
-    'Qty' => 'مقدار',
+    'Quantity' => 'تعداد',
+    'Qty' => 'تعداد',
     'QuotationDetails' => 'کوٹیشن کی تفصیلات',
 
     'Return' => 'واپسی',
