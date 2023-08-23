@@ -1,3 +1,6 @@
+@php
+        App::setLocale(auth()->user()->lang);
+    @endphp
 @extends('layout.dashboard')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @section('content')
@@ -6,7 +9,7 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Income & Expense Details</h4>
+                <h4>{{ __('lang.Income&ExpenseDetails') }}</h4>
             </div>
         </div>
     </div>
@@ -15,14 +18,14 @@
             <table class="table table-bordered table-striped table-hover text-center" id="datatable2">
                 <thead class="th-color">
                     <tr>
-                        <th>ID</th>
-                        <th>Date</th>
-                        <th>Account</th>
-                        <th>Description</th>
-                        <th>Details</th>
-                        <th>Credit</th>
-                        <th>Debit</th>
-                        <th>Balance</th>
+                        <th>{{ __('lang.Ser') }}</th>
+                        <th>{{ __('lang.Date') }}</th>
+                        <th>{{ __('lang.Account') }}</th>
+                        <th>{{ __('lang.Desc') }}</th>
+                        <th>{{ __('lang.Details') }}</th>
+                        <th>{{ __('lang.Credit') }}</th>
+                        <th>{{ __('lang.Debit') }}</th>
+                        <th>{{ __('lang.Balance') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,10 +48,10 @@
                                 $subTotal = 0;
                                 @endphp
                                 <table class="table">
-                                    <th>Product</th>
-                                    <th>Qty</th>
-                                    <th>Price</th>
-                                    <th>Amount</th>
+                                    <th>{{ __('lang.Product') }}</th>
+                                    <th>{{ __('lang.Qty') }}</th>
+                                    <th>{{ __('lang.Price') }}</th>
+                                    <th>{{ __('lang.Amount') }}</th>
                                     @foreach ($data as $data1)
                                     @php
                                     $subTotal = $data1->qty * $data1->rate;
@@ -69,10 +72,10 @@
                                 $subTotal = 0;
                                 @endphp
                                 <table class="table">
-                                    <th>Product</th>
-                                    <th>Qty</th>
-                                    <th>Price</th>
-                                    <th>Amount</th>
+                                    <th>{{ __('lang.Product') }}</th>
+                                    <th>{{ __('lang.Qty') }}</th>
+                                    <th>{{ __('lang.Price') }}</th>
+                                    <th>{{ __('lang.Amount') }}</th>
                                     @foreach ($data as $data1)
                                     @php
                                     $subTotal = $data1->qty * $data1->price;
@@ -86,7 +89,7 @@
                                     @endforeach
 
                                 </table>
-                                <strong>Discount: </strong>{{$data[0]->bill->discount ?? '0'}}
+                                <strong>{{ __('lang.Discount') }}: </strong>{{$data[0]->bill->discount ?? '0'}}
                             @endif
                             @if ($tran->type == 'Sale Return')
                             @php
@@ -94,10 +97,10 @@
                             $subTotal = 0;
                             @endphp
                             <table class="table">
-                                <th>Product</th>
-                                <th>Qty</th>
-                                <th>Price</th>
-                                <th>Amount</th>
+                                <th>{{ __('lang.Product') }}</th>
+                                <th>{{ __('lang.Qty') }}</th>
+                                <th>{{ __('lang.Price') }}</th>
+                                <th>{{ __('lang.Amount') }}</th>
                                 @foreach ($data as $data1)
                                 @php
                                 $subTotal = $data1->qty * $data1->price;

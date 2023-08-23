@@ -1,3 +1,6 @@
+@php
+    App::setLocale(auth()->user()->lang);
+@endphp
 @extends('layout.dashboard')
 
 @section('content')
@@ -6,8 +9,8 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Today Sale</h4>
-                <a href="{{url('/sale')}}" class="btn btn-success">New Sale</a>
+                <h4>{{ __('lang.TodaySale') }}</h4>
+                <a href="{{url('/sale')}}" class="btn btn-success">{{ __('lang.CreateNew') }}</a>
             </div>
         </div>
     </div>
@@ -18,16 +21,15 @@
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable">
                         <thead class="th-color">
                             <tr>
-                                <th class="border-top-0">Bill No.</th>
-                                <th class="border-top-0">Date</th>
-                                <th class="border-top-0">Customer</th>
-
-                                <th class="border-top-0">Total Amount</th>
-                                <th class="border-top-0">Details</th>
-                                <th class="border-top-0">Amount Paid</th>
-                                <th class="border-top-0">Payment</th>
-                                <th class="border-top-0">Paid In</th>
-                                <th>Action</th>
+                                <th class="border-top-0">{{ __('lang.BillNo') }}</th>
+                                <th class="border-top-0">{{ __('lang.Date') }}</th>
+                                <th class="border-top-0">{{ __('lang.Customer') }}</th>
+                                <th class="border-top-0">{{ __('lang.TotalAmount') }}</th>
+                                <th class="border-top-0">{{ __('lang.Details') }}</th>
+                                <th class="border-top-0">{{ __('lang.AmountPaid') }}</th>
+                                <th class="border-top-0">{{ __('lang.Payment') }}</th>
+                                <th class="border-top-0">{{ __('lang.PaidIn') }}</th>
+                                <th>{{ __('lang.Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,10 +49,10 @@
                                 <td>{{ getSaleBillTotal($bill->id) }}</td>
                                 <td>
                                     <table class="table">
-                                        <th>Product</th>
-                                        <th>Qty</th>
-                                        <th>Price</th>
-                                        <th>Amount</th>
+                                        <th>{{ __('lang.Product') }}</th>
+                                        <th>{{ __('lang.Qty') }}</th>
+                                        <th>{{ __('lang.Price') }}</th>
+                                        <th>{{ __('lang.Amount') }}</th>
                                         @foreach ($bill->details as $data1)
                                         @php
                                             $subTotal = $data1->qty * $data1->price;
@@ -64,7 +66,7 @@
                                         @endforeach
 
                                     </table>
-                                    <strong>Discount: </strong>{{$data[0]->bill->discount ?? '0'}}
+                                    <strong>{{ __('lang.Discount') }}: </strong>{{$data[0]->bill->discount ?? '0'}}
 
                                 </td>
                                 <td>@if($bill->isPaid == 'Yes') {{ "Full Payment" }} @elseif($bill->isPaid == 'No') {{ "UnPaid" }} @else {{ $bill->amount }} @endif</td>

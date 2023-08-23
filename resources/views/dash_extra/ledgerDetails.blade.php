@@ -1,3 +1,6 @@
+@php
+        App::setLocale(auth()->user()->lang);
+    @endphp
 @extends('layout.dashboard')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @section('content')
@@ -6,7 +9,7 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Ledger Details</h4>
+                <h4>{{ __('lang.LedgerDetails') }}</h4>
             </div>
         </div>
     </div>
@@ -14,13 +17,13 @@
         <div class="card bg-white m-b-30">
             <table class="table table-bordered table-striped table-hover text-center" id="datatable1">
                 <thead class="th-color">
-                    <th>ID</th>
-                    <th>Date</th>
-                    <th>Head</th>
-                    <th>Payment Type</th>
-                    <th>Desc</th>
-                    <th>Details</th>
-                    <th>Amount</th>
+                    <th>{{ __('lang.Ser') }}</th>
+                    <th>{{ __('lang.Date') }}</th>
+                    <th>{{ __('lang.Head') }}</th>
+                    <th>{{ __('lang.PaymentType') }}</th>
+                    <th>{{ __('lang.Desc') }}</th>
+                    <th>{{ __('lang.Details') }}</th>
+                    <th>{{ __('lang.Amount') }}</th>
                 </thead>
                 <tbody>
                     @foreach ($ledger as $item)
@@ -61,10 +64,10 @@
                                 $subTotal = 0;
                                 @endphp
                                 <table class="table">
-                                    <th>Product</th>
-                                    <th>Qty</th>
-                                    <th>Price</th>
-                                    <th>Amount</th>
+                                    <th>{{ __('lang.Product') }}</th>
+                                    <th>{{ __('lang.Qty') }}</th>
+                                    <th>{{ __('lang.Price') }}</th>
+                                    <th>{{ __('lang.Amount') }}</th>
                                     @foreach ($data as $data1)
                                     @php
                                     $subTotal = $data1->qty * $data1->price;
@@ -78,7 +81,7 @@
                                     @endforeach
 
                                 </table>
-                                <strong>Discount: </strong>{{$data[0]->bill->discount ?? '0'}}
+                                <strong>{{ __('lang.Discount') }}: </strong>{{$data[0]->bill->discount ?? '0'}}
                             @endif
                             @if ($item->details == 'Sale Return')
                             @php
@@ -86,10 +89,10 @@
                             $subTotal = 0;
                             @endphp
                             <table class="table">
-                                <th>Product</th>
-                                <th>Qty</th>
-                                <th>Price</th>
-                                <th>Amount</th>
+                                <th>{{ __('lang.Product') }}</th>
+                                <th>{{ __('lang.Qty') }}</th>
+                                <th>{{ __('lang.Price') }}</th>
+                                <th>{{ __('lang.Amount') }}</th>
                                 @foreach ($data as $data1)
                                 @php
                                 $subTotal = $data1->qty * $data1->price;

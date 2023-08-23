@@ -167,8 +167,7 @@ return [
     'SelectVendor' => 'وینڈر کو منتخب کریں',
     'SalePrice' => 'قیمت فروخت',
     'StockValue' => 'اسٹاک ویلیو',
-    'TotalSold' => 'کُل فروخت',
-
+    
     'ThisMonth' => 'اس مہینے',
     'TotalBank' => 'کل بینک بیلنس',
     'TotalCash' => 'کل کیش',
@@ -183,6 +182,8 @@ return [
     'ToDate' => ' اس تاریخ تک',
     'Trashed' => 'کوڑے دان',
     'Total' => 'ٹوٹل',
+    'TotalAmount' => 'کل رقم',
+    'TotalSold' => 'کُل فروخت',
 
     'Unit' => 'یونٹ',
     'Update' => 'اپ ڈیٹ',

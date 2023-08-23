@@ -185,6 +185,7 @@ return [
     'To' => 'To',
     'ToDate' => 'To Date',
     'Trashed' => 'Trashed',
+    'TotalAmount' => 'Total Amount',
 
     'UserName' => 'User Name',
     'User' => 'User',
