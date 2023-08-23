@@ -126,12 +126,12 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="vendor">{{ __('lang.SelectVendor') }}</label>
+                                    <label for="vendor">{{ __('lang.SelectFactory') }}</label>
                                     <select name="vendor" id="vendor" onchange="walkIn1()" class="select2">
                                         <option value=""></option>
-                                        <option value="0">{{ __('lang.WalkInVendor') }}</option>
+                                        {{-- <option value="0">{{ __('lang.WalkInVendor') }}</option> --}}
                                         @foreach ($vendors as $vendor)
-                                            <option value="{{ $vendor->id }}">{{ $vendor->title }} ({{ $vendor->type }})</option>
+                                            <option value="{{ $vendor->id }}">{{ $vendor->title }} ({{ $vendor->type == "Vendor" ? "Factory" : $vendor->type }})</option>
                                         @endforeach
                                     </select>
                                     @error('vendor')

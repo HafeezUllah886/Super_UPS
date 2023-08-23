@@ -19,6 +19,7 @@ return [
     'AddNewAccount' => 'Add New Account',
     'AccountStatement' => 'Account Statement',
     'Address' => 'Address',
+    'AddNewFactory' => 'Add New Factory',
 
     'BasicSettings' => 'Basic Settings',
     'BaseUnit' => 'Base Unit',
@@ -51,6 +52,8 @@ return [
     'CreateReturn' => 'Create Return',
     'CurrentBalance' => 'Current Balance',
     'CompanyName' => 'Company Name',
+    'CashInflow' => 'Cash Inflow',
+    'CashOutflow' => 'Cash Outflow',
 
     'Dashboard' => 'Dashboard',
     'Deposit' => 'Deposit',
@@ -61,6 +64,7 @@ return [
     'Discount' => 'Discount',
     'Deduction' => 'Deduction',
     'DeletedProducts' => 'Deleted Products',
+    'DailyCashBook' => 'Daily Cash Book',
 
     'EnterBusinessName' => 'Enter Business Name',
     'EnterAddrOne' => 'Enter Address Line One',
@@ -80,10 +84,14 @@ return [
     'EditAccount' => 'Edit Account',
     'EditCategory' => 'Edit Category',
     'EditCompany' => 'Edit Company',
+    'EditFactory' => 'Edit Factory',
 
     'Finance' => 'Finance',
     'From' => 'From',
     'FromDate' => 'From Date',
+    'Factory' => 'Factory',
+    'Factories' => 'Factories',
+    'Factories/Customers' => 'Factories/Customers',
 
     'GoBack' => 'Go Back',
 
@@ -111,6 +119,7 @@ return [
     'NewPassword' => 'New Password',
     'No' => 'No',
     'NetProfit' => 'Net Profit',
+    'NetBalance' => 'Net Balance',
 
     'PhoneNumber' => 'Phone Number',
     'Products' => 'Products',
@@ -173,9 +182,11 @@ return [
     'SalePrice' => 'Sale Price',
     'SelectVendor' => 'Select Vendor',
     'StockValue' => 'Stock Value',
+    'SelectFactory' => 'Select Factory',
+    'Summary' => 'Summary',
+
     'TotalSold' => 'Sold',
     'Total' => 'Total',
-
     'Transfer' => 'Transfer',
     'TotalCash' => 'Total Cash',
     'TotalBank' => 'Total Bank',
@@ -190,6 +201,9 @@ return [
     'Trashed' => 'Trashed',
     'TotalAmount' => 'Total Amount',
     'TodayPurchase' => 'Today Purchase',
+    'TodayCredit' => 'Today Credit',
+    'TodayDebit' => 'Today Debit',
+    'TodayBalance' => 'Today Balance',
 
     'UserName' => 'User Name',
     'User' => 'User',

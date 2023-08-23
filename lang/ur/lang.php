@@ -19,6 +19,7 @@ return [
     'AddNewCustomer' => 'نیا کسٹمر شامل کریں',
     'AddNewAccount' => 'نیا اکاؤنٹ شامل کریں',
     'AccountStatement' => 'اکاؤنٹ اسٹیٹمنٹ',
+    'AddNewFactory' => 'نیاکارخانہ شامل کریں',
 
     'BaseUnit' => 'بیس یونٹ',
     'BasicSettings' => 'بنیادی ترتیبات',
@@ -51,6 +52,8 @@ return [
     'CreateReturn' => 'ریٹرن بنائیں',
     'CurrentBalance' => 'موجودہ بیلنس',
     'CompanyName' => 'کمپنی کا نام ',
+    'CashInflow' => 'کیش ان فلو',
+    'CashOutflow' => 'کیش آؤٹ فلو',
 
     'Deposit' => 'رقم جمع کریں',
     'Dashboard' => 'ڈیش بورڈ',
@@ -61,6 +64,7 @@ return [
     'Discount' => 'رعایت',
     'Deduction' => 'کٹوتی',
     'DeletedProducts' => 'حذف شدہ پروڈکٹ',
+    'DailyCashBook' => 'روزانہ کا کیش بک',
 
     'EditProduct' => 'مصنوعات میں تبدیلیاں',
     'Email' => 'ای میل',
@@ -80,10 +84,14 @@ return [
     'EditAccount' => 'ایڈیٹ اکاؤنٹ ',
     'EditCategory' => 'ایڈیٹ کیٹیگری ',
     'EditCompany' => 'ایڈیٹ کمپنی ',
+    'EditFactory' => 'کارخانہ ایڈیٹ کریں',
 
     'Finance' => 'فائنانس',
     'From' => 'اکاؤنٹ سے',
     'FromDate' => ' اس تاریخ سے',
+    'Factory' => 'کارخانہ',
+    'Factories' => 'کارخانے',
+    'Factories/Customers' => 'کارخانے/کسٹمرز',
 
     'GoBack' => 'واپس جاو',
 
@@ -101,7 +109,7 @@ return [
     'LanguageSettings' => 'زبان کی ترتیبات',
     'Length' => 'لمبائی',
     'Logout' => 'لاگ آوٹ',
-    'LedgerDetails' => 'لاجر کی تفصیلات',
+    'LedgerDetails' => 'روزنامچہ کی تفصیلات',
 
     'MobileNumber' => 'موبائل نمبر',
     'MonthlyExpenses' => 'ماہانہ اخراجات',
@@ -111,6 +119,7 @@ return [
     'NewPasswordPlace' => 'نیا پاس ورڈ درج کریں',
     'No' => 'نہیں',
     'NetProfit' => 'خالص منافع',
+    'NetBalance' => 'نیٹ بیلنس',
 
     'PhoneNumber' => 'فون نمبر',
     'Price' => 'قیمت',
@@ -171,7 +180,9 @@ return [
     'SelectVendor' => 'وینڈر کو منتخب کریں',
     'SalePrice' => 'قیمت فروخت',
     'StockValue' => 'اسٹاک ویلیو',
-    
+    'SelectFactory' => 'کارخانہ منتخب کریں',
+    'Summary' => 'خلاصہ',
+
     'ThisMonth' => 'اس مہینے',
     'TotalBank' => 'کل بینک بیلنس',
     'TotalCash' => 'کل کیش',
@@ -189,6 +200,9 @@ return [
     'TotalAmount' => 'کل رقم',
     'TotalSold' => 'کُل فروخت',
     'TodayPurchase' => 'آج کی خریداری',
+    'TodayCredit' => 'آج کا کریڈٹ',
+    'TodayDebit' => 'آج کا ڈیبٹ',
+    'TodayBalance' => 'آج کا بیلنس',
 
     'Unit' => 'یونٹ',
     'Update' => 'اپ ڈیٹ',
@@ -201,6 +215,7 @@ return [
     'VendorDues' => 'وینڈر کے واجبات',
     'ValidTill' => 'قابل اطلاق تاریخ',
     'ViewStatement' => 'تفصیلات دیکھیں',
+    'VendorName' => 'وینڈرکانام',
 
     'Warehouse' => 'گودام',
     'Width' => 'چوڑائی',
