@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ConfirmPasswordController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\productController;
 use App\Http\Controllers\purchaseController;
@@ -35,6 +36,9 @@ Route::get('/clear-cache', function() {
 });
 
 Route::middleware('auth')->group(function (){
+    Route::get('confirm-password', [ConfirmPasswordController::class, 'showConfirmPasswordForm'])->name('confirm-password');
+    Route::post('confirm-password', [ConfirmPasswordController::class, 'confirmPassword']);
+
     Route::get('/logout', [AuthController::class, 'out']);
 
     Route::get('/dashboard', [dashboardController::class, "dashboard"]);
@@ -113,7 +117,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/sale/update/draft/rate/{id}/{price}', [saleController::class, "updateDraftRate"]);
     Route::get('/sale/draft/delete/{id}', [saleController::class, "deleteDraft"]);
     Route::get('/sale/history', [saleController::class, "history"]);
-    Route::get('/sale/delete/{ref}', [saleController::class, "deleteSale"]);
+
     Route::get('/sale/print/{ref}', [SaleController::class, 'print']);
 
     Route::get('/sale/edit/{id}', [saleController::class, "edit"]);
@@ -161,4 +165,10 @@ Route::middleware('auth')->group(function (){
     Route::post('/return/save/{bill}', [SaleReturnController::class, 'saveReturn']);
     Route::get('/return/delete/{ref}', [SaleReturnController::class, 'delete']);
 
+
+
+});
+
+Route::middleware(['confirm.password'])->group(function () {
+    Route::get('/sale/delete/{ref}', [saleController::class, "deleteSale"]);
 });

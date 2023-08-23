@@ -223,8 +223,8 @@ class SaleController extends Controller
         stock::where('ref', $ref)->delete();
         sale::where('ref', $ref)->delete();
         ledger::where('ref', $ref)->delete();
-
-        return back()->with('error', "Sale Deleted");
+        session()->forget('confirmed_password');
+        return redirect('/sale/history')->with('error', "Sale Deleted");
     }
 
     public function edit($id)

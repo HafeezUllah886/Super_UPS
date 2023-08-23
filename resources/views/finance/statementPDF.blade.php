@@ -315,15 +315,15 @@
             <table class="table-bordered">
                 <thead>
                     <tr>
-                        <th >Ref #</th>
+                        <th>Ref</th>
                         <th>Date</th>
                         <th>Desc</th>
                         @if ($account->type != 'Business')
                         <th>Details</th>
                         @endif
-                        <th>CR +</th>
-                        <th>DB _</th>
-                        <th>Bal</th>
+                        <th style="width:10%;">CR +</th>
+                        <th style="width:10%;">DB _</th>
+                        <th style="width:12%;">Bal</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -386,7 +386,6 @@
                                              <td>{{$subTotal}}</td>
                                          </tr>
                                      @endforeach
-
                                  </table>
                                  <strong>Diduction: </strong>{{$data[0]->returnBill->deduction}}
                              @endif
