@@ -1,34 +1,36 @@
 @extends('layout.dashboard')
-
+@php
+        App::setLocale(auth()->user()->lang);
+    @endphp
 @section('content')
 
 <div class="row">
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Profit / Loss</h4>
+                <h4>{{__('lang.Profit/Loss')}}</h4>
             </div>
         </div>
     </div>
     <div class="col-md-12">
         <div class="card bg-white m-b-30">
             <div class="card-body table-responsive new-user">
-                <strong>APP</strong> = Avg Purchase Price, <strong>ASP</strong> = Avg Sale Price, <strong> PPU</strong> = Profit Per Unit
+                <strong>APP</strong> = Avg Purchase Price (اوسط خریدی قیمت), <strong>ASP</strong> = Avg Sale Price(اوسط فروخت کی قیمت), <strong> PPU</strong> = Profit Per Unit (قیمت فی دانا)
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable">
                         <thead class="th-color">
                             <tr>
-                                <th class="border-top-0">Ser</th>
-                                <th class="border-top-0">Product Name</th>
+                                <th class="border-top-0">{{__('lang.Ser')}}</th>
+                                <th class="border-top-0">{{__('lang.Product')}}</th>
                             {{--     <th class="border-top-0">Total Purchased</th> --}}
                                 <th class="border-top-0">APP</th>
                                 <th class="border-top-0">ASP</th>
                                 <th class="border-top-0">PPU</th>
-                                <th class="border-top-0">Sold</th>
-                                <th class="border-top-0">Return</th>
-                                <th class="border-top-0">Profit</th>
-                                <th class="border-top-0">Stock</th>
-                                <th class="border-top-0">Stock Value</th>
+                                <th class="border-top-0">{{__('lang.TotalSold')}}</th>
+                                <th class="border-top-0">{{__('lang.Return')}}</th>
+                                <th class="border-top-0">{{__('lang.Profit')}}</th>
+                                <th class="border-top-0">{{__('lang.Stock')}}</th>
+                                <th class="border-top-0">{{__('lang.StockValue')}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,20 +60,20 @@
                             </tr>
                             @endforeach
                             <tr>
-                            <td colspan="7" style="text-align: right;"> <strong>Total</strong> </td>
+                            <td colspan="7" style="text-align: right;"> <strong>{{__('lang.Total')}}</strong> </td>
                             <td> <strong>{{ round($total,2) }}</strong> </td>
                         </tr>
 
                         <tr>
-                            <td colspan="7" style="text-align: right;"> <strong>Discounts</strong> </td>
+                            <td colspan="7" style="text-align: right;"> <strong>{{__('lang.Discount')}}</strong> </td>
                             <td> <strong>{{ round($discounts,2) }}</strong> </td>
                         </tr>
                         <tr>
-                            <td colspan="7" style="text-align: right;"> <strong>Expenses</strong> </td>
+                            <td colspan="7" style="text-align: right;"> <strong>{{__('lang.Expenses')}}</strong> </td>
                             <td> <strong>{{ round($expense,2) }}</strong> </td>
                         </tr>
                         <tr>
-                            <td colspan="7" style="text-align: right;"> <strong>Net Profit</strong> </td>
+                            <td colspan="7" style="text-align: right;"> <strong>{{__('lang.NetProfit')}}</strong> </td>
                             <td> <strong>{{ round($total - $discounts - $expense,2) }}</strong> </td>
                         </tr>
                         </tbody>

@@ -18,6 +18,7 @@ return [
     'AddNewCustomer' => 'Add New Customer',
     'AddNewAccount' => 'Add New Account',
     'AccountStatement' => 'Account Statement',
+    'Address' => 'Address',
 
     'BasicSettings' => 'Basic Settings',
     'BaseUnit' => 'Base Unit',
@@ -59,6 +60,7 @@ return [
     'Debit' => 'Debit',
     'Discount' => 'Discount',
     'Deduction' => 'Deduction',
+    'DeletedProducts' => 'Deleted Products',
 
     'EnterBusinessName' => 'Enter Business Name',
     'EnterAddrOne' => 'Enter Address Line One',
@@ -68,6 +70,7 @@ return [
     'EnterMobileNumber' => 'Enter Mobile Number',
     'Email' => 'Email',
     'Expense' => 'Expense',
+    'Expenses' => 'Expenses',
     'EditProduct' => 'Edit Product',
     'EditSale' => 'Edit Sale',
     'EditPurchase' => 'Edit Purchase',
@@ -107,6 +110,7 @@ return [
     'NewPasswordPlace' => 'Enter new password',
     'NewPassword' => 'New Password',
     'No' => 'No',
+    'NetProfit' => 'Net Profit',
 
     'PhoneNumber' => 'Phone Number',
     'Products' => 'Products',
@@ -130,6 +134,7 @@ return [
     'PurchaseDetails' => 'Purchase Details',
     'PreviousBalance' => 'Previous Balance',
     'Profit/Loss' => 'Profit/Loss',
+    'Profit' => 'Profit',
 
     'Quotation' => 'Quotation',
     'Quantity' => 'Quantity',
@@ -164,7 +169,9 @@ return [
     'SelectAccount' => 'Select Account',
     'SalePrice' => 'Sale Price',
     'SelectVendor' => 'Select Vendor',
-    'StockValue' => 'StockValue',
+    'StockValue' => 'Stock Value',
+    'TotalSold' => 'Sold',
+    'Total' => 'Total',
 
     'Transfer' => 'Transfer',
     'TotalCash' => 'Total Cash',

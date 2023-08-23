@@ -11,6 +11,7 @@ use App\Models\transactions;
 use Illuminate\Http\Request;
 use App;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Session;
 
 class dashboardController extends Controller
@@ -124,5 +125,43 @@ class dashboardController extends Controller
         $user->save();
 
         return redirect()->back()->with('msg', 'Language Changed');
+    }
+    public function profileUpdate(request $req){
+        $req->validate(
+            [
+                'userName' => 'required',
+                'email' => 'required|email',
+            ]
+        );
+
+        $user = User::find(auth()->user()->id);
+        $user->name = $req->userName;
+        $user->email = $req->email;
+        $user->save();
+
+        return redirect('/logout');
+    }
+
+    public function passwordUpdate(request $req)
+    {
+        $req->validate(
+            [
+                'cPassword' => 'required',
+                'nPassword' => 'required|min:6',
+                'rPassword' => 'required|same:nPassword',
+            ]
+        );
+        $user = User::find(auth()->user()->id);
+        if(Hash::check($req->cPassword, $user->password))
+        {
+            $user->password = Hash::make($req->nPassword);
+            $user->save();
+        }
+        else
+        {
+            return back()->with('error', 'Current Password is Wrong');
+        }
+
+        return back()->with('msg', "Password Changed");
     }
 }

@@ -60,6 +60,7 @@ return [
     'Debit' => 'ڈیبٹ',
     'Discount' => 'رعایت',
     'Deduction' => 'کٹوتی',
+    'DeletedProducts' => 'حذف شدہ پروڈکٹ',
 
     'EditProduct' => 'مصنوعات میں تبدیلیاں',
     'Email' => 'ای میل',
@@ -70,6 +71,7 @@ return [
     'EnterMobileNumber' => 'موبائل نمبر درج کریں',
     'EnterPhoneNumber' => 'فون نمبر درج کریں',
     'Expense' => 'خرچہ',
+    'Expenses' => 'اخراجات',
     'EditSale' => 'ایڈیٹ سیل',
     'EditPurchase' => 'ایڈیٹ پرچیز',
     'Edit' => 'ایڈیٹ',
@@ -108,6 +110,7 @@ return [
     'NewPassword' => 'نیا پاس ورڈ',
     'NewPasswordPlace' => 'نیا پاس ورڈ درج کریں',
     'No' => 'نہیں',
+    'NetProfit' => 'خالص منافع',
 
     'PhoneNumber' => 'فون نمبر',
     'Price' => 'قیمت',
@@ -130,6 +133,7 @@ return [
     'PurchaseDetails' => 'خریداری کی تفصیلات',
     'PreviousBalance' => 'پچھلا بیلنس',
     'Profit/Loss' => 'نفع نقصان',
+    'Profit' => 'منافع',
 
     'Quotation' => 'کوٹیشن',
     'Quantity' => 'مقدار',
@@ -163,6 +167,7 @@ return [
     'SelectVendor' => 'وینڈر کو منتخب کریں',
     'SalePrice' => 'قیمت فروخت',
     'StockValue' => 'اسٹاک ویلیو',
+    'TotalSold' => 'کُل فروخت',
 
     'ThisMonth' => 'اس مہینے',
     'TotalBank' => 'کل بینک بیلنس',
@@ -177,6 +182,7 @@ return [
     'To' => 'اکاؤنٹ میں',
     'ToDate' => ' اس تاریخ تک',
     'Trashed' => 'کوڑے دان',
+    'Total' => 'ٹوٹل',
 
     'Unit' => 'یونٹ',
     'Update' => 'اپ ڈیٹ',

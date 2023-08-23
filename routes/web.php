@@ -128,6 +128,8 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/settings',[dashboardController::class, "settings"]);
     Route::post('/settings/language/update',[dashboardController::class, "changeLanguage"]);
+    Route::post('/settings/profile/update',[dashboardController::class, "profileUpdate"]);
+    Route::post('/settings/password/update',[dashboardController::class, "passwordUpdate"]);
 
     Route::get('/quotation', [QuotationController::class, "quotation"]);
     Route::post('/quotation', [QuotationController::class, "storeQuotation"]);

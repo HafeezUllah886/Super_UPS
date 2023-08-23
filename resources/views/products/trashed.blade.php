@@ -1,5 +1,7 @@
 @extends('layout.dashboard')
-
+@php
+        App::setLocale(auth()->user()->lang);
+    @endphp
 @section('content')
 @if (session('success'))
 <div class="alert alert-success">
@@ -15,9 +17,9 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Deleted Products</h4>
+                <h4>{{__('lang.DeletedProducts')}}</h4>
                 <div class="d-flex justify-content-end">
-                    <a href="{{ url('/products') }}" class="btn btn-dark mr-2" >Go Back</a>
+                    <a href="{{ url('/products') }}" class="btn btn-dark mr-2" >{{__('lang.GoBack')}}</a>
                 </div>
 
             </div>
@@ -31,11 +33,11 @@
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable1">
                         <thead class="th-color">
                             <tr>
-                                <th class="border-top-0">Ser</th>
-                                <th class="border-top-0">Product Name</th>
-                                <th class="border-top-0">Category</th>
-                                <th class="border-top-0">Company</th>
-                                <th>Action</th>
+                                <th class="border-top-0">{{__('lang.Ser')}}</th>
+                                <th class="border-top-0">{{__('lang.Product')}}</th>
+                                <th class="border-top-0">{{__('lang.Category')}}</th>
+                                <th class="border-top-0">{{__('lang.Company')}}</th>
+                                <th>{{__('lang.Action')}}</th>
                             </tr>
                         </thead>
                         <tbody>
