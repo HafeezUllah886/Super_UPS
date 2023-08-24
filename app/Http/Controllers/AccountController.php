@@ -170,8 +170,8 @@ class AccountController extends Controller
         deposit::where('ref', $ref)->delete();
         transactions::where('ref', $ref)->delete();
         ledger::where('ref', $ref)->delete();
-
-        return back()->with('success', 'Deposit was deleted');
+        session()->forget('confirmed_password');
+        return redirect('/deposit')->with('error', "Deposit Deleted");
     }
 
 
@@ -204,8 +204,8 @@ class AccountController extends Controller
         withdraw::where('ref', $ref)->delete();
         transactions::where('ref', $ref)->delete();
         ledger::where('ref', $ref)->delete();
-
-        return back()->with('success', 'Withdraw was deleted');
+        session()->forget('confirmed_password');
+        return redirect('/withdraw')->with('error', "Withdraw Deleted");
     }
 
     public function vendors(){
@@ -259,7 +259,8 @@ class AccountController extends Controller
         transactions::where('ref', $ref)->delete();
         ledger::where('ref', $ref)->delete();
 
-        return back()->with('success', 'Expense deleted');
+        session()->forget('confirmed_password');
+        return redirect('/expense')->with('error', "Expense Deleted");
     }
 
     public function transfer(){
@@ -341,7 +342,8 @@ class AccountController extends Controller
         transfer::where('ref', $ref)->delete();
         transactions::where('ref', $ref)->delete();
 
-        return back()->with('success', 'Transfer deleted');
+        session()->forget('confirmed_password');
+        return redirect('/transfer')->with('error', "Transfer Deleted");
     }
 
     public function printTransfer($ref){

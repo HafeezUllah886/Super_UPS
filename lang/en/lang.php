@@ -195,15 +195,17 @@ return [
 
     'Vendors/Customers' => 'Vendors/Customers',
     'Vendors' => 'Vendors',
-    'Vendors' => 'Vendor',
+    'Vendor' => 'Vendor',
     'VendorDues' => 'Vendor Dues',
     'ValidTill' => 'Valid Till',
     'ViewStatement' => 'View Statement',
+    'VendorName' => 'Vendor Name',
 
     'Warehouse' => 'Warehouse',
     'Width' => 'Width',
     'Withdraw' => 'Withdraw',
     'WalkInCustomer' => 'Walk-in Customer',
+    'WalkInVendor' => 'Walk-in Vendor',
 
     'Yes' => 'Yes',
 ];

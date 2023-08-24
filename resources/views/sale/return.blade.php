@@ -69,7 +69,7 @@
                                 </td>
                                 <td>{{ @$return->account->title }}</td>
                                 <td>{{ $return->amount }}</td>
-                                <td> <a href="{{url('/return/delete/')}}/{{$return->ref}}" class="text-danger confirmation">Delete</a> </td>
+                                <td> <a href="{{url('/return/delete/')}}/{{$return->ref}}" class="text-danger ">Delete</a> </td>
                                 <td>
                                 </td>
                             </tr>

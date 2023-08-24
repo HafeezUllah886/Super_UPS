@@ -11,6 +11,7 @@
     <title>Super UPS CENTER</title>
 
    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+   <link rel="stylesheet" href="{{ asset('assets/plugins/notification/snackbar/snackbar.min.css') }}">
     <!-- Scripts -->
 
 </head>
@@ -68,7 +69,9 @@
     </div>
 
     <div></div>
+    <script src= {{ asset("assets/js/jquery.min.js" ) }}></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset("assets/plugins/notification/snackbar/snackbar.min.js") }}"></script>
 </body>
 
 

@@ -202,6 +202,7 @@ return [
     'Withdraw' => 'رقم نکلوائیں',
     'WalkInCustomer' => 'واک ان کسٹمر',
     'WalkInVendor' => 'واک ان وینڈر',
+    'VendorName' => 'وینڈر کا نام',
 
     'Yes' => 'ہاں',
 ];

@@ -30,7 +30,7 @@ public function confirmPassword(Request $request)
 
         return redirect($intendedUrl);
     } else {
-        return back()->with('error', "Wrong Password");
+        return redirect(Session::get('prev_url', '/'))->with('error', "Wrong Password");
     }
 }
 

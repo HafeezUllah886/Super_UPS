@@ -32,6 +32,16 @@
         <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="{{ asset('assets/plugins/notification/snackbar/snackbar.min.css') }}">
         {{-- data table --}}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+        @if(Config::get('app.locale') == 'ur')
+        <style>
+          body {
+            font-family: "Noto Nastaliq Urdu";
+            font-weight: 900;
+  
+          }
+          </style>
+        @endif
         <style>
 
           td{

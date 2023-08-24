@@ -22,7 +22,7 @@ class SaleReturnController extends Controller
     }
 
     public function search(request $req){
-
+     
         $bill = sale::find($req->bill);
         if($bill){
             $saleReturns = saleReturn::where('bill_id', $req->bill)->first();
@@ -153,6 +153,7 @@ class SaleReturnController extends Controller
         stock::where('ref', $ref)->delete();
         ledger::where('ref', $ref)->delete();
 
-        return back()->with('error', "Return Deleted");
+        session()->forget('confirmed_password');
+        return redirect('/return')->with('error', "Return Deleted");
     }
 }
