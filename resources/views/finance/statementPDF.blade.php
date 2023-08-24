@@ -38,7 +38,7 @@
         }
 
         .brand-section {
-            background-color: #b80000;
+            background-color: #f36b2c;
             padding: 10px 10px;
         }
 
@@ -67,13 +67,13 @@
 
         .body-section {
             padding: 16px;
-            border-left: 2px solid #b80000;
-            border-right: 2px solid #b80000;
+            border-left: 2px solid #f36b2c;
+            border-right: 2px solid #f36b2c;
 
         }
 
         .body-section1 {
-            background-color: #b80000;
+            background-color: #f36b2c;
             color: white;
             border-radius: 4px;
         }
@@ -153,7 +153,7 @@
         }
 
         .sub-container {
-            background-color: #b80000;
+            background-color: #f36b2c;
             ;
             margin: 5px;
             padding-bottom: 2px;
@@ -190,7 +190,7 @@
             width: 40%;
             margin: auto;
             text-align: center;
-            background-color: #b80000;
+            background-color: #f36b2c;
             color: white;
             border-radius: 5px;
             font-size: 12px;
@@ -242,9 +242,9 @@
 
             height: 60px;
             width: 65px;
-            background-color: #b80000;
+            background-color: #f36b2c;
             color: white;
-            /* color: #b80000; */
+            /* color: #f36b2c; */
             border-radius: 50%;
             display: inline-block;
             border: 5px solid white;
@@ -264,9 +264,9 @@
                     <img src="{{ asset('assets/images/app_logo.png') }}" alt="logo">
                 </div>
                 <div class="text1">
-                    <h1 class="m-query1">UPS / Battery Center</h1>
-                    <h3 class="m-query2">Shop # 123, Abc Road, Quetta
-                        <br>Phone:&nbsp; 0312,3456789,&nbsp;0312,3456789
+                    <h1 class="m-query1">Insaf Electric Store & Fancy Light House</h1>
+                    <h3 class="m-query2">Suraj Gunj Bazar Quetta
+                        <br>Phone:&nbsp; 0312-8386775,&nbsp;081-2838146
                     </h3>
                 </div>
             </div>
@@ -347,6 +347,7 @@
                                  @endphp
                                  <table class="table">
                                      <th>Product</th>
+                                     <th>Watt</th>
                                      <th>Qty</th>
                                      <th>Price</th>
                                      <th>Amount</th>
@@ -356,6 +357,7 @@
                                      @endphp
                                          <tr>
                                              <td>{{$data1->product->name}}</td>
+                                             <td>{{$data1->product->watt}}</td>
                                              <td>{{$data1->qty}}</td>
                                              <td>{{round($data1->price,0)}}</td>
                                              <td>{{$subTotal}}</td>
@@ -372,6 +374,7 @@
                                  @endphp
                                  <table class="table">
                                      <th>Product</th>
+                                     <th>Watt</th>
                                      <th>Qty</th>
                                      <th>Price</th>
                                      <th>Amount</th>
@@ -381,6 +384,7 @@
                                      @endphp
                                          <tr>
                                              <td>{{$data1->product->name}}</td>
+                                             <td>{{$data1->product->watt}}</td>
                                              <td>{{$data1->qty}}</td>
                                              <td>{{round($data1->price,0)}}</td>
                                              <td>{{$subTotal}}</td>
@@ -396,6 +400,7 @@
                              @endphp
                              <table class="table">
                                  <th>Product</th>
+                                 <th>Watt</th>
                                  <th>Qty</th>
                                  <th>Price</th>
                                  <th>Amount</th>
@@ -405,6 +410,7 @@
                                  @endphp
                                      <tr>
                                          <td>{{$data1->product->name}}</td>
+                                         <td>{{$data1->product->watt}}</td>
                                          <td>{{$data1->qty}}</td>
                                          <td>{{round($data1->rate,2)}}</td>
                                          <td>{{$subTotal}}</td>

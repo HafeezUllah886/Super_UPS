@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super UPS CENTER</title>
+    <title>Insaf Electric Store</title>
     <style>
 
 
@@ -38,7 +38,7 @@
         }
 
         .brand-section {
-            background-color: #b80000;
+            background-color: #f36b2c;
             padding: 10px 10px;
         }
 
@@ -67,13 +67,13 @@
 
         .body-section {
             padding: 16px;
-            border-left: 2px solid #b80000;
-            border-right: 2px solid #b80000;
+            border-left: 2px solid #f36b2c;
+            border-right: 2px solid #f36b2c;
 
         }
 
         .body-section1 {
-            background-color: #b80000;
+            background-color: #f36b2c;
             color: white;
             border-radius: 4px;
         }
@@ -153,7 +153,7 @@
         }
 
         .sub-container {
-            background-color: #b80000;
+            background-color: #f36b2c;
             ;
             margin: 5px;
             padding-bottom: 2px;
@@ -190,7 +190,7 @@
             width: 40%;
             margin: auto;
             text-align: center;
-            background-color: #b80000;
+            background-color: #f36b2c;
             color: white;
             border-radius: 5px;
             font-size: 12px;
@@ -242,9 +242,9 @@
 
             height: 60px;
             width: 65px;
-            background-color: #b80000;
+            background-color: #f36b2c;
             color: white;
-            /* color: #b80000; */
+            /* color: #f36b2c; */
             border-radius: 50%;
             display: inline-block;
             border: 5px solid white;
@@ -264,9 +264,10 @@
                     <img src="{{ asset('assets/images/app_logo.png') }}" alt="logo">
                 </div>
                 <div class="text1">
-                    <h1 class="m-query1">Super UPS Center</h1>
-                    <h3 class="m-query2">Shop No 12, insaf Solar Market, Angle Road, opp Civic Center, Quetta.
-                        <br>Phone:&nbsp; 0300-3883054,&nbsp;0309-8105556,&nbsp;081-2827774</h3>
+                    <h1 class="m-query1">Insaf Electric Store & Fancy Light House</h1>
+                    <h3 class="m-query2">Suraj Gunj Bazar Quetta
+                        <br>Phone:&nbsp; 0312-8386775,&nbsp;081-2838146
+                    </h3>
                 </div>
             </div>
         </div>
@@ -299,6 +300,7 @@
                         <th class="border-top-0">Ser</th>
                         <th class="border-top-0">Date</th>
                         <th class="border-top-0">Product</th>
+                        <th class="border-top-0">Watt</th>
                         <th class="border-top-0">Price</th>
                         <th class="border-top-0">Quantity</th>
                         <th class="border-top-0">Amount</th>
@@ -319,6 +321,7 @@
                             <td> {{ $ser }} </td>
                             <td>{{ date("d M Y", strtotime($item->date)) }}</td>
                             <td>{{ $product->product->name }}</td>
+                            <td>{{ $product->product->watt }}</td>
                             <td>{{ $product->price }}</td>
                             <td>{{ $product->qty }}</td>
                             <td>{{ $amount }}</td>

@@ -206,6 +206,7 @@ return [
     'WalkInCustomer' => 'واک ان کسٹمر',
     'WalkInVendor' => 'واک ان وینڈر',
     'VendorName' => 'وینڈر کا نام',
+    'Watt' => 'واٹ',
 
     'Yes' => 'ہاں',
 ];

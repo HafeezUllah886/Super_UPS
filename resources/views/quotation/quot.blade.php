@@ -56,6 +56,7 @@
                                         <td>
                                             <table class="w-100">
                                                 <th>{{__('lang.Product')}}</th>
+                                                <th>{{__('lang.Watt')}}</th>
                                                 <th>{{__('lang.Qty')}}</th>
                                                 <th>{{__('lang.Price')}}</th>
                                                 <tbody>

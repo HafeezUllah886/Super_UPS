@@ -37,7 +37,7 @@
         }
 
         .brand-section {
-            background-color: #b80000;
+            background-color: #f36b2c;
             padding: 10px 40px;
         }
 
@@ -66,13 +66,13 @@
 
         .body-section {
             padding: 16px;
-            border-left: 2px solid #b80000;
-            border-right: 2px solid #b80000;
+            border-left: 2px solid #f36b2c;
+            border-right: 2px solid #f36b2c;
 
         }
 
         .body-section1 {
-            background-color: #b80000;
+            background-color: #f36b2c;
             color: white;
             border-radius: 4px;
         }
@@ -156,7 +156,7 @@
         }
 
         .sub-container {
-            background-color: #b80000;
+            background-color: #f36b2c;
             ;
             margin: 5px;
             padding-bottom: 2px;
@@ -194,7 +194,7 @@
             width: 21%;
             margin: auto;
             text-align: center;
-            background-color: #b80000;
+            background-color: #f36b2c;
             color: white;
             border-radius: 5px;
             font-size: 12px;
@@ -244,9 +244,9 @@
 
             height: 60px;
             width: 65px;
-            background-color: #b80000;
+            background-color: #f36b2c;
             color: white;
-            /* color: #b80000; */
+            /* color: #f36b2c; */
             border-radius: 50%;
             display: inline-block;
             border: 5px solid white;
@@ -271,28 +271,13 @@
                     </span>
                 </div> --}}
                 <div class="text1">
-                    <h1 class="m-query1">UPS / Battery Center</h1>
-                    <h3 class="m-query2">Shop # 123, Abc Road, Quetta
-                        <br>Phone:&nbsp; 0312,3456789,&nbsp;0312,3456789
+                    <h1 class="m-query1">Insaf Electric Store & Fancy Light House</h1>
+                    <h3 class="m-query2">Suraj Gunj Bazar Quetta
+                        <br>Phone:&nbsp; 0312-8386775,&nbsp;081-2838146
                     </h3>
                 </div>
             </div>
         </div>
-
-        <!-- <div class="brand-section">
-            <div class="row">
-                <div class="col-6">
-                    <h1 class="text-white">FABCART</h1>
-                </div>
-                <div class="col-6">
-                    <div class="company-details">
-                        <p class="text-white">assdad asd  asda asdad a sd</p>
-                        <p class="text-white">assdad asd asd</p>
-                        <p class="text-white">+91 888555XXXX</p>
-                    </div>
-                </div>
-            </div>
-        </div> -->
 
         <div class="body-section">
             <div class="row">
@@ -331,6 +316,7 @@
                         <th class="w-5">#</th>
                         <th class="w-15">Category</th>
                         <th class="w-15">Item</th>
+                        <th class="w-15">Watt</th>
                         <th class="w-10">Price</th>
                         <th class="w-10">Quantity</th>
                         <th class="w-10">Total</th>
@@ -350,6 +336,7 @@
                             <th scope="row">{{ $ser }}</th>
                             <td>{{ $item->product->category->cat }}</td>
                             <td>{{ $item->product->name }}</td>
+                            <td>{{ $item->product->watt }}</td>
                             <td>{{ $item->price }}</td>
                             <td>{{ $item->qty }}</td>
                             <td>{{ $item->price * $item->qty }}</td>
@@ -360,7 +347,7 @@
                     @endforeach
 
                     <tr>
-                        <td colspan="5" class="text-right">
+                        <td colspan="6" class="text-right">
                             <strong>Total</strong>
                         </td>
                         <td>
@@ -369,7 +356,7 @@
                     </tr>
                     @if($invoice->discount > 0)
                     <tr>
-                        <td colspan="5" class="text-right">
+                        <td colspan="6" class="text-right">
                             <strong>Discount</strong>
                         </td>
                         <td>
@@ -377,7 +364,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="5" class="text-right">
+                        <td colspan="6" class="text-right">
                             <strong>Net Total</strong>
                         </td>
                         <td>
@@ -401,7 +388,7 @@
                         }
 
                         @endphp
-                        <td colspan="5" class="text-right">
+                        <td colspan="6" class="text-right">
                             <strong>Paid Amount</strong>
                         </td>
                         <td>
@@ -409,7 +396,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="5" class="text-right">
+                        <td colspan="6" class="text-right">
                             <strong>Remaining</strong>
                         </td>
                         <td>

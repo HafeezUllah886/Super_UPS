@@ -13,6 +13,7 @@
 <tr>
     <td>{{ $ser }}</td>
     <td>{{ $item->product->name }}</td>
+    <td>{{ $item->product->watt }}</td>
     <td><input type="number" value="{{ $item->qty }}" id="qty{{ $item->id }}" onfocusout="qty({{ $item->id }})"></td>
     <td><input type="number" value="{{ $item->price }}" id="price{{ $item->id }}" onfocusout="price({{ $item->id }})"></td>
     <td>{{ $amount }}</td>
@@ -20,7 +21,7 @@
 </tr>
 @endforeach
 <tr>
-    <td colspan="4" style="text-align: right;"><strong>Total</strong></td>
+    <td colspan="5" style="text-align: right;"><strong>Total</strong></td>
     <td style="text-align: center;"><strong>{{ $total }}</strong></td>
     <td></td>
 </tr>

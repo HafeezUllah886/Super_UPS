@@ -49,7 +49,7 @@
                             <select name="product" required id="product" class="select2">
                                 <option value=""></option>
                                 @foreach ($products as $pro)
-                                    <option value="{{ $pro->id }}">{{ $pro->name }}</option>
+                                    <option value="{{ $pro->id }}">{{ $pro->name }} | {{$pro->watt}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -78,6 +78,7 @@
                             <tr>
                                 <th class="border-top-0">{{ __('lang.Ser') }}</th>
                                 <th class="border-top-0">{{ __('lang.Product') }}</th>
+                                <th class="border-top-0">{{ __('lang.Watt') }}</th>
                                 <th class="border-top-0">{{ __('lang.Quantity') }}</th>
                                 <th class="border-top-0">{{ __('lang.Price') }}</th>
                                 <th class="border-top-0">{{ __('lang.Amount') }}</th>

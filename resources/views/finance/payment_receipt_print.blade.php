@@ -37,7 +37,7 @@
         }
 
         .brand-section {
-            background-color: #b80000;
+            background-color: #f36b2c;
             padding: 10px 40px;
         }
 
@@ -66,13 +66,13 @@
 
         .body-section {
             padding: 16px;
-            border-left: 2px solid #b80000;
-            border-right: 2px solid #b80000;
+            border-left: 2px solid #f36b2c;
+            border-right: 2px solid #f36b2c;
 
         }
 
         .body-section1 {
-            background-color: #b80000;
+            background-color: #f36b2c;
             color: white;
             border-radius: 4px;
         }
@@ -149,22 +149,16 @@
             color: #ffffff;
             height: 90px;
             border-radius: 6px;
-
-
-
-
         }
 
         .sub-container {
-            background-color: #b80000;
+            background-color: #f36b2c;
             ;
             margin: 5px;
             padding-bottom: 2px;
             display: flex;
             height: 78px;
             border-radius: 6px;
-
-
         }
 
         .m-query1 {
@@ -181,7 +175,6 @@
             width: 92%;
             height: 148px;
             margin-left: 2px;
-
         }
 
         .text1 {
@@ -194,7 +187,7 @@
             width: 21%;
             margin: auto;
             text-align: center;
-            background-color: #b80000;
+            background-color: #f36b2c;
             color: white;
             border-radius: 5px;
             font-size: 12px;
@@ -244,9 +237,9 @@
 
             height: 60px;
             width: 65px;
-            background-color: #b80000;
+            background-color: #f36b2c;
             color: white;
-            /* color: #b80000; */
+            /* color: #f36b2c; */
             border-radius: 50%;
             display: inline-block;
             border: 5px solid white;
@@ -272,9 +265,9 @@
                     </span>
                 </div3> --}}
                 <div class="text1">
-                    <h1 class="m-query1">UPS / Battery Center</h1>
-                    <h3 class="m-query2">Shop # 123, Abc Road, Quetta
-                        <br>Phone:&nbsp; 0312,3456789,&nbsp;0312,3456789
+                    <h1 class="m-query1">Insaf Electric Store & Fancy Light House</h1>
+                    <h3 class="m-query2">Suraj Gunj Bazar Quetta
+                        <br>Phone:&nbsp; 0312-8386775,&nbsp;081-2838146
                     </h3>
                 </div>
                 </div>

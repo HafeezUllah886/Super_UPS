@@ -42,6 +42,7 @@
                             <tr>
                                 <th class="border-top-0">{{ __('lang.Ser') }}</th>
                                 <th class="border-top-0">{{ __('lang.Product') }}</th>
+                                <th class="border-top-0">{{ __('lang.Watt') }}</th>
                                 <th class="border-top-0">{{ __('lang.SalePrice') }}</th>
                                 <th class="border-top-0">{{ __('lang.Category') }}</th>
                                 <th class="border-top-0">{{ __('lang.Company') }}</th>
@@ -59,12 +60,13 @@
                             <tr>
                                 <td> {{ $ser }} </td>
                                 <td>{{ $pro->name }}</td>
+                                <td>{{ $pro->watt }}</td>
                                 <td>{{ $pro->price }}</td>
                                 <td>{{ $pro->category->cat }}</td>
                                 <td>{{ $pro->company->name }}</td>
 
                                 <td>
-                                    <button onclick='edit_cat({{ $pro->id }}, "{{ $pro->name }}", {{ $pro->coy }}, {{ $pro->cat }}, {{ $pro->price }})' class="btn btn-primary">{{ __('lang.Edit') }}</button>
+                                    <button onclick='edit_cat({{ $pro->id }}, "{{ $pro->name }}", "{{ $pro->watt }}", {{ $pro->coy }}, {{ $pro->cat }}, {{ $pro->price }})' class="btn btn-primary">{{ __('lang.Edit') }}</button>
                                     <a href="{{ url('/product/delete/') }}/{{ $pro->id }}" class="btn btn-danger">Delete</a>
                                     </td>
                             </tr>
@@ -95,6 +97,10 @@
                     <div class="form-group">
                         <label for="name">{{ __('lang.Product') }}</label>
                         <input type="text" required name="name" id="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">{{ __('lang.Watt') }}</label>
+                        <input type="text" required name="watt" id="watt" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="price">{{ __('lang.SalePrice') }}</label>
@@ -144,6 +150,10 @@
                     <div class="form-group">
                         <label for="name">{{ __('lang.Product') }}</label>
                         <input type="text" required id="edit_name"  name="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="watt">{{ __('lang.Watt') }}</label>
+                        <input type="text" required name="watt" id="edit_watt" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="price">{{ __('lang.SalePrice') }}</label>
@@ -196,8 +206,9 @@
 
     });
 
-    function edit_cat(id, name, coy, cat, price) {
+    function edit_cat(id, name, watt, coy, cat, price) {
         $('#edit_name').val(name);
+        $('#edit_watt').val(watt);
         $('#edit_price').val(price);
         $('#edit_coy').val(coy);
         $('#edit_cat').val(cat);

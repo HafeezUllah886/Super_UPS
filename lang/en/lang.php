@@ -209,6 +209,7 @@ return [
     'Withdraw' => 'Withdraw',
     'WalkInCustomer' => 'Walk-in Customer',
     'WalkInVendor' => 'Walk-in Vendor',
+    'Watt' => 'Watt',
 
     'Yes' => 'Yes',
 ];

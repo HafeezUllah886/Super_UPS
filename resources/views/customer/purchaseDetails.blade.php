@@ -33,6 +33,7 @@
                                 <th class="border-top-0">{{ __('lang.Ser') }}</th>
                                 <th class="border-top-0">{{ __('lang.Date') }}</th>
                                 <th class="border-top-0">{{ __('lang.Product') }}</th>
+                                <th class="border-top-0">{{ __('lang.Watt') }}</th>
                                 <th class="border-top-0">{{ __('lang.Price') }}</th>
                                 <th class="border-top-0">{{ __('lang.Quantity') }}</th>
                                 <th class="border-top-0">{{ __('lang.Amount') }}</th>
@@ -53,6 +54,7 @@
                                     <td> {{ $ser }} </td>
                                     <td>{{ date("d M Y", strtotime($item->date)) }}</td>
                                     <td>{{ $product->product->name }}</td>
+                                    <td>{{ $product->product->watt }}</td>
                                     <td>{{ $product->price }}</td>
                                     <td>{{ $product->qty }}</td>
                                     <td>{{ $amount }}</td>

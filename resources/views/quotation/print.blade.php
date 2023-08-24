@@ -37,7 +37,7 @@
         }
 
         .brand-section {
-            background-color: #b80000;
+            background-color: #f36b2c;
             padding: 10px 40px;
         }
 
@@ -66,13 +66,13 @@
 
         .body-section {
             padding: 16px;
-            border-left: 2px solid #b80000;
-            border-right: 2px solid #b80000;
+            border-left: 2px solid #f36b2c;
+            border-right: 2px solid #f36b2c;
 
         }
 
         .body-section1 {
-            background-color: #b80000;
+            background-color: #f36b2c;
             color: white;
             border-radius: 4px;
         }
@@ -156,7 +156,7 @@
         }
 
         .sub-container {
-            background-color: #b80000;
+            background-color: #f36b2c;
             ;
             margin: 5px;
             padding-bottom: 2px;
@@ -194,7 +194,7 @@
             width: 21%;
             margin: auto;
             text-align: center;
-            background-color: #b80000;
+            background-color: #f36b2c;
             color: white;
             border-radius: 5px;
             font-size: 12px;
@@ -244,9 +244,9 @@
 
             height: 60px;
             width: 65px;
-            background-color: #b80000;
+            background-color: #f36b2c;
             color: white;
-            /* color: #b80000; */
+            /* color: #f36b2c; */
             border-radius: 50%;
             display: inline-block;
             border: 5px solid white;
@@ -265,17 +265,11 @@
                 <div class="logo" style="width: 37%;">
                     <img src="{{ asset('assets/images/app_logo.png') }}" alt="logo">
                 </div>
-                <div3 id="myDiv">
-
-                    <span class="dot">
-                        <p style="margin-top: 15px;">خوشحال خان</p>
-                    </span>
-                </div3>
                 <div class="text1">
-                    <h1 class="m-query1">Super UPS Center</h1>
-                    <h3 class="m-query2">Shop No 12, insaf Solar Market, Angle Road, opp Civic Center, Quetta.
-                        <br>Phone:&nbsp; 0300-3883054,&nbsp;0309-8105556,&nbsp;081-2827774</h3>
-
+                    <h1 class="m-query1">Insaf Electric Store & Fancy Light House</h1>
+                    <h3 class="m-query2">Suraj Gunj Bazar Quetta
+                        <br>Phone:&nbsp; 0312-8386775,&nbsp;081-2838146
+                    </h3>
                 </div>
             </div>
         </div>
@@ -331,6 +325,7 @@
                         <th class="w-5">#</th>
                         <th class="w-15">Category</th>
                         <th class="w-15">Item</th>
+                        <th class="w-15">Watt</th>
                         <th class="w-10">Price</th>
                         <th class="w-10">Quantity</th>
                         <th class="w-10">Amount</th>
@@ -352,13 +347,14 @@
                         <td>{{ $ser }}</td>
                         <td>{{ $details->product1->category->cat }}</td>
                         <td>{{ $details->product1->name }}</td>
+                        <td>{{ $details->product1->watt }}</td>
                         <td>{{ $details->price }}</td>
                         <td>{{ $details->qty }}</td>
                         <td>{{ $amount }}</td>
                     </tr>
                     @endforeach
                     <tr>
-                        <td colspan="4" class="text-right">
+                        <td colspan="5" class="text-right">
                             <strong>Total</strong>
                         </td>
                         <td>
@@ -366,7 +362,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="text-right">
+                        <td colspan="5" class="text-right">
                             <strong>Discount</strong>
                         </td>
                         <td>
@@ -374,7 +370,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="text-right">
+                        <td colspan="5" class="text-right">
                             <strong>Net Total</strong>
                         </td>
                         <td>
@@ -391,7 +387,7 @@
             <br><br>
             <br><br>
             <h4 class="">Authorize Signature ___________________</h4>
-            <p style="text-align:right;margin-right:2px;">superupscenter@gmail.com</p>
+            {{-- <p style="text-align:right;margin-right:2px;">superupscenter@gmail.com</p> --}}
             <br>
         </div>
 

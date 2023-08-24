@@ -13,6 +13,7 @@ class products extends Model
         'coy',
         'cat',
         'name',
+        'watt',
         'price'
     ]);
 

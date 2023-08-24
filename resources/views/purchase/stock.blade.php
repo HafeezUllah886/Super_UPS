@@ -21,6 +21,7 @@
                             <tr>
                                 <th class="border-top-0">{{ __('lang.Ser') }}</th>
                                 <th class="border-top-0">{{ __('lang.Product') }}</th>
+                                <th class="border-top-0">{{ __('lang.Watt') }}</th>
                                 <th class="border-top-0">{{ __('lang.Category') }}</th>
                                 <th class="border-top-0">{{ __('lang.Company') }}</th>
                                 <th class="border-top-0">{{ __('lang.AvailableStock') }}</th>
@@ -43,6 +44,7 @@
                             <tr>
                                 <td> {{ $ser }} </td>
                                 <td>{{$item['product']}}</td>
+                                <td>{{$item['watt']}}</td>
                                 <td>{{$item['cat']}}</td>
                                 <td>{{$item['coy']}}</td>
                                 <td>{{$item['balance']}}</td>
@@ -52,7 +54,7 @@
                             </tr>
                             @endforeach
                             <tr>
-                            <td colspan="6" style="text-align: right;"> <strong>Total</strong> </td>
+                            <td colspan="7" style="text-align: right;"> <strong>Total</strong> </td>
                             <td> <strong>{{ $total }}</strong> </td>
                         </tr>
                         </tbody>
