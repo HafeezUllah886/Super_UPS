@@ -134,6 +134,9 @@ return [
     'PreviousBalance' => 'پچھلا بیلنس',
     'Profit/Loss' => 'نفع نقصان',
     'Profit' => 'منافع',
+    'PasswordConfimationMsg' => 'براہ کرم آگے بڑھنے سے پہلے پاس ورڈ کی تصدیق کریں',
+    'Password' => 'پاس ورڈ',
+    'Proceed' => 'آگے بڑھو',
 
     'Quotation' => 'کوٹیشن',
     'Quantity' => 'مقدار',

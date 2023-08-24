@@ -135,6 +135,9 @@ return [
     'PreviousBalance' => 'Previous Balance',
     'Profit/Loss' => 'Profit/Loss',
     'Profit' => 'Profit',
+    'PasswordConfimationMsg' => 'Please confirm password before proceeding',
+    'Password' => 'Password',
+    'Proceed' => 'Proceed',
 
     'Quotation' => 'Quotation',
     'Quantity' => 'Quantity',
