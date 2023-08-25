@@ -281,7 +281,7 @@
                     <table style="margin-top:10px;">
                         <tr>
                             <td style="text-align: left; width:20%;">Account Title: </td>
-                            <td style="text-align: left; width:30%;">{{ $data['title'] }} - {{ $data['type'] }}</td>
+                            <td style="text-align: left; width:30%;">{{ $data['title'] }}</td>
                             <td style="text-align: left;">Date: </td>
                             <td style="text-align: left;">{{ date('d M Y') }}</td>
                         </tr>

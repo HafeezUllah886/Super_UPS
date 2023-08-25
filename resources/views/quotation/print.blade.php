@@ -356,6 +356,7 @@
                             <strong>{{ $total }}</strong>
                         </td>
                     </tr>
+                    @if ($quot->discount > 0)
                     <tr>
                         <td colspan="4" class="text-right">
                             <strong>Discount</strong>
@@ -372,6 +373,8 @@
                             <strong>{{ $total - $quot->discount }}</strong>
                         </td>
                     </tr>
+                    @endif
+                  
                 </tbody>
             </table>
             <br>

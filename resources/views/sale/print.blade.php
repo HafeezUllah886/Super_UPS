@@ -419,12 +419,14 @@
                 </tr>
                 @endif
             </table>
+            <div class="d-flex justify-content-end">
+                <br><br>
+                <h4 style="text-align:right;margin-right:2px;">Authorize Signature___________________</h4>
+                <p style="margin-right:2px;">superupscenter@gmail.com</p>
+                <br>
+            </div>
 
-
-            <br><br>
-            <h4 class="">Authorize Signature ___________________</h4>
-            <p style="text-align:right;margin-right:2px;">superupscenter@gmail.com</p>
-            <br>
+           
         </div>
 
         <div class="body-section body-section1">

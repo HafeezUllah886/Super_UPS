@@ -117,7 +117,7 @@
         , "bPaginate": true
         , "bFilter": true
         , "bInfo": true,
-
+        "order": [[0, 'desc']],
     });
 
 </script>
