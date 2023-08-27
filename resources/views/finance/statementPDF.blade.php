@@ -362,7 +362,10 @@
                                      @endforeach
 
                                  </table>
+                                 @if($data[0]->bill->discount > 0)
                                  <strong>Discount: </strong>{{$data[0]->bill->discount}}
+                                 @endif
+
                              @endif
                              @if ($item['type'] == 'Sale Return')
                                  @php
