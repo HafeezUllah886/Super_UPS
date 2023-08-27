@@ -89,6 +89,7 @@ class QuotationController extends Controller
     public function delete($ref){
         quotationDetails::where('ref', $ref)->delete();
         quotation::where('ref', $ref)->delete();
-        return back()->with('error', 'Quotation Deleted');
+        session()->forget('confirmed_password');
+        return redirect('/quotation')->with('error', "Quotation Deleted");
     }
 }

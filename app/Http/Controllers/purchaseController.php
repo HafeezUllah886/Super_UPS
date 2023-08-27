@@ -281,8 +281,9 @@ class purchaseController extends Controller
         stock::where('ref', $ref)->delete();
         purchase::where('ref', $ref)->delete();
         ledger::where('ref', $ref)->delete();
-
-        return back()->with('error', "Purchase Deleted");
+        session()->forget('confirmed_password');
+        return redirect('/purchase/history')->with('error', "Purchase Deleted");
+       
     }
 
     public function stock1()

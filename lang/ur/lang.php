@@ -134,6 +134,9 @@ return [
     'PreviousBalance' => 'پچھلا بیلنس',
     'Profit/Loss' => 'نفع نقصان',
     'Profit' => 'منافع',
+    'PasswordConfimationMsg' => 'براہ کرم آگے بڑھنے سے پہلے پاس ورڈ کی تصدیق کریں',
+    'Password' => 'پاس ورڈ',
+    'Proceed' => 'آگے بڑھو',
 
     'Quotation' => 'کوٹیشن',
     'Quantity' => 'مقدار',
@@ -202,6 +205,7 @@ return [
     'Withdraw' => 'رقم نکلوائیں',
     'WalkInCustomer' => 'واک ان کسٹمر',
     'WalkInVendor' => 'واک ان وینڈر',
+    'VendorName' => 'وینڈر کا نام',
 
     'Yes' => 'ہاں',
 ];
