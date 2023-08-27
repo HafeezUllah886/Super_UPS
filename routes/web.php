@@ -70,19 +70,19 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/deposit', [AccountController::class, "deposit"]);
     Route::post('/deposit', [AccountController::class, "storeDeposit"]);
-    
+
 
     Route::get('/withdraw', [AccountController::class, "withdraw"]);
     Route::post('/withdraw', [AccountController::class, "storeWithdraw"]);
-    
+
 
     Route::get('/expense', [AccountController::class, "expense"]);
     Route::post('/expense', [AccountController::class, "storeExpense"]);
-    
+
 
     Route::get('/transfer', [AccountController::class, "transfer"]);
     Route::post('/transfer', [AccountController::class, "storeTransfer"]);
-    
+
     Route::get('/transfer/print/{ref}', [AccountController::class, "printTransfer"]);
 
     Route::get('/vendors', [AccountController::class, "vendors"]);
@@ -105,7 +105,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/purchase/edit/delete/{id}', [purchaseController::class, "deleteEdit"]);
     Route::get('/purchase/update/edit/qty/{id}/{qty}', [purchaseController::class, "updateEditQty"]);
     Route::get('/purchase/update/edit/rate/{id}/{rate}', [purchaseController::class, "updateEditRate"]);
-    
+
 
 
     Route::get('/sale', [SaleController::class, "sale"]);
@@ -144,7 +144,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/quotation/details/delete/{id}', [QuotationController::class, "deleteDetails"]);
     Route::get('/quotation/updateDiscount/{ref}/{discount}', [QuotationController::class, "updateDiscount"]);
     Route::get('/quotation/print/{ref}', [QuotationController::class, "print"]);
-    
+
 
     Route::get('/dashboard/customer_dues', [DashboardController::class, 'customer_d']);
     Route::get('/dashboard/vendors_dues', [DashboardController::class, 'vendors_d']);
@@ -157,13 +157,13 @@ Route::middleware('auth')->group(function (){
     Route::get('/dashboard/ledgerDetails', [DashboardController::class, 'ledgerDetails']);
     Route::get('/dashboard/incomeExpenseDetails', [DashboardController::class, 'incomeExpDetails']);
 
-    Route::get('/profit', [productController::class, 'profit']);
+    Route::get('/profit/{from}/{to}', [productController::class, 'profit']);
 
     Route::get('/return', [SaleReturnController::class, 'index']);
     Route::post('/return', [SaleReturnController::class, 'search']);
     Route::get('/return/view/{id}', [SaleReturnController::class, 'view']);
     Route::post('/return/save/{bill}', [SaleReturnController::class, 'saveReturn']);
-    
+
 
 });
 

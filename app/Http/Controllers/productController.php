@@ -147,10 +147,10 @@ class productController extends Controller
         return back()->with('success', 'Product has been Restored');
     }
 
-    public function profit(){
+    public function profit($from, $to){
     // Assuming $fromDate and $toDate are the provided date range
-    $fromDate = '2023-08-1'; // Replace with the actual from date
-    $toDate = '2023-08-31';   // Replace with the actual to date
+    $fromDate = $from; // Replace with the actual from date
+    $toDate = $to;   // Replace with the actual to date
 
     $products = Products::all();
     $discounts = sale::whereBetween('date', [$fromDate, $toDate])->sum('discount');
@@ -239,7 +239,7 @@ class productController extends Controller
 
     $discounts -= $min_discount;
 
-    return view('products.profit')->with(compact('products', 'discounts', 'expense'));
+    return view('products.profit')->with(compact('products', 'discounts', 'expense', 'from', 'to'));
     }
 
 }

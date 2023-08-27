@@ -8,7 +8,21 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>{{__('lang.Profit/Loss')}}</h4>
+                <div class="col-md-6">
+                    <h4>{{__('lang.Profit/Loss')}}</h4>
+                </div>
+                <div class="col-md-6">
+                    <table>
+                        <tr>
+                            <td>From: </td>
+                            <td> <input type="date" class="form-control" value="{{ $from }}" id="from"> </td>
+                            <td> &nbsp; - &nbsp; </td>
+                            <td> To: </td>
+                            <td> <input type="date" class="form-control" value="{{ $to }}" id="to"> </td>
+                            <td> &nbsp;<button class="btn btn-info" id="btn">Filter</button> </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -102,6 +116,13 @@
     for (var i = 0, l = elems.length; i < l; i++) {
         elems[i].addEventListener('click', confirmIt, false);
     }
+
+    $("#btn").click(function (){
+        var from = $("#from").val();
+        var to = $("#to").val();
+
+        window.open("{{ url('/profit/') }}/"+from+"/"+to, '_self');
+    });
 </script>
 
 @endsection

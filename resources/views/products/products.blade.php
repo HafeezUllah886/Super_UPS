@@ -19,7 +19,12 @@
             <div class="d-flex justify-content-between">
                 <h4>{{ __('lang.Products') }}</h4>
                 <div class="d-flex justify-content-end">
-                <a href="{{ url('/profit') }}" class="btn btn-info mr-2" >{{ __('lang.Profit/Loss') }}</a>
+                    @php
+                        $currentMonth = date('Y-m');
+                        $firstDateOfMonth = date('Y-m-01', strtotime($currentMonth));
+                        $lastDateOfMonth = date('Y-m-t', strtotime($currentMonth));
+                    @endphp
+                <a href="{{ url('/profit/') }}/{{ $firstDateOfMonth }}/{{ $lastDateOfMonth }}" class="btn btn-info mr-2" >{{ __('lang.Profit/Loss') }}</a>
                 <a href="{{ url('/products/trashed') }}" class="btn btn-dark mr-2" >{{ __('lang.Trashed') }}</a>
                 <button class="btn btn-success" data-toggle="modal" data-target="#modal">{{ __('lang.CreateNew') }}</button>
                 </div>
