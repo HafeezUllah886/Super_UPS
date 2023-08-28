@@ -21,7 +21,7 @@
 </tr>
 @endforeach
 <tr>
-    <td colspan="5" style="text-align: right;"><strong>Total</strong></td>
+    <td colspan="6" style="text-align: right;"><strong>Total</strong></td>
     <td style="text-align: center;"><strong>{{ $total }}</strong></td>
     <td></td>
 </tr>
