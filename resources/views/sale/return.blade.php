@@ -54,16 +54,16 @@
                                             <tr>
                                                 <td>{{ $details->product->name }}</td>
                                                 <td>{{ $details->qty }}</td>
-                                                <td>{{ $details->price }}</td>
+                                                <td>{{ round($details->price) }}</td>
                                                 <td>{{ $amount }}</td>
                                             </tr>
-                                            @if($return->bill->discount)
-
+                                            @if($return->deduction > 0)
+                                            <tr>
+                                                <td colspan="4">{{ __('lang.Deduction') }}: <strong>{{ round($return->deduction) }}</strong></td>
+                                            </tr>
                                             @endif
                                         @endforeach
-                                        <tr>
-                                            <td colspan="4">{{ __('lang.Discount') }}: <strong>{{ $return->bill->discount }}</strong></td>
-                                        </tr>
+
                                     </tbody>
                                     </table>
                                 </td>

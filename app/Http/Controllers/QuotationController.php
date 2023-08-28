@@ -92,4 +92,24 @@ class QuotationController extends Controller
         session()->forget('confirmed_password');
         return redirect('/quotation')->with('error', "Quotation Deleted");
     }
+
+
+    public function updateQty($id, $qty)
+    {
+        $item = quotationDetails::find($id);
+        $item->qty = $qty;
+        $item->save();
+
+        return "Qty Updated";
+    }
+
+    public function updateRate($id, $rate)
+    {
+        $item = quotationDetails::find($id);
+        $item->price = $rate;
+        $item->save();
+
+        return "Rate Updated";
+    }
+
 }

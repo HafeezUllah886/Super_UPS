@@ -190,5 +190,41 @@ function deleteList(id, quot){
         }
     });
 }
+
+function qty(id){
+    var val = $("#qty"+id).val();
+    $.ajax({
+        method: "GET",
+        url: "{{url('/quotation/edit/qty/')}}/"+id+"/"+val,
+        success: function(respose){
+            get_items();
+            Snackbar.show({
+            text: "Quantity Updated",
+            duration: 3000,
+            /* actionTextColor: '#fff',
+            backgroundColor: '#e7515a' */
+            actionTextColor: '#fff',
+            backgroundColor: '#00ab55'
+            });
+        }
+    });
+}
+
+function rate(id){
+    var val = $("#rate"+id).val();
+    $.ajax({
+        method: "GET",
+        url: "{{url('/quotation/edit/rate/')}}/"+id+"/"+val,
+        success: function(respose){
+            get_items();
+            Snackbar.show({
+            text: "Rate Updated",
+            duration: 3000,
+            actionTextColor: '#fff',
+            backgroundColor: '#00ab55'
+            });
+        }
+    });
+}
 </script>
 @endsection

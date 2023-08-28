@@ -13,14 +13,14 @@
     <td>{{ $ser }}</td>
     <td>{{ $item->product1->category->cat }}</td>
     <td>{{ $item->product1->name }}</td>
-    <td>{{ $item->qty }}</td>
-    <td>{{ round($item->price,0) }}</td>
+    <td><input type="number" class="text-center" value="{{ $item->qty }}" id="qty{{ $item->id }}" onfocusout="qty({{ $item->id }})"></td>
+    <td><input type="number" class="text-center" value="{{ $item->price }}" id="rate{{ $item->id }}" onfocusout="rate({{ $item->id }})"></td>
     <td>{{ $amount }}</td>
     <td><a class="btn btn-danger" href="{{ url('/quotation/details/delete/') }}/{{ $item->id }}" >Delete</a></td>
 </tr>
 @endforeach
 <tr>
-    <td colspan="4" style="text-align: right;"><strong>Total</strong></td>
+    <td colspan="5" style="text-align: right;"><strong>Total</strong></td>
     <td style="text-align: center;"><strong>{{ $total }}</strong></td>
     <td></td>
 </tr>

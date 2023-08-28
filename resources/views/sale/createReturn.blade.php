@@ -100,7 +100,7 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="deduction">{{ __('lang.Deduction') }}</label>
-                            <input type="number" name="deduction" value="0" onchange="updateAmount()" min="0" id="deduction" class="form-control">
+                            <input type="number" name="deduction" value="{{ $bill->discount ?? "0" }}" onchange="updateAmount()" min="0" id="deduction" class="form-control">
                             @error('deduction')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -209,7 +209,7 @@
         }
         });
         $("#totalAmount").html(sum);
-        var netAmount = sum - {{$bill->discount ?? 0}};
+        var netAmount = sum;
         var deduction = $('#deduction').val();
         $("#payable").val(netAmount - deduction);
         $("#netAmount").val(netAmount - deduction);
