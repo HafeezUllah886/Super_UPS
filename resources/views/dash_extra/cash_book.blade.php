@@ -50,16 +50,17 @@
                                         @if ($trans->type == 'Sale')
                                         @php
                                             $data = \App\Models\sale::with('customer_account')->where('ref', $trans->ref)->first();
-                                            if (@$data->walking)
+
+                                            if (@$data->walking != null)
                                             {
-                                                echo $data->walking." (Walk-in)"; 
-                                                 
+                                                echo $data->walking." (Walk-in)";
+
                                             }
                                             else
                                             {
                                                 echo @$data->customer_account->title;
                                             }
-                                            
+
                                         @endphp
                                        @endif
                                     </td>
@@ -85,7 +86,7 @@
                             <th>{{ __('lang.Ser') }}</th>
                             <th>{{ __('lang.Account') }}</th>
                             <th>{{ __('lang.Desc') }}</th>
-                            <th>{{ __('lang.Customer') }}</th>
+                            <th>{{ __('lang.Factory') }}</th>
                             <th>{{ __('lang.Amount') }}</th>
                         </thead>
                         <tbody>
@@ -105,19 +106,20 @@
 
                                     <td>{!! $tran1->desc !!}</td>
                                     <td>
-                                        @if ($trans->type == 'Sale')
+                                        @if ($tran1->type == 'Purchase')
                                         @php
-                                            $data = \App\Models\sale::with('customer_account')->where('ref', $trans->ref)->first();
-                                            if (@$data->walking)
+                                            $data = \App\Models\purchase::with('vendor_account')->where('ref', $tran1->ref)->first();
+
+                                            if (@$data->walking != null)
                                             {
-                                                echo $data->walking." (Walk-in)"; 
-                                                 
+                                                echo $data->walking." (Walk-in)";
+
                                             }
                                             else
                                             {
-                                                echo @$data->customer_account->title;
+                                                echo @$data->vendor_account->title;
                                             }
-                                            
+
                                         @endphp
                                        @endif
                                     </td>
@@ -125,7 +127,7 @@
                                 </tr>
                             @endforeach
                             <tr class="th-color">
-                                <td colspan="3" class="text-right">{{ __('lang.Total') }}: &nbsp;
+                                <td colspan="4" class="text-right">{{ __('lang.Total') }}: &nbsp;
                                 </td>
                                 <td>{{ $total_db }}</td>
                             </tr>

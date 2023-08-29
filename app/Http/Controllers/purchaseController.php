@@ -305,6 +305,7 @@ class purchaseController extends Controller
             $stock_db = stock::where('product_id', $product->id)->sum('db');
             $balance = $stock_cr - $stock_db;
             $value = $balance * $product->price;
+
             $data[] = ['product' => $product->name, 'cat' => $product->category->cat, 'coy' => $product->company->name, 'balance' => $balance, 'size' => $product->size, 'value' => $value, 'price' => $product->price];
         }
 

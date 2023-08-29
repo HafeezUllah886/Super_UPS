@@ -23,7 +23,7 @@ class sale extends Model
     );
 
     public function customer_account(){
-        return $this->belongsTo(account::class, 'customer', 'id');
+        return $this->belongsTo(account::class, 'customer');
     }
 
     public function account(){

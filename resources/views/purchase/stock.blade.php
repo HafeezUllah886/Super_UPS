@@ -24,7 +24,7 @@
                                 <th class="border-top-0">{{ __('lang.Category') }}</th>
                                 <th class="border-top-0">{{ __('lang.Company') }}</th>
                                 <th class="border-top-0">{{ __('lang.AvailableStock') }}</th>
-                                <th class="border-top-0">{{ __('lang.Price') }}</th>
+                                <th class="border-top-0">{{ __('lang.SalePrice') }}</th>
                                 <th class="border-top-0">{{ __('lang.StockValue') }}</th>
 
                             </tr>
@@ -54,7 +54,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="6" style="text-align: right;"> <strong>Total</strong> </td>
+                                <td colspan="7" style="text-align: right;"> <strong>Total</strong> </td>
                                 <td style="text-align: center;"> <strong>{{ $total }}</strong> </td>
                             </tr>
                         </tfoot>
@@ -74,6 +74,10 @@
 
 </style>
 <script>
+
+    $(document).ready(function (){
+
+    });
     var elems = document.getElementsByClassName('confirmation');
     var confirmIt = function (e) {
         if (!confirm('Are you sure to delete account?')) e.preventDefault();

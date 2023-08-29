@@ -66,8 +66,8 @@
 
         .body-section {
             padding: 16px;
-            border-left: 2px solid #898811;
-            border-right: 2px solid #898811;
+          /*   border-left: 2px solid #898811;
+            border-right: 2px solid #898811; */
 
         }
 
@@ -109,9 +109,9 @@
             padding-bottom: 08px;
         }
 
-        .table-bordered {
+        /* .table-bordered {
             box-shadow: 0px 0px 5px 0.5px gray;
-        }
+        } */
 
         .table-bordered td,
         .table-bordered th {
@@ -145,7 +145,7 @@
         }
 
         .container1 {
-            border: 2px solid #898811;
+          /*   border: 2px solid #898811; */
             color: #ffffff;
             height: 90px;
             border-radius: 6px;
@@ -253,25 +253,7 @@
 <body>
 
     <div class="container">
-        <div class="container1">
-            <div class="sub-container">
-                <div class="logo" style="width: 37%;">
-                    <img src="{{ asset('assets/images/app_logo.png') }}" style="height:120px;width:120px;margin:-20px 20px;" alt="logo">
-                </div>
-                {{-- <div id="myDiv">
-                    <span class="dot">
-                        <p style="margin-top: 15px;">خوشحال خان</p>
-                    </span>
-                </div> --}}
-                <div class="text1">
-                    <h1 class="m-query1">DILSHAD SHOE COMPANY</h1>
-                    <h3 class="m-query2">Sarafa Bazar, Quetta
-                        <br>Phone:&nbsp; 0300-3901256, 081-2843907, 0310-4433787<br>0331-0222240, 0316-8199980, 0313-8372003
-                    </h3>
-                </div>
-            </div>
-        </div>
-
+        <img style="margin:0;width:100%;" src="{{ asset('assets/images/bill.png') }}" alt="">
         <div class="body-section">
             <div class="row">
                 <div class="qoute">
@@ -305,14 +287,14 @@
             <br> -->
             <table class="table-bordered">
                 <thead>
-                    <tr>
+                    <tr style="background-color: #111;color:#fff;">
                         <th class="w-5">#</th>
-                        <th class="w-15">Category</th>
+                        <th class="w-10">Qty</th>
                         <th class="w-15">Item</th>
-                        <th class="w-15">Size</th>
+                        <th class="w-10">Size</th>
                         <th class="w-10">Price</th>
-                        <th class="w-10">Quantity</th>
-                        <th class="w-10">Total</th>
+
+                        <th class="w-15">Total</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -327,11 +309,11 @@
                         @endphp
                         <tr>
                             <th scope="row">{{ $ser }}</th>
-                            <td>{{ $item->product->category->cat }}</td>
+                            <td>{{ $item->qty }}</td>
                             <td>{{ $item->product->name }}</td>
                             <td>{{ $item->product->size }}</td>
                             <td>{{ $item->price }}</td>
-                            <td>{{ $item->qty }}</td>
+
                             <td>{{ $item->price * $item->qty }}</td>
                         </tr>
                         @php
@@ -381,6 +363,7 @@
                         }
 
                         @endphp
+                        @if(@$invoice->isPaid == "Partial")
                         <td colspan="5" class="text-right">
                             <strong>Paid Amount</strong>
                         </td>
@@ -396,6 +379,8 @@
                             <h3> {{ $total - $paidAmount - $invoice->discount}}</h3>
                         </td>
                     </tr>
+                        @endif
+
                     @endif
                 </tbody>
             </table>
@@ -409,7 +394,7 @@
                     <td style="text-align: left; width:40%;"> <strong>Details:</strong> </td>
                     <td style="text-align: left">{{$invoice->desc}}</td>
                 </tr>
-                @if (@$invoice->customer_account->title)
+               {{--  @if (@$invoice->customer_account->title)
                 <tr>
                     <td style="text-align: left; width:40%;"> <strong>Previous Balance:</strong> </td>
                     <td style="text-align: left">{{$prev_balance ?? 0}}</td>
@@ -422,7 +407,7 @@
                     <td style="text-align: left; width:40%;"> <strong>Total Balance:</strong> </td>
                     <td style="text-align: left">{{ $cur_balance }}</td>
                 </tr>
-                @endif
+                @endif --}}
             </table>
 
 
@@ -432,22 +417,22 @@
             <br>
         </div>
 
-        <div class="body-section body-section1">
+        {{-- <div class="body-section body-section1">
             <p style="text-align: center;">Thank You For Your Business
             </p>
-        </div>
+        </div> --}}
     </div>
-    <div style="text-align: right">
-        <div class="mt-2" style="font-size: 10px">Powered by Diamond Software 03202565919</p>
+    <div style="text-align: right; margin-right:10px;">
+        <div class="mt-2" style="font-size: 10px; ">Powered by Diamond Software 03202565919</p>
         </div>
 </body>
 
 </html>
 <script>
-    window.print();
+  /*   window.print();
 
         setTimeout(function() {
         window.location.href = "{{ url('/sale/history')}}";
     }, 5000);
-
+ */
 </script>
