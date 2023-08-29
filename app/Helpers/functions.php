@@ -246,6 +246,10 @@ function updateSaleAmount($id){
             $trans->save();
     }
 
+    $ledger = ledger::where('ref', $bill->ref)->first();
+    $ledger->amount = $total;
+    $ledger->save();
+
 
 }
 
@@ -257,6 +261,7 @@ function todaySale(){
     foreach($sales as $item)
     {
         $total += $item->qty * $item-> price;
+        $total -= $item->bill->discount;
     }
     return $total;
 }

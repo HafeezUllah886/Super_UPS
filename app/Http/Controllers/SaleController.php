@@ -260,6 +260,7 @@ class SaleController extends Controller
                 'ref' => $bill->ref,
             ]
         );
+        
         updateSaleAmount($bill->id);
         return "Done";
     }

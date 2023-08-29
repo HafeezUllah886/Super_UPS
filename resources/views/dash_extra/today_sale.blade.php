@@ -66,7 +66,7 @@
                                         @endforeach
 
                                     </table>
-                                    <strong>{{ __('lang.Discount') }}: </strong>{{$data[0]->bill->discount ?? '0'}}
+                                    <strong>{{ __('lang.Discount') }}: </strong>{{$bill->discount ?? '0'}}
 
                                 </td>
                                 <td>@if($bill->isPaid == 'Yes') {{ "Full Payment" }} @elseif($bill->isPaid == 'No') {{ "UnPaid" }} @else {{ $bill->amount }} @endif</td>
