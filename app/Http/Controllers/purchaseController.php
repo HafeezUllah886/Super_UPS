@@ -252,7 +252,6 @@ class purchaseController extends Controller
 
     public function deleteEdit($id)
     {
-
         $item = purchase_details::find($id);
         $bill = $item->bill;
         $item->delete();

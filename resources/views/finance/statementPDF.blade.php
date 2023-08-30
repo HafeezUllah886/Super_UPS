@@ -92,6 +92,7 @@
             background-color: #fff;
             width: 100%;
             border-collapse: collapse;
+            font-size: 13px;
         }
 
         table thead tr {
