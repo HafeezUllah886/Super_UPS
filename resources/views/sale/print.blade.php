@@ -290,6 +290,7 @@
                     <tr style="background-color: #111;color:#fff;">
                         <th class="w-5">#</th>
                         <th class="w-10">Qty</th>
+                        <th class="w-15">Category</th>
                         <th class="w-15">Item</th>
                         <th class="w-10">Size</th>
                         <th class="w-10">Price</th>
@@ -310,6 +311,7 @@
                         <tr>
                             <th scope="row">{{ $ser }}</th>
                             <td>{{ $item->qty }}</td>
+                            <td>{{ $item->product->category->cat }}</td>
                             <td>{{ $item->product->name }}</td>
                             <td>{{ $item->product->size }}</td>
                             <td>{{ $item->price }}</td>
@@ -429,10 +431,10 @@
 
 </html>
 <script>
-  /*   window.print();
+    window.print();
 
         setTimeout(function() {
         window.location.href = "{{ url('/sale/history')}}";
     }, 5000);
- */
+
 </script>
