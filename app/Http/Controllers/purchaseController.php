@@ -228,7 +228,7 @@ class purchaseController extends Controller
             return "Existing";
         }
         $bill = purchase::where('id', $id)->first();
-        purchase_details::create(
+        $purchase = purchase_details::create(
             [
                 'bill_id' => $bill->id,
                 'product_id' => $req->product,
@@ -237,6 +237,14 @@ class purchaseController extends Controller
                 'ref' => $bill->ref,
             ]
         );
+        $desc = "<strong>Purchased</strong><br/> Bill No. " . $purchase->id;
+        stock::create([
+            'product_id' => $purchase->product_id,
+            'date' => $bill->date,
+            'desc' => $desc,
+            'cr' => $req->qty,
+            'ref' => $bill->ref
+        ]);
         updatePurchaseAmount($bill->id);
         return "Done";
     }
@@ -245,9 +253,10 @@ class purchaseController extends Controller
     {
 
         $item = purchase_details::find($id);
-        $bill = $item->bill->id;
+        $bill = $item->bill;
         $item->delete();
-        updatePurchaseAmount($bill);
+        stock::where('ref', $bill->ref)->delete();
+        updatePurchaseAmount($bill->id);
         return "Deleted";
     }
 
@@ -264,7 +273,6 @@ class purchaseController extends Controller
         updatePurchaseAmount($item->bill->id);
         return "Qty Updated";
     }
-
     public function updateEditRate($id, $rate)
     {
         $item = purchase_details::find($id);
@@ -283,7 +291,6 @@ class purchaseController extends Controller
         ledger::where('ref', $ref)->delete();
         session()->forget('confirmed_password');
         return redirect('/purchase/history')->with('error', "Purchase Deleted");
-       
     }
 
     public function stock1()
@@ -300,7 +307,7 @@ class purchaseController extends Controller
             $value = $balance * $product->price;
             $data[] = ['product' => $product->name, 'cat' => $product->category->cat, 'coy' => $product->company->name, 'balance' => $balance, 'value' => $value, 'price' => $product->price];
         }
-        
+
         return view('purchase.stock')->with(compact('data'));
     }
 }
