@@ -51,7 +51,7 @@ class AccountController extends Controller
         if($req->amount != 0) {
             createTransaction($account->id, now(), "$req->amount", "0", "Initial Amount", "Initial", $ref);
             addLedger(now(), "Initial Amount", $req->title, "Account Created", $req->amount, $ref);
-            
+
         }
 
 
@@ -106,7 +106,9 @@ class AccountController extends Controller
         $from = Carbon::createFromFormat('d-m-Y', $from)->format('Y-m-d');
         $to = Carbon::createFromFormat('d-m-Y', $to)->format('Y-m-d');
         $account = Account::with(['transactions' => function ($query) use ($from, $to) {
-            $query->whereBetween('date', [$from, $to])->orderBy('date', 'asc');
+            $query->whereDate('date', '>=', $from);
+            $query->whereDate('date', '<=', $to);
+            $query->orderBy('date', 'asc');
         }])->find($id);
 
         $prev_cr = transactions::where('account_id', $id)->whereDate('date', '<', $from)->sum('cr');
@@ -126,7 +128,7 @@ class AccountController extends Controller
     {
         $from = Carbon::createFromFormat('d-m-Y', $from)->format('Y-m-d');
         $to = Carbon::createFromFormat('d-m-Y', $to)->format('Y-m-d');
-        $items = transactions::where('account_id', $id)->where('date', '>=', $from)->where('date', '<=', $to)->orderBy('date', 'asc')->get();
+        $items = transactions::where('account_id', $id)->whereDate('date', '>=', $from)->whereDate('date', '<=', $to)->orderBy('date', 'asc')->get();
         $prev = transactions::where('account_id', $id)->where('date', '<', $from)->get();
 
         $p_balance = 0;

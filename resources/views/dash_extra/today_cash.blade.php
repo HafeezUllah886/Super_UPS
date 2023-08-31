@@ -17,7 +17,7 @@
         <div class="card bg-white m-b-30">
             <table class="table" id="datatable1">
                 <thead class="th-color">
-                    <th>{{ __('lang.Ser') }}</th>
+                    <th>{{ __('lang.Ref') }}</th>
                     <th>{{ __('lang.Date') }}</th>
                     <th>{{ __('lang.Account') }}</th>
                     <th>{{ __('lang.Desc') }}</th>
@@ -32,10 +32,11 @@
                     @endphp
                     @foreach ($transactions as $trans)
                     @php
-                        $bal += $trans->cr - $trans->db;
+                        $bal += $trans->cr;
+                        $bal -= $trans->db;
                     @endphp
                         <tr>
-                            <td>{{ $trans->id }}</td>
+                            <td>{{ $trans->ref }}</td>
                             <td>{{ $trans->date }}</td>
                             <td>{{ $trans->account->title }}</td>
 
@@ -115,9 +116,9 @@
                                 </table>
                                 @endif
                             </td>
-                            <td>{{ $trans->cr }}</td>
-                            <td>{{ $trans->db }}</td>
-                            <td>{{ $bal }}</td>
+                            <td>{{ round($trans->cr) }}</td>
+                            <td>{{ round($trans->db) }}</td>
+                            <td>{{ round($bal) }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -139,12 +140,12 @@
 
     });
     $('#datatable1').DataTable({
-        "bSort": true,
+        "bSort": false,
         "bLengthChange": true,
-        "bPaginate": true,
+        "bPaginate": false,
         "bFilter": true,
         "bInfo": true,
-        "order": [[0, 'desc']],
+        /* "order": [[0, 'asc']], */
     });
 
 </script>

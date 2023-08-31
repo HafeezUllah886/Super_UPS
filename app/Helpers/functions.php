@@ -99,17 +99,17 @@ function totalCash(){
 }
 
 function todayCash(){
-    $accounts = account::where('Category', 'Cash')->get();
-    $cr = 0;
-   $db = 0;
-   $balance = 0;
-   $Date = Carbon::now()->format('Y-m-d');
-   foreach ($accounts as $account){
-        $cr = transactions::where('account_id', $account->id)->whereDate('date', $Date)->sum('cr');
-        $db = transactions::where('account_id', $account->id)->whereDate('date', $Date)->sum('db');
-        $balance += $cr - $db;
-   }
+    $balance = 0;
+    $date = date('Y-m-d');
+        $transactions = transactions::whereDate('date', $date)->whereHas('account', function ($query) {
+            $query->where('Category', 'Cash');
+        })->get();
 
+    foreach($transactions as $transaction)
+    {
+        $balance += $transaction->cr;
+        $balance -= $transaction->db;
+    }
    return $balance;
 
 }

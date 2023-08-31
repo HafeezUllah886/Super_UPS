@@ -81,7 +81,8 @@ class dashboardController extends Controller
         return view('dash_extra.total_cash')->with(compact('transactions'));
     }
     public function today_cash(){
-        $transactions = transactions::whereDate('date', today())->whereHas('account', function ($query) {
+        $date = date('Y-m-d');
+        $transactions = transactions::whereDate('date', $date)->whereHas('account', function ($query) {
             $query->where('Category', 'Cash');
         })->get();
         return view('dash_extra.today_cash')->with(compact('transactions'));
