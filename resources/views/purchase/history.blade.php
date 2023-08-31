@@ -24,6 +24,7 @@
                                 <th class="border-top-0">{{ __('lang.Date') }}</th>
                                 <th class="border-top-0">{{ __('lang.Vendor') }}</th>
 
+                                <th class="border-top-0">{{ __('lang.Desc') }}</th>
                                 <th class="border-top-0">{{ __('lang.Details') }}</th>
                                 <th class="border-top-0">{{ __('lang.Amount') }}</th>
                                 <th class="border-top-0">{{ __('lang.AmountPaid') }}</th>
@@ -45,7 +46,7 @@
                                 {{$bill->walking}} (Walk In)
 
                                 @endif</td>
-
+                                    <td>{!! $bill->desc !!}</td>
                                 <td>
                                     <table class="table">
                                         <th>{{ __('lang.Product') }}</th>
