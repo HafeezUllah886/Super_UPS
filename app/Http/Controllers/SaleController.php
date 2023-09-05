@@ -251,6 +251,7 @@ class SaleController extends Controller
             return "Existing";
         }
         $bill = sale::where('id', $id)->first();
+        $date = $bill->date;
         sale_details::create(
             [
                 'bill_id' => $bill->id,
@@ -258,6 +259,7 @@ class SaleController extends Controller
                 'qty' => $req->qty,
                 'price' => $req->price,
                 'ref' => $bill->ref,
+                'date' => $date,
             ]
         );
         
@@ -267,21 +269,29 @@ class SaleController extends Controller
 
 
     public function updateEditQty($id, $qty){
+        
         $item = sale_details::find($id);
+        $date = $item->bill->date;
         $item->qty = $qty;
+        $item->date = $date;
         $item->save();
+        
 
         $stock = stock::where('product_id', $item->product_id)->where('ref', $item->ref)->first();
+        
         $stock->db = $qty;
+        $stock->date = $date;
         $stock->save();
-
+       
         updateSaleAmount($item->bill->id);
         return "Quantity Updated";
     }
 
     public function updateEditDiscount($id, $discount){
         $item = sale::find($id);
+        $date = $item->date;
         $item->discount = $discount;
+        $item->date = $date;
         $item->save();
 
         updateSaleAmount($id);
@@ -290,7 +300,9 @@ class SaleController extends Controller
 
     public function updateEditPrice($id, $price){
         $item = sale_details::find($id);
+        $date = $item->bill->date;
         $item->price = $price;
+        $item->date = $date;
         $item->save();
         updateSaleAmount($item->bill->id);
         return "Price Updated";
