@@ -14,8 +14,7 @@
     </div>
     <div class="col-md-12">
         <div class="card bg-white m-b-30">
-            <div class="card-body table-responsive new-user">
-                <div class="table-responsive">
+            <div class="card-body new-user">
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable">
                         <thead class="th-color">
                             <tr>
@@ -26,7 +25,6 @@
                                 <th class="border-top-0">{{ __('lang.AvailableStock') }}</th>
                                 <th class="border-top-0">{{ __('lang.Price') }}</th>
                                 <th class="border-top-0">{{ __('lang.StockValue') }}</th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -48,17 +46,17 @@
                                 <td>{{$item['balance']}}</td>
                                 <td>{{$item['price']}}</td>
                                 <td>{{$item['value']}}</td>
-
                             </tr>
                             @endforeach
-                            <tr>
-                            <td colspan="6" style="text-align: right;"> <strong>Total</strong> </td>
-                            <td> <strong>{{ $total }}</strong> </td>
-                        </tr>
-                        </tbody>
-                    </table>
 
-                </div>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6" style="text-align: right;"> <strong>Total</strong> </td>
+                                <td style="text-align: center;"> <strong>{{ $total }}</strong> </td>
+                            </tr>
+                        </tfoot>
+                    </table>
             </div>
         </div>
     </div>

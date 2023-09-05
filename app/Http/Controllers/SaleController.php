@@ -262,47 +262,37 @@ class SaleController extends Controller
                 'date' => $date,
             ]
         );
-        
+
         updateSaleAmount($bill->id);
         return "Done";
     }
 
 
     public function updateEditQty($id, $qty){
-        
+
         $item = sale_details::find($id);
-        $date = $item->bill->date;
         $item->qty = $qty;
-        $item->date = $date;
         $item->save();
-        
 
         $stock = stock::where('product_id', $item->product_id)->where('ref', $item->ref)->first();
-        
         $stock->db = $qty;
-        $stock->date = $date;
         $stock->save();
-       
+
         updateSaleAmount($item->bill->id);
         return "Quantity Updated";
     }
 
     public function updateEditDiscount($id, $discount){
         $item = sale::find($id);
-        $date = $item->date;
         $item->discount = $discount;
-        $item->date = $date;
         $item->save();
-
         updateSaleAmount($id);
         return "Discount Updated";
     }
 
     public function updateEditPrice($id, $price){
         $item = sale_details::find($id);
-        $date = $item->bill->date;
         $item->price = $price;
-        $item->date = $date;
         $item->save();
         updateSaleAmount($item->bill->id);
         return "Price Updated";
@@ -310,7 +300,6 @@ class SaleController extends Controller
 
     public function deleteEdit($id)
     {
-
         $item = sale_details::find($id);
         $bill = $item->bill->id;
         $item->delete();

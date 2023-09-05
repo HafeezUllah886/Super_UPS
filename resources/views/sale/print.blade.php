@@ -149,10 +149,6 @@
             color: #ffffff;
             height: 90px;
             border-radius: 6px;
-
-
-
-
         }
 
         .sub-container {
@@ -236,12 +232,9 @@
             width: 128px;
             font-size: 18px;
             margin-top: 19px;
-
-
         }
 
         .dot {
-
             height: 60px;
             width: 65px;
             background-color: #b80000;
@@ -278,21 +271,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- <div class="brand-section">
-            <div class="row">
-                <div class="col-6">
-                    <h1 class="text-white">FABCART</h1>
-                </div>
-                <div class="col-6">
-                    <div class="company-details">
-                        <p class="text-white">assdad asd  asda asdad a sd</p>
-                        <p class="text-white">assdad asd asd</p>
-                        <p class="text-white">+91 888555XXXX</p>
-                    </div>
-                </div>
-            </div>
-        </div> -->
 
         <div class="body-section">
             <div class="row">
