@@ -59,7 +59,8 @@ class AccountController extends Controller
     }
 
     public function editAccount(request $req, $type){
-        $check = Account::where('id' , '!=', $req->id)->where('title', $req->title)->count();
+
+        $check = Account::where('id', '!=', $req->id)->where('title', $req->title)->count();
         if($check > 0){
             return back()->with('error', 'Already exists');
         }
@@ -67,6 +68,7 @@ class AccountController extends Controller
             $account = account::where('id', $req->id)->update(
                 [
                     'title' => $req->title,
+                    'Category' => $req->cat,
                 ]
             );
         }

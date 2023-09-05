@@ -54,7 +54,7 @@
                                 <td>{{ $account->Category }}</td>
                                 <td> {{ getAccountBalance($account->id) }}</td>
                                 <td class="text-left">
-                                    <button onclick='edit_cat({{ $account->id }}, "{{ $account->title }}")' class="btn btn-primary">{{ __('lang.Edit') }}</button>
+                                    <button onclick='edit_cat({{ $account->id }}, "{{ $account->title }}", "{{ $account->Category }}")' class="btn btn-primary">{{ __('lang.Edit') }}</button>
                                     <a href="{{ url('accounts/statement/') }}/{{ $account->id }}" class="btn btn-info">{{ __('lang.ViewStatement') }}</button>
                                     {{-- @if(getAccountBalance($account->id) == 0)
                                     <a href="{{ url('/account/delete/') }}/{{ $account->id }}" class="btn btn-danger confirmation">Delete</a>
@@ -126,6 +126,7 @@
                 <div class="modal-body">
                     <form action="{{ url('/account/edit/Business') }}" method="post">
                         @csrf
+
                     <div class="form-group">
                         <label for="edit_title">{{ __('lang.Title') }}</label>
                         <input type="text" required id="edit_title"  name="title" class="form-control">
@@ -184,13 +185,14 @@
         elems[i].addEventListener('click', confirmIt, false);
     }
 
-    /* function save_edit(){
+   /*  function save_edit(){
         var id = $('#edit_id').val();
+        var title = $('#edit_title').val();
         var cat = $('#edit_cat').val();
 
         $.ajax({
             'method': 'get',
-            'url': '{{ url("/category/edit/") }}/'+id+'/'+cat,
+            'url': '{{ url("/category/edit/") }}/'+id+'/'+title+'/'+cat,
             'success' : function(data){
 
             }
