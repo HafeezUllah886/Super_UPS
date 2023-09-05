@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use PhpOption\None;
 
 return new class extends Migration
 {
@@ -14,7 +15,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('account_id');
-            $table->timestamp('date');
+            $table->timestamp('date', $precision = 0);
             $table->unsignedDecimal('db', 10,2)->nullable();
             $table->unsignedDecimal('cr', 10,2)->nullable();
             $table->text('desc');

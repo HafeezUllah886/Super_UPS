@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('customer')->nullable();
             $table->string('walking')->nullable();
             $table->unsignedBigInteger('paidIn')->nullable();
-            $table->timestamp('date');
+            $table->timestamp('date', $precision = 0);
             $table->text('desc')->nullable();
             $table->string('isPaid');
             $table->unsignedBigInteger('amount')->nullable();

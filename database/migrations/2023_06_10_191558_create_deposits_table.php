@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('deposits', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('account_id');
-            $table->timestamp('date');
+            $table->timestamp('date', $precision = 0);
             $table->text('desc')->nullable();
             $table->unsignedDecimal('amount', 10, 2);
             $table->unsignedBigInteger('ref');

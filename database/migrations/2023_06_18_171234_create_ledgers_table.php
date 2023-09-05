@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ledgers', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('date');
+            $table->timestamp('date', $precision = 0);
             $table->string('head');
             $table->string('type');
             $table->string('details');
