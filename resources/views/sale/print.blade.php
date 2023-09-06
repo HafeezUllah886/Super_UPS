@@ -324,7 +324,7 @@
                     @endforeach
 
                     <tr>
-                        <td colspan="5" class="text-right">
+                        <td colspan="6" class="text-right">
                             <strong>Total</strong>
                         </td>
                         <td>
@@ -333,7 +333,7 @@
                     </tr>
                     @if($invoice->discount > 0)
                     <tr>
-                        <td colspan="5" class="text-right">
+                        <td colspan="6" class="text-right">
                             <strong>Discount</strong>
                         </td>
                         <td>
@@ -341,7 +341,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="5" class="text-right">
+                        <td colspan="6" class="text-right">
                             <strong>Net Total</strong>
                         </td>
                         <td>
@@ -366,7 +366,7 @@
 
                         @endphp
                         @if(@$invoice->isPaid == "Partial")
-                        <td colspan="5" class="text-right">
+                        <td colspan="6" class="text-right">
                             <strong>Paid Amount</strong>
                         </td>
                         <td>
@@ -374,7 +374,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="5" class="text-right">
+                        <td colspan="6" class="text-right">
                             <strong>Remaining</strong>
                         </td>
                         <td>
