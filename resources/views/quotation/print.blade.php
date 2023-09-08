@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super UPS CENTER</title>
+    <title>POS</title>
     <style>
 
 
@@ -37,7 +37,7 @@
         }
 
         .brand-section {
-            background-color: #b80000;
+            background-color: #025771;
             padding: 10px 40px;
         }
 
@@ -66,13 +66,13 @@
 
         .body-section {
             padding: 16px;
-            border-left: 2px solid #b80000;
-            border-right: 2px solid #b80000;
+            border-left: 2px solid #025771;
+            border-right: 2px solid #025771;
 
         }
 
         .body-section1 {
-            background-color: #b80000;
+            background-color: #025771;
             color: white;
             border-radius: 4px;
         }
@@ -145,7 +145,7 @@
         }
 
         .container1 {
-            border: 2px solid rgb(184, 0, 0);
+            border: 2px solid #025771;
             color: #ffffff;
             height: 90px;
             border-radius: 6px;
@@ -156,7 +156,7 @@
         }
 
         .sub-container {
-            background-color: #b80000;
+            background-color: #025771;
             ;
             margin: 5px;
             padding-bottom: 2px;
@@ -194,7 +194,7 @@
             width: 21%;
             margin: auto;
             text-align: center;
-            background-color: #b80000;
+            background-color: #025771;
             color: white;
             border-radius: 5px;
             font-size: 12px;
@@ -244,9 +244,9 @@
 
             height: 60px;
             width: 65px;
-            background-color: #b80000;
+            background-color: #025771;
             color: white;
-            /* color: #b80000; */
+            /* color: #025771; */
             border-radius: 50%;
             display: inline-block;
             border: 5px solid white;
@@ -265,17 +265,12 @@
                 <div class="logo" style="width: 37%;">
                     <img src="{{ asset('assets/images/app_logo.png') }}" alt="logo">
                 </div>
-                <div3 id="myDiv">
 
-                    <span class="dot">
-                        <p style="margin-top: 15px;">خوشحال خان</p>
-                    </span>
-                </div3>
                 <div class="text1">
-                    <h1 class="m-query1">Super UPS Center</h1>
-                    <h3 class="m-query2">Shop No 12, insaf Solar Market, Angle Road, opp Civic Center, Quetta.
-                        <br>Phone:&nbsp; 0300-3883054,&nbsp;0309-8105556,&nbsp;081-2827774</h3>
-
+                    <h1 class="m-query1">Abu Zahir Zafar Machinery</h1>
+                    <h3 class="m-query2">Shop # 24, Insaf Solar Market, Angle Road, Oppo Civic Center, Quetta
+                        <br>Phone:&nbsp; 0302-3824634,&nbsp;0318-5000145
+                    </h3>
                 </div>
             </div>
         </div>
@@ -391,7 +386,7 @@
             <br><br>
             <br><br>
             <h4 class="">Authorize Signature ___________________</h4>
-            <p style="text-align:right;margin-right:2px;">superupscenter@gmail.com</p>
+           {{--  <p style="text-align:right;margin-right:2px;">superupscenter@gmail.com</p> --}}
             <br>
         </div>
 
