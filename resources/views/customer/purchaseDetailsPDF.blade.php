@@ -146,7 +146,7 @@
         }
 
         .container1 {
-            border: 2px solid rgb(184, 0, 0);
+            border: 2px solid #025771;
             color: #ffffff;
             height: 90px;
             border-radius: 6px;
