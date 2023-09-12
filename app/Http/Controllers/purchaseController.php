@@ -11,6 +11,7 @@ use App\Models\purchase_draft;
 use App\Models\stock;
 use App\Models\transactions;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Foreach_;
 
 class purchaseController extends Controller
 {
@@ -305,9 +306,22 @@ class purchaseController extends Controller
             $stock_db = stock::where('product_id', $product->id)->sum('db');
             $balance = $stock_cr - $stock_db;
             $value = $balance * $product->price;
-            $data[] = ['product' => $product->name, 'cat' => $product->category->cat, 'coy' => $product->company->name, 'balance' => $balance, 'value' => $value, 'price' => $product->price];
+            $data[] = ['id' => $product->id,'product' => $product->name, 'cat' => $product->category->cat, 'coy' => $product->company->name, 'balance' => $balance, 'value' => $value, 'price' => $product->price];
         }
 
         return view('purchase.stock')->with(compact('data'));
+    }
+
+    public function stockDetails($id, $from, $to){
+        $stocks = stock::with('product')->where('product_id', $id)->whereDate('date','>=', $from)->whereDate('date','<=', $to)->get();
+        $prev_bal = 0;
+        $cur_bal = 0;
+        $cr = stock::where('product_id', $id)->whereDate('date','<=', $from)->sum('cr');
+        $db = stock::where('product_id', $id)->whereDate('date','<=', $from)->sum('db');
+        $prev_bal = $cr - $db;
+        $cr = stock::where('product_id', $id)->sum('cr');
+        $db = stock::where('product_id', $id)->sum('db');
+        $cur_bal = $cr - $db;
+        return view('purchase.stockDetails', compact('stocks', 'cur_bal', 'prev_bal', 'from', 'to'));
     }
 }

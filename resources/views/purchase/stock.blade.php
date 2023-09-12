@@ -25,6 +25,7 @@
                                 <th class="border-top-0">{{ __('lang.AvailableStock') }}</th>
                                 <th class="border-top-0">{{ __('lang.Price') }}</th>
                                 <th class="border-top-0">{{ __('lang.StockValue') }}</th>
+                                <th class="border-top-0">{{ __('lang.Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,6 +47,7 @@
                                 <td>{{$item['balance']}}</td>
                                 <td>{{$item['price']}}</td>
                                 <td>{{$item['value']}}</td>
+                                <td><a href="{{ url('/stock/details/') }}/{{ $item['id'] }}/{{ date("Y-m-01") }}/{{ date("Y-m-t") }}" class="btn btn-info">Details</a></td>
                             </tr>
                             @endforeach
 

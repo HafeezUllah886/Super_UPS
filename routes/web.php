@@ -129,6 +129,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/sale/update/discount/{id}/{discount}', [saleController::class, "updateEditDiscount"]);
 
     Route::get('/stock',[purchaseController::class, "stock1"]);
+    Route::get('/stock/details/{id}/{from}/{to}',[purchaseController::class, "stockDetails"]);
 
     Route::get('/settings',[dashboardController::class, "settings"]);
     Route::post('/settings/language/update',[dashboardController::class, "changeLanguage"]);
