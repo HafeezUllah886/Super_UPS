@@ -20,13 +20,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="from">{{ __('lang.FromDate') }}</label>
-                            <input type="date" name="from" id="from" value="{{ $from }}" class="form-control">
+                            <input type="date" name="from" id="from" value="{{ $from }}" onchange="abc()" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="to">{{ __('lang.ToDate') }}</label>
-                            <input type="date" name="to" id="to" value="{{ $to }}" class="form-control">
+                            <input type="date" name="to" id="to" value="{{ $to }}" onchange="abc()" class="form-control">
                         </div>
                     </div>
 
@@ -120,6 +120,12 @@
 
     });
 
+    function abc(){
+        var from = $('#from').val();
+        var to = $('#to').val();
+
+    window.open("{{ url('/stock/details/') }}/"+{{ $stocks[0]->product_id }}+"/"+from+"/"+to, '_self');
+    }
 
 
 </script>
