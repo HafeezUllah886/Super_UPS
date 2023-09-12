@@ -289,9 +289,9 @@
                 <thead>
                     <tr style="background-color: #111;color:#fff;">
                         <th class="w-5">#</th>
-                        <th class="w-15">Category</th>
                         <th class="w-10">Qty</th>
                         <th class="w-15">Item</th>
+                        <th class="w-15">Category</th>
                         <th class="w-10">Size</th>
                         <th class="w-10">Price</th>
 
@@ -315,7 +315,6 @@
                             <td>{{ $item->product->category->cat }}</td>
                             <td>{{ $item->product->size }}</td>
                             <td>{{ $item->price }}</td>
-
                             <td>{{ $item->price * $item->qty }}</td>
                         </tr>
                         @php
