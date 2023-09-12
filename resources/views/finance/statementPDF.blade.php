@@ -312,7 +312,7 @@
         <div class="body-section">
             <!-- <h3 class="heading">Ordered Items</h3>
             <br> -->
-            <table class="table-bordered">
+            <table class="table-bordered" id="myTable">
                 <thead>
                     <tr>
                         <th>Ref</th>
@@ -363,10 +363,9 @@
                                      @endforeach
 
                                  </table>
-                                 @if($data[0]->bill->discount > 0)
-                                 <strong>Discount: </strong>{{$data[0]->bill->discount}}
+                                 @if(@$data[0]->bill->discount)
+                                 <strong>Discount: </strong>{{$data[0]->bill->discount ?? '0'}}
                                  @endif
-
                              @endif
                              @if ($item['type'] == 'Sale Return')
                                  @php
@@ -390,7 +389,9 @@
                                          </tr>
                                      @endforeach
                                  </table>
-                                 <strong>Diduction: </strong>{{$data[0]->returnBill->deduction}}
+                                 @if(@$data[0]->returnBill->deduction)
+                            <strong>Deduction: </strong>{{$data[0]->returnBill->deduction}}
+                        @endif
                              @endif
                              @if ($item['type'] == 'Purchase')
                              @php
@@ -435,5 +436,6 @@
     </div>
 
 </body>
+
 
 </html>
