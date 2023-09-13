@@ -147,7 +147,7 @@
         .container1 {
             border: 2px solid #025771;
             color: #ffffff;
-            height: 90px;
+            height: 120px;
             border-radius: 6px;
         }
 
@@ -157,7 +157,7 @@
             margin: 5px;
             padding-bottom: 2px;
             display: flex;
-            height: 78px;
+            height: 108px;
             border-radius: 6px;
 
 
@@ -168,7 +168,7 @@
         }
 
         .m-query2 {
-            font-size: 11px;
+            font-size: 18px;
         }
 
         img {
@@ -265,7 +265,8 @@
                 </div> --}}
                 <div class="text1">
                     <h1 class="m-query1">Abu Zahir Zafar Machinery</h1>
-                    <h3 class="m-query2">Shop # 24, Insaf Solar Market, Angle Road, Oppo Civic Center, Quetta
+                    <h1 class="m-query1">ابوظاھر ظفر مشینری</h1>
+                    <h3 class="m-query2">دکان نمبر 24 انصاف مارکیٹ ایئگل روڈ کوئٹہ
                         <br>Phone:&nbsp; 0302-3824634,&nbsp;0318-5000145
                     </h3>
                 </div>
@@ -398,34 +399,44 @@
                 </tbody>
             </table>
             <br>
-            <table style="width:500px;">
-                <tr>
-                    <td style="text-align: left; width:40%;"> <strong>Payment type:</strong> </td>
-                    <td style="text-align: left">{{$invoice->account->title ?? "Unpaid"}}</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left; width:40%;"> <strong>Details:</strong> </td>
-                    <td style="text-align: left">{{$invoice->desc}}</td>
-                </tr>
-                @if (@$invoice->customer_account->title)
-                <tr>
-                    <td style="text-align: left; width:40%;"> <strong>Previous Balance:</strong> </td>
-                    <td style="text-align: left">{{$prev_balance ?? 0}}</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left; width:40%;"> <strong>Current Balance:</strong> </td>
-                    <td style="text-align: left">{{ $total - $paidAmount - $invoice->discount }}</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left; width:40%;"> <strong>Total Balance:</strong> </td>
-                    <td style="text-align: left">{{ $cur_balance }}</td>
-                </tr>
-                @endif
-            </table>
-
+            <div class="row">
+                <div class="col-6">
+                    <table style="width:500px;">
+                        <tr>
+                            <td style="text-align: left; width:40%;"> <strong>Payment type:</strong> </td>
+                            <td style="text-align: left">{{$invoice->account->title ?? "Unpaid"}}</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left; width:40%;"> <strong>Details:</strong> </td>
+                            <td style="text-align: left">{{$invoice->desc}}</td>
+                        </tr>
+                        @if (@$invoice->customer_account->title)
+                        <tr>
+                            <td style="text-align: left; width:40%;"> <strong>Previous Balance:</strong> </td>
+                            <td style="text-align: left">{{$prev_balance ?? 0}}</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left; width:40%;"> <strong>Current Balance:</strong> </td>
+                            <td style="text-align: left">{{ $total - $paidAmount - $invoice->discount }}</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left; width:40%;"> <strong>Total Balance:</strong> </td>
+                            <td style="text-align: left">{{ $cur_balance }}</td>
+                        </tr>
+                        @endif
+                    </table>
+                </div>
+               <div class="col-6" style="margin-top:100px;">
+                <img src="{{asset('assets/images/stamp.jpeg')}}" style="width:200px;margin-left:100px;" alt="">
+                {{-- <h4 class="">Authorize Signature ___________________</h4> --}}
+               </div>
+                
+              
+            </div>
+           
 
             <br><br>
-            <h4 class="">Authorize Signature ___________________</h4>
+            
            {{--  <p style="text-align:right;margin-right:2px;">superupscenter@gmail.com</p> --}}
             <br>
         </div>
