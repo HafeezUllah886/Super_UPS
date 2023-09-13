@@ -81,7 +81,9 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="rate">{{ __('lang.PurchaseRate') }}</label>
-                            <input type="number" required name="rate" id="rate" class="form-control">
+                            <input type="number" required name="doller" oninput="conversion(this.value)" id="doller" class="form-control">
+                            <input type="number" required readonly name="rate" id="rate" class="form-control">
+                            <input type="hidden" name="d-rate" id="d-rate" value="{{auth()->user()->doller ?? 300}}">
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -225,7 +227,11 @@
          $('#walkIn_box').css("display", "none");
         get_items();
     });
-
+function conversion(value){
+    var dRate = $("#d-rate").val();
+    var afterRate = value * dRate;
+    $("#rate").val(afterRate);
+}
 $('#pro_form').submit(function(e){
     e.preventDefault();
     var data = $('#pro_form').serialize();

@@ -20,6 +20,7 @@
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <h4>{{__('lang.Settings')}}</h4>
+               
             </div>
         </div>
     </div>
@@ -93,7 +94,7 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header">
-                        <h5>{{__('lang.LanguageSettings')}}</h5>
+                        <h5>General Settings</h5>
 
                     </div>
                     <div class="card-body">
@@ -106,6 +107,10 @@
                                     <option value="ur" {{ session()->get('locale') == 'ur' ? 'selected' : ''}}>اردو</option>
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label for="userName">Today's Doller Rate</label>
+                                <input type="number" class="form-control" name="doller" id="doller" value="{{auth()->user()->doller}}">
+                            </div>
 
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">{{__('lang.Update')}}</button>
@@ -114,6 +119,7 @@
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </div>

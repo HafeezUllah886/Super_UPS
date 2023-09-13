@@ -22,8 +22,7 @@ class AuthController extends Controller
         );
         if(Auth()->attempt($req->only('email','password'))){
             $req->session()->regenerate();
-            
-    
+        
             return redirect()->intended('/dashboard');
         }
         return "Wrong username or password";

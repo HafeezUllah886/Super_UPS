@@ -62,7 +62,8 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="rate">{{ __('lang.PurchasePrice') }}</label>
+                            <label for="rate">{{ __('lang.PurchasePrice') }} (In Dollers)</label>
+                            <input type="number" required name="rate" id="rate" class="form-control">
                             <input type="number" required name="rate" id="rate" class="form-control">
                         </div>
                     </div>

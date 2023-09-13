@@ -123,9 +123,10 @@ class dashboardController extends Controller
         Session::put('locale',$req->lang);
         $user = User::where('id',auth()->user()->id)->first();
         $user->lang = $req->lang;
+        $user->doller = $req->doller;
         $user->save();
 
-        return redirect()->back()->with('msg', 'Language Changed');
+        return redirect()->back()->with('msg', 'Changed');
     }
     public function profileUpdate(request $req){
         $req->validate(
