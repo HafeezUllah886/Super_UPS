@@ -236,6 +236,7 @@ class purchaseController extends Controller
                 'qty' => $req->qty,
                 'rate' => $req->rate,
                 'ref' => $bill->ref,
+                'date' => $bill->date,
             ]
         );
         $desc = "<strong>Purchased</strong><br/> Bill No. " . $purchase->id;
