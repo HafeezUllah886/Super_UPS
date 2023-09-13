@@ -50,7 +50,9 @@
                                     <table class="table">
                                         <th>{{ __('lang.Product') }}</th>
                                         <th>{{ __('lang.Qty') }}</th>
+                                        <th>$</th>
                                         <th>{{ __('lang.Price') }}</th>
+                                        <th title="Total Amount in Dollars">$-A</th>
                                         <th>{{ __('lang.Amount') }}</th>
                                         @foreach ($bill->details as $data1)
                                         @php
@@ -59,8 +61,11 @@
                                         <tr>
                                             <td>{{$data1->product->name}}</td>
                                             <td>{{$data1->qty}}</td>
+                                            <td>{{round($data1->dollar,2)}}</td>
                                             <td>{{round($data1->rate,2)}}</td>
+                                            <td>{{$data1->dollar*$data1->qty}}</td>
                                             <td>{{$subTotal}}</td>
+
                                         </tr>
                                         @endforeach
 

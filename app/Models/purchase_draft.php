@@ -13,6 +13,7 @@ class purchase_draft extends Model
             'product_id',
             'rate',
             'qty',
+            'dollar',
         ]
     );
 

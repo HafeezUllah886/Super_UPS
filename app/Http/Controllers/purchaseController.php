@@ -35,6 +35,7 @@ class purchaseController extends Controller
                 'product_id' => $req->product,
                 'qty' => $req->qty,
                 'rate' => $req->rate,
+                'dollar' => $req->dollar,
             ]
         );
 
@@ -63,10 +64,11 @@ class purchaseController extends Controller
         return "Qty Updated";
     }
 
-    public function updateDraftRate($id, $rate)
+    public function updateDraftRate($id, $rate, $dollar)
     {
         $item = purchase_draft::find($id);
         $item->rate = $rate;
+        $item->dollar = $dollar;
         $item->save();
 
         return "Rate Updated";
@@ -135,6 +137,7 @@ class purchaseController extends Controller
                 'bill_id' => $purchase->id,
                 'product_id' => $item->product_id,
                 'rate' => $item->rate,
+                'dollar' => $item->dollar,
                 'qty' => $item->qty,
                 'date' => $req->date,
                 'ref' => $ref,
@@ -235,6 +238,7 @@ class purchaseController extends Controller
                 'product_id' => $req->product,
                 'qty' => $req->qty,
                 'rate' => $req->rate,
+                'dollar' => $req->dollar,
                 'ref' => $bill->ref,
                 'date' => $bill->date,
             ]
@@ -275,10 +279,11 @@ class purchaseController extends Controller
         updatePurchaseAmount($item->bill->id);
         return "Qty Updated";
     }
-    public function updateEditRate($id, $rate)
+    public function updateEditRate($id, $rate, $dollar)
     {
         $item = purchase_details::find($id);
         $item->rate = $rate;
+        $item->dollar = $dollar;
         $item->save();
         updatePurchaseAmount($item->bill->id);
         return "Rate Updated";

@@ -13,6 +13,7 @@ class purchase_details extends Model
             'bill_id',
             'product_id',
             'rate',
+            'dollar',
             'qty',
             'ref',
             'date',
