@@ -345,6 +345,7 @@ class AccountController extends Controller
     {
         transfer::where('ref', $ref)->delete();
         transactions::where('ref', $ref)->delete();
+        ledger::where('ref', $ref)->delete();
 
         session()->forget('confirmed_password');
         return redirect('/transfer')->with('error', "Transfer Deleted");

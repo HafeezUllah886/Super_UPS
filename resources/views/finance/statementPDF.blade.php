@@ -253,6 +253,17 @@
             margin-left: 7px;
             text-align: center;
         }
+        th{
+            font-size: 15px;
+        }
+        td{
+            font-size: 10px;
+
+        }
+
+        table th, table td{
+            padding: 2px 2px !important;
+        }
     </style>
 </head>
 
@@ -315,27 +326,27 @@
             <table class="table-bordered" id="myTable">
                 <thead>
                     <tr>
-                        <th>Ref</th>
-                        <th>Date</th>
-                        <th>Desc</th>
+                        <th style="font-size: 12px">Ref</th>
+                        <th style="font-size: 12px">Date</th>
+                        <th style="font-size: 12px">Desc</th>
                         @if ($account->type != 'Business')
-                        <th>Details</th>
+                        <th style="font-size: 12px">Details</th>
                         @endif
-                        <th style="width:10%;">CR +</th>
-                        <th style="width:10%;">DB _</th>
-                        <th style="width:12%;">Bal</th>
+                        <th style="width:10%;font-size: 12px">CR +</th>
+                        <th style="width:10%;font-size: 12px">DB _</th>
+                        <th style="width:12%;font-size: 12px">Bal</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php
-                        $bal = 0;
+                        $bal = $prev_bal;
                     @endphp
                     @foreach ($data['transactions'] as $item)
                     @php
                         $bal += $item['cr'] - $item['db'];
                     @endphp
                         <tr>
-                            <th scope="row">{{ $item['ref'] }}</th>
+                            <td scope="row">{{ $item['ref'] }}</td>
                             <td>{{ date("d M Y", strtotime($item['date'])) }}</td>
                             <td>{!! $item['desc'] !!}</td>
                             @if ($account->type != 'Business')
@@ -346,10 +357,10 @@
                                      $subTotal = 0;
                                  @endphp
                                  <table class="table">
-                                     <th>Product</th>
-                                     <th>Qty</th>
-                                     <th>Price</th>
-                                     <th>Amount</th>
+                                     <th style="font-size: 12px">Product</th>
+                                     <th style="font-size: 12px">Qty</th>
+                                     <th style="font-size: 12px">Price</th>
+                                     <th style="font-size: 12px">Amount</th>
                                      @foreach ($data as $data1)
                                      @php
                                          $subTotal = $data1->qty * $data1->price;
@@ -373,10 +384,10 @@
                                      $subTotal = 0;
                                  @endphp
                                  <table class="table">
-                                     <th>Product</th>
-                                     <th>Qty</th>
-                                     <th>Price</th>
-                                     <th>Amount</th>
+                                     <th style="font-size: 12px">Product</th>
+                                     <th style="font-size: 12px">Qty</th>
+                                     <th style="font-size: 12px">Price</th>
+                                     <th style="font-size: 12px">Amount</th>
                                      @foreach ($data as $data1)
                                      @php
                                          $subTotal = $data1->qty * $data1->price;
@@ -399,10 +410,10 @@
                                  $subTotal = 0;
                              @endphp
                              <table class="table">
-                                 <th>Product</th>
-                                 <th>Qty</th>
-                                 <th>Price</th>
-                                 <th>Amount</th>
+                                 <th style="font-size: 12px">Product</th>
+                                 <th style="font-size: 12px">Qty</th>
+                                 <th style="font-size: 12px">Price</th>
+                                 <th style="font-size: 12px">Amount</th>
                                  @foreach ($data as $data1)
                                  @php
                                      $subTotal = $data1->qty * $data1->rate;
