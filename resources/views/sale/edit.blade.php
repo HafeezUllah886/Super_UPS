@@ -55,13 +55,19 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="stock">{{__('lang.AvailableStock')}}</label>
+                            <input type="number" disabled name="stock" id="stock" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label for="qty">{{ __('lang.Quantity') }}</label>
                             <input type="number" required name="qty" id="qty" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label for="price">{{ __('lang.SalePrice') }}</label>
                             <input type="number" required name="price" id="price" class="form-control">
@@ -319,7 +325,10 @@ var id = $('#product').find(":selected").val();
      method: 'get',
      url: "{{ url('/sale/getPrice/') }}/"+id,
      success: function(data){
-         $("#price").val(data);
+
+        $('#stock').val(data.balance);
+               $('#price').val(data.price);
+               $('#qty').attr('max', data.balance);
 
      }
  });
