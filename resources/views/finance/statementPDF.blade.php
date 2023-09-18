@@ -254,10 +254,10 @@
             text-align: center;
         }
         th{
-            font-size: 15px;
+            font-size: 18px;
         }
         td{
-            font-size: 10px;
+            font-size: 12px;
 
         }
 

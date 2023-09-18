@@ -280,7 +280,7 @@
                     <!-- <h2 class="heading">Invoice No.: 001</h2> -->
                     <h3 class="sub-heading">Invoice to:
                         @if (@$invoice->customer_account->title)
-                            {{ @$invoice->customer_account->title }} ({{ @$invoice->customer_account->type }})
+                            {{ @$invoice->customer_account->title }} <br>({{ @$invoice->customer_account->phone }})
                         @else
                             {{ $invoice->walking }} (Walk In)
 
@@ -426,7 +426,7 @@
                 <br>
             </div>
 
-           
+
         </div>
 
         <div class="body-section body-section1">
