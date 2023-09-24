@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super UPS CENTER</title>
+    <title>POS</title>
     <style>
 
 
@@ -430,13 +430,13 @@
                 <img src="{{asset('assets/images/stamp.jpeg')}}" style="width:200px;margin-left:100px;" alt="">
                 {{-- <h4 class="">Authorize Signature ___________________</h4> --}}
                </div>
-                
-              
+
+
             </div>
-           
+
 
             <br><br>
-            
+
            {{--  <p style="text-align:right;margin-right:2px;">superupscenter@gmail.com</p> --}}
             <br>
         </div>
