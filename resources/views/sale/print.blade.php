@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super UPS CENTER</title>
+    <title>Atta & Co</title>
     <style>
 
 
@@ -265,12 +265,12 @@
                 <div class="logo" style="width: 37%;">
                     <img src="{{ asset('assets/images/app_logo.png') }}" style="height:100px !important; margin-top:-10px;" alt="logo">
                 </div>
-                <div3 id="myDiv">
+                <div id="myDiv">
 
                    {{--  <span class="dot">
                         <p style="margin-top: 15px;">خوشحال خان</p>
                     </span> --}}
-                </div3>
+                </div>
                 <div class="text1">
                     <h1 class="m-query1">Atta & Co</h1>
                     <h3 class="m-query2">Spini Road Quetta</h3>
