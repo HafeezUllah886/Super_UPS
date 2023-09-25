@@ -310,8 +310,8 @@ class SaleController extends Controller
     public function print($ref){
         $invoice = sale::with('details', 'customer_account')->where('ref', $ref)->first();
         $details = sale_details::where('bill_id', $invoice->id)->get();
-        $previous_bal_cr = transactions::where('account_id', $invoice->customer)->whereDate('date', '<', $invoice->date)->sum('cr');
-        $previous_bal_db = transactions::where('account_id', $invoice->customer)->whereDate('date', '<', $invoice->date)->sum('db');
+        $previous_bal_cr = transactions::where('account_id', $invoice->customer)->where('ref', '<', $invoice->ref)->sum('cr');
+        $previous_bal_db = transactions::where('account_id', $invoice->customer)->where('ref', '<', $invoice->ref)->sum('db');
         $prev_balance = $previous_bal_cr - $previous_bal_db;
 
         $currant_bal_cr = transactions::where('account_id', $invoice->customer)->whereDate('date', '<=', $invoice->date)->sum('cr');
