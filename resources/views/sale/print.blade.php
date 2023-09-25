@@ -37,7 +37,7 @@
         }
 
         .brand-section {
-            background-color: #025771;
+            background-color: #730c0c;
             padding: 10px 40px;
         }
 
@@ -66,13 +66,13 @@
 
         .body-section {
             padding: 16px;
-            border-left: 2px solid #025771;
-            border-right: 2px solid #025771;
+            border-left: 2px solid #730c0c;
+            border-right: 2px solid #730c0c;
 
         }
 
         .body-section1 {
-            background-color: #025771;
+            background-color: #730c0c;
             color: white;
             border-radius: 4px;
         }
@@ -145,14 +145,14 @@
         }
 
         .container1 {
-            border: 2px solid #025771;
+            border: 2px solid #730c0c;
             color: #ffffff;
             height: 120px;
             border-radius: 6px;
         }
 
         .sub-container {
-            background-color: #025771;
+            background-color: #730c0c;
             ;
             margin: 5px;
             padding-bottom: 2px;
@@ -190,7 +190,7 @@
             width: 21%;
             margin: auto;
             text-align: center;
-            background-color: #025771;
+            background-color: #730c0c;
             color: white;
             border-radius: 5px;
             font-size: 12px;
@@ -237,7 +237,7 @@
         .dot {
             height: 60px;
             width: 65px;
-            background-color: #025771;
+            background-color: #730c0c;
             color: white;
             /* color: #025771; */
             border-radius: 50%;
@@ -253,16 +253,17 @@
 <body>
 
     <div class="container">
-        <div class="container1">
+        <img style="margin:0;width:100%;"src="{{asset('assets/images/abvc.png')}}" alt="">
+        {{-- <div class="container1">
             <div class="sub-container">
                 <div class="logo" style="width: 37%;">
                     <img src="{{ asset('assets/images/app_logo.png') }}" alt="logo">
                 </div>
-                {{-- <div id="myDiv">
+                <div id="myDiv">
                     <span class="dot">
                         <p style="margin-top: 15px;">خوشحال خان</p>
                     </span>
-                </div> --}}
+                </div> 
                 <div class="text1">
                     <h1 class="m-query1">Abu Zahir Zafar Machinery</h1>
                     <h1 class="m-query1">ابوظاھر ظفر مشینری</h1>
@@ -271,7 +272,7 @@
                     </h3>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="body-section">
             <div class="row">
