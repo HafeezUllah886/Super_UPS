@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POS</title>
     <style>
-
-
         body {
             -webkit-print-color-adjust: exact;
             background-color: #F6F6F6;
