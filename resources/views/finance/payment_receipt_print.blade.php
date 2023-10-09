@@ -271,10 +271,9 @@
                     </span>
                 </div> --}}
                 <div class="text1">
-                    <h1 class="m-query1">DILSHAD SHOE COMPANY</h1>
-                    <h3 class="m-query2">Sarafa Bazar, Quetta
-                        <br>Phone:&nbsp; 0300-3901256, 081-2843907, 0310-4433787<br>0331-0222240, 0316-8199980, 0313-8372003
-                    </h3>
+                    <h1 class="m-query1">Shirakat U-PVC Pipe</h1>
+                    <h3 class="m-query2">Sirki Road, Quetta.
+                        <br>Phone:&nbsp; 081-2445027,&nbsp;0300-8386702,&nbsp;0300-3828094</h3>
                 </div>
             </div>
         </div>
