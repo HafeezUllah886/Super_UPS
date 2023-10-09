@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super UPS CENTER</title>
+    <title>POS</title>
     <style>
 
 
@@ -253,7 +253,23 @@
 <body>
 
     <div class="container">
-        <img style="margin:0;width:100%;" src="{{ asset('assets/images/bill.png') }}" alt="">
+        <div class="container1">
+            <div class="sub-container">
+                <div class="logo" style="width: 37%; ">
+                    <img src="{{ asset('assets/images/app_logo.png') }}" style="height:100px;margin-top:00px;" alt="logo">
+                </div>
+               {{--  <div id="myDiv">
+                    <span class="dot">
+                        <p style="margin-top: 15px;">خوشحال خان</p>
+                    </span>
+                </div> --}}
+                <div class="text1">
+                    <h1 class="m-query1">Shirakat U-PVC Pipe</h1>
+                    <h3 class="m-query2">Sirki Road, Quetta.
+                        <br>Phone:&nbsp; 081-2445027,&nbsp;0300-8386702,&nbsp;0300-3828094</h3>
+                </div>
+            </div>
+        </div>
         <div class="body-section">
             <div class="row">
                 <div class="qoute">
