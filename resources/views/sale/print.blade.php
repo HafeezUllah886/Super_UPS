@@ -262,7 +262,7 @@
                     <span class="dot">
                         <p style="margin-top: 15px;">خوشحال خان</p>
                     </span>
-                </div> 
+                </div>
                 <div class="text1">
                     <h1 class="m-query1">Shirakat U-PVC Pipe</h1>
                     <h3 class="m-query2">Sirki Road, Quetta.
@@ -271,30 +271,32 @@
             </div>
         </div> --}}
         <img style="margin:0;width:100%;" src="{{ asset('assets/images/bill.png') }}" alt="">
-        <div class="body-section">
-            <div class="row">
+        <div class="body-section" style="padding:0px;">
+           {{--  <div class="row">
                 <div class="qoute">
                     <h2 style="text-align: center;">INVOICE# &nbsp; {{ $invoice->id }}</h2>
                 </div>
-            </div>
+            </div> --}}
             <div class="row">
-                <div class="col-6">
-                    <!-- <h2 class="heading">Invoice No.: 001</h2> -->
-                    <h3 class="sub-heading">Invoice to:
-                        @if (@$invoice->customer_account->title)
-                            {{ @$invoice->customer_account->title }} ({{ @$invoice->customer_account->type }})
-                        @else
-                            {{ $invoice->walking }} (Walk In)
+                <div class="col-12" style="width:100%;">
+                    <table style="width:100%;">
+                        <tr style="width:100%;">
+                            <td style="width:80%;" >
+                                <h4 class="sub-heading" style="text-align: left; padding:0px 10px;">Invoice to:
+                                    @if (@$invoice->customer_account->title)
+                                        {{ @$invoice->customer_account->title }}
+                                    @else
+                                        {{ $invoice->walking }} (Walk In)
+                                    @endif
+                                </h4>
+                            </td>
 
-                        @endif
-                    </h3>
-
-
-                </div>
-                <div class="col-6">
-                    <div class="company-details">
-                        <h3 class="text-dark">Date: {{ date('d M Y', strtotime($invoice->date)) }}</h3>
-                    </div>
+                            <td style="width:20%;">
+                                <h4 style="text-align: left; padding:0px 10px;"> Invoice No. {{ $invoice->id }}</h4>
+                                <h4 style="text-align: left; padding:0px 10px;" class="text-dark">Date: {{ date('d M Y', strtotime($invoice->date)) }}</h4>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
