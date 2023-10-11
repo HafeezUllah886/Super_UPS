@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="Emslm8WRZAV0paIYDnCW97sjqwwDzrnMiJ0JYj6N">
 
-    <title>Super UPS CENTER</title>
+    <title>POS</title>
 
    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <!-- Scripts -->

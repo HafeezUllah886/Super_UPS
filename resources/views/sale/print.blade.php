@@ -37,7 +37,7 @@
         }
 
         .brand-section {
-            background-color: #898811;
+            background-color: #fb8600;
             padding: 10px 40px;
         }
 
@@ -72,7 +72,7 @@
         }
 
         .body-section1 {
-            background-color: #898811;
+            background-color: #fb8600;
             color: white;
             border-radius: 4px;
         }
@@ -115,7 +115,7 @@
 
         .table-bordered td,
         .table-bordered th {
-            border: 1px solid #dee2e6;
+            border: 1px solid #fb8600;
         }
 
         .text-right {
@@ -152,7 +152,7 @@
         }
 
         .sub-container {
-            background-color: #898811;
+            background-color: #fb8600;
             ;
             margin: 5px;
             padding-bottom: 2px;
@@ -190,7 +190,7 @@
             width: 21%;
             margin: auto;
             text-align: center;
-            background-color: #898811;
+            background-color: #fb8600;
             color: white;
             border-radius: 5px;
             font-size: 12px;
@@ -237,7 +237,7 @@
         .dot {
             height: 60px;
             width: 65px;
-            background-color: #898811;
+            background-color: #fb8600;
             color: white;
             /* color: #b80000; */
             border-radius: 50%;
@@ -304,14 +304,12 @@
             <br> -->
             <table class="table-bordered">
                 <thead>
-                    <tr style="background-color: #111;color:#fff;">
+                    <tr style="background-color: #fb8600;color:#fff;">
                         <th class="w-5">#</th>
-                        <th class="w-10">Qty</th>
-                        <th class="w-15">Item</th>
-                        <th class="w-15">Category</th>
+                        <th class="w-15">Product Name</th>
                         <th class="w-10">Size</th>
+                        <th class="w-10">Qty</th>
                         <th class="w-10">Price</th>
-
                         <th class="w-15">Total</th>
                     </tr>
                 </thead>
@@ -327,40 +325,39 @@
                         @endphp
                         <tr>
                             <th scope="row">{{ $ser }}</th>
-                            <td>{{ $item->qty }}</td>
                             <td>{{ $item->product->name }}</td>
-                            <td>{{ $item->product->category->cat }}</td>
                             <td>{{ $item->product->size }}</td>
+                            <td>{{ $item->qty }}</td>
                             <td>{{ $item->price }}</td>
-                            <td>{{ $item->price * $item->qty }}</td>
+                            <td style="text-align:right;">{{ $item->price * $item->qty }}</td>
                         </tr>
                         @php
                             $total += $item->price * $item->qty;
                         @endphp
                     @endforeach
 
-                    <tr>
-                        <td colspan="6" class="text-right">
+                    <tr style="border:1px solid white;">
+                        <td colspan="5" class="text-right" style="border:1px solid white;">
                             <strong>Total</strong>
                         </td>
-                        <td>
+                        <td style="border:1px solid white;text-align:right;">
                             <strong>{{ $total}}</strong>
                         </td>
                     </tr>
                     @if($invoice->discount > 0)
                     <tr>
-                        <td colspan="6" class="text-right">
+                        <td colspan="5" class="text-right" style="border:1px solid white;">
                             <strong>Discount</strong>
                         </td>
-                        <td>
+                        <td style="border:1px solid white;text-align:right;">
                             <strong>{{ $invoice->discount == 0 ? 0 : $invoice->discount}}</strong>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="6" class="text-right">
+                        <td colspan="5" class="text-right" style="border:1px solid white;">
                             <strong>Net Total</strong>
                         </td>
-                        <td>
+                        <td style="border:1px solid white;text-align:right;">
                             <strong>{{ $total - $invoice->discount }}</strong>
                         </td>
                     </tr>
@@ -382,18 +379,18 @@
 
                         @endphp
                         @if(@$invoice->isPaid == "Partial")
-                        <td colspan="6" class="text-right">
-                            <strong>Paid Amount</strong>
+                        <td colspan="5" class="text-right" style="border:1px solid white;">
+                            <strong>Payment</strong>
                         </td>
-                        <td>
+                        <td style="border:1px solid white;text-align:right;">
                             <strong>{{ $paidAmount }}</strong>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="6" class="text-right">
-                            <strong>Remaining</strong>
+                        <td colspan="5" class="text-right" style="border:1px solid white;">
+                            <strong>Balance</strong>
                         </td>
-                        <td>
+                        <td style="border:1px solid white;text-align:right;">
                             <h3> {{ $total - $paidAmount - $invoice->discount}}</h3>
                         </td>
                     </tr>
@@ -403,7 +400,7 @@
                 </tbody>
             </table>
             <br>
-            <table style="width:500px;">
+           {{--  <table style="width:500px;">
                 <tr>
                     <td style="text-align: left; width:40%;"> <strong>Payment type:</strong> </td>
                     <td style="text-align: left">{{$invoice->account->title ?? "Unpaid"}}</td>
@@ -427,7 +424,7 @@
                 </tr>
                 @endif
             </table>
-
+ --}}
 
             <br><br>
             <h4 class="">Authorize Signature ___________________</h4>
