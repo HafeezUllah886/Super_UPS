@@ -157,7 +157,7 @@ class productController extends Controller
                 foreach ($products as $product) {
                     //////////// Getting avg Purchase Price ///////////////////////
                     $purchases_qty = purchase_details::where('product_id', $product->id)
-                        ->whereBetween('date', [$fromDate, $toDate])->sum('qty');
+                        ->whereBetween('date', [$fromDate, $toDate])->count();
                     $purchases_amount = purchase_details::where('product_id', $product->id)
                         ->whereBetween('date', [$fromDate, $toDate])->sum('rate');
 
@@ -173,9 +173,9 @@ class productController extends Controller
                     //////////// Getting avg Sale Price ///////////////////////
                     
                         $sales_qty = sale_details::where('product_id', $product->id)
-                        ->whereBetween('date', [$fromDate, $toDate])->sum('qty');
+                        ->whereBetween('date', [$fromDate, $toDate])->count();
                         $sales_amount = sale_details::where('product_id', $product->id)
-                        ->whereBetween('date', [$fromDate, $toDate])->sum('qty');
+                        ->whereBetween('date', [$fromDate, $toDate])->sum('price');
                         
                         $gross_sold_qty = $sales_qty; ///// Storing gross sold before proceeding
                         if($sales_amount == 0)
@@ -190,7 +190,10 @@ class productController extends Controller
                     //////////// Getting Profit per Unit ///////////////////////
 
                     $ppu = $avg_sale_price - $avg_purchase_price;
-
+                        if($avg_sale_price == 0)
+                        {
+                            $ppu = 0;
+                        }
                      //////////// Getting return Qty ///////////////////////
                     $returns = saleReturn::whereBetween('date', [$fromDate, $toDate])->get();
                     $qty = 0;

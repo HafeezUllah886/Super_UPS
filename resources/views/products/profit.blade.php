@@ -68,8 +68,8 @@
                                 <td> {{ $product->sold}} </td>
                                 <td> {{ $product->return}} </td>
                                 <td> {{ round($product->profit,2) }} </td>
-                                <td> {{ $product->available_stock}} </td>
-                                <td> {{ $product->stock_value}} </td>
+                                <td> {{ $product->stock}} </td>
+                                <td> {{ round($product->stock_value,0)}} </td>
                             </tr>
                             @endforeach
                             <tr>
