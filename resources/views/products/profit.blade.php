@@ -50,32 +50,31 @@
                         <tbody>
                             @php
                                 $ser = 0;
-                                $total = 0;
+                                $totalProfit = 0;
                             @endphp
 
                             @foreach ($products as $product)
                             @php
                                 $ser += 1;
-                                $total += ($product->sale_quantity - $product->return) * $product->ppu;
-                                $net_profit = 0;
+                                $totalProfit += $product->profit;
                             @endphp
                             <tr>
                                 <td> {{ $ser }} </td>
                                 <td> {{ $product->name }} </td>
                                {{--  <td> {{ $product->purchase_quantity}} </td> --}}
-                                <td> {{ round($product->average_purchase_price,2)}} </td>
-                                <td> {{ round($product->average_sale_price,2)}} </td>
+                                <td> {{ round($product->app,2)}} </td>
+                                <td> {{ round($product->asp,2)}} </td>
                                 <td> {{ round($product->ppu,2)}} </td>
-                                <td> {{ $product->sale_quantity}} </td>
+                                <td> {{ $product->sold}} </td>
                                 <td> {{ $product->return}} </td>
-                                <td> {{ round(($product->sale_quantity - $product->return) * $product->ppu,2) }} </td>
+                                <td> {{ round($product->profit,2) }} </td>
                                 <td> {{ $product->available_stock}} </td>
-                                <td> {{ $product->available_stock * $product->price}} </td>
+                                <td> {{ $product->stock_value}} </td>
                             </tr>
                             @endforeach
                             <tr>
                             <td colspan="7" style="text-align: right;"> <strong>{{__('lang.Total')}}</strong> </td>
-                            <td> <strong>{{ round($total,2) }}</strong> </td>
+                            <td> <strong>{{ round($totalProfit,2) }}</strong> </td>
                         </tr>
 
                         <tr>
@@ -88,7 +87,7 @@
                         </tr>
                         <tr>
                             <td colspan="7" style="text-align: right;"> <strong>{{__('lang.NetProfit')}}</strong> </td>
-                            <td> <strong>{{ round($total - $discounts - $expense,2) }}</strong> </td>
+                            <td> <strong>{{ round($totalProfit - $discounts - $expense,2) }}</strong> </td>
                         </tr>
                         </tbody>
                     </table>
