@@ -166,7 +166,7 @@ class productController extends Controller
 
     foreach ($products as $product) {
         $lastPurchase = purchase_details::where('product_id', $product->id)
-            ->where('date', '<=', $toDate)
+            ->where('date', '<=', $fromDate)
             ->orderBy('date', 'desc')
             ->first();
 
