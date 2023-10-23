@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\account;
 use App\Models\ledger;
 use App\Models\products;
+use App\Models\purchase_details;
 use App\Models\sale;
 use App\Models\sale_details;
 use App\Models\sale_draft;
@@ -23,6 +24,7 @@ class SaleController extends Controller
 
     public function getPrice($id){
         $product = products::find($id);
+        $purchase = purchase_details::where('product_id', $id)->orderBy('id', 'desc')->first();
         $stock = stock::where('product_id', $id)->get();
         $balance = 0;
         foreach($stock as $item){
@@ -30,7 +32,7 @@ class SaleController extends Controller
             $balance -= $item->db;
         }
         return response()->json(array(
-            'balance' => $balance, 'price' => $product->price
+            'balance' => $balance, 'price' => $product->price, 'purchase' => $purchase->rate
         ));
     }
 
@@ -128,6 +130,7 @@ class SaleController extends Controller
             'desc' => $req->desc,
             'amount' => $amount,
             'discount' => $req->discount,
+            'dc' => $req->dc,
             'isPaid' => $req->isPaid,
             'ref' => $ref,
         ]);
@@ -156,7 +159,7 @@ class SaleController extends Controller
                 'ref' => $ref
             ]);
          }
-         $net_total = $total - $req->discount;
+         $net_total = ($total - $req->discount) + $req->dc ;
          $desc1 = "<strong>Products Sold</strong><br/>Invoice No. ".$sale->id;
          $desc2 = "<strong>Products Sold</strong><br/>Partial payment of Invoice No. ".$sale->id;
         if($req->customer != 0){

@@ -23,6 +23,7 @@
             success: function(data){
                $('#stock').val(data.balance);
                $('#price').val(data.price);
+               $('#purhcasePrice').val(data.purchase);
                $('#qty').attr('max', data.balance);
             }
         });
@@ -74,8 +75,8 @@
             <div class="card-body">
 
                 <form id="pro_form">
-                <div class="row">
-                    <div class="col-md-3">
+                <div class="row ">
+                    <div class="col-md-3 p-1">
                         <div class="form-group">
                             <label for="product">{{__('lang.SelectProduct')}}</label>
                             <select name="product" required id="product" onchange="price1()" class="select2">
@@ -86,26 +87,32 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2 p-1">
                         <div class="form-group">
                             <label for="stock">{{__('lang.AvailableStock')}}</label>
                             <input type="number" disabled name="stock" id="stock" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 p-1">
                         <div class="form-group">
                             <label for="qty">{{__('lang.Quantity')}}</label>
                             <input type="number" required name="qty" id="qty" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 p-1">
                         <div class="form-group">
-                            <label for="price1">{{__('lang.Price')}}</label>
+                            <label for="price1">{{__('lang.PurchasePrice')}}</label>
+                            <input type="number" disabled id="purhcasePrice" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-2 p-1">
+                        <div class="form-group">
+                            <label for="price1">{{__('lang.SalePrice')}}</label>
                             <input type="number" required name="price" id="price" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-info" style="margin-top: 30px">{{__('lang.AddProduct')}}</button>
+                    <div class="col-md-1 p-1">
+                        <button type="submit" class="btn btn-info" style="margin-top: 30px">{{__('lang.Add')}}</button>
                     </div>
                 </div>
             </form>
@@ -214,23 +221,32 @@
                             </div>
                             <div class="col-md-6 ">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                    <div class="form-group">
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="discount">{{__('lang.Discount')}}</label>
-                                            <input type="number" name="discount" id="discount" class="form-control">
-                                            @error('discount')
-                                            <span class="text-danger">{{ $message }}</span>
-                                            @enderror
+                                            <div class="form-group">
+                                                <label for="discount">{{__('lang.Discount')}}</label>
+                                                <input type="number" name="discount" id="discount" class="form-control">
+                                                @error('discount')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <label for="dc">Delivery Charges</label>
+                                                <input type="number" name="dc" id="dc" class="form-control">
+                                                @error('dc')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="submit" class="btn btn-success btn-lg" style="margin-top: 30px">{{__('lang.Save')}}</button>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <button type="submit" class="btn btn-success btn-lg" style="margin-top: 30px">{{__('lang.Save')}}</button>
-                                </div>
-                                </div>
-
-
                             </div>
                         </div>
                     </form>

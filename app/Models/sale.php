@@ -18,6 +18,7 @@ class sale extends Model
             'desc',
             'amount',
             'discount',
+            'dc',
             'ref'
         ]
     );

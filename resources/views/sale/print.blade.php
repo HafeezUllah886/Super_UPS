@@ -341,10 +341,18 @@
                     </tr>
                     <tr>
                         <td colspan="6" class="text-right">
+                            <strong>Delivery Charges</strong>
+                        </td>
+                        <td>
+                            <strong>{{ $invoice->dc == 0 ? 0 : $invoice->dc}}</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" class="text-right">
                             <strong>Net Total</strong>
                         </td>
                         <td>
-                            <strong>{{ $total - $invoice->discount }}</strong>
+                            <strong>{{ ($total - $invoice->discount) + $invoice->dc }}</strong>
                         </td>
                     </tr>
                     @endif
@@ -359,7 +367,7 @@
                         else{
 
                             if($invoice->amount == 0){
-                                $paidAmount = $total - ($invoice->amount + $invoice->discount);
+                                $paidAmount = $total - ($invoice->amount + $invoice->discount) + $invoice->dc;
                             }
                         }
 
@@ -402,7 +410,7 @@
                 </tr>
                 <tr>
                     <td style="text-align: left; width:40%;"> <strong>Current Balance:</strong> </td>
-                    <td style="text-align: left">{{ $total - $paidAmount - $invoice->discount }}</td>
+                    <td style="text-align: left">{{ $total - $paidAmount - $invoice->discount + $invoice->dc }}</td>
                 </tr>
                 <tr>
                     <td style="text-align: left; width:40%;"> <strong>Total Balance:</strong> </td>

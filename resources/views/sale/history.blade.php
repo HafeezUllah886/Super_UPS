@@ -66,7 +66,10 @@
                                         @endforeach
                                         @if($bill->discount)
                                         <tr>
-                                            <td colspan="4">{{__('lang.Discount')}}: <strong>{{ $bill->discount }}</strong></td>
+                                            <td colspan="5">
+                                                {{__('lang.Discount')}}: <strong>{{ $bill->discount }}</strong>
+                                                DC: <strong>{{ $bill->dc }}</strong>
+                                            </td>
                                         </tr>
                                         @endif
 
