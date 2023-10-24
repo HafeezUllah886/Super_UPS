@@ -78,7 +78,7 @@
                     </div>
                 </div>
             </form>
-                <div class="table-responsive mt-3">
+                <div class="mt-3">
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable1">
                         <thead class="th-color">
                             <tr>
@@ -94,101 +94,68 @@
 
                         </tbody>
                     </table>
-                    <div class="form-group mt-3">
-                        <label for="discount">{{ __('lang.Discount') }}</label>
-                        <input type="number" value="{{ $bill->discount }}" onfocusout="updateDiscount({{ $bill->id }})" name="discount" id="discount">
+                    <form id="paidForm" method="get">
+                    <div class="row mt-3">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="discount">{{ __('lang.Discount') }}</label>
+                                <input type="number" value="{{ $bill->discount }}" class="form-control" onfocusout="updateDiscount({{ $bill->id }})" name="discount" id="discount">
+                            </div>
+                        </div>
+                       <input type="hidden" value="{{$bill->id}}" name="billID">
+                        <div class="col-md-2" id="isPaid_box">
+                            <div class="form-group">
+                                <label for="isPaid">{{__('lang.IsPaid')}}</label>
+                                <select name="isPaid" id="isPaid" onchange="abc()" class="form-control">
+                                    <option value="Yes" {{$bill->isPaid == "Yes" ? "Selected" : ""}}>{{__('lang.Yes')}}</option>
+                                    <option Value="No" {{$bill->isPaid == "No" ? "Selected" : ""}}>{{__('lang.No')}}</option>
+                                    <option Value="Partial" {{$bill->isPaid == "Partial" ? "Selected" : ""}}>{{__('lang.Partial')}}</option>
+                                </select>
+                                @error('isPaid')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-2" id="amount_box">
+                            <div class="form-group">
+                                <label for="amount">{{__('lang.Amount')}}</label>
+                                <input type="number" name="amount" id="amount" value="{{$bill->amount}}" class="form-control">
+                                @error('amount')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-3" id="paidIn_box">
+                            <div class="form-group">
+                                <label for="paidIn">{{__('lang.PaidIn')}}</label>
+                                <select name="paidIn" id="paidIn" class=" select2">
+                                    <option value=""></option>
+                                    @foreach ($paidIn as $acct)
+                                        <option value="{{ $acct->id }}" {{$bill->paidIn == $acct->id ? "Selected" : ""}}>{{ $acct->title }}</option>
+                                    @endforeach
+
+                                </select>
+                                @error('paidIn')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <label for="">.</label>
+                                <button type="button" id="update" class="btn btn-success btn-block">Update</button>
+                            </div>
+                        </div>
                     </div>
-                    {{-- <form method="post" class="mt-5">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="date">Date</label>
-                                    <input type="date" name="date" value="{{ $bill->date }}" id="date" class="form-control">
-                                    @error('date')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="vendor">Select Vendor</label>
-                                    <select name="vendor" id="vendor" class="select2">
-                                        <option value=""></option>
-                                        @foreach ($vendors as $vendor)
-                                            <option value="{{ $vendor->id }}" {{ $bill->vendor_account->id == $vendor->id ? 'Selected' : ''}}>{{ $vendor->title }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('vendor')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="isPaid">is Paid</label>
-                                    <select name="isPaid" id="isPaid" onchange="abc()" class="form-control">
-                                        <option {{ $bill->isPaid == "Yes" ? 'Selected' : ''}}>Yes</option>
-                                        <option {{ $bill->isPaid == "No" ? 'Selected' : ''}}>No</option>
-                                        <option {{ $bill->isPaid == "Partial" ? 'Selected' : ''}}>Partial</option>
-                                    </select>
-                                    @error('isPaid')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-2" id="amount_box">
-                                <div class="form-group">
-                                    <label for="amount">Amount</label>
-                                    <input type="number" name="amount" value="{{ $bill->amount }}" id="amount" class="form-control">
-                                    @error('amount')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-3" id="paidIn_box">
-                                <div class="form-group">
-                                    <label for="paidFrom">Paid From</label>
-                                    <select name="paidFrom" id="paidFrom" class=" select2">
-                                        <option></option>
-                                        @foreach ($paidFroms as $acct)
-                                            <option value="{{ $acct->id }}" {{ @$bill->account->id == $acct->id ? 'Selected' : ''}}>{{ $acct->title }}</option>
-                                        @endforeach
-
-                                    </select>
-                                    @error('paidFrom')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="desc">Description</label>
-                                    <textarea name="desc" id="desc" class="form-control">{{ $bill->desc }}</textarea>
-                                    @error('amount')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6 ">
-                                    <button type="submit" class="btn btn-success btn-lg" style="margin-top: 30px">Update</button>
-
-                            </div>
-                        </div>
-                    </form> --}}
+                </form>
+                  
                 </div>
 
             </div>
         </div>
     </div>
 </div>
-
 @endsection
-
-
 @section('scripts')
 <style>
     .dataTables_paginate {
@@ -198,6 +165,7 @@
 </style>
 <script>
 get_items();
+abc();
 $('#pro_form').submit(function(e){
     e.preventDefault();
     var data = $('#pro_form').serialize();
@@ -222,6 +190,22 @@ $('#pro_form').submit(function(e){
     });
 });
 
+function abc() {
+        var isPaid = $('#isPaid').find(":selected").val();
+        if (isPaid == 'No') {
+            $('#paidIn_box').css('display', 'none');
+            $("#amount_box").css('display', 'none');
+            $("#amount").val('');
+            $("#paidIn").val('');
+        } else if (isPaid == 'Partial') {
+            $("#amount_box").css('display', 'block');
+            $('#paidIn_box').css('display', 'block');
+        } else {
+            $("#amount_box").css('display', 'none');
+            $('#paidIn_box').css('display', 'block');
+            $("#amount").val('');
+        }
+    }
 
 function get_items(){
     $.ajax({
@@ -251,7 +235,6 @@ function qty(id){
         }
     });
 }
-
 
 function get_items(){
     $.ajax({
@@ -319,7 +302,6 @@ function deleteEdit(id){
 }
 
 function price1(){
-
 var id = $('#product').find(":selected").val();
  $.ajax({
      method: 'get',
@@ -333,5 +315,19 @@ var id = $('#product').find(":selected").val();
      }
  });
 }
+
+$("#update").on("click", function(){
+    var data = $("#paidForm").serialize();
+    $.ajax({
+     method: 'get',
+     url: "{{ url('/sale/update/paid/') }}",
+     data: data,
+     success: function(respose){
+
+      window.open("{{url('/sale/history')}}", "_self");
+
+     }
+ });
+});
 </script>
 @endsection

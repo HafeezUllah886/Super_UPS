@@ -321,4 +321,82 @@ class SaleController extends Controller
         return view('sale.print')->with(compact('invoice', 'details', 'prev_balance', 'cur_balance'));
     }
 
+    public function updatePaid(request $req)
+    {
+        $sale = sale::find($req->billID);
+        if($req->isPaid == $sale->isPaid)
+        {
+           return "No Changes";
+        }
+        transactions::where('ref', $sale->ref)->delete();
+        ledger::where('ref', $sale->ref)->delete();
+        $desc1 = "<strong>Products Sold</strong><br/>Invoice No. ".$sale->id;
+         $desc2 = "<strong>Products Sold</strong><br/>Partial payment of Invoice No. ".$sale->id;
+         $total = 0;
+         foreach($sale->details as $item)
+         {
+            $total += $item->price * $item->qty;
+         }
+         $net_total = $total - $sale->discount;
+         
+        if($sale->customer != null){
+
+         if($req->isPaid == 'Yes'){
+            createTransaction($req->paidIn, $sale->date, $net_total, 0, $desc1, "Sale", $sale->ref);
+            createTransaction($sale->customer, $sale->date, $net_total, $net_total, $desc1, "Sale", $sale->ref);
+            $sale->paidIn = $req->paidIn;
+            $sale->amount = null;
+            
+         }
+         elseif($req->isPaid == 'No'){
+                createTransaction($sale->customer, $sale->date, $net_total, 0, $desc1, "Sale", $sale->ref);
+                $sale->paidIn = null;
+                $sale->amount = null;
+         }
+         else{
+            createTransaction($sale->customer, $sale->date, $net_total, $req->amount, $desc2, "Sale", $sale->ref);
+            createTransaction($req->paidIn, $sale->date, $req->amount, 0, $desc1, "Sale", $sale->ref);
+            $sale->amount = $req->amount;
+            $sale->paidIn = $req->paidIn;
+         }
+        }
+        else
+        {
+            createTransaction($req->paidIn, $sale->date, $net_total, 0, $desc1, "Sale", $sale->ref);
+        }
+        $sale->isPaid = $req->isPaid;
+        $sale->save();
+        $ledger_head = null;
+        $ledger_type = null;
+        $ledger_details = "Products Sold";
+        $ledger_amount = null;
+        $c_acct = account::find($sale->customer);
+        $p_acct = account::find($req->paidIn);
+        if($req->isPaid == "Yes"){
+           if($sale->customer == null){
+            $ledger_head = $req->walkIn . "(Walk-In)";
+           }
+           else
+           {
+            $ledger_head = $c_acct->title;
+           }
+           $ledger_type = $p_acct->title . "/Paid";
+           $ledger_amount = $net_total;
+        }
+        elseif($req->isPaid == "No")
+        {
+            $ledger_head = $c_acct->title;
+            $ledger_type = "Unpaid";
+            $ledger_amount = $net_total;
+        }
+        else{
+            $ledger_head = $c_acct->title;
+            $ledger_type = $p_acct->title . "/Partial";
+            $ledger_amount = $req->amount;
+        }
+        addLedger($sale->date, $ledger_head, $ledger_type, $ledger_details, $ledger_amount, $sale->ref);
+
+        return "Done";
+    }
+
 }

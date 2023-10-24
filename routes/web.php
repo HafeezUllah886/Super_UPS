@@ -127,6 +127,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/sale/update/edit/qty/{id}/{qty}', [saleController::class, "updateEditQty"]);
     Route::get('/sale/update/edit/price/{id}/{price}', [saleController::class, "updateEditPrice"]);
     Route::get('/sale/update/discount/{id}/{discount}', [saleController::class, "updateEditDiscount"]);
+    Route::get('/sale/update/paid/', [saleController::class, "updatePaid"]);
 
     Route::get('/stock',[purchaseController::class, "stock1"]);
     Route::get('/stock/details/{id}/{from}/{to}',[purchaseController::class, "stockDetails"]);
