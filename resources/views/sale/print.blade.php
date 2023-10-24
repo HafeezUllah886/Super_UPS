@@ -386,7 +386,7 @@
                             <strong>Remaining</strong>
                         </td>
                         <td>
-                            <h3> {{ $total - $paidAmount - $invoice->discount}}</h3>
+                            <h3> {{ $total - $paidAmount - $invoice->discount + $invoice->dc}}</h3>
                         </td>
                     </tr>
                         @endif
