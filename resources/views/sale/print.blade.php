@@ -339,6 +339,7 @@
                             <strong>{{ $invoice->discount == 0 ? 0 : $invoice->discount}}</strong>
                         </td>
                     </tr>
+                    @endif
                     <tr>
                         <td colspan="6" class="text-right">
                             <strong>Delivery Charges</strong>
@@ -355,7 +356,7 @@
                             <strong>{{ ($total - $invoice->discount) + $invoice->dc }}</strong>
                         </td>
                     </tr>
-                    @endif
+                   
 
                     @if (@$invoice->customer_account->title)
                     <tr>
