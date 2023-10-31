@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('return_id');
             $table->unsignedBigInteger('product_id');
-            $table->unsignedInteger('qty');
-            $table->unsignedDecimal('price');
+            $table->double('qty');
+            $table->double('price');
             $table->unsignedInteger('ref');
             $table->foreign('return_id')->references('id')->on('sale_returns');
             $table->foreign('product_id')->references('id')->on('products');

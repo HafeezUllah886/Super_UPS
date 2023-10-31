@@ -54,7 +54,7 @@
                                     <th>{{ __('lang.Amount') }}</th>
                                     @foreach ($data as $data1)
                                     @php
-                                    $subTotal = $data1->qty * $data1->rate;
+                                    $subTotal = currencyValue($data1->qty, $data1->product->sym, $data1->rate);
                                     @endphp
                                     <tr>
                                         <td>{{$data1->product->name}}</td>
@@ -78,7 +78,7 @@
                                     <th>{{ __('lang.Amount') }}</th>
                                     @foreach ($data as $data1)
                                     @php
-                                    $subTotal = $data1->qty * $data1->price;
+                                    $subTotal = currencyValue($data1->qty, $data1->product->sym, $data1->price);
                                     @endphp
                                     <tr>
                                         <td>{{$data1->product->name}}</td>
@@ -103,7 +103,7 @@
                                 <th>{{ __('lang.Amount') }}</th>
                                 @foreach ($data as $data1)
                                 @php
-                                $subTotal = $data1->qty * $data1->price;
+                                $subTotal = currencyValue($data1->qty, $data1->product->sym, $data1->price);
                                 @endphp
                                 <tr>
                                     <td>{{$data1->product->name}}</td>

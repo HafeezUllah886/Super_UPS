@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('bill_id');
             $table->unsignedBigInteger('product_id');
-            $table->unsignedDecimal('rate', 10, 2);
-            $table->unsignedInteger('qty');
+            $table->double('rate');
+            $table->double('qty');
             $table->unsignedBigInteger('ref');
             $table->timestamp('date', $precision = 0);
             $table->foreign('product_id')->references('id')->on('products');

@@ -6,7 +6,7 @@
 @foreach ($items as $item)
 @php
     $ser += 1;
-    $amount = $item->qty * $item->price;
+    $amount = currencyValue($item->qty, $item->product->sym, $item->price);
     $total += $amount;
 @endphp
 <tr>
@@ -15,7 +15,7 @@
     <td>{{ $item->product->name }}</td>
     <td><input type="number" value="{{ $item->qty }}" id="qty{{ $item->id }}" onfocusout="qty({{ $item->id }})"></td>
     <td><input type="number" value="{{ round($item->price,0) }}" id="rate{{ $item->id }}" onfocusout="rate({{ $item->id }})"></td>
-    <td>{{ $amount }}</td>
+    <td>{{ currencyValue($item->qty, $item->product->sym, $item->price) }}</td>
     <td><button class="btn btn-danger" onclick="deleteDraft({{ $item->id }})">Delete</button></td>
 </tr>
 @endforeach

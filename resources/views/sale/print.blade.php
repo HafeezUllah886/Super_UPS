@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super UPS CENTER</title>
+    <title>POS</title>
     <style>
 
 
@@ -37,7 +37,7 @@
         }
 
         .brand-section {
-            background-color: #b80000;
+            background-color: #1B75B8;
             padding: 10px 40px;
         }
 
@@ -66,13 +66,13 @@
 
         .body-section {
             padding: 16px;
-            border-left: 2px solid #b80000;
-            border-right: 2px solid #b80000;
+            border-left: 2px solid #1B75B8;
+            border-right: 2px solid #1B75B8;
 
         }
 
         .body-section1 {
-            background-color: #b80000;
+            background-color: #1B75B8;
             color: white;
             border-radius: 4px;
         }
@@ -145,14 +145,14 @@
         }
 
         .container1 {
-            border: 2px solid rgb(184, 0, 0);
+            border: 2px solid #1B75B8;
             color: #ffffff;
             height: 90px;
             border-radius: 6px;
         }
 
         .sub-container {
-            background-color: #b80000;
+            background-color: #1B75B8;
             ;
             margin: 5px;
             padding-bottom: 2px;
@@ -188,7 +188,7 @@
             width: 21%;
             margin: auto;
             text-align: center;
-            background-color: #b80000;
+            background-color: #1B75B8;
             color: white;
             border-radius: 5px;
             font-size: 12px;
@@ -235,9 +235,9 @@
         .dot {
             height: 60px;
             width: 65px;
-            background-color: #b80000;
+            background-color: #1B75B8;
             color: white;
-            /* color: #b80000; */
+            /* color: #1B75B8; */
             border-radius: 50%;
             display: inline-block;
             border: 5px solid white;
@@ -256,13 +256,13 @@
                 <div class="logo" style="width: 37%;">
                     <img src="{{ asset('assets/images/app_logo.png') }}" alt="logo">
                 </div>
-                <div id="myDiv">
+               {{--  <div id="myDiv">
                     <span class="dot">
                         <p style="margin-top: 15px;">خوشحال خان</p>
                     </span>
-                </div>
+                </div> --}}
                 <div class="text1">
-                    <h1 class="m-query1">Super UPS Center</h1>
+                    <h1 class="m-query1">POS</h1>
                     <h3 class="m-query2">Shop No 12, insaf Solar Market, Angle Road, opp Civic Center, Quetta.
                         <br>Phone:&nbsp; 0300-3883054,&nbsp;0309-8105556,&nbsp;081-2827774</h3>
                 </div>
@@ -327,10 +327,10 @@
                             <td>{{ $item->product->name }}</td>
                             <td>{{ $item->price }}</td>
                             <td>{{ $item->qty }}</td>
-                            <td>{{ $item->price * $item->qty }}</td>
+                            <td>{{ currencyValue($item->qty, $item->product->sym, $item->price) }}</td>
                         </tr>
                         @php
-                            $total += $item->price * $item->qty;
+                            $total += currencyValue($item->qty, $item->product->sym, $item->price);
                         @endphp
                     @endforeach
 

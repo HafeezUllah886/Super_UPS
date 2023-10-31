@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedBigInteger('coy');
             $table->unsignedBigInteger('cat');
-            $table->unsignedInteger('price');
+            $table->double('price');
+            $table->char('sym');
             $table->softDeletes();
             $table->timestamps();
         });

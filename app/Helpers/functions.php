@@ -154,7 +154,7 @@ function getPurchaseBillTotal($id){
     $amount = 0;
     foreach($items as $item)
     {
-        $amount = $item->rate * $item->qty;
+        $amount = currencyValue($item->qty, $item->product->sym, $item->rate);
         $total += $amount;
     }
 
@@ -167,7 +167,7 @@ function getSaleBillTotal($id){
     $amount = 0;
     foreach($items as $item)
     {
-        $amount = $item->price * $item->qty;
+        $amount = currencyValue($item->qty, $item->product->sym, $item->price);
         $total += $amount;
     }
     $bill = sale::find($id);
@@ -294,4 +294,16 @@ function deleteLedger($ref)
 {
     ledger::where('ref', $ref)->delete();
     return "Ledger Deleted";
+}
+
+function currencyValue($qty, $op, $price)
+{
+    if($op == '*')
+    {
+        return round($qty * $price,2);
+    }
+    if($op == '/')
+    {
+        return round($qty / $price, 2);
+    }
 }

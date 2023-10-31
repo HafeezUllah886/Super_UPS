@@ -72,12 +72,12 @@
 
 <style>
   .page-item.active .page-link{
-      background-color: #ea0a0a ;
-      border-color: #ea0a0a ;
+      background-color: #1B75B8 ;
+      border-color: #1B75B8 ;
   }
 
   .page-link{
-      color: #ea0a0a ;
+      color: #1B75B8 ;
   }
   /* .dataTables_paginate {
       display: none
@@ -92,7 +92,7 @@
 
         <!-- Loader -->
         <div id="preloader"><div id="status"><div class="spinner"></div></div></div>
-        <nav style="background: linear-gradient(to bottom, #ea0a0a 0%, #a13a1d 100%) !important" class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav style="background: linear-gradient(to bottom, #1B75B8 0%, #4cb0fd 100%) !important" class="navbar navbar-expand-lg navbar-light bg-light">
             <a style="width: 17%;" class="navbar-brand" href="#">
               <img class="logo-nav" src="{{ asset("assets/images/app_logo.png") }}"/>
             </a>

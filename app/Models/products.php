@@ -9,10 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class products extends Model
 {
     use HasFactory, SoftDeletes;
+    protected $guarded = [];
     protected $fillable = ([
         'coy',
         'cat',
         'name',
+        'sym',
         'price'
     ]);
 

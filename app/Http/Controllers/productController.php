@@ -107,6 +107,7 @@ class productController extends Controller
             [
                 'name' => $req->name,
                 'price' => $req->price,
+                'sym' => $req->sym,
                 'coy' => $req->coy,
                 'cat' => $req->cat,
             ]
@@ -125,6 +126,7 @@ class productController extends Controller
             [
                 'name' => $req->name,
                 'price' => $req->price,
+                'sym' => $req->sym,
                 'coy' => $req->coy,
                 'cat' => $req->cat,
             ]
@@ -153,7 +155,7 @@ class productController extends Controller
                 $toDate = $to;   // Replace with the actual to date
 
                 $products = Products::all();
-               
+
                 foreach ($products as $product) {
                     //////////// Getting avg Purchase Price ///////////////////////
                     $purchases_qty = purchase_details::where('product_id', $product->id)
@@ -171,12 +173,12 @@ class productController extends Controller
                         }
                         $avg_purchase_price = $purchases_amount / $purchases_qty;
                     //////////// Getting avg Sale Price ///////////////////////
-                    
+
                         $sales_qty = sale_details::where('product_id', $product->id)
                         ->whereBetween('date', [$fromDate, $toDate])->count();
                         $sales_amount = sale_details::where('product_id', $product->id)
                         ->whereBetween('date', [$fromDate, $toDate])->sum('price');
-                        
+
                         $gross_sold_qty = $sales_qty; ///// Storing gross sold before proceeding
                         if($sales_amount == 0)
                         {
@@ -205,7 +207,7 @@ class productController extends Controller
                     $return_qty = $qty;
                     //////////// Subtracting return Qty from gross qty to get total Sold///////////////////////
                     $total_sold = $gross_sold_qty - $return_qty;
-                    
+
                     //////////// Calculating Net Profit per product ///////////////////////
 
                     $net_product_profit = $total_sold * $ppu;
@@ -218,7 +220,7 @@ class productController extends Controller
                     //////////// Calculating Stock Value ///////////////////////
 
                     $stock_value = $avg_sale_price * $available_stock;
-                    
+
                     //////////// Passing all data to product variable ///////////////////////
                     $product->app = $avg_purchase_price;
                     $product->asp = $avg_sale_price;

@@ -84,12 +84,7 @@
                             <input type="number" required name="rate" id="rate" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="price">{{ __('lang.SalePrice') }}</label>
-                            <input type="number" required name="price" id="price" class="form-control">
-                        </div>
-                    </div>
+                    <input type="hidden" value="0" name="price" id="price" class="form-control">
                     <div class="col-md-3">
                         <button type="submit" class="btn btn-info" style="margin-top: 30px">{{ __('lang.AddProduct') }}</button>
                     </div>

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('account_id');
             $table->timestamp('date', $precision = 0);
-            $table->unsignedDecimal('db', 10,2)->nullable();
-            $table->unsignedDecimal('cr', 10,2)->nullable();
+            $table->double('db')->nullable();
+            $table->double('cr')->nullable();
             $table->text('desc');
             $table->string('type');
             $table->unsignedBigInteger('ref');

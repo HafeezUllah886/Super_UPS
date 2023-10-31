@@ -49,13 +49,13 @@
                                     <tbody>
                                         @foreach ($return->details as $details)
                                             @php
-                                                $amount = $details->qty * $details->price;
+                                                $amount = currencyValue($details->qty, $details->product->sym, $details->price);
                                             @endphp
                                             <tr>
                                                 <td>{{ $details->product->name }}</td>
                                                 <td>{{ $details->qty }}</td>
                                                 <td>{{ round($details->price) }}</td>
-                                                <td>{{ $amount }}</td>
+                                                <td>{{ currencyValue($details->qty, $details->product->sym, $details->price) }}</td>
                                             </tr>
                                             @if($return->deduction > 0)
                                             <tr>

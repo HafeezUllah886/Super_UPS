@@ -129,7 +129,7 @@ class purchaseController extends Controller
         $total = 0;
         $amount1 = 0;
         foreach ($items as $item) {
-            $amount1 = $item->rate * $item->qty;
+            $amount1 = currencyValue($item->qty, $item->product->sym, $item->rate);
             $total += $amount1;
             purchase_details::create([
                 'bill_id' => $purchase->id,

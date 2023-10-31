@@ -42,7 +42,7 @@
                             <tr>
                                 <th class="border-top-0">{{ __('lang.Ser') }}</th>
                                 <th class="border-top-0">{{ __('lang.Product') }}</th>
-                                <th class="border-top-0">{{ __('lang.SalePrice') }}</th>
+                                <th class="border-top-0">Symbol</th>
                                 <th class="border-top-0">{{ __('lang.Category') }}</th>
                                 <th class="border-top-0">{{ __('lang.Company') }}</th>
                                 <th>{{ __('lang.Action') }}</th>
@@ -59,7 +59,7 @@
                             <tr>
                                 <td> {{ $ser }} </td>
                                 <td>{{ $pro->name }}</td>
-                                <td>{{ $pro->price }}</td>
+                                <td>{{ $pro->sym }}</td>
                                 <td>{{ $pro->category->cat }}</td>
                                 <td>{{ $pro->company->name }}</td>
 
@@ -97,8 +97,14 @@
                         <input type="text" required name="name" id="name" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="price">{{ __('lang.SalePrice') }}</label>
-                        <input type="number" required name="price" id="price" class="form-control">
+                        <input type="hidden" value="0" step="any" name="price" id="price" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="sym">Symbol</label>
+                        <select name="sym" class="form-control" id="sym">
+                           <option value="*">Multiply (*)</option>
+                           <option value="/">Divide (/)</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="cat">{{ __('lang.Category') }}</label>
@@ -147,7 +153,7 @@
                     </div>
                     <div class="form-group">
                         <label for="price">{{ __('lang.SalePrice') }}</label>
-                        <input type="number" required id="edit_price"  name="price" class="form-control">
+                        <input type="number" required step="any" id="edit_price"  name="price" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="cat">{{ __('lang.Category') }}</label>

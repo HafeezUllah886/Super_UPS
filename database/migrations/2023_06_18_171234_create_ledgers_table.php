@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('head');
             $table->string('type');
             $table->string('details');
-            $table->unsignedBigInteger('amount');
+            $table->double('amount');
             $table->unsignedBigInteger('ref');
             $table->timestamps();
         });

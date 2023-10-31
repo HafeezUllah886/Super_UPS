@@ -137,7 +137,7 @@ class SaleController extends Controller
         $total = 0;
         $amount1 = 0;
         foreach ($items as $item){
-            $amount1 = $item->price * $item->qty;
+            $amount1 = currencyValue($item->qty, $item->product->sym, $item->price);
             $total += $amount1;
             sale_details::create([
                 'bill_id' => $sale->id,
@@ -338,7 +338,7 @@ class SaleController extends Controller
             $total += $item->price * $item->qty;
          }
          $net_total = $total - $sale->discount;
-         
+
         if($sale->customer != null){
 
          if($req->isPaid == 'Yes'){
@@ -346,7 +346,7 @@ class SaleController extends Controller
             createTransaction($sale->customer, $sale->date, $net_total, $net_total, $desc1, "Sale", $sale->ref);
             $sale->paidIn = $req->paidIn;
             $sale->amount = null;
-            
+
          }
          elseif($req->isPaid == 'No'){
                 createTransaction($sale->customer, $sale->date, $net_total, 0, $desc1, "Sale", $sale->ref);
