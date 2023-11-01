@@ -256,11 +256,7 @@
                 <div class="logo" style="width: 37%;">
                     <img src="{{ asset('assets/images/app_logo.png') }}" alt="logo">
                 </div>
-               {{--  <div id="myDiv">
-                    <span class="dot">
-                        <p style="margin-top: 15px;">خوشحال خان</p>
-                    </span>
-                </div> --}}
+              
                 <div class="text1">
                     <h1 class="m-query1">POS</h1>
                     <h3 class="m-query2">Shop No 12, insaf Solar Market, Angle Road, opp Civic Center, Quetta.
