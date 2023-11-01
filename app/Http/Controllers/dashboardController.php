@@ -165,4 +165,15 @@ class dashboardController extends Controller
 
         return back()->with('msg', "Password Changed");
     }
+
+    function cashBook($date){
+        $in = transactions::whereHas('account', function ($query) {
+            $query->where('Category', 'Cash');
+        })->where('cr', '>', 0)->whereDate('date', $date)->get();
+
+        $out = transactions::whereHas('account', function ($query) {
+            $query->where('Category', 'Cash');
+        })->where('db', '>', 0)->whereDate('date', $date)->get();
+        return view('dash_extra.cash_book', compact('in', 'out', 'date'));
+    }
 }
