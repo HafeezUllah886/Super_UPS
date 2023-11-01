@@ -160,6 +160,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/dashboard/total_bank', [DashboardController::class, 'total_bank']);
     Route::get('/dashboard/ledgerDetails', [DashboardController::class, 'ledgerDetails']);
     Route::get('/dashboard/incomeExpenseDetails', [DashboardController::class, 'incomeExpDetails']);
+    Route::get('/dashboard/CashBook/{date}', [DashboardController::class, 'cashBook']);
 
     Route::get('/profit/{from}/{to}', [productController::class, 'profit']);
 
