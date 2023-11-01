@@ -106,7 +106,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"><a class="text-warning" href="{{ url('/dashboard/CashBook/') }}/{{ date('Y-m-d') }}">{{ __('lang.DailyCashBook') }}</a></div>
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"><a class="text-warning" href="{{ url('/dashboard/CashBook/') }}/{{ date('Y-m-d') }}">Daily CashBook</a></div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
@@ -116,7 +116,7 @@
                                 </div>
                             </div>
                             <div class="col-auto">
-                                <i class="fa fa-user fa-2x text-warning text-red-300"></i>
+                                <i class="fa fa-book-open fa-2x text-warning text-red-300"></i>
                             </div>
                         </div>
                     </div>

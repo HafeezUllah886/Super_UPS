@@ -41,7 +41,7 @@
                                 <td>{{ $dep->to_account->title }} ({{ $dep->to_account->type }})</td>
 
                                 <td>{{ $dep->desc}}</td>
-                                <td>{{ $dep->amount}}</td>
+                                <td><span ondblclick="edit({{ $dep->ref }})" id="amount_{{ $dep->ref }}">{{ $dep->amount}}</span><input type="text" style="display: none;" onblur="saveEdit({{ $dep->ref }})" class="form-control" value="{{ $dep->amount }}" id="box_{{ $dep->ref }}"></td>
                                 <td>
                                     <a href="{{ url('transfer/delete/') }}/{{ $dep->ref }}" class="btn btn-danger">Delete</a>
                                     <a href="{{ url('transfer/print/') }}/{{ $dep->ref }}" class="btn btn-success">Print</a>
@@ -131,6 +131,25 @@
         , "bInfo": true,
         "order": [[0, 'desc']],
     });
+
+    function edit(ref)
+    {
+        $("#amount_"+ref).css('display', 'none');
+        $("#box_"+ref).css('display', 'block');
+    }
+
+    function saveEdit(ref)
+    {
+
+        var amount = $("#box_"+ref).val();
+        $.ajax({
+            url: "{{ url('/transfer/edit/') }}/"+ref+"/"+amount,
+            method: "get",
+            success: function(response){
+                window.location.reload();
+            }
+        });
+    }
 
 </script>
 @endsection

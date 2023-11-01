@@ -9,7 +9,7 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>{{ __('lang.DailyCashBook') }}</h4>
+                <h4>Daily CashBook</h4>
                 <div class="w-40">
                     <input type="date" class="form-control" onchange="abc()" value="{{ $date }}" name="date" id="date">
                 </div>
@@ -22,7 +22,7 @@
             <div class="col-md-6">
                 <div class="card bg-white m-b-30">
                     <div class="card-header">
-                        <h5>{{ __('lang.CashInflow') }}</h5>
+                        <h5>Cash Inflow</h5>
                     </div>
                     <table class="table table-hover" id="datatable1">
                         <thead class="th-color">
@@ -79,14 +79,14 @@
             <div class="col-md-6">
                 <div class="card bg-white m-b-30">
                     <div class="card-header">
-                        <h5>{{ __('lang.CashOutflow') }}</h5>
+                        <h5>Cash Outflow</h5>
                     </div>
                     <table class="table table-hover" id="datatable1">
                         <thead class="th-color">
                             <th>{{ __('lang.Ser') }}</th>
                             <th>{{ __('lang.Account') }}</th>
                             <th>{{ __('lang.Desc') }}</th>
-                            <th>{{ __('lang.Factory') }}</th>
+                            <th>Vendor</th>
                             <th>{{ __('lang.Amount') }}</th>
                         </thead>
                         <tbody>
@@ -138,28 +138,28 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <h5>{{ __('lang.Summary') }}</h5>
+                        <h5>Summary</h5>
                     </div>
                     <div class="card-body">
                         <table class="table">
                             <tr>
-                                <td> <h5>{{ __('lang.PreviousBalance') }}</h5></td>
+                                <td> <h5>Previous Balance</h5></td>
                                 <td><h5>{{ previousCash($date) }}</h5></td>
                             </tr>
                             <tr>
-                                <td><h5>{{ __('lang.TodayCredit') }}</h5></td>
+                                <td><h5>Today Credit</h5></td>
                                 <td><h5>{{ $total_cr }}</h5></td>
                             </tr>
                             <tr>
-                                <td><h5>{{ __('lang.TodayDebit') }}</h5></td>
+                                <td><h5>Today Debit</h5></td>
                                 <td><h5>{{ $total_db }}</h5></td>
                             </tr>
                             <tr>
-                                <td><h5>{{ __('lang.TodayBalance') }}</h5></td>
+                                <td><h5>Today Balance</h5></td>
                                 <td><h5>{{ $total_cr - $total_db }}</h5></td>
                             </tr>
                             <tr>
-                                <td><h5>{{ __('lang.NetBalance') }}</h5></td>
+                                <td><h5>Net Balance</h5></td>
                                 <td><h5>{{ previousCash($date) + ($total_cr - $total_db) }}</h5></td>
                             </tr>
                         </table>

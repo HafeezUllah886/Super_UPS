@@ -338,7 +338,7 @@ class AccountController extends Controller
         if($from->type == 'Business' && $to->type == 'Vendor'){
             addLedger($req->date, $to->title, $from->title, "Payment to Vendor", $req->amount, $ref);
         }
-        return redirect('/transfer/print/'.$ref);
+        return back();
     }
 
     public function deleteTransfer($ref)
@@ -389,5 +389,30 @@ class AccountController extends Controller
         $file_name = $invoices[0]->customer_account->title." - Purchase Details.pdf";
         return $pdf->download($file_name);
 
+    }
+    public function editTransfer($ref, $amount){
+        $transfer = transfer::where('ref', $ref)->first();
+        $transfer->amount = $amount;
+        $transfer->save();
+
+        $trans = transactions::where('ref', $ref)->get();
+
+        foreach($trans as $tran)
+        {
+            $new = transactions::where('account_id', $tran->account_id)->where('ref', $ref)->first();
+            if($tran->db > 0)
+            {
+                $new->db = $amount;
+                $new->save();
+            }
+            if($tran->cr > 0)
+            {
+                $new->cr = $amount;
+                $new->save();
+            }
+        }
+
+
+        return "done";
     }
 }

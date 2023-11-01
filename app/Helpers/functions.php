@@ -307,3 +307,23 @@ function currencyValue($qty, $op, $price)
         return round($qty / $price, 2);
     }
 }
+
+function cashBook(){
+    return 000;
+    }
+
+    function previousCash($date){
+        $accounts = account::where('Category', 'Cash')->get();
+        $cr = 0;
+       $db = 0;
+       $balance = 0;
+       foreach ($accounts as $account){
+            $cr = transactions::where('account_id', $account->id)->whereDate('date', '<', $date)->sum('cr');
+            $db = transactions::where('account_id', $account->id)->whereDate('date', '<', $date)->sum('db');
+
+            $balance += $cr - $db;
+       }
+
+       return $balance;
+    }
+
