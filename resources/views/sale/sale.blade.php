@@ -46,6 +46,27 @@
         }
 
     }
+
+    function checkAcct(){
+        var id = $("#paidIn").find(":selected").val();
+        $.ajax({
+            url: "{{ url('/account/check/') }}/"+id,
+            method: 'get',
+            success: function(response){
+                if(response == "Product")
+                {
+                    $("#isPaid").val('Yes');
+                    $("#isPaid_box").css('display',"none");
+                    $("#amount_box").css('display', 'none');
+
+                }
+                else{
+                    $("#isPaid_box").css('display',"block");
+                }
+            }
+        });
+    }
+
 </script>
 @section('content')
 @if (session('success'))
@@ -187,7 +208,7 @@
                             <div class="col-md-3" id="paidIn_box">
                                 <div class="form-group">
                                     <label for="paidIn">{{__('lang.PaidIn')}}</label>
-                                    <select name="paidIn" id="paidIn" class=" select2">
+                                    <select name="paidIn" onchange="checkAcct()"  id="paidIn" class=" select2">
                                         <option></option>
                                         @foreach ($paidIns as $acct)
                                             <option value="{{ $acct->id }}">{{ $acct->title }}</option>

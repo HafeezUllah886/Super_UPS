@@ -16,7 +16,7 @@ class SaleController extends Controller
 {
     public function sale(){
         $customers = account::where('type','Customer')->get();
-        $paidIns = account::where('type', 'Business')->get();
+        $paidIns = account::where('type', 'Business')->orWhere('type', 'Product')->get();
         $products = products::all();
         return view('sale.sale')->with(compact('customers', 'products', 'paidIns'));
     }
@@ -156,6 +156,20 @@ class SaleController extends Controller
                 'ref' => $ref
             ]);
          }
+
+         $checkAccount = account::find($paidIn);
+         if($checkAccount->type == "Product")
+         {
+             $productAsCurrency = products::where('accountID', $paidIn)->first();
+             $desc = "<strong>Received against the sale </strong><br/> Bill No. " . $sale->id;
+             stock::create([
+                 'product_id' => $productAsCurrency->id,
+                 'date' => $req->date,
+                 'desc' => $desc,
+                 'cr' => $total,
+                 'ref' => $ref
+             ]);
+         }
          $net_total = $total - $req->discount;
          $desc1 = "<strong>Products Sold</strong><br/>Invoice No. ".$sale->id;
          $desc2 = "<strong>Products Sold</strong><br/>Partial payment of Invoice No. ".$sale->id;
@@ -231,7 +245,7 @@ class SaleController extends Controller
     {
         $bill = sale::where('id', $id)->first();
         $customer = account::where('type','Customer')->get();
-        $paidIn = account::where('type', 'Business')->get();
+        $paidIn = account::where('type', 'Business')->orWhere('type', 'Product')->get();
         $products = products::all();
 
         return view('sale.edit')->with(compact('bill', 'products', 'customer', 'paidIn'));

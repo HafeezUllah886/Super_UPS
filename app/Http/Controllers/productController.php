@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\account;
 use App\Models\catergory;
 use App\Models\company;
 use App\Models\expense;
@@ -103,6 +104,12 @@ class productController extends Controller
         {
             return back()->with('error', 'This product already exists');
         }
+        $account = account::create(
+            [
+                'title' => $req->name,
+                'type' => "Product",
+            ]
+        );
         products::create(
             [
                 'name' => $req->name,
@@ -110,8 +117,10 @@ class productController extends Controller
                 'sym' => $req->sym,
                 'coy' => $req->coy,
                 'cat' => $req->cat,
+                'accountID' => $account->id,
             ]
         );
+
         return back()->with('success', 'Product has been created');
     }
 

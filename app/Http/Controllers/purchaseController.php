@@ -18,7 +18,7 @@ class purchaseController extends Controller
     public function purchase()
     {
         $vendors = account::where('type', '!=', 'Business')->get();
-        $paidFroms = account::where('type', 'Business')->get();
+        $paidFroms = account::where('type', 'Business')->orWhere('type', 'Product')->get();
         $products = products::all();
         return view('purchase.purchase')->with(compact('vendors', 'products', 'paidFroms'));
     }
@@ -124,6 +124,10 @@ class purchaseController extends Controller
             'ref' => $ref,
         ]);
 
+
+
+
+
         $desc = "<strong>Purchased</strong><br/> Bill No. " . $purchase->id;
         $items = purchase_draft::all();
         $total = 0;
@@ -145,6 +149,19 @@ class purchaseController extends Controller
                 'date' => $req->date,
                 'desc' => $desc,
                 'cr' => $item->qty,
+                'ref' => $ref
+            ]);
+        }
+        $checkAccount = account::find($paidFrom);
+        if($checkAccount->type == "Product")
+        {
+            $productAsCurrency = products::where('accountID', $paidFrom)->first();
+            $desc = "<strong>Other Products Purchase using this product</strong><br/> Bill No. " . $purchase->id;
+            stock::create([
+                'product_id' => $productAsCurrency->id,
+                'date' => $req->date,
+                'desc' => $desc,
+                'db' => $total,
                 'ref' => $ref
             ]);
         }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedBigInteger('coy');
             $table->unsignedBigInteger('cat');
+            $table->unsignedBigInteger('accountID');
             $table->double('price');
             $table->char('sym');
             $table->softDeletes();

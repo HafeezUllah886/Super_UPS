@@ -14,6 +14,7 @@ class products extends Model
         'coy',
         'cat',
         'name',
+        'accountID',
         'sym',
         'price'
     ]);
@@ -28,5 +29,9 @@ class products extends Model
 
     public function stock(){
         return $this->hasMany(stock::class, 'product_id');
+    }
+
+    public function account(){
+        return $this->belongsTo(account::class, 'accountID', 'id');
     }
 }

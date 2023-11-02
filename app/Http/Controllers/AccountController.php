@@ -415,4 +415,11 @@ class AccountController extends Controller
 
         return "done";
     }
+
+    public function checkAccount($id)
+    {
+        $account = account::find($id);
+
+        return $account->type;
+    }
 }

@@ -32,6 +32,27 @@
         }
 
     }
+
+    function checkAcct(){
+        var id = $("#paidFrom").find(":selected").val();
+        $.ajax({
+            url: "{{ url('/account/check/') }}/"+id,
+            method: 'get',
+            success: function(response){
+                if(response == "Product")
+                {
+                    $("#isPaid").val('Yes');
+                    $("#isPaid_box").css('display',"none");
+                    $("#amount_box").css('display', 'none');
+
+                }
+                else{
+                    $("#isPaid_box").css('display',"block");
+                }
+            }
+        });
+    }
+
 </script>
 @php
         App::setLocale(auth()->user()->lang);
@@ -167,7 +188,7 @@
                             <div class="col-md-3" id="paidIn_box">
                                 <div class="form-group">
                                     <label for="paidFrom">{{ __('lang.PaidBy') }}</label>
-                                    <select name="paidFrom" id="paidFrom" class=" select2">
+                                    <select name="paidFrom" onchange="checkAcct()" id="paidFrom" class=" select2">
                                         <option></option>
                                         @foreach ($paidFroms as $acct)
                                             <option value="{{ $acct->id }}">{{ $acct->title }}</option>
