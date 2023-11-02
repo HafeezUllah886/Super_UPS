@@ -223,7 +223,7 @@ class SaleController extends Controller
 
          sale_draft::truncate();
 
-         return redirect('/sale/print/'.$ref);
+         return redirect('/sale/history');
     }
     public function history(){
         $history = sale::with('customer_account', 'account')->orderBy('id', 'desc')->get();
@@ -243,6 +243,7 @@ class SaleController extends Controller
 
     public function edit($id)
     {
+        return back();
         $bill = sale::where('id', $id)->first();
         $customer = account::where('type','Customer')->get();
         $paidIn = account::where('type', 'Business')->orWhere('type', 'Product')->get();
@@ -344,6 +345,7 @@ class SaleController extends Controller
         }
         transactions::where('ref', $sale->ref)->delete();
         ledger::where('ref', $sale->ref)->delete();
+
         $desc1 = "<strong>Products Sold</strong><br/>Invoice No. ".$sale->id;
          $desc2 = "<strong>Products Sold</strong><br/>Partial payment of Invoice No. ".$sale->id;
          $total = 0;

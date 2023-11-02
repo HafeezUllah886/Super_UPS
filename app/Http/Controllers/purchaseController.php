@@ -124,10 +124,6 @@ class purchaseController extends Controller
             'ref' => $ref,
         ]);
 
-
-
-
-
         $desc = "<strong>Purchased</strong><br/> Bill No. " . $purchase->id;
         $items = purchase_draft::all();
         $total = 0;
@@ -224,6 +220,7 @@ class purchaseController extends Controller
 
     public function edit($id)
     {
+        return back();
         $bill = purchase::where('id', $id)->first();
         $vendors = account::where('type', '!=', 'Business')->get();
         $paidFroms = account::where('type', 'Business')->get();
