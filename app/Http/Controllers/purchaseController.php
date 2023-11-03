@@ -148,7 +148,13 @@ class purchaseController extends Controller
                 'ref' => $ref
             ]);
         }
-        $checkAccount = account::find($paidFrom);
+
+        $desc1 = "<strong>Products Purchased</strong><br/>Bill No. " . $purchase->id;
+        $desc2 = "<strong>Products Purchased</strong><br/>Partial payment of Bill No. " . $purchase->id;
+        if ($req->vendor != 0) {
+            $check_vendor = account::find($req->vendor);
+            if ($req->isPaid == 'Yes') {
+                $checkAccount = account::find($paidFrom);
         if($checkAccount->type == "Product")
         {
             $productAsCurrency = products::where('accountID', $paidFrom)->first();
@@ -161,11 +167,6 @@ class purchaseController extends Controller
                 'ref' => $ref
             ]);
         }
-        $desc1 = "<strong>Products Purchased</strong><br/>Bill No. " . $purchase->id;
-        $desc2 = "<strong>Products Purchased</strong><br/>Partial payment of Bill No. " . $purchase->id;
-        if ($req->vendor != 0) {
-            $check_vendor = account::find($req->vendor);
-            if ($req->isPaid == 'Yes') {
                 createTransaction($req->paidFrom, $req->date, 0, $total, $desc1, "Purchase", $ref);
                 createTransaction($req->vendor, $req->date, $total, $total, $desc1, "Purchase", $ref);
             } elseif ($req->isPaid == 'No') {

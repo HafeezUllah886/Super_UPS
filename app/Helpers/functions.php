@@ -300,11 +300,11 @@ function currencyValue($qty, $op, $price)
 {
     if($op == '*')
     {
-        return round($qty * $price,2);
+        return round($qty * $price,0);
     }
     if($op == '/')
     {
-        return round($qty / $price, 2);
+        return round($qty / $price,0);
     }
 }
 

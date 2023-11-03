@@ -157,25 +157,26 @@ class SaleController extends Controller
             ]);
          }
 
-         $checkAccount = account::find($paidIn);
-         if($checkAccount->type == "Product")
-         {
-             $productAsCurrency = products::where('accountID', $paidIn)->first();
-             $desc = "<strong>Received against the sale </strong><br/> Bill No. " . $sale->id;
-             stock::create([
-                 'product_id' => $productAsCurrency->id,
-                 'date' => $req->date,
-                 'desc' => $desc,
-                 'cr' => $total,
-                 'ref' => $ref
-             ]);
-         }
+
          $net_total = $total - $req->discount;
          $desc1 = "<strong>Products Sold</strong><br/>Invoice No. ".$sale->id;
          $desc2 = "<strong>Products Sold</strong><br/>Partial payment of Invoice No. ".$sale->id;
         if($req->customer != 0){
 
          if($req->isPaid == 'Yes'){
+            $checkAccount = account::find($req->paidIn);
+            if($checkAccount->type == "Product")
+            {
+                $productAsCurrency = products::where('accountID', $paidIn)->first();
+                $desc = "<strong>Received against the sale </strong><br/> Bill No. " . $sale->id;
+                stock::create([
+                    'product_id' => $productAsCurrency->id,
+                    'date' => $req->date,
+                    'desc' => $desc,
+                    'cr' => $total,
+                    'ref' => $ref
+                ]);
+            }
             createTransaction($req->paidIn, $req->date, $net_total, 0, $desc1, "Sale", $ref);
             createTransaction($req->customer, $req->date, $net_total, $net_total, $desc1, "Sale", $ref);
          }

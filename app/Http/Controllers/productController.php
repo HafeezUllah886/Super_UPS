@@ -134,7 +134,6 @@ class productController extends Controller
         products::where('id', $req->id)->update(
             [
                 'name' => $req->name,
-                'price' => $req->price,
                 'sym' => $req->sym,
                 'coy' => $req->coy,
                 'cat' => $req->cat,

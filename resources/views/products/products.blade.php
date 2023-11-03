@@ -64,7 +64,7 @@
                                 <td>{{ $pro->company->name }}</td>
 
                                 <td>
-                                    <button onclick='edit_cat({{ $pro->id }}, "{{ $pro->name }}", {{ $pro->coy }}, {{ $pro->cat }}, {{ $pro->price }})' class="btn btn-primary">{{ __('lang.Edit') }}</button>
+                                    <button onclick='edit_cat({{ $pro->id }}, "{{ $pro->name }}", {{ $pro->coy }}, {{ $pro->cat }}, "{{ $pro->sym }}")' class="btn btn-primary">{{ __('lang.Edit') }}</button>
                                     <a href="{{ url('/product/delete/') }}/{{ $pro->id }}" class="btn btn-danger">Delete</a>
                                     </td>
                             </tr>
@@ -151,9 +151,13 @@
                         <label for="name">{{ __('lang.Product') }}</label>
                         <input type="text" required id="edit_name"  name="name" class="form-control">
                     </div>
+
                     <div class="form-group">
-                        <label for="price">{{ __('lang.SalePrice') }}</label>
-                        <input type="number" required step="any" id="edit_price"  name="price" class="form-control">
+                        <label for="sym">Symbol</label>
+                        <select name="sym" class="form-control" id="edit_sym">
+                           <option value="*">Multiply (*)</option>
+                           <option value="/">Divide (/)</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="cat">{{ __('lang.Category') }}</label>
@@ -202,9 +206,9 @@
 
     });
 
-    function edit_cat(id, name, coy, cat, price) {
+    function edit_cat(id, name, coy, cat, sym) {
         $('#edit_name').val(name);
-        $('#edit_price').val(price);
+        $('#edit_sym').val(sym);
         $('#edit_coy').val(coy);
         $('#edit_cat').val(cat);
         $('#edit_id').val(id);
