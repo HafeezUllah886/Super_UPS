@@ -52,7 +52,7 @@
                                 <td> {{ $ser }} </td>
                                 <td>{{ $account->title }}</td>
                                 <td>{{ $account->Category }}</td>
-                                <td> {{ getAccountBalance($account->id) }}</td>
+                                <td> {{ numberFormat(getAccountBalance($account->id)) }}</td>
                                 <td class="text-left">
                                     <button onclick='edit_cat({{ $account->id }}, "{{ $account->title }}", "{{ $account->Category }}")' class="btn btn-primary">{{ __('lang.Edit') }}</button>
                                     <a href="{{ url('accounts/statement/') }}/{{ $account->id }}" class="btn btn-info">{{ __('lang.ViewStatement') }}</button>

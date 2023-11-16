@@ -14,7 +14,7 @@
     <td>{{ $item->product->name }}</td>
     <td><input type="number" value="{{ $item->qty }}" id="qty{{ $item->id }}" onfocusout="qty({{ $item->id }})"></td>
     <td><input type="number" value="{{ $item->rate }}" id="rate{{ $item->id }}" onfocusout="rate({{ $item->id }})"></td>
-    <td>{{ currencyValue($item->qty, $item->product->sym, $item->rate) }}</td>
+    <td><input type="number" readonly name="subtotal" value="{{ currencyValue($item->qty, $item->product->sym, $item->rate) }}"></td>
     <td><button class="btn btn-danger" onclick="deleteEdit({{ $item->id }})">Delete</button></td>
 </tr>
 @endforeach

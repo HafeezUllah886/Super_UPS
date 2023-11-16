@@ -58,9 +58,9 @@
                                     @endphp
                                     <tr>
                                         <td>{{$data1->product->name}}</td>
-                                        <td>{{$data1->qty}}</td>
-                                        <td>{{round($data1->rate,2)}}</td>
-                                        <td>{{$subTotal}}</td>
+                                        <td>{{numberFormat($data1->qty)}}</td>
+                                        <td>{{numberFormat($data1->rate)}}</td>
+                                        <td>{{numberFormat($subTotal)}}</td>
                                     </tr>
                                     @endforeach
 
@@ -82,9 +82,9 @@
                                     @endphp
                                     <tr>
                                         <td>{{$data1->product->name}}</td>
-                                        <td>{{$data1->qty}}</td>
-                                        <td>{{round($data1->price,0)}}</td>
-                                        <td>{{$subTotal}}</td>
+                                        <td>{{numberFormat($data1->qty)}}</td>
+                                        <td>{{numberFormat($data1->price)}}</td>
+                                        <td>{{numberFormat($subTotal)}}</td>
                                     </tr>
                                     @endforeach
 
@@ -107,17 +107,17 @@
                                 @endphp
                                 <tr>
                                     <td>{{$data1->product->name}}</td>
-                                    <td>{{$data1->qty}}</td>
-                                    <td>{{round($data1->price,2)}}</td>
-                                    <td>{{$subTotal}}</td>
+                                    <td>{{numberFormat($data1->qty)}}</td>
+                                    <td>{{numberFormat($data1->price)}}</td>
+                                    <td>{{numberFormat($subTotal)}}</td>
                                 </tr>
                                 @endforeach
 
                             </table>
                         @endif</td>
-                            <td>{{ round($tran->cr,0) }}</td>
-                            <td>{{ round($tran->db,0) }}</td>
-                            <td>{{ round($balance,0) }}</td>
+                            <td>{{ numberFormat($tran->cr) }}</td>
+                            <td>{{ numberFormat($tran->db) }}</td>
+                            <td>{{ numberFormat($balance) }}</td>
                         </tr>
                     @endforeach
                 </tbody>

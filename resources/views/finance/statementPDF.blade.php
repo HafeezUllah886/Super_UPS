@@ -271,8 +271,8 @@
 
     <div class="container">
         <img style="margin:0;width:100%;" src="{{ asset('assets/images/bill.png') }}" alt="">
-        <div class="body-section">
-            <div class="row">
+        <div class="body-section" >
+            <div class="row" style="margin-top:150px;">
                 <div class="qoute">
                     <h2 style="text-align: center;">ACCOUNT STATEMENT</h2>
                 </div>
@@ -300,9 +300,9 @@
                         </tr>
                         <tr>
                             <td style="text-align: left; width:20%;">Previous Balance </td>
-                            <td style="text-align: left; width:30%;">{{ $prev_bal }}</td>
+                            <td style="text-align: left; width:30%;">{{ numberFormat($prev_bal) }}</td>
                             <td style="text-align: left;">Current Balance </td>
-                            <td style="text-align: left;">{{ $cur_bal }}</td>
+                            <td style="text-align: left;">{{ numberFormat($cur_bal) }}</td>
                         </tr>
                     </table>
                 </div>
@@ -352,13 +352,13 @@
                                      <th style="font-size: 12px">Amount</th>
                                      @foreach ($data as $data1)
                                      @php
-                                         $subTotal = $data1->qty * $data1->price;
+                                         $subTotal = currencyValue($data1->qty, $data1->product->sym, $data1->price);
                                      @endphp
                                          <tr>
                                              <td>{{$data1->product->name}}</td>
-                                             <td>{{$data1->qty}}</td>
-                                             <td>{{round($data1->price,0)}}</td>
-                                             <td>{{$subTotal}}</td>
+                                             <td>{{numberFormat($data1->qty)}}</td>
+                                             <td>{{round($data1->price)}}</td>
+                                             <td>{{numberFormat($subTotal)}}</td>
                                          </tr>
                                      @endforeach
 
@@ -379,13 +379,13 @@
                                      <th style="font-size: 12px">Amount</th>
                                      @foreach ($data as $data1)
                                      @php
-                                         $subTotal = $data1->qty * $data1->price;
+                                         $subTotal = currencyValue($data1->qty, $data1->product->sym, $data1->price);
                                      @endphp
                                          <tr>
                                              <td>{{$data1->product->name}}</td>
-                                             <td>{{$data1->qty}}</td>
-                                             <td>{{round($data1->price,0)}}</td>
-                                             <td>{{$subTotal}}</td>
+                                             <td>{{numberFormat($data1->qty)}}</td>
+                                             <td>{{numberFormat($data1->price)}}</td>
+                                             <td>{{numberFormat($subTotal)}}</td>
                                          </tr>
                                      @endforeach
                                  </table>
@@ -405,13 +405,13 @@
                                  <th style="font-size: 12px">Amount</th>
                                  @foreach ($data as $data1)
                                  @php
-                                     $subTotal = $data1->qty * $data1->rate;
+                                     $subTotal = currencyValue($data1->qty, $data1->product->sym, $data1->rate);
                                  @endphp
                                      <tr>
                                          <td>{{$data1->product->name}}</td>
-                                         <td>{{$data1->qty}}</td>
-                                         <td>{{round($data1->rate,2)}}</td>
-                                         <td>{{$subTotal}}</td>
+                                         <td>{{numberFormat($data1->qty)}}</td>
+                                         <td>{{numberFormat($data1->rate)}}</td>
+                                         <td>{{numberFormat($subTotal)}}</td>
                                      </tr>
                                  @endforeach
 
@@ -419,9 +419,9 @@
                              @endif
                              </td>
                          @endif
-                            <td>{{ round($item['cr'],0) }}</td>
-                            <td>{{ round($item['db'],0) }}</td>
-                            <td>{{ $bal }}</td>
+                            <td>{{ numberFormat($item['cr']) }}</td>
+                            <td>{{ numberFormat($item['db']) }}</td>
+                            <td>{{ numberFormat($bal) }}</td>
                         </tr>
                     @endforeach
                 </tbody>

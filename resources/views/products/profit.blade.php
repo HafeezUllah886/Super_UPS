@@ -29,7 +29,7 @@
     <div class="col-md-12">
         <div class="card bg-white m-b-30">
             <div class="card-body table-responsive new-user">
-                <strong>APP</strong> = Avg Purchase Price (اوسط خریدی قیمت), <strong>ASP</strong> = Avg Sale Price(اوسط فروخت کی قیمت), <strong> PPU</strong> = Profit Per Unit (قیمت فی دانا)
+                {{-- <strong>APP</strong> = Avg Purchase Price (اوسط خریدی قیمت), <strong>ASP</strong> = Avg Sale Price(اوسط فروخت کی قیمت), <strong> PPU</strong> = Profit Per Unit (قیمت فی دانا) --}}
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable">
                         <thead class="th-color">
@@ -37,14 +37,12 @@
                                 <th class="border-top-0">{{__('lang.Ser')}}</th>
                                 <th class="border-top-0">{{__('lang.Product')}}</th>
                             {{--     <th class="border-top-0">Total Purchased</th> --}}
-                                <th class="border-top-0">APP</th>
-                                <th class="border-top-0">ASP</th>
-                                <th class="border-top-0">PPU</th>
-                                <th class="border-top-0">{{__('lang.TotalSold')}}</th>
-                                <th class="border-top-0">{{__('lang.Return')}}</th>
-                                <th class="border-top-0">{{__('lang.Profit')}}</th>
-                                <th class="border-top-0">{{__('lang.Stock')}}</th>
-                                <th class="border-top-0">{{__('lang.StockValue')}}</th>
+                                <th class="border-top-0">Purchase Price</th>
+                                <th class="border-top-0">Sale Price</th>
+                                <th class="border-top-0">Profit</th>
+                                <th class="border-top-0">Qty Sold</th>
+                                <th class="border-top-0">Sub Profit</th>
+                                <th class="border-top-0">Stock</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,41 +51,34 @@
                                 $totalProfit = 0;
                             @endphp
 
-                            @foreach ($products as $product)
+                            @foreach ($sales as $sale)
                             @php
                                 $ser += 1;
-                                $totalProfit += $product->profit;
+                                $totalProfit += $sale->profit * $sale->qty;
                             @endphp
                             <tr>
                                 <td> {{ $ser }} </td>
-                                <td> {{ $product->name }} </td>
-                               {{--  <td> {{ $product->purchase_quantity}} </td> --}}
-                                <td> {{ round($product->app,2)}} </td>
-                                <td> {{ round($product->asp,2)}} </td>
-                                <td> {{ round($product->ppu,2)}} </td>
-                                <td> {{ $product->sold}} </td>
-                                <td> {{ $product->return}} </td>
-                                <td> {{ round($product->profit,2) }} </td>
-                                <td> {{ $product->stock}} </td>
-                                <td> {{ round($product->stock_value,0)}} </td>
+                                <td> {{ $sale->product->name }} </td>
+                                <td> {{ $sale->purchasePrice }} </td>
+                                <td> {{ $sale->salePrice }} </td>
+                                <td> {{ $sale->profit }} </td>
+                                <td> {{ numberFormat($sale->qty) }} </td>
+                                <td> {{numberFormat($sale->qty * $sale->profit)}} </td>
+                                <td> {{ numberFormat($sale->stock)}} </td>
                             </tr>
                             @endforeach
                             <tr>
-                            <td colspan="7" style="text-align: right;"> <strong>{{__('lang.Total')}}</strong> </td>
-                            <td> <strong>{{ round($totalProfit,2) }}</strong> </td>
+                            <td colspan="6" style="text-align: right;"> <strong>{{__('lang.Total')}}</strong> </td>
+                            <td> <strong>{{ numberFormat($totalProfit) }}</strong> </td>
                         </tr>
 
                         <tr>
-                            <td colspan="7" style="text-align: right;"> <strong>{{__('lang.Discount')}}</strong> </td>
-                            <td> <strong>{{ round($discounts,2) }}</strong> </td>
+                            <td colspan="6" style="text-align: right;"> <strong>{{__('lang.Expenses')}}</strong> </td>
+                            <td> <strong>{{ numberFormat($expense) }}</strong> </td>
                         </tr>
                         <tr>
-                            <td colspan="7" style="text-align: right;"> <strong>{{__('lang.Expenses')}}</strong> </td>
-                            <td> <strong>{{ round($expense,2) }}</strong> </td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" style="text-align: right;"> <strong>{{__('lang.NetProfit')}}</strong> </td>
-                            <td> <strong>{{ round($totalProfit - $discounts - $expense,2) }}</strong> </td>
+                            <td colspan="6" style="text-align: right;"> <strong>{{__('lang.NetProfit')}}</strong> </td>
+                            <td> <strong>{{ numberFormat($totalProfit - $expense) }}</strong> </td>
                         </tr>
                         </tbody>
                     </table>

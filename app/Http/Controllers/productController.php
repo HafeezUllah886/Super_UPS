@@ -158,91 +158,51 @@ class productController extends Controller
     }
 
     public function profit($from, $to){
-                // Assuming $fromDate and $toDate are the provided date range
-                $fromDate = $from; // Replace with the actual from date
-                $toDate = $to;   // Replace with the actual to date
+               
+                $fromDate = $from; 
+                $toDate = $to; 
 
-                $products = Products::all();
+                $sales = sale_details::with('product')->whereBetween('date', [$fromDate, $toDate])
+                ->selectRaw('product_id, sum(qty) as qty, sum(subTotal) as subTotal')
+                ->groupBy('product_id')
+                ->get();
+                foreach ($sales as $sale) {
+                    $sale->salePrice = $sale->subTotal / $sale->qty;
 
-                foreach ($products as $product) {
-                    //////////// Getting avg Purchase Price ///////////////////////
-                    $purchases_qty = purchase_details::where('product_id', $product->id)
-                        ->whereBetween('date', [$fromDate, $toDate])->count();
-                    $purchases_amount = purchase_details::where('product_id', $product->id)
-                        ->whereBetween('date', [$fromDate, $toDate])->sum('rate');
+                    $purchase = purchase_details::where("product_id", $sale->product_id)
+                    ->whereBetween('date', [$fromDate, $toDate])
+                    ->selectRaw('product_id, sum(qty) as qty, sum(subTotal) as subTotal')
+                    ->groupBy('product_id')
+                    ->first();
 
-                        if($purchases_amount == 0)
-                        {
-                            $last_purchase = purchase_details::where('product_id', $product->id)
-                            ->orderBy('id', 'desc')
-                            ->first();
-                            $purchases_amount = $last_purchase->rate ?? 0;
-                            $purchases_qty = 1;
-                        }
-                        $avg_purchase_price = $purchases_amount / $purchases_qty;
-                    //////////// Getting avg Sale Price ///////////////////////
-
-                        $sales_qty = sale_details::where('product_id', $product->id)
-                        ->whereBetween('date', [$fromDate, $toDate])->count();
-                        $sales_amount = sale_details::where('product_id', $product->id)
-                        ->whereBetween('date', [$fromDate, $toDate])->sum('price');
-
-                        $gross_sold_qty = $sales_qty; ///// Storing gross sold before proceeding
-                        if($sales_amount == 0)
-                        {
-                            $last_sale = sale_details::where('product_id', $product->id)
-                            ->orderBy('id', 'desc')
-                            ->first();
-                            $sales_amount = $last_sale->price ?? 0;
-                            $sales_qty = 1;
-                        }
-                        $avg_sale_price = $sales_amount / $sales_qty;
-                    //////////// Getting Profit per Unit ///////////////////////
-
-                    $ppu = $avg_sale_price - $avg_purchase_price;
-                        if($avg_sale_price == 0)
-                        {
-                            $ppu = 0;
-                        }
-                     //////////// Getting return Qty ///////////////////////
-                    $returns = saleReturn::whereBetween('date', [$fromDate, $toDate])->get();
-                    $qty = 0;
-                    foreach($returns as $return)
+                    if(!$purchase)
                     {
-                        $product_return = saleReturnDetails::where('return_id', $return->id)->where('product_id', $product->id)->sum('qty');
-                        $qty += $product_return;
+                        $purchase = purchase_details::where("product_id", $sale->product_id)
+                        ->whereDate('date', '<=', $fromDate)
+                        ->first();
                     }
-                    $return_qty = $qty;
-                    //////////// Subtracting return Qty from gross qty to get total Sold///////////////////////
-                    $total_sold = $gross_sold_qty - $return_qty;
 
-                    //////////// Calculating Net Profit per product ///////////////////////
-
-                    $net_product_profit = $total_sold * $ppu;
+                    $sale->purchasePrice = $purchase->subTotal / $purchase->qty;
+                    $sale->profit =  $sale->salePrice - $sale->purchasePrice;
+                   
 
                     //////////// Getting Available Stock ///////////////////////
-                    $stock_cr = stock::where('product_id', $product->id)->sum('cr');
-                    $stock_db = stock::where('product_id', $product->id)->sum('db');
+                    $stock_cr = stock::where('product_id', $sale->product_id)->sum('cr');
+                    $stock_db = stock::where('product_id', $sale->product_id)->sum('db');
                     $available_stock = $stock_cr - $stock_db;
 
                     //////////// Calculating Stock Value ///////////////////////
 
-                    $stock_value = $avg_sale_price * $available_stock;
+                    $stock_value = $sale->salePrice * $available_stock;
 
                     //////////// Passing all data to product variable ///////////////////////
-                    $product->app = $avg_purchase_price;
-                    $product->asp = $avg_sale_price;
-                    $product->ppu = $ppu;
-                    $product->sold = $total_sold;
-                    $product->return = $return_qty;
-                    $product->profit = $net_product_profit;
-                    $product->stock = $available_stock;
-                    $product->stock_value = $stock_value;
+                    
+                    $sale->stock = $available_stock;
+                    $sale->stock_value = $stock_value;
                 }
-                $discounts = sale::whereBetween('date', [$fromDate, $toDate])->sum('discount');
                 $expense = expense::whereBetween('date', [$fromDate, $toDate])->sum('amount');
 
-                return view('products.profit')->with(compact('products', 'discounts', 'expense', 'from', 'to'));
+                return view('products.profit')->with(compact('sales', 'expense', 'from', 'to'));
     }
 
 }

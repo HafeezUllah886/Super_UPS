@@ -41,7 +41,7 @@
                                 <td>{{ $dep->to_account->title }} ({{ $dep->to_account->type }})</td>
 
                                 <td>{{ $dep->desc}}</td>
-                                <td><span ondblclick="edit({{ $dep->ref }})" id="amount_{{ $dep->ref }}">{{ $dep->amount}}</span><input type="text" style="display: none;" onblur="saveEdit({{ $dep->ref }})" class="form-control" value="{{ $dep->amount }}" id="box_{{ $dep->ref }}"></td>
+                                <td><span ondblclick="edit({{ $dep->ref }})" id="amount_{{ $dep->ref }}">{{ numberFormat($dep->amount)}}</span><input type="text" style="display: none;" onblur="saveEdit({{ $dep->ref }})" class="form-control" value="{{ $dep->amount }}" id="box_{{ $dep->ref }}"></td>
                                 <td>
                                     <a href="{{ url('transfer/delete/') }}/{{ $dep->ref }}" class="btn btn-danger">Delete</a>
                                     <a href="{{ url('transfer/print/') }}/{{ $dep->ref }}" class="btn btn-success">Print</a>

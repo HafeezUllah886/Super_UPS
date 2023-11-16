@@ -8,16 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class sale_details extends Model
 {
     use HasFactory;
-    protected $fillable = (
-        [
-            'bill_id',
-            'product_id',
-            'price',
-            'qty',
-            'ref',
-            'date'
-        ]
-    );
+    protected $guarded = [];
 
     public function product(){
         return $this->belongsTo(products::class, 'product_id', 'id');

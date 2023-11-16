@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-body">
                 <h5>{{ __('lang.PreviousBalance') }}</h5>
-                <h4>{{ $p_balance }}</h4>
+                <h4>{{ numberFormat($p_balance) }}</h4>
             </div>
         </div>
     </div>
@@ -15,7 +15,7 @@
         <div class="card">
             <div class="card-body">
                 <h5>{{ __('lang.CurrentBalance') }}</h5>
-                <h4>{{ getAccountBalance($id) }}</h4>
+                <h4>{{ numberFormat(getAccountBalance($id)) }}</h4>
             </div>
         </div>
     </div>
@@ -71,9 +71,9 @@
                             @endphp
                                 <tr>
                                     <td>{{$data1->product->name}}</td>
-                                    <td>{{$data1->qty}}</td>
-                                    <td>{{round($data1->price,0)}}</td>
-                                    <td>{{$subTotal}}</td>
+                                    <td>{{numberFormat($data1->qty)}}</td>
+                                    <td>{{numberFormat($data1->price)}}</td>
+                                    <td>{{numberFormat($subTotal)}}</td>
                                 </tr>
                             @endforeach
 
@@ -99,9 +99,9 @@
                             @endphp
                                 <tr>
                                     <td>{{$data1->product->name}}</td>
-                                    <td>{{$data1->qty}}</td>
-                                    <td>{{round($data1->price,0)}}</td>
-                                    <td>{{$subTotal}}</td>
+                                    <td>{{numberFormat($data1->qty)}}</td>
+                                    <td>{{numberFormat($data1->price)}}</td>
+                                    <td>{{numberFormat($subTotal)}}</td>
                                 </tr>
                             @endforeach
 
@@ -127,9 +127,9 @@
                         @endphp
                             <tr>
                                 <td>{{$data1->product->name}}</td>
-                                <td>{{$data1->qty}}</td>
-                                <td>{{round($data1->rate,2)}}</td>
-                                <td>{{$subTotal}}</td>
+                                <td>{{numberFormat($data1->qty)}}</td>
+                                <td>{{numberFormat($data1->rate)}}</td>
+                                <td>{{numberFormat($subTotal)}}</td>
                             </tr>
                         @endforeach
 
@@ -138,9 +138,9 @@
                     </td>
                 @endif
 
-                <td class="text-end">{{ $item->cr == null ? '-' : round($item->cr,2)}}</td>
-                <td class="text-end">{{ $item->db == null ? '-' : round($item->db,2)}}</td>
-                <td class="text-end">{{ round($balance,2) }}</td>
+                <td class="text-end">{{ $item->cr == null ? '-' : numberFormat($item->cr)}}</td>
+                <td class="text-end">{{ $item->db == null ? '-' : numberFormat($item->db)}}</td>
+                <td class="text-end">{{ numberFormat($balance) }}</td>
 
                 </tr>
             @endforeach

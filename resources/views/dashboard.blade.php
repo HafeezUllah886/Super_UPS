@@ -23,7 +23,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                            {{ customerDues() }}
+                                            {{ numberFormat(customerDues()) }}
                                         </div>
 
                                     </div>
@@ -46,7 +46,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                            {{ vendorDues() }}
+                                            {{ numberFormat(vendorDues()) }}
                                         </div>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                {{ todaySale(); }}
+                                                {{ numberFormat(todaySale()) }}
                                             </div>
                                         </div>
                                     </div>
@@ -88,7 +88,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                {{ todayExpense() }}
+                                                {{ numberFormat(todayExpense()) }}
                                             </div>
                                         </div>
 
@@ -110,7 +110,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                            {{ totalCash() }}
+                                            {{ numberFormat(totalCash()) }}
                                         </div>
                                     </div>
                                 </div>
@@ -132,7 +132,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                {{ todayCash() }}
+                                                {{ numberFormat(todayCash()) }}
                                             </div>
                                         </div>
 
@@ -155,7 +155,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                {{ totalBank() }}
+                                                {{ numberFormat(totalBank()) }}
                                             </div>
                                         </div>
 
@@ -179,7 +179,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                {{ todayBank() }}
+                                                {{ numberFormat(todayBank()) }}
                                             </div>
                                         </div>
 
@@ -222,7 +222,7 @@
                                     <td>{{ $item->head }}</td>
                                     <td>{{ $item->type }}</td>
                                     <td>{{ $item->details }}</td>
-                                    <td>{{ $item->amount }}</td>
+                                    <td>{{ numberFormat($item->amount) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -296,9 +296,9 @@
                                     <td>{{ $tran->date }}</td>
                                     <td>{{ $tran->account->title }}</td>
                                     <td>{!! $tran->desc !!}</td>
-                                    <td>{{ round($tran->cr,0) }}</td>
-                                    <td>{{ round($tran->db,0) }}</td>
-                                    <td>{{ round($balance,0) }}</td>
+                                    <td>{{ numberFormat($tran->cr) }}</td>
+                                    <td>{{ numberFormat($tran->db) }}</td>
+                                    <td>{{ numberFormat($balance) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

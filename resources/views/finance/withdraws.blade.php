@@ -38,7 +38,7 @@
                                 <td>{{ $dep->account->title }} ({{ $dep->account->type }})</td>
 
                                 <td>{{ $dep->desc}}</td>
-                                <td>{{ $dep->amount}}</td>
+                                <td>{{ numberFormat($dep->amount)}}</td>
                                 <td>
                                     <a href="{{ url('withdraw/delete/') }}/{{ $dep->ref }}" class="btn btn-danger">Delete</a>
                                 </td>

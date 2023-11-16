@@ -8,15 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class saleReturnDetails extends Model
 {
     use HasFactory;
-    protected $fillable = (
-        [
-            'return_id',
-            'product_id',
-            'qty',
-            'price',
-            'ref'
-        ]
-    );
+    protected $guarded = [];
 
     public function returnBill(){
         return $this->belongsTo(saleReturn::class, 'return_id', 'id');

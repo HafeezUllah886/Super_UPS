@@ -64,13 +64,13 @@
                                         @endphp
                                        @endif
                                     </td>
-                                    <td>{{ round($trans->cr,0) }}</td>
+                                    <td>{{ numberFormat($trans->cr) }}</td>
                                 </tr>
                             @endforeach
                             <tr class="th-color">
                                 <td colspan="4" class="text-right">{{ __('lang.Total') }}: &nbsp;
                                 </td>
-                                <td>{{ $total_cr }}</td>
+                                <td>{{ numberFormat($total_cr) }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -123,13 +123,13 @@
                                         @endphp
                                        @endif
                                     </td>
-                                    <td>{{ round($tran1->db,0) }}</td>
+                                    <td>{{ numberFormat($tran1->db) }}</td>
                                 </tr>
                             @endforeach
                             <tr class="th-color">
                                 <td colspan="4" class="text-right">{{ __('lang.Total') }}: &nbsp;
                                 </td>
-                                <td>{{ $total_db }}</td>
+                                <td>{{ numberFormat($total_db) }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -144,23 +144,23 @@
                         <table class="table">
                             <tr>
                                 <td> <h5>Previous Balance</h5></td>
-                                <td><h5>{{ previousCash($date) }}</h5></td>
+                                <td><h5>{{ numberFormat(previousCash($date)) }}</h5></td>
                             </tr>
                             <tr>
                                 <td><h5>Today Credit</h5></td>
-                                <td><h5>{{ $total_cr }}</h5></td>
+                                <td><h5>{{ numberFormat($total_cr) }}</h5></td>
                             </tr>
                             <tr>
                                 <td><h5>Today Debit</h5></td>
-                                <td><h5>{{ $total_db }}</h5></td>
+                                <td><h5>{{ numberFormat($total_db) }}</h5></td>
                             </tr>
                             <tr>
                                 <td><h5>Today Balance</h5></td>
-                                <td><h5>{{ $total_cr - $total_db }}</h5></td>
+                                <td><h5>{{ numberFormat($total_cr - $total_db) }}</h5></td>
                             </tr>
                             <tr>
                                 <td><h5>Net Balance</h5></td>
-                                <td><h5>{{ previousCash($date) + ($total_cr - $total_db) }}</h5></td>
+                                <td><h5>{{ numberFormat(previousCash($date) + ($total_cr - $total_db)) }}</h5></td>
                             </tr>
                         </table>
                     </div>

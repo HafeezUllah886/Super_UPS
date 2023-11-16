@@ -99,7 +99,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label for="discount">{{ __('lang.Discount') }}</label>
-                                <input type="number" value="{{ $bill->discount }}" class="form-control" onfocusout="updateDiscount({{ $bill->id }})" name="discount" id="discount">
+                                <input type="number" readonly value="{{ $bill->discount }}" class="form-control" onfocusout="updateDiscount({{ $bill->id }})" name="discount" id="discount">
                             </div>
                         </div>
                        <input type="hidden" value="{{$bill->id}}" name="billID">

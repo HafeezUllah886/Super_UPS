@@ -18,7 +18,7 @@
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <h4>{{ __('lang.PurchaseDetails') }}</h4>
-                <a href="{{ url('/customer/purchaseDetails/pdf/') }}/{{ $invoices[0]->customer }}" class="btn btn-success">PDF</a>
+                {{-- <a href="{{ url('/customer/purchaseDetails/pdf/') }}/{{ $invoices[0]->customer }}" class="btn btn-success">PDF</a> --}}
             </div>
         </div>
     </div>
@@ -47,15 +47,15 @@
                                 @foreach ($item->details as $product)
                                 @php
                                 $ser += 1;
-                                $amount = $product->price * $product->qty;
+                                $amount =   currencyValue($product->qty, $product->product->sym, $product->price);
                                 @endphp
                                 <tr>
                                     <td> {{ $ser }} </td>
                                     <td>{{ date("d M Y", strtotime($item->date)) }}</td>
                                     <td>{{ $product->product->name }}</td>
-                                    <td>{{ $product->price }}</td>
-                                    <td>{{ $product->qty }}</td>
-                                    <td>{{ $amount }}</td>
+                                    <td>{{ numberFormat($product->price) }}</td>
+                                    <td>{{ numberFormat($product->qty) }}</td>
+                                    <td>{{ numberFormat($amount) }}</td>
                                 </tr>
                                 @endforeach
                             @endforeach

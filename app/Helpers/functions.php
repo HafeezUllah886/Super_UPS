@@ -255,14 +255,9 @@ function updateSaleAmount($id){
 
 function todaySale(){
     $Date = Carbon::now()->format('Y-m-d');
-    $sales = sale_details::whereDate('date', $Date)->get();
+    $total = sale_details::whereDate('date', $Date)->sum('subTotal');
 
-    $total = 0;
-    foreach($sales as $item)
-    {
-        $total += $item->qty * $item-> price;
-        $total -= $item->bill->discount;
-    }
+
     return $total;
 }
 
@@ -310,7 +305,7 @@ function currencyValue($qty, $op, $price)
 
 function cashBook(){
     return 000;
-    }
+}
 
     function previousCash($date){
         $accounts = account::where('Category', 'Cash')->get();
@@ -325,5 +320,10 @@ function cashBook(){
        }
 
        return $balance;
+    }
+    
+    function numberFormat($num)
+    {
+        return number_format($num, 0, '.', ',');
     }
 

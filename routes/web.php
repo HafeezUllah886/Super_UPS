@@ -111,7 +111,6 @@ Route::middleware('auth')->group(function (){
     Route::get('/purchase/update/edit/rate/{id}/{rate}', [purchaseController::class, "updateEditRate"]);
 
 
-
     Route::get('/sale', [SaleController::class, "sale"]);
     Route::post('/sale', [SaleController::class, "storeSale"]);
     Route::get('/sale/store', [saleController::class, "StoreDraft"]);

@@ -238,7 +238,7 @@
                                     <div class="form-group">
                                         <div class="form-group">
                                             <label for="discount">{{__('lang.Discount')}}</label>
-                                            <input type="number" name="discount" id="discount" class="form-control">
+                                            <input type="number" name="discount" readonly id="discount" class="form-control">
                                             @error('discount')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror

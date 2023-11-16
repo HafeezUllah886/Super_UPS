@@ -281,15 +281,15 @@
                 </tr>
                 <tr>
                     <td style="text-align: left; width:40%;"> <strong>Amount Paid:</strong> </td>
-                    <td style="text-align: left"> {{ $transfer->amount }}</td>
+                    <td style="text-align: left"> {{ numberFormat($transfer->amount) }}</td>
                 </tr>
                 <tr>
                     <td style="text-align: left; width:40%;"> <strong>Previous Balance:</strong> </td>
-                    <td style="text-align: left"> {{ $prev_balance }}</td>
+                    <td style="text-align: left"> {{ numberFormat($prev_balance) }}</td>
                 </tr>
                 <tr>
                     <td style="text-align: left; width:40%;"> <strong>Current Balance:</strong> </td>
-                    <td style="text-align: left"> {{ $cur_balance }}</td>
+                    <td style="text-align: left"> {{ numberFormat($cur_balance) }}</td>
                 </tr>
                 <tr>
                     <td style="text-align: left; width:40%;"> <strong>Details:</strong> </td>

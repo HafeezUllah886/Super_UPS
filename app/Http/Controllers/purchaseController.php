@@ -29,12 +29,15 @@ class purchaseController extends Controller
         if ($check > 0) {
             return "Existing";
         }
-
+        $product = products::find($req->product);
+        $subTotal = currencyValue($req->qty, $product->sym, $req->rate);
+    
         purchase_draft::create(
             [
                 'product_id' => $req->product,
                 'qty' => $req->qty,
                 'rate' => $req->rate,
+                'subTotal' => $subTotal,
             ]
         );
 
@@ -57,7 +60,11 @@ class purchaseController extends Controller
     public function updateDraftQty($id, $qty)
     {
         $item = purchase_draft::find($id);
+        $product = products::find($item->product_id);
+        $subTotal = currencyValue($qty, $product->sym, $item->rate);
+        
         $item->qty = $qty;
+        $item->subTotal = $subTotal;
         $item->save();
 
         return "Qty Updated";
@@ -66,7 +73,12 @@ class purchaseController extends Controller
     public function updateDraftRate($id, $rate)
     {
         $item = purchase_draft::find($id);
+
+        $product = products::find($item->product_id);
+        $subTotal = currencyValue($item->qty, $product->sym, $rate);
+
         $item->rate = $rate;
+        $item->subTotal = $subTotal;
         $item->save();
 
         return "Rate Updated";
@@ -136,6 +148,7 @@ class purchaseController extends Controller
                 'product_id' => $item->product_id,
                 'rate' => $item->rate,
                 'qty' => $item->qty,
+                'subTotal' => $item->subTotal,
                 'date' => $req->date,
                 'ref' => $ref,
             ]);
