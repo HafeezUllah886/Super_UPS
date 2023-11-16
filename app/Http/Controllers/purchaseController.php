@@ -18,7 +18,7 @@ class purchaseController extends Controller
     public function purchase()
     {
         $vendors = account::where('type', '!=', 'Business')->get();
-        $paidFroms = account::where('type', 'Business')->orWhere('type', 'Product')->get();
+        $paidFroms = account::where('type', 'Business')->get();
         $products = products::all();
         return view('purchase.purchase')->with(compact('vendors', 'products', 'paidFroms'));
     }
@@ -31,7 +31,7 @@ class purchaseController extends Controller
         }
         $product = products::find($req->product);
         $subTotal = currencyValue($req->qty, $product->sym, $req->rate);
-    
+
         purchase_draft::create(
             [
                 'product_id' => $req->product,
@@ -62,7 +62,7 @@ class purchaseController extends Controller
         $item = purchase_draft::find($id);
         $product = products::find($item->product_id);
         $subTotal = currencyValue($qty, $product->sym, $item->rate);
-        
+
         $item->qty = $qty;
         $item->subTotal = $subTotal;
         $item->save();

@@ -104,12 +104,12 @@ class productController extends Controller
         {
             return back()->with('error', 'This product already exists');
         }
-        $account = account::create(
+       /*  $account = account::create(
             [
                 'title' => $req->name,
                 'type' => "Product",
             ]
-        );
+        ); */
         products::create(
             [
                 'name' => $req->name,
@@ -158,9 +158,9 @@ class productController extends Controller
     }
 
     public function profit($from, $to){
-               
-                $fromDate = $from; 
-                $toDate = $to; 
+
+                $fromDate = $from;
+                $toDate = $to;
 
                 $sales = sale_details::with('product')->whereBetween('date', [$fromDate, $toDate])
                 ->selectRaw('product_id, sum(qty) as qty, sum(subTotal) as subTotal')
@@ -184,7 +184,7 @@ class productController extends Controller
 
                     $sale->purchasePrice = $purchase->subTotal / $purchase->qty;
                     $sale->profit =  $sale->salePrice - $sale->purchasePrice;
-                   
+
 
                     //////////// Getting Available Stock ///////////////////////
                     $stock_cr = stock::where('product_id', $sale->product_id)->sum('cr');
@@ -196,7 +196,7 @@ class productController extends Controller
                     $stock_value = $sale->salePrice * $available_stock;
 
                     //////////// Passing all data to product variable ///////////////////////
-                    
+
                     $sale->stock = $available_stock;
                     $sale->stock_value = $stock_value;
                 }

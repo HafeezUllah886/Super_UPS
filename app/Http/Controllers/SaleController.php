@@ -16,7 +16,7 @@ class SaleController extends Controller
 {
     public function sale(){
         $customers = account::where('type','Customer')->get();
-        $paidIns = account::where('type', 'Business')->orWhere('type', 'Product')->get();
+        $paidIns = account::where('type', 'Business')->get();
         $products = products::all();
         return view('sale.sale')->with(compact('customers', 'products', 'paidIns'));
     }
@@ -43,7 +43,7 @@ class SaleController extends Controller
 
         $product = products::find($req->product);
         $subTotal = currencyValue($req->qty, $product->sym, $req->price);
-    
+
         sale_draft::create(
             [
                 'product_id' => $req->product,
@@ -75,10 +75,10 @@ class SaleController extends Controller
 
     public function updateDraftRate($id, $price){
         $item = sale_draft::find($id);
-        
+
         $product = products::find($item->product_id);
         $subTotal = currencyValue($item->qty, $product->sym, $price);
-        
+
         $item->price = $price;
         $item->subTotal = $subTotal;
         $item->save();
