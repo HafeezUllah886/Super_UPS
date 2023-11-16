@@ -321,7 +321,7 @@ function cashBook(){
 
        return $balance;
     }
-    
+
     function numberFormat($num)
     {
         return number_format($num, 0, '.', ',');

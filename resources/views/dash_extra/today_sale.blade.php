@@ -59,9 +59,9 @@
                                         @endphp
                                             <tr>
                                                 <td>{{$data1->product->name}}</td>
-                                                <td>{{$data1->qty}}</td>
-                                                <td>{{round($data1->price,0)}}</td>
-                                                <td>{{$subTotal}}</td>
+                                                <td>{{numberFormat($data1->qty)}}</td>
+                                                <td>{{numberFormat($data1->price)}}</td>
+                                                <td>{{numberFormat($subTotal)}}</td>
                                             </tr>
                                         @endforeach
 

@@ -40,7 +40,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5>{{ __('lang.PreviousBalance') }}</h5>
-                            <h4>{{ $prev_bal }}</h4>
+                            <h4>{{ numberFormat($prev_bal) }}</h4>
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5>{{ __('lang.CurrentBalance') }}</h5>
-                            <h4>{{ $cur_bal }}</h4>
+                            <h4>{{ numberFormat($cur_bal) }}</h4>
                         </div>
                     </div>
                 </div>
@@ -84,9 +84,9 @@
                             <td>{{ $item->ref }}</td>
                             <td>{{ $item->date }}</td>
                             <td>{!! $item->desc !!}</td>
-                            <td class="text-end">{{ $item->cr == null ? '-' : round($item->cr,2)}}</td>
-                            <td class="text-end">{{ $item->db == null ? '-' : round($item->db,2)}}</td>
-                            <td class="text-end">{{ round($balance,2) }}</td>
+                            <td class="text-end">{{ $item->cr == null ? '-' : numberFormat($item->cr)}}</td>
+                            <td class="text-end">{{ $item->db == null ? '-' : numberFormat($item->db)}}</td>
+                            <td class="text-end">{{ numberFormat($balance) }}</td>
 
                             </tr>
                         @endforeach

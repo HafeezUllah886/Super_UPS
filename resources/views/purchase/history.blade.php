@@ -59,9 +59,9 @@
                                         @endphp
                                         <tr>
                                             <td>{{$data1->product->name}}</td>
-                                            <td>{{$data1->qty}}</td>
-                                            <td>{{round($data1->rate,2)}}</td>
-                                            <td>{{currencyValue($data1->qty, $data1->product->sym, $data1->rate)}}</td>
+                                            <td>{{numberFormat($data1->qty)}}</td>
+                                            <td>{{numberFormat($data1->rate)}}</td>
+                                            <td>{{numberFormat(currencyValue($data1->qty, $data1->product->sym, $data1->rate))}}</td>
                                         </tr>
                                         @endforeach
 

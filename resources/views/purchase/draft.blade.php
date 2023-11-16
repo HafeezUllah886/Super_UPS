@@ -20,6 +20,6 @@
 @endforeach
 <tr>
     <td colspan="4" style="text-align: right;"><strong>Total</strong></td>
-    <td style="text-align: center;"><strong>{{ $total }}</strong></td>
+    <td style="text-align: center;"><strong>{{ numberFormat($total) }}</strong></td>
     <td></td>
 </tr>

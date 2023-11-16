@@ -58,9 +58,9 @@
                                     @endphp
                                         <tr>
                                             <td>{{$data1->product->name}}</td>
-                                            <td>{{$data1->qty}}</td>
-                                            <td>{{round($data1->price,0)}}</td>
-                                            <td>{{$subTotal}}</td>
+                                            <td>{{numberFormat($data1->qty)}}</td>
+                                            <td>{{numberFormat($data1->price)}}</td>
+                                            <td>{{numberFormat($subTotal)}}</td>
                                         </tr>
                                     @endforeach
 
@@ -83,9 +83,9 @@
                                 @endphp
                                     <tr>
                                         <td>{{$data1->product->name}}</td>
-                                        <td>{{$data1->qty}}</td>
-                                        <td>{{round($data1->rate,2)}}</td>
-                                        <td>{{$subTotal}}</td>
+                                        <td>{{numberFormat($data1->qty)}}</td>
+                                        <td>{{numberFormat($data1->rate)}}</td>
+                                        <td>{{numberFormat($subTotal)}}</td>
                                     </tr>
                                 @endforeach
 
@@ -107,18 +107,18 @@
                                 @endphp
                                 <tr>
                                     <td>{{$data1->product->name}}</td>
-                                    <td>{{$data1->qty}}</td>
-                                    <td>{{round($data1->price,2)}}</td>
-                                    <td>{{$subTotal}}</td>
+                                    <td>{{numberFormat($data1->qty)}}</td>
+                                    <td>{{numberFormat($data1->price)}}</td>
+                                    <td>{{numberFormat($subTotal)}}</td>
                                 </tr>
                                 @endforeach
 
                                 </table>
                                 @endif
                             </td>
-                            <td>{{ round($trans->cr) }}</td>
-                            <td>{{ round($trans->db) }}</td>
-                            <td>{{ round($bal) }}</td>
+                            <td>{{ numberFormat($trans->cr) }}</td>
+                            <td>{{ numberFormat($trans->db) }}</td>
+                            <td>{{ numberFormat($bal) }}</td>
                         </tr>
                     @endforeach
                 </tbody>

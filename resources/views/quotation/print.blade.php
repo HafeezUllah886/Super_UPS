@@ -322,9 +322,9 @@
                         <td>{{ $ser }}</td>
                         <td>{{ $details->product1->category->cat }}</td>
                         <td>{{ $details->product1->name }}</td>
-                        <td>{{ $details->price }}</td>
-                        <td>{{ $details->qty }}</td>
-                        <td>{{ $amount }}</td>
+                        <td>{{ numberFormat($details->price) }}</td>
+                        <td>{{ numberFormat($details->qty) }}</td>
+                        <td>{{ numberFormat($amount) }}</td>
                     </tr>
                     @endforeach
                     <tr>
@@ -332,7 +332,7 @@
                             <strong>Total</strong>
                         </td>
                         <td>
-                            <strong>{{ $total }}</strong>
+                            <strong>{{ numberFormat($total) }}</strong>
                         </td>
                     </tr>
                     @if ($quot->discount > 0)
@@ -349,7 +349,7 @@
                             <strong>Net Total</strong>
                         </td>
                         <td>
-                            <strong>{{ $total - $quot->discount }}</strong>
+                            <strong>{{ numberFormat($total - $quot->discount) }}</strong>
                         </td>
                     </tr>
                     @endif

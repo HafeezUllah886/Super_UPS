@@ -62,8 +62,8 @@
                                                     @foreach ($quot->details as $details)
                                                     <tr>
                                                         <td>{{$details->product1->name}}</td>
-                                                        <td>{{$details->qty}}</td>
-                                                        <td>{{$details->price}}</td>
+                                                        <td>{{numberFormat($details->qty)}}</td>
+                                                        <td>{{numberFormat($details->price)}}</td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -78,7 +78,7 @@
                                                 foreach ($quot->details as $detail) {
                                                     $amount += $detail->price * $detail->qty;
                                                 }
-                                                echo $amount;
+                                                echo numberFormat($amount);
                                             @endphp
                                         </td>
                                         <td>
