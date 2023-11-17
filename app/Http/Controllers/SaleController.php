@@ -144,7 +144,7 @@ class SaleController extends Controller
             'ref' => $ref,
         ]);
 
-        $desc = "<strong>Sale</strong><br/> Invoice No. ".$sale->id;
+        $desc = "<strong>Sale</strong><br/> Invoice No. ".$sale->id ." (".$req->desc.")";
         $items = sale_draft::all();
         $total = 0;
         $amount1 = 0;
@@ -172,8 +172,8 @@ class SaleController extends Controller
 
 
          $net_total = $total - $req->discount;
-         $desc1 = "<strong>Products Sold</strong><br/>Invoice No. ".$sale->id;
-         $desc2 = "<strong>Products Sold</strong><br/>Partial payment of Invoice No. ".$sale->id;
+         $desc1 = "<strong>Products Sold</strong><br/>Invoice No. ".$sale->id ." (".$req->desc.")";
+         $desc2 = "<strong>Products Sold</strong><br/>Partial payment of Invoice No. ".$sale->id ." (".$req->desc.")";
         if($req->customer != 0){
 
          if($req->isPaid == 'Yes'){
@@ -181,7 +181,7 @@ class SaleController extends Controller
             if($checkAccount->type == "Product")
             {
                 $productAsCurrency = products::where('accountID', $paidIn)->first();
-                $desc = "<strong>Received against the sale </strong><br/> Bill No. " . $sale->id;
+                $desc = "<strong>Received against the sale </strong><br/> Bill No. " . $sale->id ." (".$req->desc.")";
                 stock::create([
                     'product_id' => $productAsCurrency->id,
                     'date' => $req->date,
@@ -360,8 +360,8 @@ class SaleController extends Controller
         transactions::where('ref', $sale->ref)->delete();
         ledger::where('ref', $sale->ref)->delete();
 
-        $desc1 = "<strong>Products Sold</strong><br/>Invoice No. ".$sale->id;
-         $desc2 = "<strong>Products Sold</strong><br/>Partial payment of Invoice No. ".$sale->id;
+        $desc1 = "<strong>Products Sold</strong><br/>Invoice No. ".$sale->id ." (".$sale->desc.")";
+         $desc2 = "<strong>Products Sold</strong><br/>Partial payment of Invoice No. ".$sale->id ." (".$sale->desc.")";
          $total = 0;
          foreach($sale->details as $item)
          {

@@ -20,8 +20,6 @@
                             <tr>
                                 <th class="border-top-0">{{ __('lang.Ser') }}</th>
                                 <th class="border-top-0">{{ __('lang.Product') }}</th>
-                                <th class="border-top-0">{{ __('lang.Category') }}</th>
-                                <th class="border-top-0">{{ __('lang.Company') }}</th>
                                 <th class="border-top-0">{{ __('lang.AvailableStock') }}</th>
                                 <th class="border-top-0">{{ __('lang.Price') }}</th>
                                 <th class="border-top-0">{{ __('lang.StockValue') }}</th>
@@ -29,33 +27,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-                                $ser = 0;
-                            $total = 0;
-                            @endphp
-
-                            @foreach ($data as $item)
-                            @php
-                                $ser += 1;
-                                $total += $item['value'];
-                            @endphp
+                            @foreach ($products as $key => $product)
                             <tr>
-                                <td> {{ $ser }} </td>
-                                <td>{{$item['product']}}</td>
-                                <td>{{$item['cat']}}</td>
-                                <td>{{$item['coy']}}</td>
-                                <td>{{$item['balance']}}</td>
-                                <td>{{$item['price']}}</td>
-                                <td>{{$item['value']}}</td>
-                                <td><a href="{{ url('/stock/details/') }}/{{ $item['id'] }}/{{ date("Y-m-01") }}/{{ date("Y-m-t") }}" class="btn btn-info">Details</a></td>
+                                <td> {{ $key }} </td>
+                                <td>{{$product->name}}</td>
+                                <td>{{$product->balance}}</td>
+                                <td><input type="number" class="form-control" id="id_{{$product->id}}" data-sym="{{$product->sym}}" data-qty="{{$product->balance}}" oninput="checkValue(this, {{$product->id}})"></td>
+                                <td><input type="number" class="form-control" id="subTotal_{{$product->id}}" readonly></td>
+                                <td><a href="{{ url('/stock/details/') }}/{{ $product->id }}/{{ date("Y-m-01") }}/{{ date("Y-m-t") }}" class="btn btn-info">Details</a></td>
                             </tr>
                             @endforeach
 
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="6" style="text-align: right;"> <strong>Total</strong> </td>
-                                <td style="text-align: center;"> <strong>{{ $total }}</strong> </td>
+                                <td colspan="4" style="text-align: right;"> <strong>Total</strong> </td>
+                                <td style="text-align: center;"> <strong id="total"></strong> </td>
                             </tr>
                         </tfoot>
                     </table>
@@ -81,6 +68,30 @@
     for (var i = 0, l = elems.length; i < l; i++) {
         elems[i].addEventListener('click', confirmIt, false);
     }
-</script>
 
+    function checkValue(input, id)
+    {
+        var sym = $(input).data('sym');
+        var qty = $(input).data('qty');
+        var val = input.value;
+        var currentValue = 0;
+        if(sym == '*')
+        {
+            currentValue = qty * val;
+        }
+        if(sym == '/')
+        {
+            currentValue = qty / val;
+        }
+        $("#subTotal_"+id).val(currentValue);
+        var total = 0;
+        $('input[id^="subTotal_"]').each(function() {
+    
+        var inputValue = parseFloat($(this).val()) || 0;
+        total += inputValue;
+       
+        });
+        $("#total").html(parseFloat(total).toLocaleString());
+    }
+</script>
 @endsection

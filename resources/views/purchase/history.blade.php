@@ -67,7 +67,7 @@
 
                                     </table>
                                 </td>
-                                <td>{{ getPurchaseBillTotal($bill->id) }}</td>
+                                <td>{{ numberFormat(getPurchaseBillTotal($bill->id)) }}</td>
                                 <td>@if($bill->isPaid == 'Yes') {{ "Full Payment" }} @elseif($bill->isPaid == 'No') {{ "UnPaid" }} @else {{ $bill->amount }} @endif</td>
                                 <td>{{ $bill->isPaid}}</td>
                                 <td>{{ @$bill->account->title}}</td>
