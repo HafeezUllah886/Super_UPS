@@ -234,7 +234,7 @@ class purchaseController extends Controller
 
     public function edit($id)
     {
-        return back();
+
         $bill = purchase::where('id', $id)->first();
         $vendors = account::where('type', '!=', 'Business')->get();
         $paidFroms = account::where('type', 'Business')->get();

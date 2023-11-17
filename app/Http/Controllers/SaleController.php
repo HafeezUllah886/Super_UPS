@@ -257,10 +257,10 @@ class SaleController extends Controller
 
     public function edit($id)
     {
-        return back();
+
         $bill = sale::where('id', $id)->first();
         $customer = account::where('type','Customer')->get();
-        $paidIn = account::where('type', 'Business')->orWhere('type', 'Product')->get();
+        $paidIn = account::where('type', 'Business')->get();
         $products = products::all();
 
         return view('sale.edit')->with(compact('bill', 'products', 'customer', 'paidIn'));
