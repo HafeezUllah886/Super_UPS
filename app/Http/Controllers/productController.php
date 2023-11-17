@@ -117,7 +117,7 @@ class productController extends Controller
                 'sym' => $req->sym,
                 'coy' => $req->coy,
                 'cat' => $req->cat,
-                'accountID' => $account->id,
+               /*  'accountID' => $account->id, */
             ]
         );
 

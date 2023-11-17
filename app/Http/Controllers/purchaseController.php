@@ -136,7 +136,7 @@ class purchaseController extends Controller
             'ref' => $ref,
         ]);
 
-        $desc = "<strong>Purchased</strong><br/> Bill No. " . $purchase->id;
+        $desc = "<strong>Purchased</strong><br/> Bill No. " . $purchase->id . " (".$purchase->desc.")";
         $items = purchase_draft::all();
         $total = 0;
         $amount1 = 0;
@@ -162,8 +162,8 @@ class purchaseController extends Controller
             ]);
         }
 
-        $desc1 = "<strong>Products Purchased</strong><br/>Bill No. " . $purchase->id;
-        $desc2 = "<strong>Products Purchased</strong><br/>Partial payment of Bill No. " . $purchase->id;
+        $desc1 = "<strong>Products Purchased</strong><br/>Bill No. " . $purchase->id . " (".$req->desc.")";
+        $desc2 = "<strong>Products Purchased</strong><br/>Partial payment of Bill No. " . $purchase->id . " (".$req->desc.")";
         if ($req->vendor != 0) {
             $check_vendor = account::find($req->vendor);
             if ($req->isPaid == 'Yes') {
@@ -171,7 +171,7 @@ class purchaseController extends Controller
         if($checkAccount->type == "Product")
         {
             $productAsCurrency = products::where('accountID', $paidFrom)->first();
-            $desc = "<strong>Other Products Purchase using this product</strong><br/> Bill No. " . $purchase->id;
+            $desc = "<strong>Other Products Purchase using this product</strong><br/> Bill No. " . $purchase->id . " (".$purchase->desc.")";
             stock::create([
                 'product_id' => $productAsCurrency->id,
                 'date' => $req->date,
@@ -266,7 +266,7 @@ class purchaseController extends Controller
                 'ref' => $bill->ref,
             ]
         );
-        $desc = "<strong>Purchased</strong><br/> Bill No. " . $purchase->id;
+        $desc = "<strong>Purchased</strong><br/> Bill No. " . $purchase->id . "(".$bill->desc.")";
         stock::create([
             'product_id' => $purchase->product_id,
             'date' => $bill->date,
@@ -324,19 +324,14 @@ class purchaseController extends Controller
     public function stock1()
     {
         $products = products::all();
-        $data = [];
-        $balance = 0;
-        $value = 0;
 
         foreach ($products as $product) {
             $stock_cr = stock::where('product_id', $product->id)->sum('cr');
             $stock_db = stock::where('product_id', $product->id)->sum('db');
-            $balance = $stock_cr - $stock_db;
-            $value = $balance * $product->price;
-            $data[] = ['id' => $product->id,'product' => $product->name, 'cat' => $product->category->cat, 'coy' => $product->company->name, 'balance' => $balance, 'value' => $value, 'price' => $product->price];
+            $product->balance = $stock_cr - $stock_db;
         }
 
-        return view('purchase.stock')->with(compact('data'));
+        return view('purchase.stock')->with(compact('products'));
     }
 
     public function stockDetails($id, $from, $to){

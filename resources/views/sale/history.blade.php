@@ -57,9 +57,9 @@
                                         @endphp
                                         <tr>
                                             <td>{{$data1->product->name}}</td>
-                                            <td>{{$data1->qty}}</td>
-                                            <td>{{round($data1->price,2)}}</td>
-                                            <td>{{$subTotal}}</td>
+                                            <td>{{numberFormat($data1->qty)}}</td>
+                                            <td>{{numberFormat($data1->price)}}</td>
+                                            <td>{{numberFormat($subTotal)}}</td>
                                         </tr>
                                         @endforeach
                                         @if($bill->discount)
@@ -70,7 +70,7 @@
 
                                     </table>
                                 </td>
-                                <td>{{ getSaleBillTotal($bill->id) }}</td>
+                                <td>{{ numberFormat(getSaleBillTotal($bill->id)) }}</td>
                                 <td>@if($bill->isPaid == 'Yes') {{ "Full Payment" }} @elseif($bill->isPaid == 'No') {{ "UnPaid" }} @else {{ $bill->amount }} @endif</td>
                                 <td>{{ $bill->isPaid}}</td>
                                 <td>{{ @$bill->account->title}}</td>

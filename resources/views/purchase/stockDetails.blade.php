@@ -34,6 +34,7 @@
         </div>
     </div>
     <div class="col-md-12">
+        Price: <input type="number" oninput="checkValue()" class="form-control" id="price">
         <div class="card bg-white m-b-30" id="items">
             <div class="row">
                 <div class="col-md-6">
@@ -41,6 +42,7 @@
                         <div class="card-body">
                             <h5>{{ __('lang.PreviousBalance') }}</h5>
                             <h4>{{ numberFormat($prev_bal) }}</h4>
+                            <h4> Value in PKR: <span id="prev_balance"></span></h4>
                         </div>
                     </div>
                 </div>
@@ -50,6 +52,7 @@
                         <div class="card-body">
                             <h5>{{ __('lang.CurrentBalance') }}</h5>
                             <h4>{{ numberFormat($cur_bal) }}</h4>
+                            <h4> Value in PKR: <span id="curr_balance"></span></h4>
                         </div>
                     </div>
                 </div>
@@ -125,7 +128,30 @@
 
     window.open("{{ url('/stock/details/') }}/"+{{ $stocks[0]->product_id }}+"/"+from+"/"+to, '_self');
     }
+    function checkValue()
+    {
+        var prev = "{{$prev_bal}}";
+        var curr = "{{$cur_bal}}";
+        var sym = "{{ $stocks[0]->product->sym }}";
+        var price = $("#price").val();
 
+       var curr_bal = 0;
+       var prev_bal = 0;
+
+       if(sym == '*')
+        {
+            prev_bal = prev * price;
+            curr_bal = curr * price;
+        }
+        if(sym == '/')
+        {
+            prev_bal = prev / price;
+            curr_bal = curr / price;
+        }
+
+        $("#curr_balance").html(parseFloat(curr_bal).toLocaleString());
+        $("#prev_balance").html(parseFloat(prev_bal).toLocaleString());
+    }
 
 </script>
 @endsection
