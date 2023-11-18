@@ -23,7 +23,7 @@
             success: function(data){
                $('#stock').val(data.balance);
                /* $('#price').val(data.price); */
-               $('#qty').attr('max', data.balance);
+               /* $('#qty').attr('max', data.balance); */
             }
         });
     }
