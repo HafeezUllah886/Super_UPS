@@ -324,6 +324,6 @@ function cashBook(){
 
     function numberFormat($num)
     {
-        return number_format($num, 0, '.', ',');
+        return number_format($num, 2, '.', ',');
     }
 
