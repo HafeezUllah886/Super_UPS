@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamp('date', $precision = 0);
             $table->text('desc')->nullable();
             $table->string('isPaid');
-            $table->double('amount')->nullable();
+            $table->float('amount',10)->nullable();
             $table->unsignedBigInteger('ref');
             $table->foreign('vendor')->references('id')->on('accounts');
             $table->foreign('paidFrom')->references('id')->on('accounts');

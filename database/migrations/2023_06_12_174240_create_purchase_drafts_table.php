@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('purchase_drafts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id');
-            $table->float('rate');
-            $table->float('qty');
-            $table->float('subTotal');
+            $table->float('rate', 10);
+            $table->float('qty', 10);
+            $table->float('subTotal', 10);
             $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
         });

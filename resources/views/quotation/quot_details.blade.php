@@ -57,13 +57,13 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="qty">{{ __('lang.Quantity') }}</label>
-                            <input type="number" required name="qty" id="qty" class="form-control">
+                            <input type="number" required name="qty" step="any" id="qty" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="price1">{{ __('lang.Price') }}</label>
-                            <input type="number" required name="price" id="price" class="form-control">
+                            <input type="number" required name="price" step="any" id="price" class="form-control">
                         </div>
                         <input type="hidden" name="id" value="{{ $quot->id }}">
                         <input type="hidden" name="ref" value="{{ $quot->ref }}">

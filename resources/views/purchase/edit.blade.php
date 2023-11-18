@@ -57,13 +57,13 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="qty">{{ __('lang.Quantity') }}</label>
-                            <input type="number" required name="qty" id="qty" class="form-control">
+                            <input type="number" required name="qty" step="any" id="qty" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="rate">{{ __('lang.PurchasePrice') }}</label>
-                            <input type="number" required name="rate" id="rate" class="form-control">
+                            <input type="number" required name="rate" step="any" id="rate" class="form-control">
                         </div>
                     </div>
 

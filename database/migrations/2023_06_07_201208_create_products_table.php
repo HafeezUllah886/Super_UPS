@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('coy');
             $table->unsignedBigInteger('cat');
            /*  $table->unsignedBigInteger('accountID'); */
-            $table->double('price');
+            $table->float('price', 10);
             $table->char('sym');
             $table->softDeletes();
             $table->timestamps();
