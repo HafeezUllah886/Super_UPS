@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->timestamp('date', $precision = 0);
             $table->text('desc');
-            $table->float('cr', 10)->nullable();
-            $table->float('db', 10)->nullable();
+            $table->float('cr', 20)->nullable();
+            $table->float('db', 20)->nullable();
             $table->unsignedBigInteger('ref');
             $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();

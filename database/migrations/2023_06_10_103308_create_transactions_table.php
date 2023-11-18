@@ -16,8 +16,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('account_id');
             $table->timestamp('date', $precision = 0);
-            $table->float('db', 10)->nullable();
-            $table->float('cr', 10)->nullable();
+            $table->float('db', 20)->nullable();
+            $table->float('cr', 20)->nullable();
             $table->text('desc');
             $table->string('type');
             $table->unsignedBigInteger('ref');

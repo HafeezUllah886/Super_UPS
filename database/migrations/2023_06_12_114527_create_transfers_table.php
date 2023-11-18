@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('from');
             $table->unsignedBigInteger('to');
-            $table->float('amount', 10);
+            $table->float('amount', 20);
             $table->timestamp('date', $precision = 0);
             $table->text('desc')->nullable();
             $table->unsignedBigInteger('ref');

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('head');
             $table->string('type');
             $table->string('details');
-            $table->float('amount', 10);
+            $table->float('amount', 20);
             $table->unsignedBigInteger('ref');
             $table->timestamps();
         });

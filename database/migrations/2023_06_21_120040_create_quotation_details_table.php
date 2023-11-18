@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('quot');
             $table->unsignedBigInteger('product');
-            $table->float('qty', 10);
-            $table->float('price', 10);
+            $table->float('qty', 20);
+            $table->float('price', 20);
             $table->unsignedInteger('ref');
             $table->foreign('quot')->references('id')->on('quotations');
             $table->foreign('product')->references('id')->on('products');
