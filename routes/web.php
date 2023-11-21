@@ -109,6 +109,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/purchase/edit/delete/{id}', [purchaseController::class, "deleteEdit"]);
     Route::get('/purchase/update/edit/qty/{id}/{qty}', [purchaseController::class, "updateEditQty"]);
     Route::get('/purchase/update/edit/rate/{id}/{rate}', [purchaseController::class, "updateEditRate"]);
+    Route::get('/purchase/edit/changeDate/{id}/{date}', [purchaseController::class, "updateEditDate"]);
 
 
     Route::get('/sale', [SaleController::class, "sale"]);
@@ -131,6 +132,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/sale/update/edit/price/{id}/{price}', [saleController::class, "updateEditPrice"]);
     Route::get('/sale/update/discount/{id}/{discount}', [saleController::class, "updateEditDiscount"]);
     Route::get('/sale/update/paid/', [saleController::class, "updatePaid"]);
+    Route::get('/sale/edit/changeDate/{id}/{date}', [SaleController::class, "updateEditDate"]);
 
     Route::get('/stock',[purchaseController::class, "stock1"]);
     Route::get('/stock/details/{id}/{from}/{to}',[purchaseController::class, "stockDetails"]);

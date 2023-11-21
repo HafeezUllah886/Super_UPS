@@ -462,4 +462,23 @@ class SaleController extends Controller
         return "Done";
     }
 
+    public function updateEditDate($id, $date){
+
+        $sale = sale::find($id);
+        $sale->date = $date;
+        $sale->save();
+
+        foreach($sale->details as $product)
+        {
+            $product->date = $date;
+            $product->save();
+
+            $stock = stock::where("product_id", $product->product_id)->where('ref', $product->ref)->first();
+            $stock->date = $date;
+            $stock->save();
+        }
+
+        return "done";
+    }
+
 }

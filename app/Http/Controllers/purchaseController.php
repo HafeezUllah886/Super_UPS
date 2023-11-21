@@ -291,9 +291,9 @@ class purchaseController extends Controller
         $item = purchase_details::find($id);
         $bill = $item->bill;
         stock::where('ref', $bill->ref)->where('product_id', $item->product_id)->delete();
-        
+
         $item->delete();
-        
+
         updatePurchaseAmount($bill->id);
         return "Deleted";
     }
@@ -303,7 +303,7 @@ class purchaseController extends Controller
         $item = purchase_details::find($id);
         $product = products::find($item->product_id);
         $subTotal = currencyValue($qty, $product->sym, $item->rate);
-       
+
         $item->qty = $qty;
         $item->subTotal = $subTotal;
         $item->save();
@@ -332,6 +332,25 @@ class purchaseController extends Controller
 
         updatePurchaseAmount($item->bill->id);
         return "Rate Updated";
+    }
+
+    public function updateEditDate($id, $date){
+
+        $purchase = purchase::find($id);
+        $purchase->date = $date;
+        $purchase->save();
+
+        foreach($purchase->details as $product)
+        {
+            $product->date = $date;
+            $product->save();
+
+            $stock = stock::where("product_id", $product->product_id)->where('ref', $product->ref)->first();
+            $stock->date = $date;
+            $stock->save();
+        }
+
+        return "done";
     }
 
     public function deletePurchase($ref)
@@ -390,10 +409,10 @@ class purchaseController extends Controller
       {
         $no_of_db = 1;
       }
-      
+
         $avg_purchase_rate = $sum_of_cr_rate / $no_of_cr;
         $avg_sale_rate = $sum_of_db_rate / $no_of_db;
-       
+
         return view('purchase.stockDetails', compact('stocks', 'cur_bal', 'prev_bal', 'from', 'to', 'avg_sale_rate', 'avg_purchase_rate', 'total_invest', 'total_gain'));
     }
 }

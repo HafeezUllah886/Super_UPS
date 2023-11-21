@@ -88,6 +88,17 @@
 
                         </tbody>
                     </table>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="date">Date</label>
+                                <input type="date" name="date" value="{{ date('Y-m-d', strtotime($bill->date)) }}" id="date" class="form-control">
+                                @error('date')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
                     {{-- <form method="post" class="mt-5">
                         @csrf
                         <div class="row">
@@ -276,5 +287,23 @@ function deleteEdit(id){
         }
     });
 }
+
+$("#date").on("change", function(){
+    var date = $(this).val();
+    var id = "{{ $bill->id }}";
+
+    $.ajax({
+        url: "{{ url('/purchase/edit/changeDate/') }}/"+id+"/"+date,
+        method: "get",
+        success: function(ressult){
+            Snackbar.show({
+            text: "Date Updated",
+            duration: 3000,
+            actionTextColor: '#fff',
+            backgroundColor: '#00ab55'
+            });
+        }
+    });
+});
 </script>
 @endsection
