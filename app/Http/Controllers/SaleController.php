@@ -166,6 +166,8 @@ class SaleController extends Controller
                 'date' => $req->date,
                 'desc' => $desc,
                 'db' => $item->qty,
+                'rate' => $item->price,
+                'amount' => $amount1,
                 'ref' => $ref
             ]);
          }
@@ -281,16 +283,31 @@ class SaleController extends Controller
         }
         $bill = sale::where('id', $id)->first();
         $date = $bill->date;
+
+        $product = products::find($req->product);
+        $subTotal = currencyValue($req->qty, $product->sym, $req->price);
         sale_details::create(
             [
                 'bill_id' => $bill->id,
                 'product_id' => $req->product,
                 'qty' => $req->qty,
                 'price' => $req->price,
+                'subTotal' => $subTotal,
                 'ref' => $bill->ref,
                 'date' => $date,
             ]
         );
+
+        $desc1 = "<strong>Products Sold</strong><br/>Invoice No. ".$bill->id;
+        stock::create([
+            'product_id' => $req->product,
+            'date' => $bill->date,
+            'desc' => $desc1,
+            'db' => $req->qty,
+            'rate' => $req->rate,
+            'amount' => $subTotal,
+            'ref' => $bill->ref
+        ]);
 
         updateSaleAmount($bill->id);
         return "Done";
@@ -300,11 +317,17 @@ class SaleController extends Controller
     public function updateEditQty($id, $qty){
 
         $item = sale_details::find($id);
+        $product = products::find($item->product_id);
+        $subTotal = currencyValue($qty, $product->sym, $item->price);
         $item->qty = $qty;
+        $item->subTotal = $subTotal;
         $item->save();
 
+        $product = products::find($item->product_id);
+        $subTotal = currencyValue($qty, $product->sym, $item->price);
         $stock = stock::where('product_id', $item->product_id)->where('ref', $item->ref)->first();
         $stock->db = $qty;
+        $stock->amount = $subTotal;
         $stock->save();
 
         updateSaleAmount($item->bill->id);
@@ -321,8 +344,18 @@ class SaleController extends Controller
 
     public function updateEditPrice($id, $price){
         $item = sale_details::find($id);
+        $product = products::find($item->product_id);
+        $subTotal = currencyValue($item->qty, $product->sym, $price);
+
         $item->price = $price;
+        $item->subTotal = $subTotal;
         $item->save();
+
+        $stock = stock::where('product_id', $item->product_id)->where('ref', $item->ref)->first();
+        $stock->rate = $price;
+        $stock->amount = $subTotal;
+        $stock->save();
+
         updateSaleAmount($item->bill->id);
         return "Price Updated";
     }
