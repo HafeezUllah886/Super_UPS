@@ -8,16 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class stock extends Model
 {
     use HasFactory;
-    protected $fillable = (
-        [
-            'product_id',
-            'date',
-            'desc',
-            'cr',
-            'db',
-            'ref',
-        ]
-    );
+    protected $guarded = [];
 
     public function product(){
         return $this->belongsTo(products::class, 'product_id', 'id');

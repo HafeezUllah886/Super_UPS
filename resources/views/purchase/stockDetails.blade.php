@@ -68,12 +68,15 @@
                             <th class="text-end">{{ __('lang.Credit') }}</th>
                             <th class="text-end">{{ __('lang.Debit') }}</th>
                             <th class="text-end">{{ __('lang.Balance') }}</th>
+                            <th class="text-end">Rate</th>
+                            <th class="text-end">Amount</th>
                         </thead>
                         <tbody >
                             @php
                                 $total_cr = 0;
                                 $total_db = 0;
                                 $balance = $prev_bal;
+                               
                             @endphp
                             @foreach ($stocks as $item)
                             @php
@@ -81,6 +84,8 @@
                                 $total_db += $item->db;
                                 $balance -= $item->db;
                                 $balance += $item->cr;
+
+                             
 
                             @endphp
                             <tr>
@@ -90,6 +95,8 @@
                             <td class="text-end">{{ $item->cr == null ? '-' : numberFormat($item->cr)}}</td>
                             <td class="text-end">{{ $item->db == null ? '-' : numberFormat($item->db)}}</td>
                             <td class="text-end">{{ numberFormat($balance) }}</td>
+                            <td>{{$item->rate}}</td>
+                            <td>{{$item->amount}}</td>
 
                             </tr>
                         @endforeach
@@ -97,6 +104,22 @@
                     </tbody>
                     </table>
 
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <table style="width:100%;">
+                            <tr>
+                                <td>Avg Sale Rate: </td>
+                                <td>{{$avg_sale_rate}}</td>
+                                <td>Avg Purchase Rate: </td>
+                                <td>{{$avg_purchase_rate}}</td>
+                                <td>Total Investment: </td>
+                                <td>{{$total_invest}}</td>
+                                <td>Total Gain: </td>
+                                <td>{{$total_gain}}</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

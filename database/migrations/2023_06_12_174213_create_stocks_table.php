@@ -18,6 +18,8 @@ return new class extends Migration
             $table->text('desc');
             $table->float('cr', 20)->nullable();
             $table->float('db', 20)->nullable();
+            $table->float('rate', 20)->nullable();
+            $table->float('amount', 20)->nullable();
             $table->unsignedBigInteger('ref');
             $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();

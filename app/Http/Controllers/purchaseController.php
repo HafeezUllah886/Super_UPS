@@ -158,6 +158,8 @@ class purchaseController extends Controller
                 'date' => $req->date,
                 'desc' => $desc,
                 'cr' => $item->qty,
+                'rate' => $item->rate,
+                'amount' => $amount1,
                 'ref' => $ref
             ]);
         }
@@ -257,12 +259,16 @@ class purchaseController extends Controller
             return "Existing";
         }
         $bill = purchase::where('id', $id)->first();
+        $product = products::find($req->product);
+        $subTotal = currencyValue($req->qty, $product->sym, $req->rate);
         $purchase = purchase_details::create(
             [
                 'bill_id' => $bill->id,
                 'product_id' => $req->product,
                 'qty' => $req->qty,
                 'rate' => $req->rate,
+                'subTotal' => $subTotal,
+                'date' => $bill->date,
                 'ref' => $bill->ref,
             ]
         );
@@ -272,6 +278,8 @@ class purchaseController extends Controller
             'date' => $bill->date,
             'desc' => $desc,
             'cr' => $req->qty,
+            'rate' => $req->rate,
+            'amount' => $subTotal,
             'ref' => $bill->ref
         ]);
         updatePurchaseAmount($bill->id);
@@ -282,8 +290,10 @@ class purchaseController extends Controller
     {
         $item = purchase_details::find($id);
         $bill = $item->bill;
+        stock::where('ref', $bill->ref)->where('product_id', $item->product_id)->delete();
+        
         $item->delete();
-        stock::where('ref', $bill->ref)->delete();
+        
         updatePurchaseAmount($bill->id);
         return "Deleted";
     }
@@ -291,11 +301,16 @@ class purchaseController extends Controller
     public function updateEditQty($id, $qty)
     {
         $item = purchase_details::find($id);
+        $product = products::find($item->product_id);
+        $subTotal = currencyValue($qty, $product->sym, $item->rate);
+       
         $item->qty = $qty;
+        $item->subTotal = $subTotal;
         $item->save();
 
         $stock = stock::where('product_id', $item->product_id)->where('ref', $item->ref)->first();
         $stock->cr = $qty;
+        $stock->amount = $subTotal;
         $stock->save();
 
         updatePurchaseAmount($item->bill->id);
@@ -304,8 +319,17 @@ class purchaseController extends Controller
     public function updateEditRate($id, $rate)
     {
         $item = purchase_details::find($id);
+        $product = products::find($item->product_id);
+        $subTotal = currencyValue($item->qty, $product->sym, $rate);
         $item->rate = $rate;
+        $item->subTotal = $subTotal;
         $item->save();
+
+        $stock = stock::where('product_id', $item->product_id)->where('ref', $item->ref)->first();
+        $stock->rate = $rate;
+        $stock->amount = $subTotal;
+        $stock->save();
+
         updatePurchaseAmount($item->bill->id);
         return "Rate Updated";
     }
@@ -344,6 +368,32 @@ class purchaseController extends Controller
         $cr = stock::where('product_id', $id)->sum('cr');
         $db = stock::where('product_id', $id)->sum('db');
         $cur_bal = $cr - $db;
-        return view('purchase.stockDetails', compact('stocks', 'cur_bal', 'prev_bal', 'from', 'to'));
+
+        $avg_cr_rate = 0;
+        $avg_db_rate = 0;
+        $total_invest = 0;
+        $total_gain = 0;
+
+        $no_of_cr = stock::where('product_id', $id)->count('cr');
+        $no_of_db = stock::where('product_id', $id)->count('db');
+
+        $sum_of_cr_rate = stock::where('product_id', $id)->where('cr', '>', 0)->sum('rate');
+        $sum_of_db_rate = stock::where('product_id', $id)->where('db', '>', 0)->sum('rate');
+
+        $total_invest = stock::where('product_id', $id)->where('cr', '>', 0)->sum('amount');
+        $total_gain = stock::where('product_id', $id)->where('db', '>', 0)->sum('amount');
+      if($no_of_cr == 0)
+      {
+        $no_of_cr = 1;
+      }
+      if($no_of_db == 0)
+      {
+        $no_of_db = 1;
+      }
+      
+        $avg_purchase_rate = $sum_of_cr_rate / $no_of_cr;
+        $avg_sale_rate = $sum_of_db_rate / $no_of_db;
+       
+        return view('purchase.stockDetails', compact('stocks', 'cur_bal', 'prev_bal', 'from', 'to', 'avg_sale_rate', 'avg_purchase_rate', 'total_invest', 'total_gain'));
     }
 }
