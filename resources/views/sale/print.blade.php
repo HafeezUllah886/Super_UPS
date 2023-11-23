@@ -251,24 +251,7 @@
 <body>
 
     <div class="container">
-        <div class="container1">
-            <div class="sub-container">
-                <div class="logo" style="width: 37%;">
-                    <img src="{{ asset('assets/images/app_logo.png') }}" alt="logo">
-                </div>
-                <div id="myDiv">
-                    <span class="dot">
-                        <p style="margin-top: 15px;">خوشحال خان</p>
-                    </span>
-                </div>
-                <div class="text1">
-                    <h1 class="m-query1">Super UPS Center</h1>
-                    <h3 class="m-query2">Shop No 12, insaf Solar Market, Angle Road, opp Civic Center, Quetta.
-                        <br>Phone:&nbsp; 0300-3883054,&nbsp;0309-8105556,&nbsp;081-2827774</h3>
-                </div>
-            </div>
-        </div>
-
+        <img style="margin:0;width:100%;" src="{{ asset('assets/images/bill.jpeg') }}" alt="">
         <div class="body-section">
             <div class="row">
                 <div class="qoute">
@@ -280,7 +263,7 @@
                     <!-- <h2 class="heading">Invoice No.: 001</h2> -->
                     <h3 class="sub-heading">Invoice to:
                         @if (@$invoice->customer_account->title)
-                            {{ @$invoice->customer_account->title }} <br>({{ @$invoice->customer_account->phone }})
+                            {{ @$invoice->customer_account->title }}
                         @else
                             {{ $invoice->walking }} (Walk In)
 
@@ -422,7 +405,7 @@
             <div class="d-flex justify-content-end">
                 <br><br>
                 <h4 style="text-align:right;margin-right:2px;">Authorize Signature___________________</h4>
-                <p style="margin-right:2px;">superupscenter@gmail.com</p>
+                {{-- <p style="margin-right:2px;">superupscenter@gmail.com</p> --}}
                 <br>
             </div>
 
