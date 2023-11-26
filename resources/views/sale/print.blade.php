@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super UPS CENTER</title>
+    <title>POS</title>
     <style>
 
 
@@ -356,7 +356,7 @@
                             <strong>{{ ($total - $invoice->discount) + $invoice->dc }}</strong>
                         </td>
                     </tr>
-                   
+
 
                     @if (@$invoice->customer_account->title)
                     <tr>
