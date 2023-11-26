@@ -7,8 +7,8 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>{{ __('lang.SaleReturns') }}</h4>
-                <button class="btn btn-success" data-toggle="modal" data-target="#modal">{{ __('lang.CreateReturn') }}</button>
+                <h4>Claims</h4>
+                <button class="btn btn-success" data-toggle="modal" data-target="#modal">Create Claim</button>
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($saleReturns as $return)
+                            {{-- @foreach ($saleReturns as $return)
                             <tr>
                                 <td> {{ $return->bill_id}} </td>
                                 <td>{{ $return->date }}</td>
@@ -40,7 +40,7 @@
                                 @endif</td>
                                 <td>
                                     <table>
-                                        <thead>
+                                    <thead>
                                         <th>{{ __('lang.Product') }}</th>
                                         <th>{{ __('lang.Qty') }}</th>
                                         <th>{{ __('lang.Price') }}</th>
@@ -73,7 +73,7 @@
                                 <td>
                                 </td>
                             </tr>
-                            @endforeach
+                            @endforeach --}}
                         </tbody>
                     </table>
                 </div>
@@ -86,12 +86,12 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">{{ __('lang.CreateReturn') }}</h5>
+                <h5 class="modal-title">Create Claim</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post">
+            <form method="post" action="{{ url('/claim/create') }}">
                 @csrf
                 <div class="modal-body">
 
@@ -115,7 +115,6 @@
     .dataTables_paginate {
         display: block
     }
-
 </style>
 <script>
     var elems = document.getElementsByClassName('confirmation');

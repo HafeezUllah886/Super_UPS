@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClaimController;
 use App\Http\Controllers\ConfirmPasswordController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\productController;
@@ -168,6 +169,8 @@ Route::middleware('auth')->group(function (){
     Route::get('/return/view/{id}', [SaleReturnController::class, 'view']);
     Route::post('/return/save/{bill}', [SaleReturnController::class, 'saveReturn']);
 
+    Route::get('/claim', [ClaimController::class, 'index']);
+    Route::post('/claim/create', [ClaimController::class, 'create']);
 
 });
 
