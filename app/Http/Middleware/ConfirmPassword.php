@@ -18,7 +18,6 @@ class ConfirmPassword
                 return redirect()->route('confirm-password'); // Change to your confirm password route
             }
 
-
         return $next($request);
     }
 }
