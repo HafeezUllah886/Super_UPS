@@ -176,6 +176,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/claim/approve/{ref}', [ClaimController::class, 'approve']);
 
     Route::get('/scrap/purchase', [ScrapPurchaseController::class, 'index']);
+    Route::post('/scrap/purchase/create', [ScrapPurchaseController::class, 'store']);
 });
 
 Route::middleware(['confirm.password'])->group(function () {
