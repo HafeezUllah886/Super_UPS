@@ -116,6 +116,7 @@
                     <a class="dropdown-item" href="{{ url('/claim') }}">Claim</a>
                   </div>
                 </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                         {{ __('lang.Stock') }}
@@ -148,6 +149,16 @@
                     <a class="dropdown-item" href="{{ url('/expense') }}">{{ __('lang.Expense') }}</a>
                   </div>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                      Scrap
+                    </a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="{{ url('/scrap/purchase') }}">Purchase</a>
+                      <a class="dropdown-item" href="{{ url('/scrap/sale') }}">Sale</a>
+                      <a class="dropdown-item" href="{{ url('/scrap/stock') }}">Stock</a>
+                    </div>
+                  </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                         {{ __('lang.Products') }}
