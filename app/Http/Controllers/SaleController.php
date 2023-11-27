@@ -263,6 +263,16 @@ class SaleController extends Controller
             ]
         );
 
+        stock::create(
+            [
+                'product_id' => $req->product,
+                'date' => $date,
+                'desc' => "<strong>Sale</strong><br/> Invoice No. ".$bill->id,
+                'db' => $req->qty,
+                'ref' => $bill->ref,
+            ]
+        );
+
         updateSaleAmount($bill->id);
         return "Done";
     }
@@ -338,7 +348,7 @@ class SaleController extends Controller
             $total += $item->price * $item->qty;
          }
          $net_total = $total - $sale->discount;
-         
+
         if($sale->customer != null){
 
          if($req->isPaid == 'Yes'){
@@ -346,7 +356,7 @@ class SaleController extends Controller
             createTransaction($sale->customer, $sale->date, $net_total, $net_total, $desc1, "Sale", $sale->ref);
             $sale->paidIn = $req->paidIn;
             $sale->amount = null;
-            
+
          }
          elseif($req->isPaid == 'No'){
                 createTransaction($sale->customer, $sale->date, $net_total, 0, $desc1, "Sale", $sale->ref);
