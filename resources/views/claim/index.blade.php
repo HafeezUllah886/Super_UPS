@@ -19,61 +19,40 @@
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable">
                         <thead class="th-color">
                             <tr>
-                                <th class="border-top-0">{{ __('lang.InvoiceNo') }}</th>
-                                <th class="border-top-0">{{ __('lang.Date') }}</th>
-                                <th class="border-top-0">{{ __('lang.Customer') }}</th>
-                                <th class="border-top-0">{{ __('lang.Details') }}</th>
-                                <th class="border-top-0">{{ __('lang.PaidBy') }}</th>
-                                <th class="border-top-0">{{ __('lang.PayableAmount') }}</th>
+                                <th>{{ __('lang.InvoiceNo') }}</th>
+                                <th>{{ __('lang.Customer') }}</th>
+                                <th>{{ __('lang.Date') }}</th>
+                                <th>Product</th>
+                                <th>Qty</th>
+                                <th>Reason</th>
+                                <th>Status</th>
                                 <th>{{ __('lang.Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($saleReturns as $return)
+                            @foreach ($claims as $claim)
                             <tr>
-                                <td> {{ $return->bill_id}} </td>
-                                <td>{{ $return->date }}</td>
-                                <td>@if (@$return->bill->customer_account->title)
-                                    {{ @$return->bill->customer_account->title }}
+                                <td> {{ $claim->salesID}} </td>
+                                <td>@if (@$claim->bill->customer_account->title)
+                                    {{ @$claim->bill->customer_account->title }}
                                 @else
-                                {{$return->bill->walking}} (Walk In)
+                                {{$claim->bill->walking}} (Walk In)
                                 @endif</td>
-                                <td>
-                                    <table>
-                                    <thead>
-                                        <th>{{ __('lang.Product') }}</th>
-                                        <th>{{ __('lang.Qty') }}</th>
-                                        <th>{{ __('lang.Price') }}</th>
-                                        <th>{{ __('lang.Amount') }}</th>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($return->details as $details)
-                                            @php
-                                                $amount = $details->qty * $details->price;
-                                            @endphp
-                                            <tr>
-                                                <td>{{ $details->product->name }}</td>
-                                                <td>{{ $details->qty }}</td>
-                                                <td>{{ round($details->price) }}</td>
-                                                <td>{{ $amount }}</td>
-                                            </tr>
-                                            @if($return->deduction > 0)
-                                            <tr>
-                                                <td colspan="4">{{ __('lang.Deduction') }}: <strong>{{ round($return->deduction) }}</strong></td>
-                                            </tr>
-                                            @endif
-                                        @endforeach
-
-                                    </tbody>
-                                    </table>
+                                <td>{{ $claim->date }}</td>
+                                <td> {{ $claim->product->name}} </td>
+                                <td>{{ $claim->qty }}</td>
+                                <td>{{ $claim->reason }}</td>
+                                <td>{{ $claim->status }}</td>
+                                <td> 
+                                    <a href="{{url('/claim/delete/')}}/{{$claim->ref}}" class="text-danger ">Delete</a> 
+                                    @if($claim->status == 'Pending')
+                                        <a href="{{url('/claim/approve/')}}/{{$claim->ref}}" class="text-success "> / Approve</a> 
+                                    @endif
                                 </td>
-                                <td>{{ @$return->account->title }}</td>
-                                <td>{{ $return->amount }}</td>
-                                <td> <a href="{{url('/return/delete/')}}/{{$return->ref}}" class="text-danger ">Delete</a> </td>
                                 <td>
                                 </td>
                             </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

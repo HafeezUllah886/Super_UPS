@@ -171,6 +171,8 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/claim', [ClaimController::class, 'index']);
     Route::post('/claim/create', [ClaimController::class, 'create']);
+    Route::post('/claim/store', [ClaimController::class, 'store']);
+    Route::get('/claim/approve/{ref}', [ClaimController::class, 'approve']);
 
 });
 
@@ -183,4 +185,5 @@ Route::middleware(['confirm.password'])->group(function () {
     Route::get('/transfer/delete/{ref}', [AccountController::class, "deleteTransfer"]);
     Route::get('/expense/delete/{ref}', [AccountController::class, "deleteExpense"]);
     Route::get('/return/delete/{ref}', [SaleReturnController::class, 'delete']);
+    Route::get('/claim/delete/{ref}', [ClaimController::class, "delete"]);
 });

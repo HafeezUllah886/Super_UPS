@@ -38,7 +38,6 @@
                                     {{ @$bill->customer_account->title }}
                                 @else
                                 {{$bill->walking}} (Walk In)
-
                                 @endif</td>
                                 <td>{{ $bill->date }}</td>
                                 <td>{{ $bill->discount ?? "0" }}</td>
@@ -81,7 +80,7 @@
                                 <td> <input type="hidden" value="{{$products->product_id}}" name="id[]">{{ $products->product->name}} </td>
                                 <td> <input type="number" readonly class="form-control  text-center" name="price[]" value="{{$products->price}}" id="price{{ $ser }}"> </td>
                                 <td> <input type="number" readonly class="form-control text-center" value="{{$products->qty}}" id="qty{{ $ser }}"> </td>
-                                <td> <button class="btn btn-warning" onclick="claim({{$products->product_id}}, {{ $products->product->name}}, {{$products->qty}})">Claim</button></td>
+                                <td> <a class="btn btn-warning" onclick="claim({{$products->product_id}}, '{{ $products->product->name}}', {{$products->qty}})">Claim</a></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -92,16 +91,62 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="claimModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Claim Product</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="{{url('/claim/store')}}" method="post">
+            <div class="modal-body">
+                @csrf
+                <input type="hidden" name="saleID" value="{{$bill->id}}">
+                <input type="hidden" name="productID" id="productID">
+                <div class="form-group">
+                    <label for="product">Product</label>
+                    <input type="text" id="product" class="form-control" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="qty">Claim Qty (Max: <span id="qtyMax"></span> )</label>
+                    <input type="number" name="qty" id="qty" class="form-control" >
+                </div>
+                <div class="form-group">
+                    <label for="reason">Reason</label>
+                    <input type="text" name="reason" id="reason" class="form-control" >
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" name="date" id="date" value="{{date("Y-m-d")}}" class="form-control" >
+                </div>
+                <div class="row">
+                    <div class="col">
+                    <label>Status</label><br>
+                    <input type="radio" name="status" checked value="Pending"> Wait for Approval <br>
+                    <input type="radio" name="status" value="Claimed"> Approve
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
 @endsection
 @section('scripts')
-<style>
-    .dataTables_paginate {
-        display: block
-    }
-
-</style>
 <script>
-
+    function claim(id, name, qty){
+        $("#product").val(name);
+        $("#productID").val(id);
+        $("#qtyMax").text(qty);
+        $("#qty").attr("max", qty);
+     $("#claimModal").modal('show');
+    }
 </script>
 
 @endsection

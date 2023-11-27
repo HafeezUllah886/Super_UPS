@@ -112,7 +112,7 @@
                     <a class="dropdown-item" href="{{ url('/sale') }}">{{ __('lang.CreateSale') }}</a>
                     <a class="dropdown-item" href="{{ url('/sale/history') }}">{{ __('lang.SaleHistory') }}</a>
                     <a class="dropdown-item" href="{{ url('/quotation') }}">{{ __('lang.Quotation') }}</a>
-                    <a class="dropdown-item" href="{{ url('/return') }}">{{ __('lang.Return') }}</a>
+                    {{-- <a class="dropdown-item" href="{{ url('/return') }}">{{ __('lang.Return') }}</a> --}}
                     <a class="dropdown-item" href="{{ url('/claim') }}">Claim</a>
                   </div>
                 </li>
