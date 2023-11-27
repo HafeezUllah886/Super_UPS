@@ -260,6 +260,16 @@ class SaleController extends Controller
                 'ref' => $bill->ref,
             ]
         );
+
+        stock::create(
+            [
+                'product_id' => $req->product,
+                'date' => $bill->date,
+                'desc' => "<strong>Sale</strong><br/> Invoice No. ".$bill->id,
+                'db' => $req->qty,
+                'ref' => $bill->ref,
+            ]
+        );
         updateSaleAmount($bill->id);
         return "Done";
     }
