@@ -21,9 +21,13 @@
             method: 'get',
             url: "{{ url('/sale/getPrice/') }}/"+id,
             success: function(data){
-               $('#stock').val(data.balance);
-               $('#price').val(data.price);
+               $('#stock').text(data.balance);
+               $('#retail').val(data.product.price);
+               $('#gst').val(data.product.gst);
+               $('#wht').val(data.product.wht);
                $('#qty').attr('max', data.balance);
+
+               cal();
             }
         });
     }
@@ -47,6 +51,19 @@
 
     }
 </script>
+<style>
+    input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+-moz-appearance: textfield;
+}
+
+</style>
 @section('content')
 @if (session('success'))
 <div class="alert alert-success">
@@ -74,8 +91,8 @@
             <div class="card-body">
 
                 <form id="pro_form">
-                <div class="row">
-                    <div class="col-md-3">
+                <div class="row no-gutters">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label for="product">{{__('lang.SelectProduct')}}</label>
                             <select name="product" required id="product" onchange="price1()" class="select2">
@@ -86,26 +103,44 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
-                            <label for="stock">{{__('lang.AvailableStock')}}</label>
-                            <input type="number" disabled name="stock" id="stock" class="form-control">
+                            <label for="qty">{{__('lang.Quantity')}} (Stock: <span id="stock"></span>)</label>
+                            <input type="number" required name="qty" oninput="cal()" value="1" id="qty" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label for="qty">{{__('lang.Quantity')}}</label>
-                            <input type="number" required name="qty" id="qty" class="form-control">
+                            <label for="price1">Retail</label>
+                            <input type="number" required name="price" oninput="cal()" id="retail" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <label for="price1">GST</label>
+                            <input type="number" required name="price" readonly id="gst" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <label for="price1">WHT</label>
+                            <input type="number" required name="price" readonly id="wht" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <label for="price1">%</label>
+                            <input type="number" required name="price" oninput="cal()" value="0" id="percent" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label for="price1">{{__('lang.Price')}}</label>
-                            <input type="number" required name="price" id="price" class="form-control">
+                            <label for="price1">Net</label>
+                            <input type="number" required name="price" readonly id="net" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-info" style="margin-top: 30px">{{__('lang.AddProduct')}}</button>
+                    <div class="col-md-1">
+                        <button type="submit" class="btn btn-info" style="margin-top: 30px">Add</button>
                     </div>
                 </div>
             </form>
@@ -251,6 +286,21 @@
 
 </style>
 <script>
+
+    function cal(){
+        var qty = $("#qty").val();
+        var retail = $("#retail").val();
+        var gst = $("#gst").val();
+        var wht = $("#wht").val();
+        var percent = $("#percent").val();
+
+        var netRetail = retail * qty;
+
+        var discount = (netRetail * percent) / 100;
+        var afterPercent = netRetail - discount;
+        var net = parseFloat(afterPercent) + parseFloat(gst) + parseFloat(wht);
+        $("#net").val(net);
+    }
     $(document).ready(function() {
         $("#amount_box").css('display', 'none');
          $('#walkIn_box').css("display", "none");

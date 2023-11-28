@@ -30,7 +30,7 @@ class SaleController extends Controller
             $balance -= $item->db;
         }
         return response()->json(array(
-            'balance' => $balance, 'price' => $product->price
+            'balance' => $balance, 'product' => $product,
         ));
     }
 
