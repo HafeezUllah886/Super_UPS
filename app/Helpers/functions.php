@@ -225,11 +225,10 @@ function updateSaleAmount($id){
     $total = getSaleBillTotal($id);
     if($bill->isPaid == 'No')
     {
-
-            $trans = transactions::where('account_id', $bill->customer_account->id)->where('ref', $bill->ref)->first();
-            $trans->cr = $total;
-            $trans->date = $bill->date;
-            $trans->save();
+        $trans = transactions::where('account_id', $bill->customer_account->id)->where('ref', $bill->ref)->first();
+        $trans->cr = $total;
+        $trans->date = $bill->date;
+        $trans->save();
     }
     elseif($bill->isPaid == 'Yes')
     {
@@ -240,23 +239,20 @@ function updateSaleAmount($id){
     }
     else
     {
-            $trans = transactions::where('account_id', $bill->customer_account->id)->where('ref', $bill->ref)->first();
-            $trans->cr = $total;
-            $trans->date = $bill->date;
-            $trans->save();
+        $trans = transactions::where('account_id', $bill->customer_account->id)->where('ref', $bill->ref)->first();
+        $trans->cr = $total;
+        $trans->date = $bill->date;
+        $trans->save();
     }
 
     $ledger = ledger::where('ref', $bill->ref)->first();
     $ledger->amount = $total;
     $ledger->save();
-
-
 }
 
 function todaySale(){
     $Date = Carbon::now()->format('Y-m-d');
     $sales = sale_details::whereDate('date', $Date)->get();
-
     $total = 0;
     foreach($sales as $item)
     {
