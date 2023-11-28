@@ -11,8 +11,9 @@ class ScrapPurchaseController extends Controller
 {
     public function index()
     {
+        $scraps = scrap_purchase::orderBy('id', 'desc')->get();
         $accounts = account::where('type', 'Business')->get();
-        return view('scrap.purchase.index', compact('accounts'));
+        return view('scrap.purchase.index', compact('accounts', 'scraps'));
     }
 
     public function store(request $req)
@@ -40,5 +41,13 @@ class ScrapPurchaseController extends Controller
             );
 
             return back()->with("msg", "Scrap Purchased");
+    }
+
+    public function delete($ref)
+    {
+        scrap_stock::where('ref', $ref)->delete();
+        scrap_purchase::where('ref', $ref)->delete();
+
+        return redirect('/scrap/purchase')->with("error", "Scrap Purchase Deleted");
     }
 }

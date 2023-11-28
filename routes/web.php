@@ -11,6 +11,8 @@ use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SaleReturnController;
 use App\Http\Controllers\ScrapPurchaseController;
+use App\Http\Controllers\ScrapSaleController;
+use App\Http\Controllers\ScrapStockController;
 use App\Http\Controllers\StockController;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Artisan;
@@ -177,6 +179,11 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/scrap/purchase', [ScrapPurchaseController::class, 'index']);
     Route::post('/scrap/purchase/create', [ScrapPurchaseController::class, 'store']);
+
+    Route::get('/scrap/sale', [ScrapSaleController::class, 'index']);
+    Route::post('/scrap/sale/create', [ScrapSaleController::class, 'store']);
+
+    Route::get('/scrap/stock', [ScrapStockController::class, 'index']);
 });
 
 Route::middleware(['confirm.password'])->group(function () {
@@ -189,4 +196,6 @@ Route::middleware(['confirm.password'])->group(function () {
     Route::get('/expense/delete/{ref}', [AccountController::class, "deleteExpense"]);
     Route::get('/return/delete/{ref}', [SaleReturnController::class, 'delete']);
     Route::get('/claim/delete/{ref}', [ClaimController::class, "delete"]);
+    Route::get('/scrap/purchase/delete/{ref}', [ScrapPurchaseController::class, "delete"]);
+    Route::get('/scrap/sale/delete/{ref}', [ScrapSaleController::class, "delete"]);
 });

@@ -9,4 +9,6 @@ class scrap_purchase extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    
 }

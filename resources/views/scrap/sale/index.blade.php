@@ -7,8 +7,8 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Scrap Purchases</h4>
-                <button class="btn btn-success" data-toggle="modal" data-target="#modal">Create Purchase</button>
+                <h4>Scrap Sales</h4>
+                <button class="btn btn-success" data-toggle="modal" data-target="#modal">Create Sale</button>
             </div>
         </div>
     </div>
@@ -39,7 +39,7 @@
                                 <td>{{ $scrap->rate }}</td>
                                 <td>{{ $scrap->weight * $scrap->rate }}</td>
                                 <td>{{ $scrap->desc }}</td>
-                                <td><a class="text-danger" href="{{url('/scrap/purchase/delete/')}}/{{$scrap->ref}}">Delete</a></td>
+                                <td><a class="text-danger" href="{{url('/scrap/sale/delete/')}}/{{$scrap->ref}}">Delete</a></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -54,12 +54,12 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Create Scrap Purchase</h5>
+                <h5 class="modal-title">Create Scrap Sale</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="{{ url('/scrap/purchase/create') }}">
+            <form method="post" action="{{ url('/scrap/sale/create') }}">
                 @csrf
                 <div class="modal-body">
                     <div class="row">
