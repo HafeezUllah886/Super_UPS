@@ -33,6 +33,19 @@
 
     }
 </script>
+<style>
+              input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+</style>
 @php
         App::setLocale(auth()->user()->lang);
     @endphp
@@ -60,8 +73,8 @@
             <div class="card-body">
 
                 <form id="pro_form">
-                <div class="row">
-                    <div class="col-md-3">
+                <div class="row no-gutters">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label for="product">{{ __('lang.SelectProduct') }}</label>
                             <select name="product" required id="product" class="select2">
@@ -72,10 +85,10 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <div class="form-group">
                             <label for="qty">{{ __('lang.Quantity') }}</label>
-                            <input type="number" required name="qty" id="qty" class="form-control">
+                            <input type="number" style="padding-left:0px;padding-right:0px;text-align:center;" required name="qty" id="qty" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -86,12 +99,24 @@
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label for="price">{{ __('lang.SalePrice') }}</label>
+                            <label for="price">Retail</label>
                             <input type="number" required name="price" id="price" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <button type="submit" class="btn btn-info" style="margin-top: 30px">{{ __('lang.AddProduct') }}</button>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="gst">GST</label>
+                            <input type="number" required name="gst" id="gst" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="wht">Withholding Tax</label>
+                            <input type="number" required name="wht" id="wht" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <button type="submit" class="btn btn-info" style="margin-top: 30px">Add</button>
                     </div>
                 </div>
             </form>
@@ -102,7 +127,7 @@
                                 <th class="border-top-0">{{ __('lang.Ser') }}</th>
                                 <th class="border-top-0">{{ __('lang.Product') }}</th>
                                 <th class="border-top-0">{{ __('lang.Quantity') }}</th>
-                                <th class="border-top-0">{{ __('lang.Price') }}</th>
+                                <th class="border-top-0">{{ __('lang.PurchaseRate') }}</th>
                                 <th class="border-top-0">{{ __('lang.Amount') }}</th>
                                 <th>{{ __('lang.Action') }}</th>
                             </tr>
@@ -238,12 +263,12 @@ $('#pro_form').submit(function(e){
             if(abc == 'Existing')
             {
                 Snackbar.show({
-            text: "Already Added",
-            duration: 3000,
-            actionTextColor: '#fff',
-            backgroundColor: '#e7515a'
-            /* actionTextColor: '#fff',
-            backgroundColor: '#00ab55' */
+                text: "Already Added",
+                duration: 3000,
+                actionTextColor: '#fff',
+                backgroundColor: '#e7515a'
+                /* actionTextColor: '#fff',
+                backgroundColor: '#00ab55' */
             });
             }
         }

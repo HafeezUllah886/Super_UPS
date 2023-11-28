@@ -66,8 +66,6 @@
             padding: 2px;
             color: #fff;
           }
-
-
       </style>
 
 <style>

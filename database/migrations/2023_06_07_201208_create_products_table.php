@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('coy');
             $table->unsignedBigInteger('cat');
             $table->unsignedInteger('price');
+            $table->unsignedInteger('gst')->default(0);
+            $table->unsignedInteger('wht')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

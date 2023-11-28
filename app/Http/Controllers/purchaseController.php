@@ -41,6 +41,8 @@ class purchaseController extends Controller
         products::where('id', $req->product)->update(
             [
                 'price' => $req->price,
+                'gst' => $req->gst,
+                'wht' => $req->wht,
             ]
         );
 

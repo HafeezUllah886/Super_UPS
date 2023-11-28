@@ -1,7 +1,7 @@
 @extends('layout.dashboard')
 @php
-        App::setLocale(auth()->user()->lang);
-    @endphp
+    App::setLocale(auth()->user()->lang);
+@endphp
 @section('content')
 @if (session('success'))
 <div class="alert alert-success">
