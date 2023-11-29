@@ -206,7 +206,7 @@
             <div class="col-md-6">
                 <h5 class="text-danger">{{ __('lang.LedgerDetails')}}</h5>
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-hover text-center" id="datatable1">
+                    <table class="table table-bordered table-hover text-center w-100" id="datatable1">
                         <thead class="th-color">
                                 <th>{{ __('lang.Ser') }}</th>
                                 <th>{{ __('lang.Date') }}</th>
@@ -271,7 +271,7 @@
             <div class="col-md-6">
                 <h5 class="text-danger">{{ __('lang.Income&ExpenseDetails') }}</h5>
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-hover text-center" id="datatable2">
+                    <table class="table table-bordered table-hover text-center w-100" id="datatable2">
                         <thead class="th-color">
                             <tr>
                                 <th>{{ __('lang.Ser') }}</th>
