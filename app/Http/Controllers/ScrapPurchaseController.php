@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\account;
+use App\Models\ledger;
 use App\Models\scrap_purchase;
 use App\Models\scrap_stock;
 use Illuminate\Http\Request;
@@ -40,11 +41,15 @@ class ScrapPurchaseController extends Controller
                 ]
             );
 
+            $account = account::find($req->account);
+
+            addLedger($req->date, $req->customerName, $account->title, "Scrap purchased Weight $req->weight Kg", $req->amount, $ref);
             return back()->with("msg", "Scrap Purchased");
     }
 
     public function delete($ref)
     {
+        ledger::where('ref', $ref)->delete();
         scrap_stock::where('ref', $ref)->delete();
         scrap_purchase::where('ref', $ref)->delete();
 

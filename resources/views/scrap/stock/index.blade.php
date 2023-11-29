@@ -50,12 +50,12 @@
                                 <td>{{ $stock->ref}} </td>
                                 <td>{{ $stock->date }}</td>
                                 <td>{{ $stock->desc }}</td>
-                                <td>{{ $stock->cr }}</td>
-                                <td>{{ $stock->db }}</td>
+                                <td>{{ $stock->cr ? $stock->cr. "Kg" : "-"}}</td>
+                                <td>{{ $stock->db ? $stock->db. "Kg" : "-"}}</td>
                                 <td>{{ $stock->rate }}</td>
                                 <td>{{ $amount }}</td>
-                                <td>{{ $balance }}</td>
-                              
+                                <td>{{ $balance }}Kg</td>
+
                             </tr>
                             @endforeach
                         </tbody>
