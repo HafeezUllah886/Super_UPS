@@ -76,7 +76,10 @@
                             <td colspan="7" style="text-align: right;"> <strong>{{__('lang.Total')}}</strong> </td>
                             <td> <strong>{{ round($totalProfit,2) }}</strong> </td>
                         </tr>
-
+                        <tr>
+                            <td colspan="7" style="text-align: right;"> <strong>Scrap Profit</strong> </td>
+                            <td> <strong>{{ round($s_profit,2) }}</strong> </td>
+                        </tr>
                         <tr>
                             <td colspan="7" style="text-align: right;"> <strong>{{__('lang.Discount')}}</strong> </td>
                             <td> <strong>{{ round($discounts,2) }}</strong> </td>
@@ -87,7 +90,7 @@
                         </tr>
                         <tr>
                             <td colspan="7" style="text-align: right;"> <strong>{{__('lang.NetProfit')}}</strong> </td>
-                            <td> <strong>{{ round($totalProfit - $discounts - $expense,2) }}</strong> </td>
+                            <td> <strong>{{ round(($totalProfit + $s_profit) - $discounts - $expense,2) }}</strong> </td>
                         </tr>
                         </tbody>
                     </table>

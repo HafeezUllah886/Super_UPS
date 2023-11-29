@@ -11,6 +11,7 @@ use App\Models\sale;
 use App\Models\sale_details;
 use App\Models\saleReturn;
 use App\Models\saleReturnDetails;
+use App\Models\scrap_stock;
 use App\Models\stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -157,7 +158,7 @@ class productController extends Controller
                 $toDate = $to;   // Replace with the actual to date
 
                 $products = Products::all();
-               
+
                 foreach ($products as $product) {
                     //////////// Getting avg Purchase Price ///////////////////////
                     $purchases_qty = purchase_details::where('product_id', $product->id)
@@ -175,12 +176,12 @@ class productController extends Controller
                         }
                         $avg_purchase_price = $purchases_amount / $purchases_qty;
                     //////////// Getting avg Sale Price ///////////////////////
-                    
+
                         $sales_qty = sale_details::where('product_id', $product->id)
                         ->whereBetween('date', [$fromDate, $toDate])->count();
                         $sales_amount = sale_details::where('product_id', $product->id)
                         ->whereBetween('date', [$fromDate, $toDate])->sum('price');
-                        
+
                         $gross_sold_qty = $sales_qty; ///// Storing gross sold before proceeding
                         if($sales_amount == 0)
                         {
@@ -207,12 +208,14 @@ class productController extends Controller
                         $qty += $product_return;
                     }
                     $return_qty = $qty;
-                    //////////// Subtracting return Qty from gross qty to get total Sold///////////////////////
-                    $total_sold = $gross_sold_qty - $return_qty;
-                    
-                    //////////// Calculating Net Profit per product ///////////////////////
+                     //////////// Subtracting return Qty from gross qty to get total Sold///////////////////////
+                     $total_sold = $gross_sold_qty;
 
-                    $net_product_profit = $total_sold * $ppu;
+                     //////////// Calculating Net Profit per product ///////////////////////
+
+                     $return_profit = $ppu * $return_qty;
+                     $product_profit = $total_sold * $ppu;
+                     $net_product_profit = $product_profit - $return_profit;
 
                     //////////// Getting Available Stock ///////////////////////
                     $stock_cr = stock::where('product_id', $product->id)->sum('cr');
@@ -222,7 +225,7 @@ class productController extends Controller
                     //////////// Calculating Stock Value ///////////////////////
 
                     $stock_value = $avg_sale_price * $available_stock;
-                    
+
                     //////////// Passing all data to product variable ///////////////////////
                     $product->app = $avg_purchase_price;
                     $product->asp = $avg_sale_price;
@@ -236,7 +239,23 @@ class productController extends Controller
                 $discounts = sale::whereBetween('date', [$fromDate, $toDate])->sum('discount');
                 $expense = expense::whereBetween('date', [$fromDate, $toDate])->sum('amount');
 
-                return view('products.profit')->with(compact('products', 'discounts', 'expense', 'from', 'to'));
+                $scrap_stock = scrap_stock::all();
+                $s_purchase = 0;
+                $s_sale = 0;
+                foreach($scrap_stock as $s_stock)
+                {
+                    if($s_stock->cr > 0)
+                    {
+                        $s_purchase += $s_stock->cr * $s_stock->rate;
+                    }
+                    if($s_stock->db > 0)
+                    {
+                        $s_sale += $s_stock->db * $s_stock->rate;
+                    }
+                }
+                $s_profit = $s_sale - $s_purchase;
+
+                return view('products.profit')->with(compact('products', 'discounts', 'expense', 'from', 'to', 's_profit'));
     }
 
 }
