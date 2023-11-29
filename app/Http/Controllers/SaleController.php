@@ -221,8 +221,8 @@ class SaleController extends Controller
         sale_details::where('ref', $ref)->delete();
         transactions::where('ref', $ref)->delete();
         stock::where('ref', $ref)->delete();
-        sale::where('ref', $ref)->delete();
         ledger::where('ref', $ref)->delete();
+        sale::where('ref', $ref)->delete();
         session()->forget('confirmed_password');
         return redirect('/sale/history')->with('error', "Sale Deleted");
     }
