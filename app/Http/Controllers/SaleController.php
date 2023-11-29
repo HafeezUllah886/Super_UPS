@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\account;
+use App\Models\claim;
 use App\Models\ledger;
 use App\Models\products;
 use App\Models\sale;
@@ -218,6 +219,13 @@ class SaleController extends Controller
 
     public function deleteSale($ref)
     {
+
+        $sale = sale::where('ref', $ref)->first();
+        $check = claim::where('salesID', $sale->id)->count();
+        if($check > 0)
+        {
+            return redirect("/sale/history")->with('error', "First delete the claims against this bill");
+        }
         sale_details::where('ref', $ref)->delete();
         transactions::where('ref', $ref)->delete();
         stock::where('ref', $ref)->delete();
