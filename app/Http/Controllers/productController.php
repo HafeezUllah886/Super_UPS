@@ -109,6 +109,8 @@ class productController extends Controller
                 'price' => $req->price,
                 'coy' => $req->coy,
                 'cat' => $req->cat,
+                'gst' => $req->gst,
+                'wht' => $req->wht,
             ]
         );
         return back()->with('success', 'Product has been created');
@@ -127,6 +129,8 @@ class productController extends Controller
                 'price' => $req->price,
                 'coy' => $req->coy,
                 'cat' => $req->cat,
+                'gst' => $req->gst,
+                'wht' => $req->wht,
             ]
         );
         return back()->with('success', 'Product has been Updated');

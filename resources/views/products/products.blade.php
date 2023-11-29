@@ -42,9 +42,12 @@
                             <tr>
                                 <th class="border-top-0">{{ __('lang.Ser') }}</th>
                                 <th class="border-top-0">{{ __('lang.Product') }}</th>
-                                <th class="border-top-0">{{ __('lang.SalePrice') }}</th>
                                 <th class="border-top-0">{{ __('lang.Category') }}</th>
                                 <th class="border-top-0">{{ __('lang.Company') }}</th>
+                                <th class="border-top-0">Retail</th>
+                                <th class="border-top-0">GST</th>
+                                <th class="border-top-0">WHT</th>
+                               
                                 <th>{{ __('lang.Action') }}</th>
                             </tr>
                         </thead>
@@ -59,12 +62,15 @@
                             <tr>
                                 <td> {{ $ser }} </td>
                                 <td>{{ $pro->name }}</td>
-                                <td>{{ $pro->price }}</td>
+                                
                                 <td>{{ $pro->category->cat }}</td>
                                 <td>{{ $pro->company->name }}</td>
+                                <td>{{ $pro->price }}</td>
+                                <td>{{ $pro->gst }}</td>
+                                <td>{{ $pro->wht }}</td>
 
                                 <td>
-                                    <button onclick='edit_cat({{ $pro->id }}, "{{ $pro->name }}", {{ $pro->coy }}, {{ $pro->cat }}, {{ $pro->price }})' class="btn btn-primary">{{ __('lang.Edit') }}</button>
+                                    <button onclick='edit_cat({{ $pro->id }}, "{{ $pro->name }}", {{ $pro->coy }}, {{ $pro->cat }}, {{ $pro->price }}, {{$pro->gst}}, {{$pro->wht}})' class="btn btn-primary">{{ __('lang.Edit') }}</button>
                                     <a href="{{ url('/product/delete/') }}/{{ $pro->id }}" class="btn btn-danger">Delete</a>
                                     </td>
                             </tr>
@@ -99,6 +105,14 @@
                     <div class="form-group">
                         <label for="price">{{ __('lang.SalePrice') }}</label>
                         <input type="number" required name="price" id="price" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="gst">GST</label>
+                        <input type="number" required name="gst" id="gst" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="wht">WHT</label>
+                        <input type="number" required name="wht" id="wht" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="cat">{{ __('lang.Category') }}</label>
@@ -150,6 +164,14 @@
                         <input type="number" required id="edit_price"  name="price" class="form-control">
                     </div>
                     <div class="form-group">
+                        <label for="gst">GST</label>
+                        <input type="number" required id="edit_gst"  name="gst" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="gst">WHT</label>
+                        <input type="number" required id="edit_wht"  name="wht" class="form-control">
+                    </div>
+                    <div class="form-group">
                         <label for="cat">{{ __('lang.Category') }}</label>
                         <select name="cat" class="form-control" id="edit_cat">
                             @foreach ($cats as $cat)
@@ -165,7 +187,6 @@
                             @endforeach
                         </select>
                     </div>
-
                 </div>
                 <input type="hidden" id="edit_id" name="id">
                 <div class="modal-footer">
@@ -196,9 +217,11 @@
 
     });
 
-    function edit_cat(id, name, coy, cat, price) {
+    function edit_cat(id, name, coy, cat, price, gst, wht) {
         $('#edit_name').val(name);
         $('#edit_price').val(price);
+        $('#edit_gst').val(gst);
+        $('#edit_wht').val(wht);
         $('#edit_coy').val(coy);
         $('#edit_cat').val(cat);
         $('#edit_id').val(id);
