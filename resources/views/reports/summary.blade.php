@@ -67,8 +67,23 @@
 
 @section('scripts')
 
-<script>
 
+<script>
+    var elems = document.getElementsByClassName('confirmation');
+    var confirmIt = function (e) {
+        if (!confirm('Are you sure to delete account?')) e.preventDefault();
+    };
+    for (var i = 0, l = elems.length; i < l; i++) {
+        elems[i].addEventListener('click', confirmIt, false);
+    }
+
+    $("#btn").click(function (){
+        var from = $("#from").val();
+        var to = $("#to").val();
+
+        window.open("{{ url('/report/summary/') }}/"+from+"/"+to, '_self');
+    });
 </script>
+
 
 @endsection

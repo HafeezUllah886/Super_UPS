@@ -123,7 +123,7 @@
         var from = $("#from").val();
         var to = $("#to").val();
 
-        window.open("{{ url('/profit/') }}/"+from+"/"+to, '_self');
+        window.open("{{ url('/report/profit/') }}/"+from+"/"+to, '_self');
     });
 </script>
 
