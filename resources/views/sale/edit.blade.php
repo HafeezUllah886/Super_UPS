@@ -161,6 +161,7 @@
 </style>
 <script>
 get_items();
+abc();
 $('#pro_form').submit(function(e){
     e.preventDefault();
     var data = $('#pro_form').serialize();
@@ -184,7 +185,22 @@ $('#pro_form').submit(function(e){
         }
     });
 });
-
+function abc() {
+        var isPaid = $('#isPaid').find(":selected").val();
+        if (isPaid == 'No') {
+            $('#paidIn_box').css('display', 'none');
+            $("#amount_box").css('display', 'none');
+            $("#amount").val('');
+            $("#paidIn").val('');
+        } else if (isPaid == 'Partial') {
+            $("#amount_box").css('display', 'block');
+            $('#paidIn_box').css('display', 'block');
+        } else {
+            $("#amount_box").css('display', 'none');
+            $('#paidIn_box').css('display', 'block');
+            $("#amount").val('');
+        }
+    }
 
 function get_items(){
     $.ajax({
