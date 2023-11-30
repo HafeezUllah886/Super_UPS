@@ -165,4 +165,6 @@ class dashboardController extends Controller
 
         return back()->with('msg', "Password Changed");
     }
+
+    
 }

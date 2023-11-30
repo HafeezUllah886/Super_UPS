@@ -295,10 +295,12 @@ input[type=number] {
         var percent = $("#percent").val();
 
         var netRetail = retail * qty;
+        var netGST = gst * qty;
+        var netWHT = wht * qty;
 
         var discount = (netRetail * percent) / 100;
         var afterPercent = netRetail - discount;
-        var net = parseFloat(afterPercent) + parseFloat(gst) + parseFloat(wht);
+        var net = parseFloat(afterPercent) + parseFloat(netGST) + parseFloat(netWHT);
         $("#net").val(net);
     }
     $(document).ready(function() {

@@ -8,6 +8,7 @@ use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\productController;
 use App\Http\Controllers\purchaseController;
 use App\Http\Controllers\QuotationController;
+use App\Http\Controllers\reportController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SaleReturnController;
 use App\Http\Controllers\ScrapPurchaseController;
@@ -110,8 +111,6 @@ Route::middleware('auth')->group(function (){
     Route::get('/purchase/update/edit/qty/{id}/{qty}', [purchaseController::class, "updateEditQty"]);
     Route::get('/purchase/update/edit/rate/{id}/{rate}', [purchaseController::class, "updateEditRate"]);
 
-
-
     Route::get('/sale', [SaleController::class, "sale"]);
     Route::post('/sale', [SaleController::class, "storeSale"]);
     Route::get('/sale/store', [saleController::class, "StoreDraft"]);
@@ -165,7 +164,9 @@ Route::middleware('auth')->group(function (){
     Route::get('/dashboard/ledgerDetails', [DashboardController::class, 'ledgerDetails']);
     Route::get('/dashboard/incomeExpenseDetails', [DashboardController::class, 'incomeExpDetails']);
 
-    Route::get('/profit/{from}/{to}', [productController::class, 'profit']);
+    Route::get('/report/profit/{from}/{to}', [reportController::class, 'profit']);
+    Route::get('/report/lowStock', [reportController::class, 'stockAlert']);
+    Route::get('/report/summary/{from}/{to}', [reportController::class, 'summary']);
 
     Route::get('/return', [SaleReturnController::class, 'index']);
     Route::post('/return', [SaleReturnController::class, 'search']);

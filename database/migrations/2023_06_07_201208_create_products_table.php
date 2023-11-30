@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('price');
             $table->unsignedInteger('gst')->default(0);
             $table->unsignedInteger('wht')->default(0);
+            $table->unsignedInteger('stock_alert')->default(5);
             $table->softDeletes();
             $table->timestamps();
         });

@@ -19,12 +19,6 @@
             <div class="d-flex justify-content-between">
                 <h4>{{ __('lang.Products') }}</h4>
                 <div class="d-flex justify-content-end">
-                    @php
-                        $currentMonth = date('Y-m');
-                        $firstDateOfMonth = date('Y-m-01', strtotime($currentMonth));
-                        $lastDateOfMonth = date('Y-m-t', strtotime($currentMonth));
-                    @endphp
-                <a href="{{ url('/profit/') }}/{{ $firstDateOfMonth }}/{{ $lastDateOfMonth }}" class="btn btn-info mr-2" >{{ __('lang.Profit/Loss') }}</a>
                 <a href="{{ url('/products/trashed') }}" class="btn btn-dark mr-2" >{{ __('lang.Trashed') }}</a>
                 <button class="btn btn-success" data-toggle="modal" data-target="#modal">{{ __('lang.CreateNew') }}</button>
                 </div>
@@ -47,6 +41,7 @@
                                 <th class="border-top-0">Retail</th>
                                 <th class="border-top-0">GST</th>
                                 <th class="border-top-0">WHT</th>
+                                <th class="border-top-0">Stock Alert</th>
                                
                                 <th>{{ __('lang.Action') }}</th>
                             </tr>
@@ -68,9 +63,10 @@
                                 <td>{{ $pro->price }}</td>
                                 <td>{{ $pro->gst }}</td>
                                 <td>{{ $pro->wht }}</td>
+                                <td>{{ $pro->stock_alert }}</td>
 
                                 <td>
-                                    <button onclick='edit_cat({{ $pro->id }}, "{{ $pro->name }}", {{ $pro->coy }}, {{ $pro->cat }}, {{ $pro->price }}, {{$pro->gst}}, {{$pro->wht}})' class="btn btn-primary">{{ __('lang.Edit') }}</button>
+                                    <button onclick='edit_cat({{ $pro->id }}, "{{ $pro->name }}", {{ $pro->coy }}, {{ $pro->cat }}, {{ $pro->price }}, {{$pro->gst}}, {{$pro->wht}}, {{$pro->stock_alert}})' class="btn btn-primary">{{ __('lang.Edit') }}</button>
                                     <a href="{{ url('/product/delete/') }}/{{ $pro->id }}" class="btn btn-danger">Delete</a>
                                     </td>
                             </tr>
@@ -113,6 +109,10 @@
                     <div class="form-group">
                         <label for="wht">WHT</label>
                         <input type="number" required name="wht" id="wht" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="alert">Stock Alert</label>
+                        <input type="number" required name="alert" id="alert" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="cat">{{ __('lang.Category') }}</label>
@@ -172,6 +172,10 @@
                         <input type="number" required id="edit_wht"  name="wht" class="form-control">
                     </div>
                     <div class="form-group">
+                        <label for="alert">Stock Alert</label>
+                        <input type="number" required name="alert" id="edit_alert" class="form-control">
+                    </div>
+                    <div class="form-group">
                         <label for="cat">{{ __('lang.Category') }}</label>
                         <select name="cat" class="form-control" id="edit_cat">
                             @foreach ($cats as $cat)
@@ -217,11 +221,12 @@
 
     });
 
-    function edit_cat(id, name, coy, cat, price, gst, wht) {
+    function edit_cat(id, name, coy, cat, price, gst, wht, alert) {
         $('#edit_name').val(name);
         $('#edit_price').val(price);
         $('#edit_gst').val(gst);
         $('#edit_wht').val(wht);
+        $('#edit_alert').val(alert);
         $('#edit_coy').val(coy);
         $('#edit_cat').val(cat);
         $('#edit_id').val(id);

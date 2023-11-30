@@ -115,22 +115,6 @@ function todayCash(){
 }
 
 
-function totalBank(){
-    $accounts = account::where('Category', 'Bank')->get();
-    $cr = 0;
-   $db = 0;
-   $balance = 0;
-   foreach ($accounts as $account){
-        $cr = transactions::where('account_id', $account->id)->sum('cr');
-        $db = transactions::where('account_id', $account->id)->sum('db');
-
-        $balance += $cr - $db;
-   }
-
-   return $balance;
-
-}
-
 function todayBank(){
     $accounts = account::where('Category', 'Bank')->get();
     $cr = 0;
@@ -294,4 +278,53 @@ function deleteLedger($ref)
 {
     ledger::where('ref', $ref)->delete();
     return "Ledger Deleted";
+}
+
+function stockValue()
+{
+    $products = products::with('purchases', 'sales')->get();
+    $stock_value = 0;
+    foreach($products as $product)
+    {
+        $purchase_qty = $product->purchases->sum('qty');
+        $purchase_amount = 0;
+        foreach($product->purchases as $purchase)
+        {
+            $purchase_subTotal = $purchase->rate * $purchase->qty;
+            $purchase_amount += $purchase_subTotal;
+        }
+        
+        if($purchase_amount == 0 || $purchase_qty == 0)
+        {
+            $avg_purchase_rate = 0;
+        }
+        else{
+            $avg_purchase_rate = $purchase_amount / $purchase_qty;
+        }
+        
+        $sold = $product->sales->sum('qty');
+
+        $total_purchased = $purchase_qty - $sold;
+        
+        $product_value = $total_purchased * $avg_purchase_rate;
+        $stock_value += $product_value;
+    }
+
+    return $stock_value;
+}
+
+function bankBalance()
+{
+    $accounts = account::where('Category', 'Bank')->get();
+    $balance = 0;
+    foreach ($accounts as $account) {
+        $balance += transactions::where('account_id', $account->id)->sum('cr');
+        $balance -= transactions::where('account_id', $account->id)->sum('db');
+    }
+
+    return $balance;
+}
+
+function remaining(){
+    return customerDues() - vendorDues();
 }

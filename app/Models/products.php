@@ -22,4 +22,14 @@ class products extends Model
     public function stock(){
         return $this->hasMany(stock::class, 'product_id');
     }
+
+    public function purchases()
+    {
+        return $this->hasMany(purchase_details::class, "product_id", 'id');
+    }
+
+    public function sales()
+    {
+        return $this->hasMany(sale_details::class, "product_id", 'id');
+    }
 }
