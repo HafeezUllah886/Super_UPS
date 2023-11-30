@@ -258,9 +258,7 @@
         }
         td{
             font-size: 12px;
-
         }
-
         table th, table td{
             padding: 2px 2px !important;
         }
@@ -271,18 +269,13 @@
 
     <div class="container">
         <div class="container1">
-            <div class="sub-container">
-                <div class="logo" style="width: 37%;">
-                    <img src="{{ asset('assets/images/app_logo.png') }}" alt="logo">
+
+                <div class="logo" style="width: 100%;">
+                    <img style="margin:0;width:100%;" src="{{ asset('assets/images/bill.jpeg') }}" alt="">
                 </div>
-                <div class="text1">
-                    <h1 class="m-query1">Super UPS Center</h1>
-                    <h3 class="m-query2">Shop No 12, insaf Solar Market, Angle Road, opp Civic Center, Quetta.
-                        <br>Phone:&nbsp; 0300-3883054,&nbsp;0309-8105556,&nbsp;081-2827774</h3>
-                </div>
-            </div>
+
         </div>
-        <div class="body-section">
+        <div class="body-section" style="margin-top:60px;">
             <div class="row">
                 <div class="qoute">
                     <h2 style="text-align: center;">ACCOUNT STATEMENT</h2>

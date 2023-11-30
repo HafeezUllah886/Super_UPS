@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sale_returns', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('bill_id');
-            $table->timestamp('date', $precision = 0);
+            $table->date('date');
             $table->unsignedBigInteger('paidBy')->nullable();
             $table->unsignedDecimal('deduction')->nullable();
             $table->unsignedDecimal('amount');

@@ -123,7 +123,7 @@ class AccountController extends Controller
        /*  return view('finance.statementPDF', compact('data', 'prev_bal', 'cur_bal', 'from', 'to', 'account')); */
         $pdf = PDF::loadView('finance.statementPDF', compact('data', 'prev_bal', 'cur_bal', 'from', 'to', 'account'));
         $file_name = $account->title." - Statement.pdf";
-        return $pdf->download($file_name);
+        return $pdf->stream($file_name);
     }
 
     public function details($id, $from, $to)

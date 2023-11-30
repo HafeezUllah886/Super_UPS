@@ -22,7 +22,7 @@ class SaleReturnController extends Controller
     }
 
     public function search(request $req){
-     
+
         $bill = sale::find($req->bill);
         if($bill){
             $saleReturns = saleReturn::where('bill_id', $req->bill)->first();
@@ -90,6 +90,7 @@ class SaleReturnController extends Controller
                     'product_id' => $id,
                     'qty' => $qty,
                     'price' => $price,
+                    'date' => $req->date,
                     'ref' => $ref,
                 ]);
 

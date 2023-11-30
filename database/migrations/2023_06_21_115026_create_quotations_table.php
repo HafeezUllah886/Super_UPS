@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('customer')->nullable();
             $table->string("walkIn")->nullable();
-            $table->timestamp('date', $precision = 0);
+            $table->date('date');
             $table->unsignedInteger('discount')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();

@@ -167,7 +167,7 @@ input[type=number] {
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="date">{{__('lang.Date')}}</label>
-                                    <input type="datetime-local" name="date" value="{{ now() }}" id="date" class="form-control">
+                                    <input type="date" name="date" value="{{ date("Y-m-d") }}" id="date" class="form-control">
                                     @error('date')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror

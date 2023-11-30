@@ -151,13 +151,15 @@ public function summary($from, $to){
     $claims = claim::whereBetween('date', [$from, $to])->sum('qty');
 
     $scrap_purchase = scrap_purchase::whereBetween('date', [$from, $to])
-    ->sum(DB::raw('weight * qty'));
+    ->sum(DB::raw('weight * rate'));
 
     $scrap_sold = scrap_sale::whereBetween('date', [$from, $to])
-    ->sum(DB::raw('weight * qty'));
+    ->sum(DB::raw('weight * rate'));
 
     $expenses = expense::whereBetween('date', [$from, $to])
     ->sum('amount');
+
+    return view('reports.summary', compact('sales', 'purchases', 'sale_returns','claims', 'scrap_purchase', 'scrap_sold', 'expenses', 'from', 'to'));
 }
 
 }

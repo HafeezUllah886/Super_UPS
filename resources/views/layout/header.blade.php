@@ -88,7 +88,7 @@
         $currentMonth = date('Y-m');
         $firstDateOfMonth = date('Y-m-01', strtotime($currentMonth));
         $lastDateOfMonth = date('Y-m-t', strtotime($currentMonth));
-                 
+
     @endphp
     <body class="fixed-left">
 
@@ -166,9 +166,10 @@
                       Reports
                     </a>
                     <div class="dropdown-menu">
-                      <a class="dropdown-item" href="{{ url('/report/summary/') }}/{{ $firstDateOfMonth }}/{{ $lastDateOfMonth }}">Summary</a>
+
                       <a class="dropdown-item" href="{{ url('/report/profit/') }}/{{ $firstDateOfMonth }}/{{ $lastDateOfMonth }}">Profit / Loss</a>
                       <a class="dropdown-item" href="{{ url('/report/lowStock') }}">Low Stock</a>
+                      <a class="dropdown-item" href="{{ url('/report/summary/') }}/{{ $firstDateOfMonth }}/{{ $lastDateOfMonth }}">Summary</a>
                     </div>
                   </li>
                 <li class="nav-item dropdown">
