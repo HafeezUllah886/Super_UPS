@@ -56,11 +56,11 @@ class DatabaseSeeder extends Seeder
                 'type' => 'Customer',
             ]
         );
-        account::create(
+       /*  account::create(
             [
                 'title' => "Supplier",
                 'type' => 'Vendor',
             ]
-        );
+        ); */
     }
 }
