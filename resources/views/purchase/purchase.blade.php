@@ -81,9 +81,7 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="rate">{{ __('lang.PurchaseRate') }}</label>
-                            <input type="number" required name="dollar" oninput="conversion(this.value)" id="doller" class="form-control">
-                            <input type="number" required readonly name="rate" id="rate" class="form-control">
-                            <input type="hidden" name="d-rate" id="d-rate" value="{{auth()->user()->doller ?? 300}}">
+                            <input type="number" required name="rate" id="rate" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-2">
