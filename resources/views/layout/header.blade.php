@@ -148,20 +148,15 @@
                   </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="{{ url('/category') }}" id="navbardrop">
-                        {{ __('lang.Category') }}
-                    </a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link" href="{{ url('/company') }}" id="navbardrop">
-                        {{ __('lang.Company') }}
-                    </a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link" href="{{ url('/products') }}" id="navbardrop">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                         {{ __('lang.Products') }}
                     </a>
-                  </li>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="{{ url('/products') }}"> {{ __('lang.Products') }}</a>
+                      <a class="dropdown-item" href="{{ url('/category') }}">{{ __('lang.Category') }}</a>
+                      <a class="dropdown-item" href="{{ url('/products') }}">{{ __('lang.Company') }}</a>
+                    </div>
+                </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link" href="{{ url('/settings') }}" id="navbardrop">
                         {{ __('lang.Settings') }}
@@ -172,6 +167,7 @@
                     <i class="fa fa-power-off" aria-hidden="true"></i>
                       {{-- <i class="la la-caret-right"></i>   &nbsp; <span> {{ __('Log Out') }} </span> --}}
                    </a>
+                   <a href="{{ url('/settings') }}" class="badge badge-info ml-2">Dollar Rate: {{ auth()->user()->doller }}</a>
             </div>
           </nav>
 

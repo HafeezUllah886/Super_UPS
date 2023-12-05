@@ -263,7 +263,7 @@
                     <span class="dot">
                         <p style="margin-top: 15px;">خوشحال خان</p>
                     </span>
-                </div> 
+                </div>
                 <div class="text1">
                     <h1 class="m-query1">Abu Zahir Zafar Machinery</h1>
                     <h1 class="m-query1">ابوظاھر ظفر مشینری</h1>
@@ -320,23 +320,24 @@
                     @php
                         $total = 0;
                         $ser = 0;
+                        $dollarRate = auth()->user()->doller;
                     @endphp
 
                     @foreach ($details as $item)
                         @php
                             $ser += 1;
+                            $amount = $item->price * $item->qty;
+                            $total += $amount;
                         @endphp
                         <tr>
                             <th scope="row">{{ $ser }}</th>
                             <td>{{ $item->product->category->cat }}</td>
                             <td>{{ $item->product->name }}</td>
-                            <td>{{ $item->price }}</td>
+                            <td>{{ $item->price * auth()->user()->doller}}</td>
                             <td>{{ $item->qty }}</td>
-                            <td>{{ $item->price * $item->qty }}</td>
+                            <td>{{ $amount * $dollarRate }}</td>
                         </tr>
-                        @php
-                            $total += $item->price * $item->qty;
-                        @endphp
+
                     @endforeach
 
                     <tr>
@@ -344,7 +345,7 @@
                             <strong>Total</strong>
                         </td>
                         <td>
-                            <strong>{{ $total}}</strong>
+                            <strong>{{ $total * $dollarRate}}</strong>
                         </td>
                     </tr>
                     @if($invoice->discount > 0)
@@ -361,7 +362,7 @@
                             <strong>Net Total</strong>
                         </td>
                         <td>
-                            <strong>{{ $total - $invoice->discount }}</strong>
+                            <strong>{{ ($total - $invoice->discount) * $dollarRate }}</strong>
                         </td>
                     </tr>
                     @endif
@@ -385,7 +386,7 @@
                             <strong>Paid Amount</strong>
                         </td>
                         <td>
-                            <strong>{{ $paidAmount }}</strong>
+                            <strong>{{ $paidAmount * $dollarRate }}</strong>
                         </td>
                     </tr>
                     <tr>
@@ -393,7 +394,7 @@
                             <strong>Remaining</strong>
                         </td>
                         <td>
-                            <h3> {{ $total - $paidAmount - $invoice->discount}}</h3>
+                            <h3> {{ ($total - $paidAmount - $invoice->discount) * $dollarRate}}</h3>
                         </td>
                     </tr>
                     @endif
@@ -414,21 +415,21 @@
                         @if (@$invoice->customer_account->title)
                         <tr>
                             <td style="text-align: left; width:40%;"> <strong>Previous Balance:</strong> </td>
-                            <td style="text-align: left">{{$prev_balance ?? 0}}</td>
+                            <td style="text-align: left">{{($prev_balance ?? 0) * $dollarRate}}</td>
                         </tr>
                         <tr>
                             <td style="text-align: left; width:40%;"> <strong>Current Balance:</strong> </td>
-                            <td style="text-align: left">{{ $total - $paidAmount - $invoice->discount }}</td>
+                            <td style="text-align: left">{{ ($total - $paidAmount - $invoice->discount) * $dollarRate }}</td>
                         </tr>
                         <tr>
                             <td style="text-align: left; width:40%;"> <strong>Total Balance:</strong> </td>
-                            <td style="text-align: left">{{ $cur_balance }}</td>
+                            <td style="text-align: left">{{ $cur_balance * $dollarRate}}</td>
                         </tr>
                         @endif
                     </table>
                 </div>
                <div class="col-6" style="margin-top:100px;">
-                <img src="{{asset('assets/images/stamp.jpeg')}}" style="width:200px;margin-left:100px;" alt="">
+               {{--  <img src="{{asset('assets/images/stamp.jpeg')}}" style="width:200px;margin-left:100px;" alt=""> --}}
                 {{-- <h4 class="">Authorize Signature ___________________</h4> --}}
                </div>
 

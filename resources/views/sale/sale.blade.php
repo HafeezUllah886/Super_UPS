@@ -75,15 +75,6 @@
 
                 <form id="pro_form">
 
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="dollar">Dollar Rate</label>
-                                <input type="number" name="dollar" step="any" min="1" value="{{ auth()->user()->doller ?? 290 }}" class="form-control" id="">
-                            </div>
-                        </div>
-
-                    </div>
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
@@ -129,6 +120,7 @@
                                 <th class="border-top-0">{{__('lang.Quantity')}}</th>
                                 <th class="border-top-0">{{__('lang.Price')}}</th>
                                 <th class="border-top-0">{{__('lang.Amount')}}</th>
+                                <th class="border-top-0">PKR</th>
                                 <th>{{__('lang.Action')}}</th>
                             </tr>
                         </thead>

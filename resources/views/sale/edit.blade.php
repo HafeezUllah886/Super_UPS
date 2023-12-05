@@ -81,6 +81,7 @@
                                 <th class="border-top-0">{{ __('lang.Quantity') }}</th>
                                 <th class="border-top-0">{{ __('lang.Price') }}</th>
                                 <th class="border-top-0">{{ __('lang.Amount') }}</th>
+                                <th class="border-top-0">PKR</th>
                                 <th>{{ __('lang.Action') }}</th>
                             </tr>
                         </thead>
@@ -127,7 +128,7 @@
                                         @foreach ($paidIn as $acct)
                                             <option value="{{ $acct->id }}" {{$bill->paidIn == $acct->id ? "Selected" : ""}}>{{ $acct->title }}</option>
                                         @endforeach
-    
+
                                     </select>
                                     @error('paidIn')
                                     <span class="text-danger">{{ $message }}</span>

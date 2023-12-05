@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedDecimal('cr', 10,2)->nullable();
             $table->text('desc');
             $table->string('type');
+            $table->float('dollarRate');
             $table->unsignedBigInteger('ref');
             $table->foreign('account_id')->references('id')->on('accounts');
             $table->timestamps();

@@ -36,6 +36,7 @@ function createTransaction($account_id, $date, $cr, $db, $desc, $type, $ref){
             'desc' => $desc,
             'type' => $type,
             'ref' => $ref,
+            'dollarRate' => auth()->user()->doller,
         ]
     );
 }

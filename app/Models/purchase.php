@@ -8,18 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class purchase extends Model
 {
     use HasFactory;
-    protected $fillable = (
-        [
-            'vendor',
-            'walking',
-            'paidFrom',
-            'isPaid',
-            'date',
-            'desc',
-            'amount',
-            'ref'
-        ]
-    );
+    protected $guarded = [];
 
     public function vendor_account(){
         return $this->belongsTo(account::class, 'vendor', 'id');
