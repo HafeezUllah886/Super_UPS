@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@email.com',
             'password' => Hash::make('admin'),
             'lang' => 'en',
+            'doller' => '284.75'
         ]);
     }
 }

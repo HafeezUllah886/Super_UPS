@@ -8,19 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class sale extends Model
 {
     use HasFactory;
-    protected $fillable = (
-        [
-            'customer',
-            'walking',
-            'paidIn',
-            'isPaid',
-            'date',
-            'desc',
-            'amount',
-            'discount',
-            'ref'
-        ]
-    );
+    protected $guarded = [];
 
     public function customer_account(){
         return $this->belongsTo(account::class, 'customer', 'id');
