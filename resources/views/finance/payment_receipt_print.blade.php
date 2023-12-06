@@ -260,7 +260,8 @@
 <body>
 
     <div class="container">
-        <div class="container1">
+        <img style="margin:0;width:100%;"src="{{asset('assets/images/header.png')}}" alt="">
+       {{--  <div class="container1">
             <div class="sub-container">
                 <div class="text1">
                     <h1 class="m-query1">Abu Zahir Zafar Machinery</h1>
@@ -270,7 +271,7 @@
                 </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="body-section">
 

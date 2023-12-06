@@ -258,7 +258,8 @@
 <body>
 
     <div class="container">
-        <div class="container1">
+        <img style="margin:0;width:100%;"src="{{asset('assets/images/header.png')}}" alt="">
+        {{-- <div class="container1">
             <div class="sub-container">
                 <div class="logo" style="width: 37%;">
                     <img src="{{ asset('assets/images/app_logo.png') }}" alt="logo">
@@ -272,7 +273,7 @@
                 </div>
             </div>
         </div>
-
+ --}}
 
 
         <div class="body-section">

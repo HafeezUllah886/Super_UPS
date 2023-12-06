@@ -253,7 +253,7 @@
 <body>
 
     <div class="container">
-        <img style="margin:0;width:100%;"src="{{asset('assets/images/abvc.png')}}" alt="">
+        <img style="margin:0;width:100%;"src="{{asset('assets/images/header.png')}}" alt="">
         {{-- <div class="container1">
             <div class="sub-container">
                 <div class="logo" style="width: 37%;">
