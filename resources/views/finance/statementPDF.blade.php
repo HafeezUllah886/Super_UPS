@@ -268,13 +268,14 @@
 <body>
 
     <div class="container">
-        <div class="container1">
+        <img style="margin:0;width:100%;" src="{{ asset('assets/images/bill.jpeg') }}" alt="">
+        {{-- <div class="container1">
 
                 <div class="logo" style="width: 100%;">
                     <img style="margin:0;width:100%;" src="{{ asset('assets/images/bill.jpeg') }}" alt="">
                 </div>
 
-        </div>
+        </div> --}}
         <div class="body-section" style="margin-top:60px;">
             <div class="row">
                 <div class="qoute">

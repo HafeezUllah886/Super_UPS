@@ -325,4 +325,9 @@ class purchaseController extends Controller
         $cur_bal = $cr - $db;
         return view('purchase.stockDetails', compact('stocks', 'cur_bal', 'prev_bal', 'from', 'to'));
     }
+
+    public function prev_data($id)
+    {
+        return products::find($id);
+    }
 }

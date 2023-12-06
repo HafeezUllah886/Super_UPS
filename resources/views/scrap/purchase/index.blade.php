@@ -89,7 +89,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="amount">Amount</label>
-                                <input type="Number" name="amount" id="amount" readonly class="form-control">
+                                <input type="Number" name="amount" id="amount" oninput="calculateAmount()" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -148,6 +148,14 @@
         var amount = weight * rate;
 
         $("#amount").val(amount);
+    }
+    function calculateAmount(){
+        var weight = $("#weight").val();
+        var amount = $("#amount").val();
+
+        var rate = amount / weight;
+
+        $("#rate").val(rate);
     }
 </script>
 

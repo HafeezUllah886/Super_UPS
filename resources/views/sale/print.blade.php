@@ -427,7 +427,7 @@
     setTimeout(function() {
         window.print();
     }, 2000);
-   
+
         setTimeout(function() {
         window.location.href = "{{ url('/sale/history')}}";
     }, 5000);

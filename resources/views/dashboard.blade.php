@@ -63,27 +63,6 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><a class="text-success" href="#"> Remaining </a></div>
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col-auto">
-                                            <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                {{ remaining(); }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fa fa-list-alt fa-2x text-success"></i>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-3 mt-3">
-                <div class="card border-left-info shadow  py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><a class="text-success" href="#"> Stock Value </a></div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
@@ -100,7 +79,29 @@
                         </div>
                 </div>
             </div>
-           
+
+            <div class="col-xl-3 col-md-3 mt-3">
+                <div class="card border-left-info shadow  py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><a class="text-success" href="#"> Remaining </a></div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                {{ remaining(); }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa fa-list-alt fa-2x text-success"></i>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
 
             <div class="col-xl-3 col-md-3 mt-3">
                 <div class="card border-left-info shadow  py-2">
@@ -123,7 +124,7 @@
                         </div>
                 </div>
             </div>
-            
+
             <div class="col-xl-3 col-md-3 mt-3">
                 <div class="card border-left-info shadow  py-2">
                         <div class="card-body">

@@ -110,6 +110,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/purchase/edit/delete/{id}', [purchaseController::class, "deleteEdit"]);
     Route::get('/purchase/update/edit/qty/{id}/{qty}', [purchaseController::class, "updateEditQty"]);
     Route::get('/purchase/update/edit/rate/{id}/{rate}', [purchaseController::class, "updateEditRate"]);
+    Route::get('/purchase/prev_data/{id}', [purchaseController::class, "prev_data"]);
 
     Route::get('/sale', [SaleController::class, "sale"]);
     Route::post('/sale', [SaleController::class, "storeSale"]);

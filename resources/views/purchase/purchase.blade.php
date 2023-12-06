@@ -77,7 +77,7 @@ input[type=number] {
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="product">{{ __('lang.SelectProduct') }}</label>
-                            <select name="product" required id="product" class="select2">
+                            <select name="product" onchange="prev_data()" required id="product" class="select2">
                                 <option value=""></option>
                                 @foreach ($products as $pro)
                                     <option value="{{ $pro->id }}">{{ $pro->name }}</option>
@@ -100,7 +100,7 @@ input[type=number] {
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="price">Retail</label>
-                            <input type="number" required name="price" id="price" class="form-control">
+                            <input type="number" required name="price" id="retail" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -246,6 +246,7 @@ input[type=number] {
 </style>
 <script>
     $(document).ready(function() {
+
         $("#amount_box").css('display', 'none');
          $('#walkIn_box').css("display", "none");
         get_items();
@@ -339,5 +340,21 @@ function deleteDraft(id){
         }
     });
 }
+
+function prev_data() {
+            var product = $('#product').find(":selected").val();
+            $.ajax({
+                url: "{{ url('/purchase/prev_data/') }}/"+product,
+                method: "get",
+                success:   function (data) {
+                    $("#retail").val(data.price);
+                    $("#gst").val(data.gst);
+                    $("#wht").val(data.wht);
+                }
+            });
+        }
+
+
+
 </script>
 @endsection

@@ -293,7 +293,7 @@ function stockValue()
             $purchase_subTotal = $purchase->rate * $purchase->qty;
             $purchase_amount += $purchase_subTotal;
         }
-        
+
         if($purchase_amount == 0 || $purchase_qty == 0)
         {
             $avg_purchase_rate = 0;
@@ -301,11 +301,11 @@ function stockValue()
         else{
             $avg_purchase_rate = $purchase_amount / $purchase_qty;
         }
-        
+
         $sold = $product->sales->sum('qty');
 
         $total_purchased = $purchase_qty - $sold;
-        
+
         $product_value = $total_purchased * $avg_purchase_rate;
         $stock_value += $product_value;
     }
@@ -326,5 +326,5 @@ function bankBalance()
 }
 
 function remaining(){
-    return customerDues() - vendorDues();
+    return (customerDues() - vendorDues()) + stockValue();
 }
