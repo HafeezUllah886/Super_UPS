@@ -66,7 +66,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="bill">Customer Name</label>
-                                <input type="text" name="customerName" id="customerName" class="form-control">
+                                <input type="text" name="customerName" id="customerName" required class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">

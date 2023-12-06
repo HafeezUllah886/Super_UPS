@@ -123,7 +123,7 @@ class reportController extends Controller
         $s_profit = $s_sale - $s_purchase;
 
         return view('reports.profit')->with(compact('products', 'discounts', 'expense', 'from', 'to', 's_profit'));
-}
+    }
 
 public function stockAlert()
 {
@@ -159,7 +159,9 @@ public function summary($from, $to){
     $expenses = expense::whereBetween('date', [$from, $to])
     ->sum('amount');
 
-    return view('reports.summary', compact('sales', 'purchases', 'sale_returns','claims', 'scrap_purchase', 'scrap_sold', 'expenses', 'from', 'to'));
+    $profit = summaryProfit($from, $to);
+
+    return view('reports.summary', compact('sales', 'purchases', 'sale_returns','claims', 'scrap_purchase', 'scrap_sold', 'expenses', 'from', 'to', 'profit'));
 }
 
 }

@@ -261,6 +261,7 @@ input[type=number] {
                                 </div>
                                 <div class="col-md-6">
                                     <button type="submit" class="btn btn-success btn-lg" style="margin-top: 30px">{{__('lang.Save')}}</button>
+                                    <p class="btn btn-info" data-toggle="modal" style="margin-top: 40px" data-target="#modal">Purchase Scrap</p>
                                 </div>
                                 </div>
 
@@ -271,6 +272,82 @@ input[type=number] {
                 </div>
 
             </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create Scrap Purchase</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" id="scrapForm" action="{{ url('/scrap/purchase/create') }}">
+                @csrf
+                <input type="hidden" name="fromSale" value="1">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="bill">Customer Name</label>
+                                <input type="text" name="customerName" required id="customerName" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="bill">Weight</label>
+                                <div class="input-group">
+                                    <input type="number" step="any" name="weight" id="weight" required oninput="calculateRate()" class="form-control" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                      <span class="input-group-text" id="basic-addon2">KG</span>
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="rate">Rate</label>
+                                <input type="Number" name="rate" required oninput="calculateRate()" id="rate1" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="amount">Amount</label>
+                                <input type="Number" required name="amount" id="amount1" oninput="calculateAmount()" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="date">Date</label>
+                                <input type="date" name="date" required value="{{ date("Y-m-d") }}" id="date" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="account">Account</label>
+                                <select name="account" class="form-control">
+                                    @foreach ($paidIns as $account)
+                                        <option value="{{ $account->id }}">{{ $account->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="desc">Description</label>
+                                <textarea name="desc" class="d-block w-100" id="desc" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('lang.Close') }}</button>
+                    <button type="submit" id="scrapBtn" class="btn btn-primary">{{ __('lang.Create') }}</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -397,5 +474,45 @@ function deleteDraft(id){
         }
     });
 }
+
+function calculateRate(){
+        var weight = $("#weight").val();
+        var rate = $("#rate1").val();
+
+        var amount = weight * rate;
+
+        $("#amount1").val(amount);
+    }
+    function calculateAmount(){
+        var weight = $("#weight").val();
+        var amount = $("#amount1").val();
+
+        var rate = amount / weight;
+
+        $("#rate1").val(rate);
+    }
+
+$("#scrapForm").on("submit", function(e){
+    e.preventDefault();
+    var data = $(this).serialize();
+    $.ajax({
+        url: "{{ url('/scrap/purchase/create') }}",
+        method: "POST",
+        data: data,
+        success: function(response){
+           $("#modal").modal("hide");
+           if(response == "Done")
+           {
+            Snackbar.show({
+            text: "Scrap Purchased",
+            duration: 3000,
+            actionTextColor: '#fff',
+            backgroundColor: '#00ab55'
+            });
+           }
+
+        }
+    });
+});
 </script>
 @endsection

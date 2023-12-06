@@ -44,6 +44,10 @@ class ScrapPurchaseController extends Controller
             $account = account::find($req->account);
 
             addLedger($req->date, $req->customerName, $account->title, "Scrap purchased Weight $req->weight Kg", $req->amount, $ref);
+            if($req->has("fromSale"))
+            {
+                return "Done";
+            }
             return back()->with("msg", "Scrap Purchased");
     }
 

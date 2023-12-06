@@ -101,8 +101,6 @@
                         </div>
                 </div>
             </div>
-
-
             <div class="col-xl-3 col-md-3 mt-3">
                 <div class="card border-left-info shadow  py-2">
                         <div class="card-body">
@@ -124,7 +122,27 @@
                         </div>
                 </div>
             </div>
-
+            <div class="col-xl-3 col-md-3 mt-3">
+                <div class="card border-left-info shadow  py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><a class="text-success" href="{{ url('/sale/history') }}">Total Sale</a></div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                {{ totalSale(); }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa fa-list-alt fa-2x text-success"></i>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
             <div class="col-xl-3 col-md-3 mt-3">
                 <div class="card border-left-info shadow  py-2">
                         <div class="card-body">
@@ -135,6 +153,28 @@
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
                                                 {{ todayExpense() }}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa fa-usd fa-2x text-danger"></i>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-3 mt-3">
+                <div class="card border-left-info shadow  py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-danger text-uppercase mb-1"><a class="text-danger" href="{{ url('/expense') }}">Total Expense</a></div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                {{ totalExpense() }}
                                             </div>
                                         </div>
 

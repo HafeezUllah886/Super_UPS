@@ -58,6 +58,10 @@
                         <td>Expenses</td>
                         <td>{{ $expenses }}</td>
                     </tr>
+                    <tr>
+                        <td>Profit</td>
+                        <td>{{ $profit }}</td>
+                    </tr>
                 </table>
             </div>
         </div>

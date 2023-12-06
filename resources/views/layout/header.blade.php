@@ -179,7 +179,7 @@
                     <div class="dropdown-menu">
                       <a class="dropdown-item" href="{{ url('/products') }}"> {{ __('lang.Products') }}</a>
                       <a class="dropdown-item" href="{{ url('/category') }}">{{ __('lang.Category') }}</a>
-                      <a class="dropdown-item" href="{{ url('/products') }}">{{ __('lang.Company') }}</a>
+                      <a class="dropdown-item" href="{{ url('/company') }}">{{ __('lang.Company') }}</a>
                     </div>
                   </li>
 
