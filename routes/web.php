@@ -174,7 +174,7 @@ Route::middleware('auth')->group(function (){
     Route::post('/return/save/{bill}', [SaleReturnController::class, 'saveReturn']);
 
     Route::get('/claim', [ClaimController::class, 'index']);
-    Route::post('/claim/create', [ClaimController::class, 'create']);
+    Route::get('/claim/create', [ClaimController::class, 'create']);
     Route::post('/claim/store', [ClaimController::class, 'store']);
     Route::get('/claim/approve/{ref}', [ClaimController::class, 'approve']);
 

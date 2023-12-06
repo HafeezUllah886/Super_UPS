@@ -8,7 +8,7 @@
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <h4>Claims</h4>
-                <button class="btn btn-success" data-toggle="modal" data-target="#modal">Create Claim</button>
+                <a href="{{url('/claim/create')}}" class="btn btn-success">Create Claim</a>
             </div>
         </div>
     </div>

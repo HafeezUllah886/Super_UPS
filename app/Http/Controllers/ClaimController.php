@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\account;
 use App\Models\claim;
+use App\Models\products;
 use App\Models\sale;
 use App\Models\sale_details;
 use App\Models\stock;
@@ -18,21 +20,12 @@ class ClaimController extends Controller
 
     public function create(request $req)
     {
-        $bill = sale::find($req->bill);
-
-        if($bill)
-        {
-            $total = 0;
-            $sale_details = sale_details::where('bill_id', $req->bill)->get();
-            foreach($sale_details as $details){
-                $total += $details->qty * $details->price;
-                /* $claimedQty = claim::where('salesID', $bill->id)->where('productID', $details->product_id)->sum('qty'); */
-                
-            }
-            return view('claim.create', compact('bill', 'total'));
-        }
-
-        return back()->with("error", "Invoice not found");
+        $products = products::all();
+        $accounts = account::where('type', 'Business')->get(); 
+        $vendors = account::where('type', 'Vendor')->get(); 
+        $customers = account::where('type', 'Customer')->get(); 
+        
+        return view('claim.create', compact('products', 'accounts', 'customers', 'vendors'));
     }
 
     public function store(request $req)
