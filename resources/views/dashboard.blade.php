@@ -187,6 +187,30 @@
                         </div>
                 </div>
             </div>
+            
+            <div class="col-xl-3 col-md-3 mt-3">
+                <div class="card border-left-info shadow  py-2">
+
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a class="text-info" href="{{ url('/dashboard/today_cash') }}">{{ __('lang.TodayCash') }}</a></div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                {{ todayCash() }}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i style="color: purple" class="fa fa-money fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
             <div class="col-xl-3 col-md-3 mt-3">
                 <div class="card border-left-info shadow  py-2">
                         <div class="card-body">
@@ -215,21 +239,22 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a class="text-info" href="{{ url('/dashboard/today_cash') }}">{{ __('lang.TodayCash') }}</a></div>
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a class="text-info" href="{{ url('/dashboard/today_bank') }}">{{ __('lang.TodayBank') }}</a></div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                {{ todayCash() }}
+                                                {{ todayBank() }}
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
                                 <div class="col-auto">
-                                    <i style="color: purple" class="fa fa-money fa-2x text-gray-300"></i>
+                                    <i style="color: green" class="fa fa-university fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
+
                 </div>
             </div>
             <div class="col-xl-3 col-md-3 mt-3">
@@ -256,30 +281,7 @@
 
                 </div>
             </div>
-            <div class="col-xl-3 col-md-3 mt-3">
-                <div class="card border-left-info shadow  py-2">
-
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a class="text-info" href="{{ url('/dashboard/today_bank') }}">{{ __('lang.TodayBank') }}</a></div>
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col-auto">
-                                            <div class="info_label h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                {{ todayBank() }}
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <i style="color: green" class="fa fa-university fa-2x text-gray-300"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                </div>
-            </div>
+            
 
         </div>
     </div>

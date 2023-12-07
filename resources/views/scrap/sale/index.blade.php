@@ -83,13 +83,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="rate">Rate</label>
-                                <input type="Number" name="rate" required oninput="calculateRate()" id="rate" class="form-control">
+                                <input type="Number" step="any" name="rate" required oninput="calculateRate()" id="rate" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="amount">Amount</label>
-                                <input type="Number" name="amount" id="amount" oninput="calculateAmount()" class="form-control">
+                                <input type="Number" name="amount" step="any" id="amount" oninput="calculateAmount()" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -147,7 +147,7 @@
 
         var amount = weight * rate;
 
-        $("#amount").val(amount);
+        $("#amount").val(amount.toFixed(2));
     }
 
     function calculateAmount(){
@@ -156,7 +156,7 @@
 
         var rate = amount / weight;
 
-        $("#rate").val(rate);
+        $("#rate").val(rate.toFixed(2));
     }
 </script>
 

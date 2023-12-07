@@ -147,7 +147,7 @@
 
         var amount = weight * rate;
 
-        $("#amount").val(amount);
+        $("#amount").val(amount.toFixed(2));
     }
     function calculateAmount(){
         var weight = $("#weight").val();
@@ -155,7 +155,7 @@
 
         var rate = amount / weight;
 
-        $("#rate").val(rate);
+        $("#rate").val(rate.toFixed(2));
     }
 </script>
 
