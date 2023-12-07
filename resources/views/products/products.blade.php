@@ -42,10 +42,15 @@
                             <tr>
                                 <th class="border-top-0">{{ __('lang.Ser') }}</th>
                                 <th class="border-top-0">{{ __('lang.Product') }}</th>
+                                <th class="border-top-0">Part No.</th>
+                                <th class="border-top-0">Model</th>
+                                <th class="border-top-0">Brand</th>
+                                <th class="border-top-0">Made In</th>
                                 <th class="border-top-0">{{ __('lang.Size') }}</th>
+                                <th class="border-top-0">Purchase Price</th>
                                 <th class="border-top-0">{{ __('lang.SalePrice') }}</th>
-                                <th class="border-top-0">{{ __('lang.Category') }}</th>
-                                <th class="border-top-0">{{ __('lang.Company') }}</th>
+{{--                                 <th class="border-top-0">{{ __('lang.Category') }}</th>
+                                <th class="border-top-0">{{ __('lang.Company') }}</th> --}}
                                 <th>{{ __('lang.Action') }}</th>
                             </tr>
                         </thead>
@@ -60,13 +65,18 @@
                             <tr>
                                 <td> {{ $ser }} </td>
                                 <td>{{ $pro->name }}</td>
+                                <td>{{ $pro->partno }}</td>
+                                <td>{{ $pro->model }}</td>
+                                <td>{{ $pro->brand }}</td>
+                                <td>{{ $pro->madein }}</td>
                                 <td>{{ $pro->size }}</td>
+                                <td>{{ $pro->pprice }}</td>
                                 <td>{{ $pro->price }}</td>
-                                <td>{{ $pro->category->cat }}</td>
-                                <td>{{ $pro->company->name }}</td>
+                               {{--  <td>{{ $pro->category->cat }}</td>
+                                <td>{{ $pro->company->name }}</td> --}}
 
                                 <td>
-                                    
+
                                     <button onclick='edit_pro({{ $pro->id }})' class="btn btn-primary">Edit</button>
                                     <a href="{{ url('/product/delete/') }}/{{ $pro->id }}" class="btn btn-danger">Delete</a>
                                     </td>
@@ -83,7 +93,7 @@
 
 {{-- Model Starts Here --}}
 <div class="modal" id="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">{{ __('lang.AddNewProduct') }}</h5>
@@ -94,20 +104,59 @@
             <form method="post">
                 @csrf
                 <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name">{{ __('lang.Product') }}</label>
+                                <input type="text" required name="name" id="name" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="partno">Part No.</label>
+                            <input type="text" name="partno" id="partno" class="form-control">
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="model">Model</label>
+                            <input type="text" name="model" id="model" class="form-control">
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="form-group">
+                            <label for="brand">Brand</label>
+                            <input type="text" name="brand" id="brand" class="form-control">
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="madein">Made In</label>
+                            <input type="text" name="madein" id="madein" class="form-control">
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="size">{{ __('lang.Size') }}</label>
+                            <input type="text" name="size" id="size" class="form-control">
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="pprice">Purchase Price</label>
+                            <input type="number" required name="pprice" id="pprice" class="form-control">
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="price">{{ __('lang.SalePrice') }}</label>
+                            <input type="number" required name="price" id="price" class="form-control">
+                        </div>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="name">{{ __('lang.Product') }}</label>
-                        <input type="text" required name="name" id="name" class="form-control">
                     </div>
-                    <div class="form-group">
-                        <label for="size">{{ __('lang.Size') }}</label>
-                        <input type="text" name="size" id="size" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="price">{{ __('lang.SalePrice') }}</label>
-                        <input type="number" required name="price" id="price" class="form-control">
-                    </div>
-                    <div class="form-group">
+
+                    {{-- <div class="form-group">
                         <label for="cat">{{ __('lang.Category') }}</label>
                         <select name="cat" required class="select2" id="cat">
                             @foreach ($cats as $cat)
@@ -122,7 +171,7 @@
                                 <option value="{{ $coy->id }}">{{ $coy->name }}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div> --}}
 
                 </div>
                 <div class="modal-footer">
@@ -136,7 +185,7 @@
 
 {{-- Model Starts Here --}}
 <div class="modal" id="edit" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">{{ __('lang.EditProduct') }}</h5>
@@ -144,23 +193,60 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
                 <div class="modal-body">
                     <form action="{{ url('/product/edit') }}" method="post">
                         @csrf
-                    <div class="form-group">
-                        <label for="name">{{ __('lang.Product') }}</label>
-                        <input type="text" required id="edit_name"  name="name" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="size">{{ __('lang.Size') }}</label>
-                        <input type="text" id="edit_size"  name="size" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="price">{{ __('lang.SalePrice') }}</label>
-                        <input type="number" required id="edit_price"  name="price" class="form-control">
-                    </div>
-                    <div class="form-group">
+                        <div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="name">{{ __('lang.Product') }}</label>
+            <input type="text" required id="edit_name" name="name" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="partno">Part No.</label>
+            <input type="text" name="partno" id="edit_partno" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="model">Model</label>
+            <input type="text" name="model" id="edit_model" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="brand">Brand</label>
+            <input type="text" name="brand" id="edit_brand" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="madein">Made In</label>
+            <input type="text" name="madein" id="edit_madein" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="size">{{ __('lang.Size') }}</label>
+            <input type="text" name="size" id="edit_size" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="pprice">Purchase Price</label>
+            <input type="number" required name="pprice" id="edit_pprice" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="price">{{ __('lang.SalePrice') }}</label>
+            <input type="number" required id="edit_price" name="price" class="form-control">
+        </div>
+    </div>
+</div>
+                    {{-- <div class="form-group">
                         <label for="cat">{{ __('lang.Category') }}</label>
                         <select name="cat" class="form-control" id="edit_cat">
                             @foreach ($cats as $cat)
@@ -175,7 +261,7 @@
                                 <option value="{{ $coy->id }}">{{ $coy->name }}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div> --}}
 
                 </div>
                 <input type="hidden" id="edit_id" name="id">
@@ -215,17 +301,22 @@
         success: function(abc){
             console.log(abc.pro['size']);
             $('#edit_name').val(abc.pro['name']);
+            $('#edit_partno').val(abc.pro['partno']);
+            $('#edit_model').val(abc.pro['model']);
+            $('#edit_brand').val(abc.pro['brand']);
+            $('#edit_madein').val(abc.pro['madein']);
+
             $('#edit_price').val(abc.pro['price']);
-            $('#edit_size').attr('value', abc.pro['size']); 
-            $('#edit_coy').val(abc.pro['coy']);
-            $('#edit_cat').val(abc.pro['cat']);
+            $('#edit_pprice').val(abc.pro['pprice']);
+            $('#edit_size').attr('value', abc.pro['size']);
+
             $('#edit_id').val(abc.pro['id']);
             $('#edit').modal('show');
         }
     });
-       
+
     }
 
-    
+
 </script>
 @endsection

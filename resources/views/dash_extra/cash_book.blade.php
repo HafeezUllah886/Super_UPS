@@ -86,7 +86,7 @@
                             <th>{{ __('lang.Ser') }}</th>
                             <th>{{ __('lang.Account') }}</th>
                             <th>{{ __('lang.Desc') }}</th>
-                            <th>{{ __('lang.Factory') }}</th>
+                            <th>{{ __('lang.Vendor') }}</th>
                             <th>{{ __('lang.Amount') }}</th>
                         </thead>
                         <tbody>

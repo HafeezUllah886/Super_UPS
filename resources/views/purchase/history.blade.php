@@ -22,7 +22,7 @@
                             <tr>
                                 <th class="border-top-0">{{ __('lang.BillNo') }}</th>
                                 <th class="border-top-0">{{ __('lang.Date') }}</th>
-                                <th class="border-top-0">{{ __('lang.Factory') }}</th>
+                                <th class="border-top-0">{{ __('lang.Vendor') }}</th>
                                 <th class="border-top-0">{{ __('lang.Details') }}</th>
                                 <th class="border-top-0">{{ __('lang.Amount') }}</th>
                                 <th class="border-top-0">{{ __('lang.AmountPaid') }}</th>
@@ -38,7 +38,7 @@
                                 <td> {{ $bill->id }} </td>
                                 <td>{{ $bill->date }}</td>
                                 <td>@if (@$bill->vendor_account->title)
-                                    {{ @$bill->vendor_account->title }} ({{  @$bill->vendor_account->type == "Vendor" ? "Factory" : @$bill->vendor_account->type}})
+                                    {{ @$bill->vendor_account->title }} ({{  @$bill->vendor_account->type == "Vendor" ? "Vendor" : @$bill->vendor_account->type}})
 
                                 @else
                                 {{$bill->walking}} (Walk In)

@@ -8,7 +8,7 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>{{ __('lang.AccountStatement') }} ({{ $account->title }} - {{ $account->type == "Vendor" ? "Factory" : $account->type }})</h4>
+                <h4>{{ __('lang.AccountStatement') }} ({{ $account->title }} - {{ $account->type == "Vendor" ? "Vendor" : $account->type }})</h4>
                 <button id="download" class="btn btn-success">PDF</button>
             </div>
         </div>

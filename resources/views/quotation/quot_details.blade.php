@@ -49,7 +49,7 @@
                             <select name="product" required id="product" onchange="price1()" class="select2">
                                 <option value=""></option>
                                 @foreach ($products as $pro)
-                                    <option value="{{ $pro->id }}" data-price="{{ $pro->price }}">{{ $pro->name }} | {{$pro->size}}</option>
+                                    <option value="{{ $pro->id }}" data-price="{{ $pro->price }}">{{ $pro->name }} | {{$pro->partno}} | {{$pro->brand}}</option>
                                 @endforeach
                             </select>
                         </div>

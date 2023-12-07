@@ -258,24 +258,7 @@
 <body>
 
     <div class="container">
-        <div class="container1">
-            <div class="sub-container">
-                <div class="logo" style="width: 37%;">
-                    <img src="{{ asset('assets/images/app_logo.png') }}" style="height:120px;width:120px;margin:-20px 20px;" alt="logo">
-                </div>
-                {{-- <div id="myDiv">
-                    <span class="dot">
-                        <p style="margin-top: 15px;">خوشحال خان</p>
-                    </span>
-                </div> --}}
-                <div class="text1">
-                    <h1 class="m-query1">DILSHAD SHOE COMPANY</h1>
-                    <h3 class="m-query2">Sarafa Bazar, Quetta
-                        <br>Phone:&nbsp; 0300-3901256, 081-2843907, 0310-4433787<br>0331-0222240, 0316-8199980, 0313-8372003
-                    </h3>
-                </div>
-            </div>
-        </div>
+        <img style="margin:0;width:100%;" src="{{ asset('assets/images/header.jpg') }}" alt="">
         <div class="body-section">
             <div class="row">
                 <div class="qoute">

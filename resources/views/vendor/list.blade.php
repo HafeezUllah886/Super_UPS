@@ -17,7 +17,7 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>{{ __('lang.Factories') }}</h4>
+                <h4>{{ __('lang.Vendors') }}</h4>
                 <div class="d-flex justify-content-end">
                 <button class="btn btn-success" data-toggle="modal" data-target="#modal">{{ __('lang.CreateNew') }}</button>
                 </div>
@@ -79,7 +79,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">{{ __('lang.AddNewFactory') }}</h5>
+                <h5 class="modal-title">{{ __('lang.AddNewVendor') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -120,7 +120,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">{{ __('lang.EditFactory') }}</h5>
+                <h5 class="modal-title">{{ __('lang.EditVendor') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

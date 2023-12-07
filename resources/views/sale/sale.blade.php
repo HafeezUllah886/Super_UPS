@@ -82,7 +82,7 @@
                             <select name="product" required id="product" onchange="price1()" class="select2">
                                 <option value=""></option>
                                 @foreach ($products as $pro)
-                                    <option value="{{ $pro->id }}" data-price="{{ $pro->price }}">{{ $pro->name }} | {{$pro->size}}</option>
+                                    <option value="{{ $pro->id }}" data-price="{{ $pro->price }}">{{ $pro->name }} | {{$pro->partno}} | {{$pro->brand}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -121,9 +121,9 @@
                         <thead class="th-color">
                             <tr>
                                 <th class="border-top-0">{{__('lang.Ser')}}</th>
-                                <th class="border-top-0">{{__('lang.Category')}}</th>
                                 <th class="border-top-0">{{__('lang.Product')}}</th>
-                                <th class="border-top-0">{{__('lang.Size')}}</th>
+                                <th class="border-top-0">Part No</th>
+                                <th class="border-top-0">Brand</th>
                                 <th class="border-top-0">{{__('lang.Quantity')}}</th>
                                 <th class="border-top-0">{{__('lang.Price')}}</th>
                                 <th class="border-top-0">{{__('lang.Amount')}}</th>
@@ -232,7 +232,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    {{-- <div class="col-md-4">
                                         <div class="form-group">
                                             <div class="form-group">
                                                 <label for="dc">Delivery Charges</label>
@@ -242,7 +242,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-md-2">
                                         <button type="submit" class="btn btn-success btn-lg" style="margin-top: 30px">{{__('lang.Save')}}</button>
                                     </div>

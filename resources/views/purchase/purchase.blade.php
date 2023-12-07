@@ -67,7 +67,7 @@
                             <select name="product" required id="product" class="select2">
                                 <option value=""></option>
                                 @foreach ($products as $pro)
-                                    <option value="{{ $pro->id }}">{{ $pro->name }} | {{$pro->size}}</option>
+                                    <option value="{{ $pro->id }}">{{ $pro->name }} | {{$pro->partno}} | {{$pro->brand}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -126,12 +126,12 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="vendor">{{ __('lang.SelectFactory') }}</label>
+                                    <label for="vendor">{{ __('lang.SelectVendor') }}</label>
                                     <select name="vendor" id="vendor" onchange="walkIn1()" class="select2">
                                         <option value=""></option>
                                         {{-- <option value="0">{{ __('lang.WalkInVendor') }}</option> --}}
                                         @foreach ($vendors as $vendor)
-                                            <option value="{{ $vendor->id }}">{{ $vendor->title }} ({{ $vendor->type == "Vendor" ? "Factory" : $vendor->type }})</option>
+                                            <option value="{{ $vendor->id }}">{{ $vendor->title }} ({{ $vendor->type == "Vendor" ? "Vendor" : $vendor->type }})</option>
                                         @endforeach
                                     </select>
                                     @error('vendor')

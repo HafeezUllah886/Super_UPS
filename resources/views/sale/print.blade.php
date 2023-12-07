@@ -253,7 +253,7 @@
 <body>
 
     <div class="container">
-        <img style="margin:0;width:100%;" src="{{ asset('assets/images/bill.png') }}" alt="">
+        <img style="margin:0;width:100%;" src="{{ asset('assets/images/header.jpg') }}" alt="">
         <div class="body-section">
             <div class="row">
                 <div class="qoute">
@@ -289,12 +289,14 @@
                 <thead>
                     <tr style="background-color: #111;color:#fff;">
                         <th class="w-5">#</th>
-                        <th class="w-10">Qty</th>
-                        <th class="w-15">Item</th>
-                        <th class="w-15">Category</th>
+                        <th class="w-15">Product</th>
+                        <th class="w-15">Part No.</th>
+                        <th class="w-15">Brand</th>
+                        <th class="w-15">Model</th>
+                        <th class="w-15">Made In</th>
                         <th class="w-10">Size</th>
+                        <th class="w-10">Qty</th>
                         <th class="w-10">Price</th>
-
                         <th class="w-15">Total</th>
                     </tr>
                 </thead>
@@ -310,10 +312,13 @@
                         @endphp
                         <tr>
                             <th scope="row">{{ $ser }}</th>
-                            <td>{{ $item->qty }}</td>
                             <td>{{ $item->product->name }}</td>
-                            <td>{{ $item->product->category->cat }}</td>
+                            <td>{{ $item->product->partno }}</td>
+                            <td>{{ $item->product->brand }}</td>
+                            <td>{{ $item->product->model }}</td>
+                            <td>{{ $item->product->madein }}</td>
                             <td>{{ $item->product->size }}</td>
+                            <td>{{ $item->qty }}</td>
                             <td>{{ $item->price }}</td>
                             <td>{{ $item->price * $item->qty }}</td>
                         </tr>
@@ -323,7 +328,7 @@
                     @endforeach
 
                     <tr>
-                        <td colspan="6" class="text-right">
+                        <td colspan="9" class="text-right">
                             <strong>Total</strong>
                         </td>
                         <td>
@@ -332,28 +337,20 @@
                     </tr>
                     @if($invoice->discount > 0)
                     <tr>
-                        <td colspan="6" class="text-right">
+                        <td colspan="9" class="text-right">
                             <strong>Discount</strong>
                         </td>
-                        <td>
+                        <td class="text-right">
                             <strong>{{ $invoice->discount == 0 ? 0 : $invoice->discount}}</strong>
                         </td>
                     </tr>
                     @endif
                     <tr>
-                        <td colspan="6" class="text-right">
-                            <strong>Delivery Charges</strong>
-                        </td>
-                        <td>
-                            <strong>{{ $invoice->dc == 0 ? 0 : $invoice->dc}}</strong>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="6" class="text-right">
+                        <td colspan="9" class="text-right">
                             <strong>Net Total</strong>
                         </td>
                         <td>
-                            <strong>{{ ($total - $invoice->discount) + $invoice->dc }}</strong>
+                            <strong>{{ ($total - $invoice->discount) }}</strong>
                         </td>
                     </tr>
 
@@ -368,13 +365,13 @@
                         else{
 
                             if($invoice->amount == 0){
-                                $paidAmount = $total - ($invoice->amount + $invoice->discount) + $invoice->dc;
+                                $paidAmount = $total - ($invoice->amount + $invoice->discount);
                             }
                         }
 
                         @endphp
                         @if(@$invoice->isPaid == "Partial")
-                        <td colspan="6" class="text-right">
+                        <td colspan="9" class="text-right">
                             <strong>Paid Amount</strong>
                         </td>
                         <td>
@@ -382,11 +379,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="6" class="text-right">
+                        <td colspan="9" class="text-right">
                             <strong>Remaining</strong>
                         </td>
                         <td>
-                            <h3> {{ $total - $paidAmount - $invoice->discount + $invoice->dc}}</h3>
+                            <h3> {{ $total - $paidAmount - $invoice->discount}}</h3>
                         </td>
                     </tr>
                         @endif
@@ -411,7 +408,7 @@
                 </tr>
                 <tr>
                     <td style="text-align: left; width:40%;"> <strong>Current Balance:</strong> </td>
-                    <td style="text-align: left">{{ $total - $paidAmount - $invoice->discount + $invoice->dc }}</td>
+                    <td style="text-align: left">{{ $total - $paidAmount - $invoice->discount}}</td>
                 </tr>
                 <tr>
                     <td style="text-align: left; width:40%;"> <strong>Total Balance:</strong> </td>

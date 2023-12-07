@@ -127,10 +127,10 @@
                   </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    {{ __('lang.Factories/Customers') }}
+                    {{ __('lang.Vendors/Customers') }}
                   </a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{ url('/vendors') }}">{{ __('lang.Factories') }}</a>
+                    <a class="dropdown-item" href="{{ url('/vendors') }}">{{ __('lang.Vendors') }}</a>
                     <a class="dropdown-item" href="{{ '/customers' }}">{{ __('lang.Customers') }}</a>
                   </div>
                 </li>
@@ -147,7 +147,7 @@
                     <a class="dropdown-item" href="{{ url('/expense') }}">{{ __('lang.Expense') }}</a>
                   </div>
                 </li>
-                <li class="nav-item dropdown">
+               {{--  <li class="nav-item dropdown">
                     <a class="nav-link" href="{{ url('/category') }}" id="navbardrop">
                         {{ __('lang.Category') }}
                     </a>
@@ -156,7 +156,7 @@
                     <a class="nav-link" href="{{ url('/company') }}" id="navbardrop">
                         {{ __('lang.Company') }}
                     </a>
-                  </li>
+                  </li> --}}
                   <li class="nav-item dropdown">
                     <a class="nav-link" href="{{ url('/products') }}" id="navbardrop">
                         {{ __('lang.Products') }}

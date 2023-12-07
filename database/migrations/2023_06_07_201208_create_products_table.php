@@ -14,10 +14,15 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('partno')->nullable();
+            $table->string('model')->nullable();
+            $table->string('brand')->nullable();
+            $table->string('madein')->nullable();
             $table->string('size')->nullable();
-            $table->unsignedBigInteger('coy');
-            $table->unsignedBigInteger('cat');
-            $table->unsignedInteger('price');
+/*             $table->unsignedBigInteger('coy');
+            $table->unsignedBigInteger('cat'); */
+            $table->float('pprice')->nullable();
+            $table->float('price')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

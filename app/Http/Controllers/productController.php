@@ -89,10 +89,10 @@ class productController extends Controller
 
     public function products(){
         $products = products::all();
-        $cats = catergory::all();
-        $coys = company::all();
+        /* $cats = catergory::all();
+        $coys = company::all(); */
 
-        return view('products.products')->with(compact('products', 'cats', 'coys'));
+        return view('products.products')->with(compact('products'));
     }
 
     public function storePro(request $req)
@@ -108,8 +108,13 @@ class productController extends Controller
                 'name' => $req->name,
                 'price' => $req->price,
                 'size' => $req->size,
-                'coy' => $req->coy,
-                'cat' => $req->cat,
+                'pprice' => $req->pprice,
+                'model' => $req->model,
+                'madein' => $req->madein,
+                'partno' => $req->partno,
+                'brand' => $req->brand,
+                /* 'coy' => $req->coy,
+                'cat' => $req->cat, */
             ]
         );
         return back()->with('success', 'Product has been created');
@@ -127,8 +132,13 @@ class productController extends Controller
                 'name' => $req->name,
                 'price' => $req->price,
                 'size' => $req->size,
-                'coy' => $req->coy,
-                'cat' => $req->cat,
+                'pprice' => $req->pprice,
+                'model' => $req->model,
+                'madein' => $req->madein,
+                'partno' => $req->partno,
+                'brand' => $req->brand,
+                /* 'coy' => $req->coy,
+                'cat' => $req->cat, */
             ]
         );
         return back()->with('success', 'Product has been Updated');
