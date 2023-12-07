@@ -9,7 +9,7 @@
         <meta content="Mannatthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <link rel="shortcut icon" href= {{ asset("assets/images/app_logo.png" ) }}>
+        <link rel="shortcut icon" href= {{ asset("assets/images/rlogo.png" ) }}>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
         <!-- jvectormap -->
@@ -92,9 +92,9 @@
 
         <!-- Loader -->
         <div id="preloader"><div id="status"><div class="spinner"></div></div></div>
-        <nav style="background: linear-gradient(to bottom, #cbcb5a 0%, #898811 100%) !important" class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav style="background: linear-gradient(to bottom, #5aafcb 0%, #114d89 100%) !important" class="navbar navbar-expand-lg navbar-light bg-light">
             <a style="width: 17%;" class="navbar-brand" href="#">
-              <img class="logo-nav" style="height: 120px;width:120px;margin:-30px 10px;" src="{{ asset("assets/images/app_logo.png") }}"/>
+              <img class="logo-nav" src="{{ asset("assets/images/rlogo.png") }}"/>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>

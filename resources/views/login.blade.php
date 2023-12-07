@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="Emslm8WRZAV0paIYDnCW97sjqwwDzrnMiJ0JYj6N">
 
-    <title>Super UPS CENTER</title>
+    <title>POS</title>
 
    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <!-- Scripts -->
@@ -17,13 +17,12 @@
 
 <body >
     <div class="font-sans text-gray-900 antialiased" >
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0" style="background-color: #6a6a05">
+        <div class="flex flex-col sm:justify-center items-center">
             <div>
-                <a href="https://pos.superupscenter.com/">
-                    <img width="170px" height="150px" src="{{ asset('assets/images/app_logo.png') }}"> </a>
+                    <img width="300px" src="{{ asset('assets/images/rlogo.png') }}">
             </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+            <div class="w-full sm:max-w-md px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 <!-- Session Status -->
 
                 <!-- Validation Errors -->
