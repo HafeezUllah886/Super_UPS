@@ -7,7 +7,7 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Claims</h4>
+                <h4>Claims (Product)</h4>
                 <a href="{{url('/claim/create')}}" class="btn btn-success">Create Claim</a>
             </div>
         </div>
@@ -19,11 +19,11 @@
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable">
                         <thead class="th-color">
                             <tr>
-                                <th>{{ __('lang.InvoiceNo') }}</th>
                                 <th>{{ __('lang.Customer') }}</th>
                                 <th>{{ __('lang.Date') }}</th>
                                 <th>Product</th>
                                 <th>Qty</th>
+                                <th>Amount</th>
                                 <th>Reason</th>
                                 <th>Status</th>
                                 <th>{{ __('lang.Action') }}</th>
@@ -32,21 +32,17 @@
                         <tbody>
                             @foreach ($claims as $claim)
                             <tr>
-                                <td> {{ $claim->salesID}} </td>
-                                <td>@if (@$claim->bill->customer_account->title)
-                                    {{ @$claim->bill->customer_account->title }}
-                                @else
-                                {{$claim->bill->walking}} (Walk In)
-                                @endif</td>
+                                <td>{{ $claim->customer }}</td>
                                 <td>{{ $claim->date }}</td>
                                 <td> {{ $claim->product->name}} </td>
                                 <td>{{ $claim->qty }}</td>
+                                <td>{{ $claim->amount }}</td>
                                 <td>{{ $claim->reason }}</td>
                                 <td>{{ $claim->status }}</td>
-                                <td> 
-                                    <a href="{{url('/claim/delete/')}}/{{$claim->ref}}" class="text-danger ">Delete</a> 
+                                <td>
+                                    <a href="{{url('/claim/delete/')}}/{{$claim->ref}}" class="text-danger ">Delete</a>
                                     @if($claim->status == 'Pending')
-                                        <a href="{{url('/claim/approve/')}}/{{$claim->ref}}" class="text-success "> / Approve</a> 
+                                        <a href="{{url('/claim/approve/')}}/{{$claim->ref}}" class="text-success "> / Approve</a>
                                     @endif
                                 </td>
                                 <td>

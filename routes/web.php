@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AmountClaimController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClaimController;
 use App\Http\Controllers\ConfirmPasswordController;
@@ -179,6 +180,12 @@ Route::middleware('auth')->group(function (){
     Route::post('/claim/store', [ClaimController::class, 'store']);
     Route::get('/claim/approve/{ref}', [ClaimController::class, 'approve']);
 
+    Route::get('/claim/amount', [AmountClaimController::class, 'index']);
+    Route::get('/claim/amount/create', [AmountClaimController::class, 'create']);
+    Route::post('/claim/amount/store', [AmountClaimController::class, 'store']);
+    Route::post('/claim/amount/approve', [AmountClaimController::class, 'approve']);
+    Route::post('/claim/amount/payment', [AmountClaimController::class, 'payment']);
+
     Route::get('/scrap/purchase', [ScrapPurchaseController::class, 'index']);
     Route::post('/scrap/purchase/create', [ScrapPurchaseController::class, 'store']);
 
@@ -198,6 +205,7 @@ Route::middleware(['confirm.password'])->group(function () {
     Route::get('/expense/delete/{ref}', [AccountController::class, "deleteExpense"]);
     Route::get('/return/delete/{ref}', [SaleReturnController::class, 'delete']);
     Route::get('/claim/delete/{ref}', [ClaimController::class, "delete"]);
+    Route::get('/claim/amount/delete/{ref}', [AmountClaimController::class, "delete"]);
     Route::get('/scrap/purchase/delete/{ref}', [ScrapPurchaseController::class, "delete"]);
     Route::get('/scrap/sale/delete/{ref}', [ScrapSaleController::class, "delete"]);
 });

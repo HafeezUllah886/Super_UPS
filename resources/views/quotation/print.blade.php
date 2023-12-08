@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super UPS CENTER</title>
+    <title>POS</title>
     <style>
 
 
@@ -336,7 +336,7 @@
                     </tr>
                     @endforeach
                     <tr>
-                        <td colspan="4" class="text-right">
+                        <td colspan="5" class="text-right">
                             <strong>Total</strong>
                         </td>
                         <td>
@@ -345,7 +345,7 @@
                     </tr>
                     @if ($quot->discount > 0)
                     <tr>
-                        <td colspan="4" class="text-right">
+                        <td colspan="5" class="text-right">
                             <strong>Discount</strong>
                         </td>
                         <td>
@@ -353,7 +353,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="text-right">
+                        <td colspan="5" class="text-right">
                             <strong>Net Total</strong>
                         </td>
                         <td>

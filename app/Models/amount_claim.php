@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class claim extends Model
+class amount_claim extends Model
 {
     use HasFactory;
     protected $guarded = [];
@@ -13,6 +13,10 @@ class claim extends Model
     public function product()
     {
         return $this->belongsTo(products::class, "productID", 'id');
+    }
+
+    public function customer_account(){
+        return $this->belongsTo(account::class, 'customer', 'id');
     }
 
 }

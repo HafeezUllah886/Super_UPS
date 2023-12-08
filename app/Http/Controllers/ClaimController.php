@@ -8,23 +8,24 @@ use App\Models\products;
 use App\Models\sale;
 use App\Models\sale_details;
 use App\Models\stock;
+use App\Models\transactions;
 use Illuminate\Http\Request;
 
 class ClaimController extends Controller
 {
     public function index()
     {
-        $claims = claim::with('bill', 'product')->orderBy('id', 'desc')->get();
+        $claims = claim::with('product')->orderBy('id', 'desc')->get();
         return view('claim.index', compact('claims'));
     }
 
     public function create(request $req)
     {
         $products = products::all();
-      
-        $vendors = account::where('type', 'Vendor')->get(); 
-       
-        
+
+        $vendors = account::where('type', 'Vendor')->get();
+
+
         return view('claim.create', compact('products','vendors'));
     }
 
@@ -33,10 +34,12 @@ class ClaimController extends Controller
         $ref = getRef();
         claim::create(
             [
-                'salesID' => $req->saleID,
-                'productID' => $req->productID,
+                'vendorID' => $req->vendor,
+                'productID' => $req->product,
+                'customer' => $req->customer,
                 'date' => $req->date,
                 'qty' => $req->qty,
+                'amount' => $req->amount,
                 'reason' => $req->reason,
                 'status' => $req->status,
                 'ref' => $ref,
@@ -45,6 +48,7 @@ class ClaimController extends Controller
 
         if($req->status == "Claimed")
         {
+
             stock::create(
                 [
                     'product_id' => $req->productID,
@@ -54,14 +58,17 @@ class ClaimController extends Controller
                     'ref' => $ref,
                 ]
             );
+            createTransaction($req->vendor, $req->date, 0, $req->amount, "Claim of Product with reason: $req->reason","Claim", $ref);
         }
 
         return redirect('/claim')->with("msg", "Claim Saved");
     }
 
+
     public function delete($ref)
     {
         stock::where("ref", $ref)->delete();
+        transactions::where("ref", $ref)->delete();
         claim::where("ref", $ref)->delete();
 
         return redirect('/claim')->with('error', "Claim Deleted");
@@ -83,6 +90,7 @@ class ClaimController extends Controller
             ]
         );
 
+        createTransaction($claim->vendorID, $claim->date, 0, $claim->amount, "Claim of Product with reason: $claim->reason","Claim", $ref);
         return back()->with("msg", "Claim Approved");
     }
 }

@@ -481,7 +481,7 @@ function calculateRate(){
 
         var amount = weight * rate;
 
-        $("#amount1").val(amount);
+        $("#amount1").val(amount.toFixed(2));
     }
     function calculateAmount(){
         var weight = $("#weight").val();
@@ -489,8 +489,10 @@ function calculateRate(){
 
         var rate = amount / weight;
 
-        $("#rate1").val(rate);
+        $("#rate1").val(rate.toFixed(2));
     }
+
+
 
 $("#scrapForm").on("submit", function(e){
     e.preventDefault();
