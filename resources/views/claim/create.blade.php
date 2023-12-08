@@ -9,7 +9,7 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>Create Claim</h4>
+                <h4>Create Claim (Product)</h4>
             </div>
         </div>
     </div>
@@ -31,22 +31,40 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="">Vendor</label>
-                            <select name="vendor" class="form-control" id="">
-                                @foreach ($vendors as $vendor)
-                                    <option value="{{$vendor->id}}">{{$vendor->title}}</option>
+                            <label for="">Customer</label>
+                            <input type="text" name="customer" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="">Product</label>
+                            <select name="product" class="form-control" id="">
+                                @foreach ($products as $product)
+                                    <option value="{{$product->id}}">{{$product->name}}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="">Vendor</label>
-                            <select name="vendor" class="form-control" id="">
-                                @foreach ($vendors as $vendor)
-                                    <option value="{{$vendor->id}}">{{$vendor->title}}</option>
-                                @endforeach
-                            </select>
+                            <label for="">Quantity</label>
+                            <input type="number" name="qty" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Reason</label>
+                            <input type="text" name="reason" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="Radio" value="Pending" id="pending" name="status" class="form-control">
+                            <label for="pending">Wait for Approval</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="Radio" value="Approved" id="approved" name="status" class="form-control">
+                            <label for="approved">Wait for Approval</label>
                         </div>
                     </div>
                 </div>

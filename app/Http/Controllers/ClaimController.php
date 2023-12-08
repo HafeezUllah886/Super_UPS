@@ -21,11 +21,11 @@ class ClaimController extends Controller
     public function create(request $req)
     {
         $products = products::all();
-        $accounts = account::where('type', 'Business')->get(); 
+      
         $vendors = account::where('type', 'Vendor')->get(); 
-        $customers = account::where('type', 'Customer')->get(); 
+       
         
-        return view('claim.create', compact('products', 'accounts', 'customers', 'vendors'));
+        return view('claim.create', compact('products','vendors'));
     }
 
     public function store(request $req)
