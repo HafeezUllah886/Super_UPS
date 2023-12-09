@@ -308,8 +308,8 @@ input[type=number] {
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="rate">Rate</label>
-                                <input type="Number" name="rate" required oninput="calculateRate()" id="rate1" class="form-control">
+                                <label for="srate">Rate</label>
+                                <input type="Number" name="rate" required oninput="calculateRate()" id="srate1" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -477,7 +477,7 @@ function deleteDraft(id){
 
 function calculateRate(){
         var weight = $("#weight").val();
-        var rate = $("#rate1").val();
+        var rate = $("#srate1").val();
 
         var amount = weight * rate;
 
@@ -489,7 +489,7 @@ function calculateRate(){
 
         var rate = amount / weight;
 
-        $("#rate1").val(rate.toFixed(2));
+        $("#srate1").val(rate.toFixed(2));
     }
 
 

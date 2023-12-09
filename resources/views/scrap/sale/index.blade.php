@@ -82,8 +82,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="rate">Rate</label>
-                                <input type="Number" step="any" name="rate" required oninput="calculateRate()" id="rate" class="form-control">
+                                <label for="srate">Rate</label>
+                                <input type="Number" step="any" name="rate" required oninput="calculateRate()" id="srate" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -143,7 +143,7 @@
 
     function calculateRate(){
         var weight = $("#weight").val();
-        var rate = $("#rate").val();
+        var rate = $("#srate").val();
 
         var amount = weight * rate;
 
@@ -156,7 +156,7 @@
 
         var rate = amount / weight;
 
-        $("#rate").val(rate.toFixed(2));
+        $("#srate").val(rate.toFixed(2));
     }
 </script>
 
