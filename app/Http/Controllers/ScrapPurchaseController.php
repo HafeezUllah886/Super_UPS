@@ -6,6 +6,7 @@ use App\Models\account;
 use App\Models\ledger;
 use App\Models\scrap_purchase;
 use App\Models\scrap_stock;
+use App\Models\transactions;
 use Illuminate\Http\Request;
 
 class ScrapPurchaseController extends Controller
@@ -56,6 +57,7 @@ class ScrapPurchaseController extends Controller
         ledger::where('ref', $ref)->delete();
         scrap_stock::where('ref', $ref)->delete();
         scrap_purchase::where('ref', $ref)->delete();
+        transactions::where('ref', $ref)->delete();
 
         return redirect('/scrap/purchase')->with("error", "Scrap Purchase Deleted");
     }

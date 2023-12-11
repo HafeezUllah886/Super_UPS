@@ -71,9 +71,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="bill">Weight</label>
+                                <label for="bill">Weight (Stock: {{ $stock }})</label>
                                 <div class="input-group">
-                                    <input type="number" step="any" name="weight" id="weight" required oninput="calculateRate()" class="form-control" aria-describedby="basic-addon2">
+                                    <input type="number" step="any" name="weight" max="{{ $stock }}" id="weight" required oninput="calculateRate()" class="form-control" aria-describedby="basic-addon2">
                                     <div class="input-group-append">
                                       <span class="input-group-text" id="basic-addon2">KG</span>
                                     </div>

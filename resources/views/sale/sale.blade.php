@@ -309,7 +309,7 @@ input[type=number] {
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="srate">Rate</label>
-                                <input type="Number" name="rate" required oninput="calculateRate()" id="srate1" class="form-control">
+                                <input type="Number" name="rate" step="any" required oninput="calculateRate()" id="srate1" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -499,7 +499,7 @@ $("#scrapForm").on("submit", function(e){
     var data = $(this).serialize();
     $.ajax({
         url: "{{ url('/scrap/purchase/create') }}",
-        method: "POST",
+        method: "post",
         data: data,
         success: function(response){
            $("#modal").modal("hide");

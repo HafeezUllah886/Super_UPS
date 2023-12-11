@@ -6,6 +6,7 @@ use App\Models\account;
 use App\Models\ledger;
 use App\Models\scrap_sale;
 use App\Models\scrap_stock;
+use App\Models\transactions;
 use Illuminate\Http\Request;
 
 class ScrapSaleController extends Controller
@@ -14,7 +15,10 @@ class ScrapSaleController extends Controller
     {
         $scraps = scrap_sale::orderBy('id', 'desc')->get();
         $accounts = account::where('type', 'Business')->get();
-        return view('scrap.sale.index', compact('accounts', 'scraps'));
+        $cr = scrap_stock::sum('cr');
+        $db = scrap_stock::sum('db');
+        $stock = $cr - $db;
+        return view('scrap.sale.index', compact('accounts', 'scraps', 'stock'));
     }
 
     public function store(request $req)
@@ -52,7 +56,7 @@ class ScrapSaleController extends Controller
         ledger::where('ref', $ref)->delete();
         scrap_stock::where('ref', $ref)->delete();
         scrap_sale::where('ref', $ref)->delete();
-
+        transactions::where('ref', $ref)->delete();
         return redirect('/scrap/sale')->with("error", "Scrap Sale Deleted");
     }
 }

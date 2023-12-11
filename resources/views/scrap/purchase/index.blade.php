@@ -83,13 +83,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="srate">Rate</label>
-                                <input type="Number" name="rate" required oninput="calculateRate()" id="srate" class="form-control">
+                                <input type="Number" step="any" name="rate" required oninput="calculateRate()" id="srate" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="amount">Amount</label>
-                                <input type="Number" name="amount" id="amount" oninput="calculateAmount()" class="form-control">
+                                <input type="Number" step="any" name="amount" id="amount" oninput="calculateAmount()" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
