@@ -112,25 +112,25 @@ input[type=number] {
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="price1">Retail</label>
-                            <input type="number" required name="price" oninput="cal()" id="retail" class="form-control">
+                            <input type="number" required name="retail" oninput="cal()" id="retail" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
                             <label for="price1">GST</label>
-                            <input type="number" required name="price" readonly id="gst" class="form-control">
+                            <input type="number" required name="gst" readonly id="gst" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
                             <label for="price1">WHT</label>
-                            <input type="number" required name="price" readonly id="wht" class="form-control">
+                            <input type="number" required name="wht" readonly id="wht" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
                             <label for="price1">%</label>
-                            <input type="number" required name="price" oninput="cal()" value="0" id="percent" class="form-control">
+                            <input type="number" required name="percent" oninput="cal()" value="0" id="percent" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -227,12 +227,15 @@ input[type=number] {
                                         @foreach ($paidIns as $acct)
                                             <option value="{{ $acct->id }}">{{ $acct->title }}</option>
                                         @endforeach
-
                                     </select>
                                     @error('paidIn')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
+                            </div>
+                            <div class="col-md-2 mt-4">
+                                <input type="checkbox" class="mt-3" name="print" value="1" id="print">
+                                <label for="print">Print with Taxes</label>
                             </div>
 
                         </div>
@@ -264,8 +267,6 @@ input[type=number] {
                                     <p class="btn btn-info" data-toggle="modal" style="margin-top: 40px" data-target="#modal">Purchase Scrap</p>
                                 </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </form>

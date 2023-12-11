@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('date');
             $table->integer('qty');
             $table->integer('amount');
+            $table->integer('customer_amount');
             $table->text('reason')->nullable();
             $table->string('status');
             $table->string('payment_status');

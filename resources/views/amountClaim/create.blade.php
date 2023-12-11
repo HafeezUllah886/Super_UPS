@@ -60,16 +60,17 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="">Amount</label>
+                            <label for="">Customer Amount</label>
+                            <input type="number" required name="customer_amount" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="">Vendor Amount</label>
                             <input type="number" required name="amount" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="">Reason</label>
-                            <input type="text" required name="reason" class="form-control">
-                        </div>
-                    </div>
+
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="">Date</label>
@@ -102,6 +103,12 @@
                                     <option value="{{$account->id}}">{{$account->title}}</option>
                                 @endforeach
                             </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="">Reason</label>
+                            <textarea required name="reason" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="col-md-3 mt-4">

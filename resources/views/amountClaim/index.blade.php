@@ -23,7 +23,8 @@
                                 <th>{{ __('lang.Date') }}</th>
                                 <th>Product</th>
                                 <th>Qty</th>
-                                <th>Amount</th>
+                                <th>C Amount</th>
+                                <th>V Amount</th>
                                 <th>Reason</th>
                                 <th>Status</th>
                                 <th>Payment</th>
@@ -43,6 +44,7 @@
                                 <td>{{ $claim->date }}</td>
                                 <td> {{ $claim->product->name}} </td>
                                 <td>{{ $claim->qty }}</td>
+                                <td>{{ $claim->customer_amount }}</td>
                                 <td>{{ $claim->amount }}</td>
                                 <td>{{ $claim->reason }}</td>
                                 <td>{{ $claim->status }}</td>

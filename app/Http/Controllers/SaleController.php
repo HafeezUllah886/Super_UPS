@@ -46,7 +46,10 @@ class SaleController extends Controller
             [
                 'product_id' => $req->product,
                 'qty' => $req->qty,
-                'price' => $req->price,
+                'price' => $req->price / $req->qty,
+                'retail' => $req->retail,
+                'gst' => $req->gst,
+                'wht' => $req->wht,
             ]
         );
 
@@ -129,6 +132,7 @@ class SaleController extends Controller
             'desc' => $req->desc,
             'amount' => $amount,
             'discount' => $req->discount,
+            'print' => $req->print ?? 0,
             'isPaid' => $req->isPaid,
             'ref' => $ref,
         ]);
@@ -144,6 +148,9 @@ class SaleController extends Controller
                 'bill_id' => $sale->id,
                 'product_id' => $item->product_id,
                 'price' => $item->price,
+                'retail' => $item->retail,
+                'gst' => $item->gst,
+                'wht' => $item->wht,
                 'qty' => $item->qty,
                 'date' => $req->date,
                 'ref' => $ref,

@@ -16,6 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('bill_id');
             $table->unsignedBigInteger('product_id');
             $table->unsignedDecimal('price', 10, 2);
+            $table->unsignedDecimal('retail', 10, 2);
+            $table->unsignedDecimal('gst', 10, 2);
+            $table->unsignedDecimal('wht', 10, 2);
             $table->unsignedInteger('qty');
             $table->unsignedBigInteger('ref');
             $table->date('date');

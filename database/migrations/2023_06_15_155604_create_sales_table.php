@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('date');
             $table->text('desc')->nullable();
             $table->string('isPaid');
+            $table->integer('print')->default(0);
             $table->unsignedBigInteger('amount')->nullable();
             $table->unsignedInteger('discount')->nullable();
             $table->unsignedBigInteger('ref');

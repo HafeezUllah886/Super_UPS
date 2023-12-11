@@ -42,6 +42,7 @@ class AmountClaimController extends Controller
                 'date' => $req->date,
                 'qty' => $req->qty,
                 'amount' => $req->amount,
+                'customer_amount' => $req->customer_amount,
                 'reason' => $req->reason,
                 'status' => $req->status,
                 'payment_status' => $req->payment_status,
@@ -56,10 +57,10 @@ class AmountClaimController extends Controller
 
         if($req->payment_status == "Paid")
         {
-            createTransaction($req->account, $req->date, 0, $req->amount, "Claim of Product with reason: $req->reason","Claim", $ref);
+            createTransaction($req->account, $req->date, 0, $req->customer_amount, "Claim of Product with reason: $req->reason","Claim", $ref);
             if($req->customer != 0)
             {
-                createTransaction($req->customer, $req->date, $req->amount, $req->amount, "Claim of Product with reason: $req->reason","Claim", $ref);
+                createTransaction($req->customer, $req->date, $req->customer_amount, $req->customer_amount, "Claim of Product with reason: $req->reason","Claim", $ref);
             }
 
         }
@@ -67,7 +68,7 @@ class AmountClaimController extends Controller
         {
             if($req->customer != 0)
             {
-                createTransaction($req->customer, $req->date, 0, $req->amount, "Pending of Claim of Product with reason: $req->reason","Claim", $ref);
+                createTransaction($req->customer, $req->date, 0, $req->customer_amount, "Pending of Claim of Product with reason: $req->reason","Claim", $ref);
             }
         }
 
@@ -95,11 +96,11 @@ class AmountClaimController extends Controller
         if($req->payment_status == "Paid")
         {
             $claim->payment_status = "Paid";
-            createTransaction($req->account, now(), 0, $claim->amount, "Claim of Product with reason: $claim->reason","Claim", $claim->ref);
+            createTransaction($req->account, now(), 0, $claim->customer_amount, "Claim of Product with reason: $claim->reason","Claim", $claim->ref);
 
             if($claim->customer != null)
             {
-                createTransaction($claim->customer, now(), $claim->amount, 0, "Claim of Product with reason: $claim->reason","Claim", $claim->ref);
+                createTransaction($claim->customer, now(), $claim->customer_amount, 0, "Claim of Product with reason: $claim->reason","Claim", $claim->ref);
             }
         }
         $claim->save();
@@ -113,11 +114,11 @@ class AmountClaimController extends Controller
         $claim->save();
 
 
-        createTransaction($req->account, now(), 0, $claim->amount, "Claim of Product with reason: $claim->reason","Claim", $claim->ref);
+        createTransaction($req->account, now(), 0, $claim->customer_amount, "Claim of Product with reason: $claim->reason","Claim", $claim->ref);
 
         if($claim->customer != null)
         {
-            createTransaction($claim->customer, now(), $claim->amount, 0, "Claim of Product with reason: $claim->reason","Claim", $claim->ref);
+            createTransaction($claim->customer, now(), $claim->customer_amount, 0, "Claim of Product with reason: $claim->reason","Claim", $claim->ref);
         }
 
         return back()->with("msg", "Payment Saved");
