@@ -47,6 +47,7 @@
                                 <th class="border-top-0">Brand</th>
                                 <th class="border-top-0">Made In</th>
                                 <th class="border-top-0">{{ __('lang.Size') }}</th>
+                                <th class="border-top-0">UOM</th>
                                 <th class="border-top-0">Purchase Price</th>
                                 <th class="border-top-0">{{ __('lang.SalePrice') }}</th>
 {{--                                 <th class="border-top-0">{{ __('lang.Category') }}</th>
@@ -70,6 +71,7 @@
                                 <td>{{ $pro->brand }}</td>
                                 <td>{{ $pro->madein }}</td>
                                 <td>{{ $pro->size }}</td>
+                                <td>{{ $pro->uom }}</td>
                                 <td>{{ $pro->pprice }}</td>
                                 <td>{{ $pro->price }}</td>
                                {{--  <td>{{ $pro->category->cat }}</td>
@@ -105,7 +107,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label for="name">{{ __('lang.Product') }}</label>
                                 <input type="text" required name="name" id="name" class="form-control">
@@ -139,6 +141,12 @@
                             <div class="form-group">
                             <label for="size">{{ __('lang.Size') }}</label>
                             <input type="text" name="size" id="size" class="form-control">
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="uom">UOM</label>
+                            <input type="text" name="uom" id="uom" class="form-control">
                         </div>
                         </div>
                         <div class="col-md-6">
@@ -197,7 +205,7 @@
                     <form action="{{ url('/product/edit') }}" method="post">
                         @csrf
                         <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="form-group">
             <label for="name">{{ __('lang.Product') }}</label>
             <input type="text" required id="edit_name" name="name" class="form-control">
@@ -232,6 +240,12 @@
             <label for="size">{{ __('lang.Size') }}</label>
             <input type="text" name="size" id="edit_size" class="form-control">
         </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+        <label for="uom">UOM</label>
+        <input type="text" name="uom" id="edit_uom" class="form-control">
+    </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
@@ -308,6 +322,7 @@
 
             $('#edit_price').val(abc.pro['price']);
             $('#edit_pprice').val(abc.pro['pprice']);
+            $('#edit_uom').val(abc.pro['uom']);
             $('#edit_size').attr('value', abc.pro['size']);
 
             $('#edit_id').val(abc.pro['id']);

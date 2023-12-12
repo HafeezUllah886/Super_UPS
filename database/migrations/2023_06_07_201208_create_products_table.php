@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('brand')->nullable();
             $table->string('madein')->nullable();
             $table->string('size')->nullable();
+            $table->string('uom')->nullable();
 /*             $table->unsignedBigInteger('coy');
             $table->unsignedBigInteger('cat'); */
             $table->float('pprice')->nullable();
