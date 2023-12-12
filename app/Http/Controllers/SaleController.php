@@ -228,11 +228,7 @@ class SaleController extends Controller
     {
 
         $sale = sale::where('ref', $ref)->first();
-        $check = claim::where('salesID', $sale->id)->count();
-        if($check > 0)
-        {
-            return redirect("/sale/history")->with('error', "First delete the claims against this bill");
-        }
+
         sale_details::where('ref', $ref)->delete();
         transactions::where('ref', $ref)->delete();
         stock::where('ref', $ref)->delete();

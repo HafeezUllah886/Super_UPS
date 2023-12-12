@@ -308,7 +308,7 @@
 
             <br><br>
             <h4 class="">Authorize Signature ___________________</h4>
-            <p style="text-align:right;margin-right:2px;">superupscenter@gmail.com</p>
+           
             <br>
         </div>
 
