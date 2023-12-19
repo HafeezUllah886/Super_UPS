@@ -30,7 +30,7 @@ class SaleController extends Controller
             $balance -= $item->db;
         }
         return response()->json(array(
-            'balance' => $balance, 'price' => $product->price
+            'balance' => $balance, 'price' => $product->price * auth()->user()->doller
         ));
     }
 
@@ -99,6 +99,7 @@ class SaleController extends Controller
         $walkIn = null;
         $amount = null;
         $paidIn = null;
+        $dollerRate = auth()->user()->doller;
         if($req->isPaid == 'Yes')
         {
             if($req->customer == 0){
@@ -117,9 +118,13 @@ class SaleController extends Controller
         else{
             $customer = $req->customer;
             $paidIn = $req->paidIn;
-            $amount = $req->amount;
+            $amount = $req->amount / $dollerRate;
         }
-
+        $discount = $req->discount;
+        if($discount > 0)
+        {
+            $discount / $dollerRate;
+        }
         $sale = sale::create([
             'customer' => $customer,
             'walking' => $walkIn,
@@ -127,7 +132,7 @@ class SaleController extends Controller
             'date' => $req->date,
             'desc' => $req->desc,
             'amount' => $amount,
-            'discount' => $req->discount,
+            'discount' => $discount,
             'isPaid' => $req->isPaid,
             'ref' => $ref,
         ]);
@@ -142,7 +147,7 @@ class SaleController extends Controller
             sale_details::create([
                 'bill_id' => $sale->id,
                 'product_id' => $item->product_id,
-                'price' => $item->price,
+                'price' => $item->price / $dollerRate,
                 'qty' => $item->qty,
                 'date' => $req->date,
                 'ref' => $ref,
@@ -156,7 +161,7 @@ class SaleController extends Controller
                 'ref' => $ref
             ]);
          }
-         $net_total = $total - $req->discount;
+         $net_total = $total - $discount;
          $desc1 = "<strong>Products Sold</strong><br/>Invoice No. ".$sale->id;
          $desc2 = "<strong>Products Sold</strong><br/>Partial payment of Invoice No. ".$sale->id;
         if($req->customer != 0){
@@ -169,8 +174,8 @@ class SaleController extends Controller
                 createTransaction($req->customer, $req->date, $net_total, 0, $desc1, "Sale", $ref);
          }
          else{
-            createTransaction($req->customer, $req->date, $net_total, $req->amount, $desc2, "Sale", $ref);
-            createTransaction($req->paidIn, $req->date, $req->amount, 0, $desc1, "Sale", $ref);
+            createTransaction($req->customer, $req->date, $net_total, $req->amount / auth()->user()->doller, $desc2, "Sale", $ref);
+            createTransaction($req->paidIn, $req->date, $req->amount / auth()->user()->doller, 0, $desc1, "Sale", $ref);
          }
         }
         else
@@ -203,7 +208,7 @@ class SaleController extends Controller
         else{
             $ledger_head = $c_acct->title;
             $ledger_type = $p_acct->title . "/Partial";
-            $ledger_amount = $req->amount;
+            $ledger_amount = $req->amount / $dollerRate;
         }
         addLedger($req->date, $ledger_head, $ledger_type, $ledger_details, $ledger_amount, $ref);
 

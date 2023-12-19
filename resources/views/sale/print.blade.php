@@ -321,6 +321,7 @@
                         $total = 0;
                         $ser = 0;
                         $dollarRate = auth()->user()->doller;
+                        $discount = $invoice->discount * $dollarRate;
                     @endphp
 
                     @foreach ($details as $item)
@@ -354,7 +355,7 @@
                             <strong>Discount</strong>
                         </td>
                         <td>
-                            <strong>{{ $invoice->discount == 0 ? 0 : $invoice->discount}}</strong>
+                            <strong>{{ $discount == 0 ? 0 : $discount}}</strong>
                         </td>
                     </tr>
                     <tr>
@@ -362,7 +363,7 @@
                             <strong>Net Total</strong>
                         </td>
                         <td>
-                            <strong>{{ ($total - $invoice->discount) * $dollarRate }}</strong>
+                            <strong>{{ ($total * $dollarRate) - $discount }}</strong>
                         </td>
                     </tr>
                     @endif
@@ -400,41 +401,7 @@
                     @endif
                 </tbody>
             </table>
-            <br>
-            <div class="row">
-                <div class="col-6">
-                    <table style="width:500px;">
-                        <tr>
-                            <td style="text-align: left; width:40%;"> <strong>Payment type:</strong> </td>
-                            <td style="text-align: left">{{$invoice->account->title ?? "Unpaid"}}</td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left; width:40%;"> <strong>Details:</strong> </td>
-                            <td style="text-align: left">{{$invoice->desc}}</td>
-                        </tr>
-                        @if (@$invoice->customer_account->title)
-                        <tr>
-                            <td style="text-align: left; width:40%;"> <strong>Previous Balance:</strong> </td>
-                            <td style="text-align: left">{{($prev_balance ?? 0) * $dollarRate}}</td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left; width:40%;"> <strong>Current Balance:</strong> </td>
-                            <td style="text-align: left">{{ ($total - $paidAmount - $invoice->discount) * $dollarRate }}</td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left; width:40%;"> <strong>Total Balance:</strong> </td>
-                            <td style="text-align: left">{{ $cur_balance * $dollarRate}}</td>
-                        </tr>
-                        @endif
-                    </table>
-                </div>
-               <div class="col-6" style="margin-top:100px;">
-               {{--  <img src="{{asset('assets/images/stamp.jpeg')}}" style="width:200px;margin-left:100px;" alt=""> --}}
-                {{-- <h4 class="">Authorize Signature ___________________</h4> --}}
-               </div>
 
-
-            </div>
 
 
             <br><br>

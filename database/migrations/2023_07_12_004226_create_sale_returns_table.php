@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('bill_id');
             $table->timestamp('date', $precision = 0);
             $table->unsignedBigInteger('paidBy')->nullable();
-            $table->unsignedDecimal('deduction')->nullable();
-            $table->unsignedDecimal('amount');
+            $table->float('deduction')->nullable();
+            $table->float('amount');
             $table->unsignedInteger('ref');
             $table->foreign('bill_id')->references('id')->on('sales');
             $table->foreign('paidBy')->references('id')->on('accounts');

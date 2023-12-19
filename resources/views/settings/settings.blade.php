@@ -20,7 +20,7 @@
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <h4>{{__('lang.Settings')}}</h4>
-               
+
             </div>
         </div>
     </div>
@@ -109,7 +109,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="userName">Today's Doller Rate</label>
-                                <input type="number" class="form-control" name="doller" id="doller" value="{{auth()->user()->doller}}">
+                                <input type="number" step="any" class="form-control" name="doller" id="doller" value="{{auth()->user()->doller}}">
                             </div>
 
                             <div class="form-group">
@@ -119,7 +119,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>

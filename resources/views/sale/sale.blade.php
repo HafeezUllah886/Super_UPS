@@ -102,7 +102,7 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="price1">{{__('lang.Price')}}</label>
-                            <input type="number" required name="price" id="price" class="form-control">
+                            <input type="number" required name="price" step="any" id="price" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -120,7 +120,7 @@
                                 <th class="border-top-0">{{__('lang.Quantity')}}</th>
                                 <th class="border-top-0">{{__('lang.Price')}}</th>
                                 <th class="border-top-0">{{__('lang.Amount')}}</th>
-                                <th class="border-top-0">PKR</th>
+                                <th class="border-top-0">USD</th>
                                 <th>{{__('lang.Action')}}</th>
                             </tr>
                         </thead>
