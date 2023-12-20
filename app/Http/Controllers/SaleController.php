@@ -161,7 +161,7 @@ class SaleController extends Controller
                 'ref' => $ref
             ]);
          }
-         $net_total = $total - $discount;
+         $net_total = ($total / $dollerRate) - $discount;
          $desc1 = "<strong>Products Sold</strong><br/>Invoice No. ".$sale->id;
          $desc2 = "<strong>Products Sold</strong><br/>Partial payment of Invoice No. ".$sale->id;
         if($req->customer != 0){
