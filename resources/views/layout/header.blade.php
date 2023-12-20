@@ -168,6 +168,7 @@
                       {{-- <i class="la la-caret-right"></i>   &nbsp; <span> {{ __('Log Out') }} </span> --}}
                    </a>
                    <a href="{{ url('/settings') }}" class="badge badge-info ml-2">Dollar Rate: {{ auth()->user()->doller }}</a>
+                   <a href="{{ url('/reset') }}" class="badge badge-danger ml-2">Reset Database</a>
             </div>
           </nav>
 

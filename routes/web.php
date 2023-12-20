@@ -168,6 +168,11 @@ Route::middleware('auth')->group(function (){
     Route::get('/return/view/{id}', [SaleReturnController::class, 'view']);
     Route::post('/return/save/{bill}', [SaleReturnController::class, 'saveReturn']);
 
+    Route::get('/reset', function() {
+        Artisan::call('migrate:fresh --seed');
+          return back()->with('message', 'Reset Successful');
+        })->name('reset');
+
 
 });
 
