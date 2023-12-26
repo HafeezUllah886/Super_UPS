@@ -23,6 +23,12 @@
             success: function(data){
                $('#stock').val(data.balance);
                $('#price').val(data.price);
+               $('#dropLPrice').attr("data-value", data.lprice);
+               $('#dropLPrice').html("Loan: " + data.lprice);
+               $('#dropCPrice').attr("data-value", data.cprice);
+               $('#dropCPrice').html("Comparative: " + data.cprice);
+               $('#dropPrice').attr("data-value", data.price);
+               $('#dropPrice').html("Retail: " + data.price);
                $('#qty').attr('max', data.balance);
             }
         });
@@ -101,7 +107,18 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="price1">{{__('lang.Price')}}</label>
-                            <input type="number" required name="price" id="price" class="form-control">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                    <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#" id="dropPrice" onclick="setPrice(this)"></a>
+                                    <a class="dropdown-item" href="#" id="dropLPrice" onclick="setPrice(this)"></a>
+                                    <a class="dropdown-item" href="#" id="dropCPrice" onclick="setPrice(this)"></a>
+                                    </div>
+                                  </div>
+                                  <input type="number" required name="price" id="price" class="form-control">
+                            </div>
+
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -345,6 +362,12 @@ function deleteDraft(id){
             });
         }
     });
+}
+
+function setPrice(value)
+{
+    console.log(value);
+   $("#price").val($(value).attr("data-value"));
 }
 </script>
 @endsection

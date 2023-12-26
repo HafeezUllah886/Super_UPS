@@ -17,7 +17,10 @@ return new class extends Migration
             $table->string('watt')->nullable();
             $table->unsignedBigInteger('coy');
             $table->unsignedBigInteger('cat');
-            $table->unsignedInteger('price');
+            $table->float('price');
+            $table->float('lprice');
+            $table->float('cprice');
+            $table->integer('alert');
             $table->softDeletes();
             $table->timestamps();
         });

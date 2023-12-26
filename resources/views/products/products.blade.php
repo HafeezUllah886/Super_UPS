@@ -44,6 +44,8 @@
                                 <th class="border-top-0">{{ __('lang.Product') }}</th>
                                 <th class="border-top-0">{{ __('lang.Watt') }}</th>
                                 <th class="border-top-0">{{ __('lang.SalePrice') }}</th>
+                                <th class="border-top-0">Loan Price</th>
+                                <th class="border-top-0">Comp Price</th>
                                 <th class="border-top-0">{{ __('lang.Category') }}</th>
                                 <th class="border-top-0">{{ __('lang.Company') }}</th>
                                 <th>{{ __('lang.Action') }}</th>
@@ -62,13 +64,14 @@
                                 <td>{{ $pro->name }}</td>
                                 <td>{{ $pro->watt }}</td>
                                 <td>{{ $pro->price }}</td>
+                                <td>{{ $pro->lprice }}</td>
+                                <td>{{ $pro->cprice }}</td>
                                 <td>{{ $pro->category->cat }}</td>
                                 <td>{{ $pro->company->name }}</td>
-
                                 <td>
-                                    <button onclick='edit_cat({{ $pro->id }}, "{{ $pro->name }}", "{{ $pro->watt }}", {{ $pro->coy }}, {{ $pro->cat }}, {{ $pro->price }})' class="btn btn-primary">{{ __('lang.Edit') }}</button>
+                                    <button onclick='edit_cat({{ $pro->id }}, "{{ $pro->name }}", "{{ $pro->watt }}", {{ $pro->coy }}, {{ $pro->cat }}, {{ $pro->price }}, {{ $pro->lprice }}, {{ $pro->cprice }}, {{ $pro->alert }})' class="btn btn-primary">{{ __('lang.Edit') }}</button>
                                     <a href="{{ url('/product/delete/') }}/{{ $pro->id }}" class="btn btn-danger">Delete</a>
-                                    </td>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -82,7 +85,7 @@
 
 {{-- Model Starts Here --}}
 <div class="modal" id="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">{{ __('lang.AddNewProduct') }}</h5>
@@ -92,21 +95,32 @@
             </div>
             <form method="post">
                 @csrf
-                <div class="modal-body">
-
-                    <div class="form-group">
+                <div class="modal-body row">
+                    <div class="form-group col-md-6">
                         <label for="name">{{ __('lang.Product') }}</label>
                         <input type="text" required name="name" id="name" class="form-control">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6">
                         <label for="price">{{ __('lang.Watt') }}</label>
                         <input type="text" required name="watt" id="watt" class="form-control">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6">
                         <label for="price">{{ __('lang.SalePrice') }}</label>
                         <input type="number" required name="price" id="price" class="form-control">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6">
+                        <label for="lprice">Loan Price</label>
+                        <input type="number" required name="lprice" id="lprice" class="form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="cprice">Comparative Price</label>
+                        <input type="number" required name="cprice" id="cprice" class="form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="alert">Stock Alert</label>
+                        <input type="number" required name="alert" id="alert" class="form-control">
+                    </div>
+                    <div class="form-group col-md-6">
                         <label for="cat">{{ __('lang.Category') }}</label>
                         <select name="cat" required class="select2" id="cat">
                             @foreach ($cats as $cat)
@@ -114,7 +128,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6">
                         <label for="coy">{{ __('lang.Company') }}</label>
                         <select name="coy" required class="select2" id="coy">
                             @foreach ($coys as $coy)
@@ -122,6 +136,7 @@
                             @endforeach
                         </select>
                     </div>
+
 
                 </div>
                 <div class="modal-footer">
@@ -135,31 +150,43 @@
 
 {{-- Model Starts Here --}}
 <div class="modal" id="edit" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
             <div class="modal-header">
                 <h5 class="modal-title">{{ __('lang.EditProduct') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <form action="{{ url('/product/edit') }}" method="post">
+                @csrf
+                <div class="modal-body row">
 
-                <div class="modal-body">
-                    <form action="{{ url('/product/edit') }}" method="post">
-                        @csrf
-                    <div class="form-group">
+                    <div class="form-group col-md-6">
                         <label for="name">{{ __('lang.Product') }}</label>
                         <input type="text" required id="edit_name"  name="name" class="form-control">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6">
                         <label for="watt">{{ __('lang.Watt') }}</label>
                         <input type="text" required name="watt" id="edit_watt" class="form-control">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6">
                         <label for="price">{{ __('lang.SalePrice') }}</label>
                         <input type="number" required id="edit_price"  name="price" class="form-control">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6">
+                        <label for="lprice">Loan Price</label>
+                        <input type="number" required name="lprice" id="edit_lprice" class="form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="cprice">Comparative Price</label>
+                        <input type="number" required name="cprice" id="edit_cprice" class="form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="alert">Stock Alert</label>
+                        <input type="number" required name="alert" id="edit_alert" class="form-control">
+                    </div>
+                    <div class="form-group col-md-6">
                         <label for="cat">{{ __('lang.Category') }}</label>
                         <select name="cat" class="form-control" id="edit_cat">
                             @foreach ($cats as $cat)
@@ -167,7 +194,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6">
                         <label for="coy">{{ __('lang.Company') }}</label>
                         <select name="coy" class="form-control" id="edit_coy">
                             @foreach ($coys as $coy)
@@ -187,8 +214,6 @@
     </div>
 </div>
 @endsection
-
-
 @section('scripts')
 <style>
     .dataTables_paginate {
@@ -206,27 +231,17 @@
 
     });
 
-    function edit_cat(id, name, watt, coy, cat, price) {
+    function edit_cat(id, name, watt, coy, cat, price, lprice, cprice, alert) {
         $('#edit_name').val(name);
         $('#edit_watt').val(watt);
         $('#edit_price').val(price);
+        $('#edit_lprice').val(lprice);
+        $('#edit_cprice').val(cprice);
+        $('#edit_alert').val(alert);
         $('#edit_coy').val(coy);
         $('#edit_cat').val(cat);
         $('#edit_id').val(id);
         $('#edit').modal('show');
     }
-
-    /* function save_edit(){
-        var id = $('#edit_id').val();
-        var cat = $('#edit_cat').val();
-
-        $.ajax({
-            'method': 'get',
-            'url': '{{ url("/category/edit/") }}/'+id+'/'+cat,
-            'success' : function(data){
-
-            }
-        });
-    } */
 </script>
 @endsection

@@ -108,6 +108,9 @@ class productController extends Controller
                 'name' => $req->name,
                 'watt' => $req->watt,
                 'price' => $req->price,
+                'lprice' => $req->lprice,
+                'cprice' => $req->cprice,
+                'alert' => $req->alert,
                 'coy' => $req->coy,
                 'cat' => $req->cat,
             ]
@@ -127,6 +130,9 @@ class productController extends Controller
                 'name' => $req->name,
                 'watt' => $req->watt,
                 'price' => $req->price,
+                'lprice' => $req->lprice,
+                'cprice' => $req->cprice,
+                'alert' => $req->alert,
                 'coy' => $req->coy,
                 'cat' => $req->cat,
             ]
@@ -150,9 +156,8 @@ class productController extends Controller
     }
 
     public function profit($from, $to){
-    // Assuming $fromDate and $toDate are the provided date range
-    $fromDate = $from; // Replace with the actual from date
-    $toDate = $to;   // Replace with the actual to date
+    $fromDate = $from;
+    $toDate = $to;
 
     $products = Products::all();
     $discounts = sale::whereBetween('date', [$fromDate, $toDate])->sum('discount');
