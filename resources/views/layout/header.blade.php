@@ -113,6 +113,7 @@
                     <a class="dropdown-item" href="{{ url('/sale/history') }}">{{ __('lang.SaleHistory') }}</a>
                     <a class="dropdown-item" href="{{ url('/quotation') }}">{{ __('lang.Quotation') }}</a>
                     <a class="dropdown-item" href="{{ url('/return') }}">{{ __('lang.Return') }}</a>
+                    <a class="dropdown-item" href="{{ url('/claim') }}">Claim</a>
                   </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -123,6 +124,7 @@
                       <a class="dropdown-item" href="{{ url('/purchase') }}">{{ __('lang.CreatePurchase') }}</a>
                       <a class="dropdown-item" href="{{url('/purchase/history')}}">{{ __('lang.PurchaseHistory') }}</a>
                       <a class="dropdown-item" href="{{ url('/stock') }}">{{ __('lang.StockDetail') }}</a>
+                      <a class="dropdown-item" href="{{ url('/stockAlert') }}">Stock Alert</a>
                     </div>
                   </li>
                 <li class="nav-item dropdown">

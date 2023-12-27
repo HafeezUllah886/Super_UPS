@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClaimController;
 use App\Http\Controllers\ConfirmPasswordController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\productController;
 use App\Http\Controllers\purchaseController;
 use App\Http\Controllers\QuotationController;
+use App\Http\Controllers\reportController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SaleReturnController;
 use App\Http\Controllers\StockController;
@@ -166,6 +168,9 @@ Route::middleware('auth')->group(function (){
     Route::get('/return/view/{id}', [SaleReturnController::class, 'view']);
     Route::post('/return/save/{bill}', [SaleReturnController::class, 'saveReturn']);
 
+    Route::get('/stockAlert', [reportController::class, 'stockAlert']);
+    Route::get('/claim', [ClaimController::class, 'index']);
+    Route::post('/claim/store', [ClaimController::class, 'store']);
 
 });
 
@@ -178,4 +183,5 @@ Route::middleware(['confirm.password'])->group(function () {
     Route::get('/transfer/delete/{ref}', [AccountController::class, "deleteTransfer"]);
     Route::get('/expense/delete/{ref}', [AccountController::class, "deleteExpense"]);
     Route::get('/return/delete/{ref}', [SaleReturnController::class, 'delete']);
+    Route::get('/claim/delete/{ref}', [ClaimController::class, 'delete']);
 });
