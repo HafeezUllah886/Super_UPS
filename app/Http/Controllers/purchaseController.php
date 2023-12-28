@@ -309,7 +309,8 @@ class purchaseController extends Controller
             $stock_db = stock::where('product_id', $product->id)->sum('db');
             $balance = $stock_cr - $stock_db;
             $value = $balance * $product->price;
-            $data[] = ['id' => $product->id,'product' => $product->name, 'cat' => $product->category->cat, 'coy' => $product->company->name, 'balance' => $balance, 'value' => $value, 'price' => $product->price];
+            $price = purchase_details::where('product_id', $product->id)->orderBy('id', 'desc')->limit(3)->avg('rate');
+            $data[] = ['id' => $product->id,'product' => $product->name, 'cat' => $product->category->cat, 'coy' => $product->company->name, 'balance' => $balance, 'value' => $value, 'price' => $price];
         }
 
         return view('purchase.stock')->with(compact('data'));
