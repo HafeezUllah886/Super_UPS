@@ -126,7 +126,7 @@
 
     window.open("{{ url('/stock/details/') }}/"+{{ $product->id }}+"/"+from+"/"+to, '_self');
     }
-
+/////Testing
 
 </script>
 @endsection
