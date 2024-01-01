@@ -47,7 +47,6 @@
                     $total_db += $item->db;
                     $balance -= $item->db;
                     $balance += $item->cr;
-
                 @endphp
                 <tr>
                 <td>{{ $item->ref }}</td>

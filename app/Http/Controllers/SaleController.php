@@ -315,8 +315,6 @@ class SaleController extends Controller
         stock::where('product_id', $item->product_id)->where('ref',$item->ref)->delete();
         $bill = $item->bill->id;
         $item->delete();
-
-
         updateSaleAmount($bill);
         return "Deleted";
     }
