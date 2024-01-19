@@ -218,6 +218,10 @@ function updatePurchaseAmount($id){
         $trans->save();
 
     }
+
+    $ledger = ledger::where('ref', $bill->ref)->first();
+    $ledger->amount = $total;
+    $ledger->save();
 }
 
 function updateSaleAmount($id){
