@@ -23,7 +23,7 @@
                                 <th class="border-top-0">{{ __('lang.Category') }}</th>
                                 <th class="border-top-0">{{ __('lang.Company') }}</th>
                                 <th class="border-top-0">{{ __('lang.AvailableStock') }}</th>
-                                <th class="border-top-0">{{ __('lang.Price') }}</th>
+                                <th class="border-top-0">Purchase Rate</th>
                                 <th class="border-top-0">{{ __('lang.StockValue') }}</th>
                                 <th class="border-top-0">{{ __('lang.Action') }}</th>
                             </tr>
