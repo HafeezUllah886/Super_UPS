@@ -66,6 +66,8 @@ Route::middleware('auth')->group(function (){
     Route::get('/accounts/details/{id}/{from}/{to}', [AccountController::class, "details"]);
     Route::post('/account/edit/{type}', [AccountController::class, "editAccount"]);
     Route::get('/account/statement/pdf/{id}/{from}/{to}', [AccountController::class, "downloadStatement"]);
+    Route::get('/account/print/{type}', [AccountController::class, "account_print"]);
+
 
 
     Route::get('/deposit', [AccountController::class, "deposit"]);
@@ -131,6 +133,7 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/stock',[purchaseController::class, "stock1"]);
     Route::get('/stock/details/{id}/{from}/{to}',[purchaseController::class, "stockDetails"]);
+    Route::get('/stock/print',[purchaseController::class, "stockPrint"]);
 
     Route::get('/settings',[dashboardController::class, "settings"]);
     Route::post('/settings/language/update',[dashboardController::class, "changeLanguage"]);

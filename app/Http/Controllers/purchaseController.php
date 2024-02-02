@@ -328,4 +328,23 @@ class purchaseController extends Controller
         $cur_bal = $cr - $db;
         return view('purchase.stockDetails', compact('stocks', 'cur_bal', 'prev_bal', 'from', 'to'));
     }
+
+    public function stockPrint()
+    {
+        $products = products::all();
+        $data = [];
+        $balance = 0;
+        $value = 0;
+
+        foreach ($products as $product) {
+            $stock_cr = stock::where('product_id', $product->id)->sum('cr');
+            $stock_db = stock::where('product_id', $product->id)->sum('db');
+            $balance = $stock_cr - $stock_db;
+            $value = $balance * $product->price;
+            $price = purchase_details::where('product_id', $product->id)->orderBy('id', 'desc')->limit(3)->avg('rate');
+            $data[] = ['id' => $product->id,'product' => $product->name, 'cat' => $product->category->cat, 'coy' => $product->company->name, 'balance' => $balance, 'value' => $value, 'price' => $price];
+        }
+
+        return view('purchase.stock_print')->with(compact('data'));
+    }
 }

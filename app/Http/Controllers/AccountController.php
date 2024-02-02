@@ -389,4 +389,8 @@ class AccountController extends Controller
         return $pdf->download($file_name);
 
     }
+    public function account_print($type){
+        $accounts = account::where('type', $type)->get();
+        return view('finance.accounts_print')->with(compact('accounts'));
+    }
 }

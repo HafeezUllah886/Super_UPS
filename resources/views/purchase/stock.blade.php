@@ -9,6 +9,7 @@
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <h4>{{ __('lang.AvailableStock') }}</h4>
+                <a href="{{ url('/stock/print') }}" class="btn btn-success" >Print</a>
             </div>
         </div>
     </div>

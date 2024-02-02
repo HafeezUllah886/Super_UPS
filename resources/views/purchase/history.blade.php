@@ -61,7 +61,6 @@
                                             <td>{{$data1->qty}}</td>
                                             <td>{{round($data1->rate,2)}}</td>
                                             <td>{{$subTotal}}</td>
-
                                         </tr>
                                         @endforeach
 

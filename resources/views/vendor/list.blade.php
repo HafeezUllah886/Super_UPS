@@ -19,6 +19,7 @@
             <div class="d-flex justify-content-between">
                 <h4>{{ __('lang.Vendors') }}</h4>
                 <div class="d-flex justify-content-end">
+                    <a href="{{ url('/account/print/Vendor') }}" class="btn btn-primary">Print</a>
                 <button class="btn btn-success" data-toggle="modal" data-target="#modal">{{ __('lang.CreateNew') }}</button>
                 </div>
 
