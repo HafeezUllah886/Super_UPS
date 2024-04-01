@@ -36,7 +36,7 @@
                 <!-- Session Status -->
 
                 <!-- Validation Errors -->
-
+                <p class="alert alert-danger">Payment overdue - Please pay your remaining payment </p>
                 <form method="POST" >
                    @csrf
                     <!-- Email Address -->
@@ -78,10 +78,10 @@
                             Forgot your password?
                         </a>
 
-                        <button type="submit"
+                        {{-- <button type="submit"
                             class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-3">
                             Log in
-                        </button>
+                        </button> --}}
                     </div>
                 </form>
             </div>
