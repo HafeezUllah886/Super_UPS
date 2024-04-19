@@ -8,7 +8,7 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>{{ $stocks[0]->product->name }}</h4>
+                <h4>{{ $product->name }}</h4>
                 {{-- <button id="download" class="btn btn-success">PDF</button --}}>
             </div>
         </div>
@@ -124,7 +124,7 @@
         var from = $('#from').val();
         var to = $('#to').val();
 
-    window.open("{{ url('/stock/details/') }}/"+{{ $stocks[0]->product_id }}+"/"+from+"/"+to, '_self');
+    window.open("{{ url('/stock/details/') }}/"+{{ $product->id }}+"/"+from+"/"+to, '_self');
     }
 
 

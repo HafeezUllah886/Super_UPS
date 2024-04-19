@@ -320,6 +320,7 @@ class purchaseController extends Controller
 
     public function stockDetails($id, $from, $to){
         $stocks = stock::with('product')->where('product_id', $id)->whereDate('date','>=', $from)->whereDate('date','<=', $to)->get();
+        $product = products::find($id);
         $prev_bal = 0;
         $cur_bal = 0;
         $cr = stock::where('product_id', $id)->whereDate('date','<=', $from)->sum('cr');
@@ -328,6 +329,6 @@ class purchaseController extends Controller
         $cr = stock::where('product_id', $id)->sum('cr');
         $db = stock::where('product_id', $id)->sum('db');
         $cur_bal = $cr - $db;
-        return view('purchase.stockDetails', compact('stocks', 'cur_bal', 'prev_bal', 'from', 'to'));
+        return view('purchase.stockDetails', compact('stocks', 'product', 'cur_bal', 'prev_bal', 'from', 'to'));
     }
 }
