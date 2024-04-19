@@ -131,6 +131,7 @@ class purchaseController extends Controller
         $total = 0;
         $amount1 = 0;
         foreach ($items as $item) {
+            $refID = getRef();
             $amount1 = $item->rate * $item->qty;
             $total += $amount1;
             purchase_details::create([
@@ -140,7 +141,7 @@ class purchaseController extends Controller
                 'dollar' => $item->dollar,
                 'qty' => $item->qty,
                 'date' => $req->date,
-                'ref' => $ref,
+                'ref' => $refID,
             ]);
 
             stock::create([
@@ -148,7 +149,7 @@ class purchaseController extends Controller
                 'date' => $req->date,
                 'desc' => $desc,
                 'cr' => $item->qty,
-                'ref' => $ref
+                'ref' => $refID
             ]);
         }
         $desc1 = "<strong>Products Purchased</strong><br/>Bill No. " . $purchase->id;
@@ -232,6 +233,7 @@ class purchaseController extends Controller
             return "Existing";
         }
         $bill = purchase::where('id', $id)->first();
+        $refID = getRef();
         $purchase = purchase_details::create(
             [
                 'bill_id' => $bill->id,
@@ -239,7 +241,7 @@ class purchaseController extends Controller
                 'qty' => $req->qty,
                 'rate' => $req->rate,
                 'dollar' => $req->dollar,
-                'ref' => $bill->ref,
+                'ref' => $refID,
                 'date' => $bill->date,
             ]
         );
@@ -249,7 +251,7 @@ class purchaseController extends Controller
             'date' => $bill->date,
             'desc' => $desc,
             'cr' => $req->qty,
-            'ref' => $bill->ref
+            'ref' => $refID
         ]);
         updatePurchaseAmount($bill->id);
         return "Done";
@@ -259,10 +261,10 @@ class purchaseController extends Controller
     {
 
         $item = purchase_details::find($id);
-        $bill = $item->bill;
+        stock::where('ref', $item->ref)->delete();
+        $bill = $item->bill->id;
         $item->delete();
-        stock::where('ref', $bill->ref)->delete();
-        updatePurchaseAmount($bill->id);
+        updatePurchaseAmount($bill);
         return "Deleted";
     }
 
@@ -291,10 +293,16 @@ class purchaseController extends Controller
 
     public function deletePurchase($ref)
     {
-        purchase_details::where('ref', $ref)->delete();
+        $purchase =  purchase::where('ref', $ref)->first();
+        $details = purchase_details::where('bill_id', $purchase->id)->get();
+        foreach($details as $product)
+        {
+            stock::where('ref', $product->ref)->delete();
+            $product->delete();
+        }
         transactions::where('ref', $ref)->delete();
-        stock::where('ref', $ref)->delete();
-        purchase::where('ref', $ref)->delete();
+        $purchase->delete();
+        
         ledger::where('ref', $ref)->delete();
         session()->forget('confirmed_password');
         return redirect('/purchase/history')->with('error', "Purchase Deleted");

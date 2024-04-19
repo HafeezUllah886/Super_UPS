@@ -139,13 +139,14 @@ class SaleController extends Controller
         foreach ($items as $item){
             $amount1 = $item->price * $item->qty;
             $total += $amount1;
+            $refID = getRef();
             sale_details::create([
                 'bill_id' => $sale->id,
                 'product_id' => $item->product_id,
                 'price' => $item->price,
                 'qty' => $item->qty,
                 'date' => $req->date,
-                'ref' => $ref,
+                'ref' => $refID,
             ]);
 
             stock::create([
@@ -153,7 +154,7 @@ class SaleController extends Controller
                 'date' => $req->date,
                 'desc' => $desc,
                 'db' => $item->qty,
-                'ref' => $ref
+                'ref' => $refID,
             ]);
          }
          $net_total = $total - $req->discount;
@@ -218,10 +219,14 @@ class SaleController extends Controller
 
     public function deleteSale($ref)
     {
-        sale_details::where('ref', $ref)->delete();
+        $sale = sale::where('ref', $ref)->firswt();
+        $details = sale_details::where('bill_id', $sale->id)->get();
+        foreach($details as $product)
+        {
+            stock::where('ref', $product->ref)->delete();
+            $product->delete();
+        }
         transactions::where('ref', $ref)->delete();
-        stock::where('ref', $ref)->delete();
-        sale::where('ref', $ref)->delete();
         ledger::where('ref', $ref)->delete();
         session()->forget('confirmed_password');
         return redirect('/sale/history')->with('error', "Sale Deleted");
@@ -252,13 +257,14 @@ class SaleController extends Controller
         }
         $bill = sale::where('id', $id)->first();
         $date = $bill->date;
+        $ref = getRef();
         sale_details::create(
             [
                 'bill_id' => $bill->id,
                 'product_id' => $req->product,
                 'qty' => $req->qty,
                 'price' => $req->price,
-                'ref' => $bill->ref,
+                'ref' => $ref,
                 'date' => $date,
             ]
         );
@@ -269,7 +275,7 @@ class SaleController extends Controller
                 'date' => $date,
                 'desc' => "<strong>Sale</strong><br/> Invoice No. ".$bill->id,
                 'db' => $req->qty,
-                'ref' => $bill->ref,
+                'ref' => $ref,
             ]
         );
 
@@ -311,6 +317,7 @@ class SaleController extends Controller
     public function deleteEdit($id)
     {
         $item = sale_details::find($id);
+        stock::where('ref', $item->ref)->delete();
         $bill = $item->bill->id;
         $item->delete();
         updateSaleAmount($bill);
