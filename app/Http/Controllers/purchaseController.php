@@ -235,6 +235,7 @@ class purchaseController extends Controller
                 'product_id' => $req->product,
                 'qty' => $req->qty,
                 'rate' => $req->rate,
+                'date' => $bill->date,
                 'ref' => $bill->ref,
             ]
         );
@@ -244,6 +245,7 @@ class purchaseController extends Controller
             'date' => $bill->date,
             'desc' => $desc,
             'cr' => $req->qty,
+
             'ref' => $bill->ref
         ]);
         updatePurchaseAmount($bill->id);
@@ -252,10 +254,12 @@ class purchaseController extends Controller
 
     public function deleteEdit($id)
     {
+
         $item = purchase_details::find($id);
         $bill = $item->bill;
+
+        stock::where(['ref' => $bill->ref, 'product_id' => $item->product_id])->delete();
         $item->delete();
-        stock::where('ref', $bill->ref)->delete();
         updatePurchaseAmount($bill->id);
         return "Deleted";
     }
