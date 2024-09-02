@@ -9,6 +9,7 @@
             <div class="d-flex justify-content-between">
                 <h4>{{ __('lang.Expense') }}</h4>
                 <div>
+                    <a href="{{ route('exp_dashboard', [firstDayOfMonth(), lastDayOfMonth()]) }}" class="btn btn-info" >Expense Dashboard</a>
                     <a href="{{route('expense_cat.index')}}" class="btn btn-info" >Expense Category</a>
                     <button class="btn btn-success" data-toggle="modal" data-target="#modal">{{ __('lang.CreateNew') }}</button>
                 </div>
