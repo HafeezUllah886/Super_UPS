@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class expense_categories extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
 }

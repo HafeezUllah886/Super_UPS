@@ -12,7 +12,9 @@ class ExpenseCategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $cats = expense_categories::all();
+
+        return view('finance.expenses_cats', compact('cats'));
     }
 
     /**
@@ -28,7 +30,13 @@ class ExpenseCategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        expense_categories::create(
+            [
+                'exp_cat' => $request->exp_cat,
+            ]
+        );
+
+        return back()->with('success', "Category Created");
     }
 
     /**
@@ -50,9 +58,17 @@ class ExpenseCategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, expense_categories $expense_categories)
+    public function update(Request $request, $id)
     {
-        //
+        $cat = expense_categories::find($id);
+
+        $cat->update(
+            [
+                'exp_cat' => $request->exp_cat,
+            ]
+        );
+
+        return back()->with('success', "Category Updated");
     }
 
     /**

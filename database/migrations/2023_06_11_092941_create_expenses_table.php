@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('account_id');
-            $table->foreignId('catID')->constrained('expenses', 'id');
+            $table->foreignId('catID')->constrained('expense_categories', 'id');
             $table->timestamp('date', $precision = 0);
             $table->text('desc')->nullable();
             $table->unsignedDecimal('amount', 10, 2);

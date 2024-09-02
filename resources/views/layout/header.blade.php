@@ -59,6 +59,11 @@
             height: 70vh !important;
             /* overflow:scroll; */
           }
+          .urdu {
+            font-family: "Noto Nastaliq Urdu";
+            font-weight: 900;
+
+          }
           .expBtn{
             margin-left: 20px;
             border:none !important;

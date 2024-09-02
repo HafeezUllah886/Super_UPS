@@ -4,6 +4,8 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ConfirmPasswordController;
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\expense_controller;
+use App\Http\Controllers\ExpenseCategoriesController;
 use App\Http\Controllers\productController;
 use App\Http\Controllers\purchaseController;
 use App\Http\Controllers\QuotationController;
@@ -36,6 +38,8 @@ Route::get('/clear-cache', function() {
 });
 
 Route::middleware('auth')->group(function (){
+    Route::resource('expense_cat', ExpenseCategoriesController::class);
+
     Route::get('confirm-password', [ConfirmPasswordController::class, 'showConfirmPasswordForm'])->name('confirm-password');
     Route::post('confirm-password', [ConfirmPasswordController::class, 'confirmPassword']);
 
@@ -77,9 +81,9 @@ Route::middleware('auth')->group(function (){
     Route::post('/withdraw', [AccountController::class, "storeWithdraw"]);
 
 
-    Route::get('/expense', [AccountController::class, "expense"]);
-    Route::post('/expense', [AccountController::class, "storeExpense"]);
-
+    Route::get('/expense', [expense_controller::class, "expense"]);
+    Route::post('/expense', [expense_controller::class, "storeExpense"]);
+    Route::get('/expense/dashboard/{from}/{to}', [expense_controller::class, 'expDashboard'])->name('exp_dashboard');
 
     Route::get('/transfer', [AccountController::class, "transfer"]);
     Route::post('/transfer', [AccountController::class, "storeTransfer"]);
@@ -179,6 +183,6 @@ Route::middleware(['confirm.password'])->group(function () {
     Route::get('/quotation/delete/{ref}', [QuotationController::class, "delete"]);
     Route::get('/withdraw/delete/{ref}', [AccountController::class, "deleteWithdraw"]);
     Route::get('/transfer/delete/{ref}', [AccountController::class, "deleteTransfer"]);
-    Route::get('/expense/delete/{ref}', [AccountController::class, "deleteExpense"]);
+    Route::get('/expense/delete/{ref}', [expense_controller::class, "deleteExpense"]);
     Route::get('/return/delete/{ref}', [SaleReturnController::class, 'delete']);
 });

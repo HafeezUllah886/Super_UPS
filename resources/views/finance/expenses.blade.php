@@ -8,7 +8,11 @@
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <h4>{{ __('lang.Expense') }}</h4>
-                <button class="btn btn-success" data-toggle="modal" data-target="#modal">{{ __('lang.CreateNew') }}</button>
+                <div>
+                    <a href="{{route('expense_cat.index')}}" class="btn btn-info" >Expense Category</a>
+                    <button class="btn btn-success" data-toggle="modal" data-target="#modal">{{ __('lang.CreateNew') }}</button>
+                </div>
+
             </div>
         </div>
     </div>
@@ -23,6 +27,7 @@
                                 <th class="border-top-0">{{ __('lang.Ref') }}</th>
                                 <th class="border-top-0">{{ __('lang.Date') }}</th>
                                 <th class="border-top-0">{{ __('lang.Account') }}</th>
+                                <th class="border-top-0">Category</th>
                                 <th class="border-top-0">{{ __('lang.Desc') }}</th>
                                 <th class="border-top-0">{{ __('lang.Amount') }}</th>
                                 <th>{{ __('lang.Action') }}</th>
@@ -35,7 +40,7 @@
                                 <td> {{ $dep->ref }} </td>
                                 <td>{{ $dep->date }}</td>
                                 <td>{{ $dep->account->title }} ({{ $dep->account->Category }})</td>
-
+                                <td>{{ $dep->cat->exp_cat}}</td>
                                 <td>{{ $dep->desc}}</td>
                                 <td>{{ $dep->amount}}</td>
                                 <td>
@@ -72,6 +77,15 @@
                             <option value=""></option>
                             @foreach ($accounts as $account)
                                <option value="{{ $account->id }}">{{ $account->title }} ({{ $account->Category }})</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="account">Category</label>
+                        <select name="cat" id="catID" class="select2" required>
+                            <option value=""></option>
+                            @foreach ($exp_cats as $cat)
+                               <option value="{{ $cat->id }}">{{ $cat->exp_cat }}</option>
                             @endforeach
                         </select>
                     </div>
