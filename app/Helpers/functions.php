@@ -10,6 +10,7 @@ use App\Models\ref;
 use App\Models\sale;
 use App\Models\sale_details;
 use App\Models\stock;
+use App\Models\tasks;
 use App\Models\transactions;
 use Carbon\Carbon;
 
@@ -294,4 +295,20 @@ function deleteLedger($ref)
 {
     ledger::where('ref', $ref)->delete();
     return "Ledger Deleted";
+}
+
+function task_badge()
+{
+    $tasks = tasks::all();
+    $count = 0;
+    foreach($tasks as $task)
+    {
+        if($task->status == "Pending" && $task->due < now())
+        {
+            $count += 1;
+        }
+    }
+
+    return $count;
+
 }

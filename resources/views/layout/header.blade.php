@@ -168,6 +168,9 @@
                     </a>
                   </li>
               </ul>
+              <a class="btn btn-warning ml-3" href="{{url('/tasks')}}">
+                Tasks <span class="badge badge-light">{{task_badge()}}</span>
+              </a>
                    <a class="btn btn-primary" href="{{ url('/logout') }}" >
                     <i class="fa fa-power-off" aria-hidden="true"></i>
                       {{-- <i class="la la-caret-right"></i>   &nbsp; <span> {{ __('Log Out') }} </span> --}}

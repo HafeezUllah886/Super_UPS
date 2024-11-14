@@ -10,6 +10,7 @@ use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SaleReturnController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\TasksController;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -168,6 +169,11 @@ Route::middleware('auth')->group(function (){
     Route::get('/return/view/{id}', [SaleReturnController::class, 'view']);
     Route::post('/return/save/{bill}', [SaleReturnController::class, 'saveReturn']);
 
+    Route::get('/tasks', [TasksController::class, 'index']);
+    Route::get('/task/mark/{id}', [TasksController::class, 'mark']);
+    Route::post('/task/store/', [TasksController::class, 'store']);
+    Route::post('/task/update', [TasksController::class, 'update']);
+
 
 });
 
@@ -180,4 +186,5 @@ Route::middleware(['confirm.password'])->group(function () {
     Route::get('/transfer/delete/{ref}', [AccountController::class, "deleteTransfer"]);
     Route::get('/expense/delete/{ref}', [AccountController::class, "deleteExpense"]);
     Route::get('/return/delete/{ref}', [SaleReturnController::class, 'delete']);
+    Route::get('/task/delete/{id}', [TasksController::class, 'delete']);
 });

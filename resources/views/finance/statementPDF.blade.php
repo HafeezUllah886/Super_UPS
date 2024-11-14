@@ -363,7 +363,7 @@
                                      @endforeach
 
                                  </table>
-                                 <strong>Discount: </strong>{{$data[0]->bill->discount}}
+                                 <strong>Discount: </strong>{{$data[0]->bill->discount ?? 0}}
                              @endif
                              @if ($item['type'] == 'Sale Return')
                                  @php
@@ -387,7 +387,7 @@
                                          </tr>
                                      @endforeach
                                  </table>
-                                 <strong>Diduction: </strong>{{$data[0]->returnBill->deduction}}
+                                 <strong>Diduction: </strong>{{$data[0]->returnBill->deduction ?? 0}}
                              @endif
                              @if ($item['type'] == 'Purchase')
                              @php
