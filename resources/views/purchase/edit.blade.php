@@ -62,10 +62,10 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="rate">{{ __('lang.PurchasePrice') }} (In Dollers)</label>
-                            <input type="number" required name="doller" oninput="conversion(this.value)" id="doller" class="form-control">
-                            <input type="number" required readonly name="rate" id="rate" class="form-control">
-                            <input type="hidden" name="d-rate" id="d-rate" value="{{auth()->user()->doller ?? 300}}">
+                            <label for="rate">{{ __('lang.PurchasePrice') }}</label>
+                            <input type="number" required name="rate"  id="rate" class="form-control">
+                            {{-- <input type="number" required readonly name="rate" id="rate" class="form-control">
+                            <input type="hidden" name="d-rate" id="d-rate" value="{{auth()->user()->doller ?? 300}}"> --}}
                         </div>
                     </div>
 
@@ -81,7 +81,7 @@
                                 <th class="border-top-0">{{ __('lang.Ser') }}</th>
                                 <th class="border-top-0">{{ __('lang.Product') }}</th>
                                 <th class="border-top-0">{{ __('lang.Quantity') }}</th>
-                                <th class="border-top-0">Dollar</th>
+
                                 <th class="border-top-0">{{ __('lang.Price') }}</th>
                                 <th class="border-top-0">{{ __('lang.Amount') }}</th>
                                 <th>{{ __('lang.Action') }}</th>
@@ -241,8 +241,6 @@ function qty(id){
             Snackbar.show({
             text: "Quantity Updated",
             duration: 3000,
-            /* actionTextColor: '#fff',
-            backgroundColor: '#e7515a' */
             actionTextColor: '#fff',
             backgroundColor: '#00ab55'
             });
@@ -252,9 +250,7 @@ function qty(id){
 
 function rate(id){
     var dollar = $("#dollar"+id).val();
-    var dRate = $("#d-rate").val();
-
-    var val = dollar * dRate;
+    var val = $("#rate"+id).val();
     $.ajax({
         method: "GET",
         url: "{{url('/purchase/update/edit/rate/')}}/"+id+"/"+val+"/"+dollar,

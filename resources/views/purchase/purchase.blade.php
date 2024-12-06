@@ -81,9 +81,9 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="rate">{{ __('lang.PurchaseRate') }}</label>
-                            <input type="number" required name="dollar" oninput="conversion(this.value)" id="doller" class="form-control">
-                            <input type="number" required readonly name="rate" id="rate" class="form-control">
-                            <input type="hidden" name="d-rate" id="d-rate" value="{{auth()->user()->doller ?? 300}}">
+                            <input type="number" required name="rate" {{-- oninput="conversion(this.value)" --}} id="rate" class="form-control">
+                            {{-- <input type="number" required readonly name="rate" id="rate" class="form-control"> --}}
+                           {{--  <input type="hidden" name="d-rate" id="d-rate" value="{{auth()->user()->doller ?? 300}}"> --}}
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -104,7 +104,7 @@
                                 <th class="border-top-0">{{ __('lang.Ser') }}</th>
                                 <th class="border-top-0">{{ __('lang.Product') }}</th>
                                 <th class="border-top-0">{{ __('lang.Quantity') }}</th>
-                                <th class="border-top-0">Dollar</th>
+{{--                                 <th class="border-top-0">Dollar</th> --}}
                                 <th class="border-top-0">{{ __('lang.Price') }}</th>
                                 <th class="border-top-0">{{ __('lang.Amount') }}</th>
                                 <th>{{ __('lang.Action') }}</th>
@@ -289,9 +289,8 @@ function qty(id){
 
 function rate(id){
     var dollar = $("#dollar"+id).val();
-    var dRate = $("#d-rate").val();
+    var val = $("#rate"+id).val();
 
-    var val = dollar * dRate;
     $.ajax({
         method: "GET",
         url: "{{url('/purchase/update/draft/rate/')}}/"+id+"/"+val+"/"+dollar,

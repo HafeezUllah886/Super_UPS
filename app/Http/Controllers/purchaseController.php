@@ -35,7 +35,7 @@ class purchaseController extends Controller
                 'product_id' => $req->product,
                 'qty' => $req->qty,
                 'rate' => $req->rate,
-                'dollar' => $req->dollar,
+                'dollar' => 0,
             ]
         );
 
@@ -68,7 +68,6 @@ class purchaseController extends Controller
     {
         $item = purchase_draft::find($id);
         $item->rate = $rate;
-        $item->dollar = $dollar;
         $item->save();
 
         return "Rate Updated";
@@ -138,7 +137,7 @@ class purchaseController extends Controller
                 'bill_id' => $purchase->id,
                 'product_id' => $item->product_id,
                 'rate' => $item->rate,
-                'dollar' => $item->dollar,
+                'dollar' => 0,
                 'qty' => $item->qty,
                 'date' => $req->date,
                 'ref' => $refID,
@@ -240,7 +239,7 @@ class purchaseController extends Controller
                 'product_id' => $req->product,
                 'qty' => $req->qty,
                 'rate' => $req->rate,
-                'dollar' => $req->dollar,
+                'dollar' => 0,
                 'ref' => $refID,
                 'date' => $bill->date,
             ]
@@ -285,7 +284,6 @@ class purchaseController extends Controller
     {
         $item = purchase_details::find($id);
         $item->rate = $rate;
-        $item->dollar = $dollar;
         $item->save();
         updatePurchaseAmount($item->bill->id);
         return "Rate Updated";
@@ -302,7 +300,7 @@ class purchaseController extends Controller
         }
         transactions::where('ref', $ref)->delete();
         $purchase->delete();
-        
+
         ledger::where('ref', $ref)->delete();
         session()->forget('confirmed_password');
         return redirect('/purchase/history')->with('error', "Purchase Deleted");
