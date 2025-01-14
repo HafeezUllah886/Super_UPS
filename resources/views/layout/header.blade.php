@@ -189,6 +189,11 @@
                         {{ __('lang.Settings') }}
                     </a>
                   </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link" href="{{ route('target.index') }}" id="navbardrop">
+                        Targets
+                    </a>
+                  </li>
               </ul>
                    <a class="btn btn-primary" href="{{ url('/logout') }}" >
                     <i class="fa fa-power-off" aria-hidden="true"></i>

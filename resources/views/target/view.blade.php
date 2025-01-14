@@ -251,30 +251,24 @@
 <body>
 
     <div class="container">
-        <img style="margin:0;width:100%;" src="{{ asset('assets/images/bill.png') }}" alt="">
+        <img style="margin:0;width:100%;" src="{{ asset('assets/images/bill.jpeg') }}" alt="">
         <div class="body-section">
             <div class="row">
                 <div class="qoute">
-                    <h2 style="text-align: center;">INVOICE# &nbsp; {{ $invoice->id }}</h2>
+                    <h2 style="text-align: center;">Target # &nbsp; {{ $target->id }}</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-6">
                     <!-- <h2 class="heading">Invoice No.: 001</h2> -->
-                    <h3 class="sub-heading">Invoice to:
-                        @if (@$invoice->customer_account->title)
-                            {{ @$invoice->customer_account->title }}
-                        @else
-                            {{ $invoice->walking }} (Walk In)
-
-                        @endif
+                    <h3 class="sub-heading">Target For:
+                        {{$target->customer->title}}
                     </h3>
-
-
                 </div>
                 <div class="col-6">
                     <div class="company-details">
-                        <h3 class="text-dark">Date: {{ date('d M Y', strtotime($invoice->date)) }}</h3>
+                        <h3 class="text-dark">Start Date: {{ date('d M Y', strtotime($target->startDate)) }}</h3>
+                        <h3 class="text-dark">End Date: {{ date('d M Y', strtotime($target->endDate)) }}</h3>
                     </div>
                 </div>
             </div>
@@ -287,127 +281,32 @@
                 <thead>
                     <tr>
                         <th class="w-5">#</th>
-                        <th class="w-15">Category</th>
-                        <th class="w-15">Item</th>
-                        <th class="w-10">Price</th>
-                        <th class="w-10">Quantity</th>
-                        <th class="w-10">Total</th>
+                        <th class="w-15">Product</th>
+                        <th class="w-15">Target Qty</th>
+                        <th class="w-10">Achieved Qty</th>
+                        <th class="w-10">Percent</th>
                     </tr>
                 </thead>
-                <tbody>
-                    @php
-                        $total = 0;
-                        $ser = 0;
-                    @endphp
-
-                    @foreach ($details as $item)
-                        @php
-                            $ser += 1;
-                        @endphp
-                        <tr>
-                            <th scope="row">{{ $ser }}</th>
-                            <td>{{ $item->product->category->cat }}</td>
-                            <td>{{ $item->product->name }}</td>
-                            <td>{{ $item->price }}</td>
-                            <td>{{ $item->qty }}</td>
-                            <td>{{ $item->price * $item->qty }}</td>
-                        </tr>
-                        @php
-                            $total += $item->price * $item->qty;
-                        @endphp
-                    @endforeach
-
-                    <tr>
-                        <td colspan="5" class="text-right">
-                            <strong>Total</strong>
-                        </td>
-                        <td>
-                            <strong>{{ $total}}</strong>
-                        </td>
-                    </tr>
-                    @if($invoice->discount > 0)
-                    <tr>
-                        <td colspan="5" class="text-right">
-                            <strong>Discount</strong>
-                        </td>
-                        <td>
-                            <strong>{{ $invoice->discount == 0 ? 0 : $invoice->discount}}</strong>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="5" class="text-right">
-                            <strong>Net Total</strong>
-                        </td>
-                        <td>
-                            <strong>{{ $total - $invoice->discount }}</strong>
-                        </td>
-                    </tr>
-                    @endif
-
-                    @if (@$invoice->customer_account->title)
-                    <tr>
-                        @php
-                        $paidAmount = $invoice->amount;
-                        if(!$invoice->paidIn){
-                             $paidAmount = 0;
-                        }
-                        else{
-
-                            if($invoice->amount == 0){
-                                $paidAmount = $total - ($invoice->amount + $invoice->discount);
-                            }
-                        }
-
-                        @endphp
-                        <td colspan="5" class="text-right">
-                            <strong>Paid Amount</strong>
-                        </td>
-                        <td>
-                            <strong>{{ $paidAmount }}</strong>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="5" class="text-right">
-                            <strong>Remaining</strong>
-                        </td>
-                        <td>
-                            <h3> {{ $total - $paidAmount - $invoice->discount}}</h3>
-                        </td>
-                    </tr>
-                    @endif
-                </tbody>
+                    <tbody id="products-list">
+                        @foreach ($target->details as $key => $product)
+                            <tr class="border-1 border-dark">
+                             <td class="m-1 p-1 border-1 border-dark">{{$key+1}}</td>
+                             <td class="text-start m-1 p-1 border-1 border-dark">{{$product->product->name}}</td>
+                             <td class="text-end m-1 p-1 border-1 border-dark">{{number_format($product->qty)}} </td>
+                             <td class="text-end m-1 p-1 border-1 border-dark">{{number_format($product->sold)}}</td>
+                             <td class="text-end m-1 p-1 border-1 border-dark">{{$product->per}} %</td>
+                            </tr>
+                        @endforeach
+                     </tbody>
+                     <tfoot>
+                         <tr>
+                             <th colspan="2" class="text-end">Total</th>
+                             <th class="text-end">{{number_format($target->details->sum('qty'))}}</th>
+                             <th class="text-end">{{number_format($target->details->sum('sold'))}}</th>
+                             <th class="text-end">{{number_format($target->totalPer)}}%</th>
+                         </tr>
+                     </tfoot>
             </table>
-            <br>
-            <table style="width:500px;">
-                <tr>
-                    <td style="text-align: left; width:40%;"> <strong>Payment type:</strong> </td>
-                    <td style="text-align: left">{{$invoice->account->title ?? "Unpaid"}}</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left; width:40%;"> <strong>Details:</strong> </td>
-                    <td style="text-align: left">{{$invoice->desc}}</td>
-                </tr>
-                @if (@$invoice->customer_account->title)
-                <tr>
-                    <td style="text-align: left; width:40%;"> <strong>Previous Balance:</strong> </td>
-                    <td style="text-align: left">{{$prev_balance ?? 0}}</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left; width:40%;"> <strong>Current Balance:</strong> </td>
-                    <td style="text-align: left">{{ $total - $paidAmount - $invoice->discount }}</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left; width:40%;"> <strong>Total Balance:</strong> </td>
-                    <td style="text-align: left">{{ $cur_balance }}</td>
-                </tr>
-                @endif
-            </table>
-            <div class="d-flex justify-content-end">
-                <br><br>
-                <h4 style="text-align:right;margin-right:2px;">Authorize Signature___________________</h4>
-                {{-- <p style="margin-right:2px;">superupscenter@gmail.com</p> --}}
-                <br>
-            </div>
 
 
         </div>
@@ -423,13 +322,3 @@
 </body>
 
 </html>
-<script>
-    setTimeout(function() {
-        window.print();
-    }, 2000);
-
-        setTimeout(function() {
-        window.location.href = "{{ url('/sale/history')}}";
-    }, 5000);
-
-</script>

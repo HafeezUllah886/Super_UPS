@@ -98,126 +98,138 @@ class SaleController extends Controller
             'paidIn' => 'Select Account',
             'walkn' => 'Enter Vendor Name'
         ]);
-        $ref = getRef();
-        $customer = null;
-        $walkIn = null;
-        $amount = null;
-        $paidIn = null;
-        if($req->isPaid == 'Yes')
+        try
         {
-            if($req->customer == 0){
-                $walkIn = $req->walkIn;
+            DB::beginTransaction();
+            $ref = getRef();
+            $customer = null;
+            $walkIn = null;
+            $amount = null;
+            $paidIn = null;
+            if($req->isPaid == 'Yes')
+            {
+                if($req->customer == 0){
+                    $walkIn = $req->walkIn;
+                }
+                else
+                {
+                    $customer = $req->customer;
+    
+                }
+                $paidIn = $req->paidIn;
+            }
+            elseif($req->isPaid == 'No'){
+                $customer = $req->customer;
+            }
+            else{
+                $customer = $req->customer;
+                $paidIn = $req->paidIn;
+                $amount = $req->amount;
+            }
+    
+            $sale = sale::create([
+                'customer' => $customer,
+                'walking' => $walkIn,
+                'paidIn' => $paidIn,
+                'date' => $req->date,
+                'desc' => $req->desc,
+                'amount' => $amount,
+                'discount' => $req->discount,
+                'print' => $req->print ?? 0,
+                'isPaid' => $req->isPaid,
+                'ref' => $ref,
+            ]);
+    
+            $desc = "<strong>Sale</strong><br/> Invoice No. ".$sale->id;
+            $items = sale_draft::all();
+            $total = 0;
+            $amount1 = 0;
+            foreach ($items as $item){
+                $amount1 = $item->price * $item->qty;
+                $total += $amount1;
+                sale_details::create([
+                    'bill_id' => $sale->id,
+                    'product_id' => $item->product_id,
+                    'price' => $item->price,
+                    'retail' => $item->retail,
+                    'gst' => $item->gst,
+                    'wht' => $item->wht,
+                    'qty' => $item->qty,
+                    'date' => $req->date,
+                    'ref' => $ref,
+                ]);
+    
+                stock::create([
+                    'product_id' => $item->product_id,
+                    'date' => $req->date,
+                    'desc' => $desc,
+                    'db' => $item->qty,
+                    'ref' => $ref
+                ]);
+             }
+             $net_total = $total - $req->discount;
+             $desc1 = "<strong>Products Sold</strong><br/>Invoice No. ".$sale->id;
+             $desc2 = "<strong>Products Sold</strong><br/>Partial payment of Invoice No. ".$sale->id;
+            if($req->customer != 0){
+    
+             if($req->isPaid == 'Yes'){
+                createTransaction($req->paidIn, $req->date, $net_total, 0, $desc1, "Sale", $ref);
+                createTransaction($req->customer, $req->date, $net_total, $net_total, $desc1, "Sale", $ref);
+             }
+             elseif($req->isPaid == 'No'){
+                    createTransaction($req->customer, $req->date, $net_total, 0, $desc1, "Sale", $ref);
+             }
+             else{
+                createTransaction($req->customer, $req->date, $net_total, $req->amount, $desc2, "Sale", $ref);
+                createTransaction($req->paidIn, $req->date, $req->amount, 0, $desc1, "Sale", $ref);
+             }
             }
             else
             {
-                $customer = $req->customer;
-
+                createTransaction($req->paidIn, $req->date, $net_total, 0, $desc1, "Sale", $ref);
             }
-            $paidIn = $req->paidIn;
-        }
-        elseif($req->isPaid == 'No'){
-            $customer = $req->customer;
-        }
-        else{
-            $customer = $req->customer;
-            $paidIn = $req->paidIn;
-            $amount = $req->amount;
-        }
+            $ledger_head = null;
+            $ledger_type = null;
+            $ledger_details = "Products Sold";
+            $ledger_amount = null;
+            $c_acct = account::find($req->customer);
+            $p_acct = account::find($req->paidIn);
+            if($req->isPaid == "Yes"){
+               if($req->customer == 0){
+                $ledger_head = $req->walkIn . "(Walk-In)";
+               }
+               else
+               {
+                $ledger_head = $c_acct->title;
+               }
+               $ledger_type = $p_acct->title . "/Paid";
+               $ledger_amount = $net_total;
+            }
+            elseif($req->isPaid == "No")
+            {
+                $ledger_head = $c_acct->title;
+                $ledger_type = "Unpaid";
+                $ledger_amount = $net_total;
+            }
+            else{
+                $ledger_head = $c_acct->title;
+                $ledger_type = $p_acct->title . "/Partial";
+                $ledger_amount = $req->amount;
+            }
+            addLedger($req->date, $ledger_head, $ledger_type, $ledger_details, $ledger_amount, $ref);
+    
+             sale_draft::truncate();
 
-        $sale = sale::create([
-            'customer' => $customer,
-            'walking' => $walkIn,
-            'paidIn' => $paidIn,
-            'date' => $req->date,
-            'desc' => $req->desc,
-            'amount' => $amount,
-            'discount' => $req->discount,
-            'print' => $req->print ?? 0,
-            'isPaid' => $req->isPaid,
-            'ref' => $ref,
-        ]);
-
-        $desc = "<strong>Sale</strong><br/> Invoice No. ".$sale->id;
-        $items = sale_draft::all();
-        $total = 0;
-        $amount1 = 0;
-        foreach ($items as $item){
-            $amount1 = $item->price * $item->qty;
-            $total += $amount1;
-            sale_details::create([
-                'bill_id' => $sale->id,
-                'product_id' => $item->product_id,
-                'price' => $item->price,
-                'retail' => $item->retail,
-                'gst' => $item->gst,
-                'wht' => $item->wht,
-                'qty' => $item->qty,
-                'date' => $req->date,
-                'ref' => $ref,
-            ]);
-
-            stock::create([
-                'product_id' => $item->product_id,
-                'date' => $req->date,
-                'desc' => $desc,
-                'db' => $item->qty,
-                'ref' => $ref
-            ]);
-         }
-         $net_total = $total - $req->discount;
-         $desc1 = "<strong>Products Sold</strong><br/>Invoice No. ".$sale->id;
-         $desc2 = "<strong>Products Sold</strong><br/>Partial payment of Invoice No. ".$sale->id;
-        if($req->customer != 0){
-
-         if($req->isPaid == 'Yes'){
-            createTransaction($req->paidIn, $req->date, $net_total, 0, $desc1, "Sale", $ref);
-            createTransaction($req->customer, $req->date, $net_total, $net_total, $desc1, "Sale", $ref);
-         }
-         elseif($req->isPaid == 'No'){
-                createTransaction($req->customer, $req->date, $net_total, 0, $desc1, "Sale", $ref);
-         }
-         else{
-            createTransaction($req->customer, $req->date, $net_total, $req->amount, $desc2, "Sale", $ref);
-            createTransaction($req->paidIn, $req->date, $req->amount, 0, $desc1, "Sale", $ref);
-         }
+             DB::commit();
+    
+             return redirect('/sale/print/'.$ref);
         }
-        else
+        catch(\Exception $e)
         {
-            createTransaction($req->paidIn, $req->date, $net_total, 0, $desc1, "Sale", $ref);
+            DB::rollback();
+            return back()->with('error', $e->getMessage());
         }
-        $ledger_head = null;
-        $ledger_type = null;
-        $ledger_details = "Products Sold";
-        $ledger_amount = null;
-        $c_acct = account::find($req->customer);
-        $p_acct = account::find($req->paidIn);
-        if($req->isPaid == "Yes"){
-           if($req->customer == 0){
-            $ledger_head = $req->walkIn . "(Walk-In)";
-           }
-           else
-           {
-            $ledger_head = $c_acct->title;
-           }
-           $ledger_type = $p_acct->title . "/Paid";
-           $ledger_amount = $net_total;
-        }
-        elseif($req->isPaid == "No")
-        {
-            $ledger_head = $c_acct->title;
-            $ledger_type = "Unpaid";
-            $ledger_amount = $net_total;
-        }
-        else{
-            $ledger_head = $c_acct->title;
-            $ledger_type = $p_acct->title . "/Partial";
-            $ledger_amount = $req->amount;
-        }
-        addLedger($req->date, $ledger_head, $ledger_type, $ledger_details, $ledger_amount, $ref);
-
-         sale_draft::truncate();
-
-         return redirect('/sale/print/'.$ref);
+    
     }
     public function history(){
         $history = sale::with('customer_account', 'account')->orderBy('id', 'desc')->get();
