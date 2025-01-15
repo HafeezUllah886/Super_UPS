@@ -19,7 +19,7 @@
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover text-center mb-0" id="datatable">
                         <thead class="th-color">
-                            <tr>
+                            <tr>kw
                                 <th class="border-top-0">{{ __('lang.BillNo') }}</th>
                                 <th class="border-top-0">{{ __('lang.Date') }}</th>
                                 <th class="border-top-0">Ref #</th>

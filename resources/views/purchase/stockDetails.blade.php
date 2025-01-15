@@ -8,7 +8,7 @@
     <div class="col-12">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h4>{{ $stocks[0]->product->name }}</h4>
+                <h4>{{ $product->name }}</h4>
                 {{-- <button id="download" class="btn btn-success">PDF</button> --}}
             </div>
         </div>

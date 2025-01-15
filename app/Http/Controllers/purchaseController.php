@@ -324,7 +324,8 @@ class purchaseController extends Controller
         $cr = stock::where('product_id', $id)->sum('cr');
         $db = stock::where('product_id', $id)->sum('db');
         $cur_bal = $cr - $db;
-        return view('purchase.stockDetails', compact('stocks', 'cur_bal', 'prev_bal', 'from', 'to'));
+        $product= products::find($id);
+        return view('purchase.stockDetails', compact('stocks', 'cur_bal', 'prev_bal', 'from', 'to', 'product'));
     }
 
     public function prev_data($id)
