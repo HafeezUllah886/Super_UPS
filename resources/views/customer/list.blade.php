@@ -44,10 +44,12 @@
                         <tbody>
                             @php
                             $ser = 0;
+                            $balance = 0;
                             @endphp
                             @foreach ($accounts as $account)
                             @php
                             $ser += 1;
+                            $balance += getAccountBalance($account->id);
                             @endphp
                             <tr>
                                 <td> {{ $ser }} </td>
@@ -68,6 +70,10 @@
                             </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+                            <th colspan="4" class="text-right">Total</th>
+                            <th class="text-center">{{$balance}}</th>
+                        </tfoot>
                     </table>
 
                 </div>

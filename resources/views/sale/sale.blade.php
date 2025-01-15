@@ -197,7 +197,7 @@ input[type=number] {
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-2" id="isPaid_box">
+                            <div class="col-md-1" id="isPaid_box">
                                 <div class="form-group">
                                     <label for="isPaid">{{__('lang.IsPaid')}}</label>
                                     <select name="isPaid" id="isPaid" onchange="abc()" class="form-control">
@@ -219,7 +219,7 @@ input[type=number] {
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-3" id="paidIn_box">
+                            <div class="col-md-2" id="paidIn_box">
                                 <div class="form-group">
                                     <label for="paidIn">{{__('lang.PaidIn')}}</label>
                                     <select name="paidIn" id="paidIn" class=" select2">
@@ -233,10 +233,13 @@ input[type=number] {
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-2 mt-4">
-                                <input type="checkbox" class="mt-3" name="print" value="1" id="print">
-                                <label for="print">Print with Taxes</label>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="refno">Ref #</label>
+                                    <input type="text" name="refno" class="form-control">
+                                </div>
                             </div>
+                            
 
                         </div>
                         <div class="row">
@@ -251,7 +254,7 @@ input[type=number] {
                             </div>
                             <div class="col-md-6 ">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                     <div class="form-group">
                                         <div class="form-group">
                                             <label for="discount">{{__('lang.Discount')}}</label>
@@ -261,6 +264,10 @@ input[type=number] {
                                             @enderror
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="checkbox" class="mt-3" name="print" value="1" id="print">
+                                    <label for="print">Print with Taxes</label>
                                 </div>
                                 <div class="col-md-6">
                                     <button type="submit" class="btn btn-success btn-lg" style="margin-top: 30px">{{__('lang.Save')}}</button>

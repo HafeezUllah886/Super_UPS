@@ -12,6 +12,8 @@ use App\Models\sale_draft;
 use App\Models\stock;
 use App\Models\transactions;
 use Illuminate\Http\Request;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class SaleController extends Controller
 {
@@ -98,9 +100,10 @@ class SaleController extends Controller
             'paidIn' => 'Select Account',
             'walkn' => 'Enter Vendor Name'
         ]);
+        DB::beginTransaction();
         try
         {
-            DB::beginTransaction();
+          
             $ref = getRef();
             $customer = null;
             $walkIn = null;
@@ -133,6 +136,7 @@ class SaleController extends Controller
                 'paidIn' => $paidIn,
                 'date' => $req->date,
                 'desc' => $req->desc,
+                'ref_no' => $req->refno,
                 'amount' => $amount,
                 'discount' => $req->discount,
                 'print' => $req->print ?? 0,
@@ -217,10 +221,9 @@ class SaleController extends Controller
                 $ledger_amount = $req->amount;
             }
             addLedger($req->date, $ledger_head, $ledger_type, $ledger_details, $ledger_amount, $ref);
-    
-             sale_draft::truncate();
 
              DB::commit();
+             sale_draft::truncate();
     
              return redirect('/sale/print/'.$ref);
         }

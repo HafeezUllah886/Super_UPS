@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('paidIn')->nullable();
             $table->date('date');
             $table->text('desc')->nullable();
+            $table->string('ref_no')->nullable();
             $table->string('isPaid');
             $table->integer('print')->default(0);
             $table->unsignedBigInteger('amount')->nullable();
