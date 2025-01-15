@@ -209,6 +209,12 @@ input[type=number] {
                                     @enderror
                                 </div>
                             </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="refno">Ref #</label>
+                                    <input type="text" name="refno" class="form-control">
+                                </div>
+                            </div>
 
                         </div>
                         <div class="row">

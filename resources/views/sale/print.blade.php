@@ -275,6 +275,7 @@
                 <div class="col-6">
                     <div class="company-details">
                         <h3 class="text-dark">Date: {{ date('d M Y', strtotime($invoice->date)) }}</h3>
+                        <h3 class="text-dark">Ref: {{ $invoice->ref_no }}</h3>
                     </div>
                 </div>
             </div>

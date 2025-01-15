@@ -121,6 +121,7 @@ class purchaseController extends Controller
             'paidFrom' => $paidFrom,
             'date' => $req->date,
             'desc' => $req->desc,
+            'ref_no' => $req->refno,
             'amount' => $amount,
             'isPaid' => $req->isPaid,
             'ref' => $ref,

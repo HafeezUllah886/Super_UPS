@@ -22,8 +22,8 @@
                             <tr>
                                 <th class="border-top-0">{{ __('lang.BillNo') }}</th>
                                 <th class="border-top-0">{{ __('lang.Date') }}</th>
+                                <th class="border-top-0">Ref #</th>
                                 <th class="border-top-0">{{ __('lang.Vendor') }}</th>
-
                                 <th class="border-top-0">{{ __('lang.Desc') }}</th>
                                 <th class="border-top-0">{{ __('lang.Details') }}</th>
                                 <th class="border-top-0">{{ __('lang.Amount') }}</th>
@@ -39,6 +39,7 @@
                             <tr>
                                 <td> {{ $bill->id }} </td>
                                 <td>{{ $bill->date }}</td>
+                                <td>{{ $bill->ref_no }}</td>
                                 <td>@if (@$bill->vendor_account->title)
                                     {{ @$bill->vendor_account->title }} ({{  @$bill->vendor_account->type }})
 

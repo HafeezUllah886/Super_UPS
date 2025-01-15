@@ -22,6 +22,7 @@
                             <tr>
                                 <th class="border-top-0">{{__('lang.BillNo')}}</th>
                                 <th class="border-top-0">{{__('lang.Date')}}</th>
+                                <th class="border-top-0">Ref #</th>
                                 <th class="border-top-0">{{__('lang.Customer')}}</th>
                                 <th class="border-top-0">{{__('lang.Details')}}</th>
                                 <th class="border-top-0">{{__('lang.Amount')}}</th>
@@ -37,6 +38,7 @@
                             <tr>
                                 <td> {{ $bill->id }} </td>
                                 <td>{{ $bill->date }}</td>
+                                <td>{{ $bill->ref_no }}</td>
                                 <td>@if (@$bill->customer_account->title)
                                     {{ @$bill->customer_account->title }} ({{  @$bill->customer_account->type }})
                                 @else
