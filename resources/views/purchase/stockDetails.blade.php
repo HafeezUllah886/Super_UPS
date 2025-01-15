@@ -123,7 +123,7 @@
         var from = $('#from').val();
         var to = $('#to').val();
 
-    window.open("{{ url('/stock/details/') }}/"+{{ $product_id }}+"/"+from+"/"+to, '_self');
+    window.open("{{ url('/stock/details/') }}/"+{{ $product->id }}+"/"+from+"/"+to, '_self');
     }
 
 
