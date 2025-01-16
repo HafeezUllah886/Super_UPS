@@ -44,21 +44,24 @@ class reportController extends Controller
                 $avg_purchase_price = $purchases_amount / $purchases_qty;
             //////////// Getting avg Sale Price ///////////////////////
 
-                $sales_qty = sale_details::where('product_id', $product->id)
-                ->whereBetween('date', [$fromDate, $toDate])->count();
-                $sales_amount = sale_details::where('product_id', $product->id)
-                ->whereBetween('date', [$fromDate, $toDate])->sum('price');
+                $sales = sale_details::where('product_id', $product->id)
+                ->whereBetween('date', [$fromDate, $toDate])->get();
+                
 
+                $sales_qty = $sales->sum('qty');
+                $sales_price= $sales->sum('price');
+                $sales_rows = $sales->count();
                 $gross_sold_qty = $sales_qty; ///// Storing gross sold before proceeding
-                if($sales_amount == 0)
+                if($sales_rows == 0)
                 {
                     $last_sale = sale_details::where('product_id', $product->id)
                     ->orderBy('id', 'desc')
                     ->first();
-                    $sales_amount = $last_sale->price ?? 0;
+                    $sales_price = $last_sale->price ?? 0;
                     $sales_qty = 1;
+                    $sales_rows = 1;
                 }
-                $avg_sale_price = $sales_amount / $sales_qty;
+                $avg_sale_price = $sales_price / $sales_rows;
             //////////// Getting Profit per Unit ///////////////////////
 
             $ppu = $avg_sale_price - $avg_purchase_price;
