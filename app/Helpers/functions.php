@@ -11,6 +11,8 @@ use App\Models\sale;
 use App\Models\sale_details;
 use App\Models\saleReturn;
 use App\Models\saleReturnDetails;
+use App\Models\scrap_purchase;
+use App\Models\scrap_sale;
 use App\Models\scrap_stock;
 use App\Models\stock;
 use App\Models\transactions;
@@ -375,21 +377,24 @@ function summaryProfit($from, $to){
             $avg_purchase_price = $purchases_amount / $purchases_qty;
         //////////// Getting avg Sale Price ///////////////////////
 
-            $sales_qty = sale_details::where('product_id', $product->id)
-            ->whereBetween('date', [$fromDate, $toDate])->count();
-            $sales_amount = sale_details::where('product_id', $product->id)
-            ->whereBetween('date', [$fromDate, $toDate])->sum('price');
+            $sales = sale_details::where('product_id', $product->id)
+            ->whereBetween('date', [$fromDate, $toDate])->get();
+            
 
+            $sales_qty = $sales->sum('qty');
+            $sales_price= $sales->sum('price');
+            $sales_rows = $sales->count();
             $gross_sold_qty = $sales_qty; ///// Storing gross sold before proceeding
-            if($sales_amount == 0)
+            if($sales_rows == 0)
             {
                 $last_sale = sale_details::where('product_id', $product->id)
                 ->orderBy('id', 'desc')
                 ->first();
-                $sales_amount = $last_sale->price ?? 0;
+                $sales_price = $last_sale->price ?? 0;
                 $sales_qty = 1;
+                $sales_rows = 1;
             }
-            $avg_sale_price = $sales_amount / $sales_qty;
+            $avg_sale_price = $sales_price / $sales_rows;
         //////////// Getting Profit per Unit ///////////////////////
 
         $ppu = $avg_sale_price - $avg_purchase_price;
@@ -451,7 +456,29 @@ function summaryProfit($from, $to){
             $s_sale += $s_stock->db * $s_stock->rate;
         }
     }
-    $s_profit = $s_sale - $s_purchase;
+
+    $scrap_purchases = scrap_purchase::whereBetween('date', [$fromDate, $toDate])->get();
+    $scrap_sales = scrap_sale::whereBetween('date', [$fromDate, $toDate])->get();
+
+    $s_purchase_amount = 0;
+    foreach($scrap_purchases as $s_purchase)
+    {
+        $s_purchase_amount += $s_purchase->weight * $s_purchase->rate;
+    }
+    $s_sale_amount = 0;
+    foreach($scrap_sales as $s_sale)
+    {
+        $s_sale_amount += $s_sale->weight * $s_sale->rate;
+    }
+    
+    $s_purchase_price = $s_purchase_amount / $scrap_purchases->sum('weight');
+    $s_sale_price = $s_sale_amount / $scrap_sales->sum('weight');
+
+    $s_ppu = $s_sale_price - $s_purchase_price;
+
+    $s_sold = $scrap_sales->sum('weight');
+
+    $s_profit = $s_ppu * $s_sold;
     $totalProfit = 0;
     foreach ($products as $product)
     {
