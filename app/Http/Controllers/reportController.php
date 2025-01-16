@@ -123,7 +123,29 @@ class reportController extends Controller
                 $s_sale += $s_stock->db * $s_stock->rate;
             }
         }
-        $s_profit = $s_sale - $s_purchase;
+
+        $scrap_purchases = scrap_purchase::whereBetween('date', [$fromDate, $toDate])->get();
+        $scrap_sales = scrap_sale::whereBetween('date', [$fromDate, $toDate])->get();
+
+        $s_purchase_amount = 0;
+        foreach($scrap_purchases as $s_purchase)
+        {
+            $s_purchase_amount += $s_purchase->weight * $s_purchase->rate;
+        }
+        $s_sale_amount = 0;
+        foreach($scrap_sales as $s_sale)
+        {
+            $s_sale_amount += $s_sale->weight * $s_sale->rate;
+        }
+        
+        $s_purchase_price = $s_purchase_amount / $scrap_purchases->sum('weight');
+        $s_sale_price = $s_sale_amount / $scrap_sales->sum('weight');
+
+        $s_ppu = $s_sale_price - $s_purchase_price;
+
+        $s_sold = $scrap_sales->sum('weight');
+
+        $s_profit = $s_ppu * $s_sold;
 
         return view('reports.profit')->with(compact('products', 'discounts', 'expense', 'from', 'to', 's_profit'));
     }
