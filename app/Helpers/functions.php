@@ -471,8 +471,25 @@ function summaryProfit($from, $to){
         $s_sale_amount += $s_sale->weight * $s_sale->rate;
     }
     
-    $s_purchase_price = $s_purchase_amount / $scrap_purchases->sum('weight');
-    $s_sale_price = $s_sale_amount / $scrap_sales->sum('weight');
+    if($scrap_purchases->sum('weight') > 0)
+        {
+            $s_purchase_price = ($s_purchase_amount / $scrap_purchases->sum('weight')) ?? 0;
+        }
+        else
+        {
+            $last_s_purchase = scrap_purchase::latest()->first();
+            $s_purchase_price = $last_s_purchase->rate ?? 0;
+        }
+
+        if($scrap_sales->sum('weight') > 0)
+        {
+            $s_sale_price = ($s_sale_amount / $scrap_sales->sum('weight')) ?? 0;
+        }
+        else
+        {
+            $last_s_sale = scrap_sale::latest()->first();
+            $s_sale_price = $last_s_sale->rate ?? 0;
+        }
 
     $s_ppu = $s_sale_price - $s_purchase_price;
 
