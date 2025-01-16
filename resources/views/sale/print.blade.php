@@ -419,7 +419,7 @@
         </div>
     </div>
     <div style="text-align: right">
-        <div class="mt-2" style="font-size: 10px">Powered by Diamond Software 03202565919</p>
+        <div class="mt-2" style="font-size: 10px">Powered by Nexgen Pakistan 0331-0070041</p>
         </div>
 </body>
 
