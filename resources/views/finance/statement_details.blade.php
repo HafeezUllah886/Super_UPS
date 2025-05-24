@@ -79,6 +79,7 @@
 
                         </table>
                         <strong>Discount: </strong>{{$data[0]->bill->discount}}
+                        <strong>Transport: </strong>{{$data[0]->bill->transport}}
                     @endif
                     @if ($item->type == 'Sale Return')
                         @php

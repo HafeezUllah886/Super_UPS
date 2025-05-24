@@ -128,6 +128,7 @@ class SaleController extends Controller
             'desc' => $req->desc,
             'amount' => $amount,
             'discount' => $req->discount,
+            'transport' => $req->transport,
             'isPaid' => $req->isPaid,
             'ref' => $ref,
         ]);
@@ -156,7 +157,7 @@ class SaleController extends Controller
                 'ref' => $ref
             ]);
          }
-         $net_total = $total - $req->discount;
+         $net_total = $total - $req->discount + $req->transport;
          $desc1 = "<strong>Products Sold</strong><br/>Invoice No. ".$sale->id;
          $desc2 = "<strong>Products Sold</strong><br/>Partial payment of Invoice No. ".$sale->id;
         if($req->customer != 0){

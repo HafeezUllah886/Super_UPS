@@ -67,6 +67,11 @@
                                             <td colspan="4">{{__('lang.Discount')}}: <strong>{{ $bill->discount }}</strong></td>
                                         </tr>
                                         @endif
+                                        @if($bill->transport > 0)
+                                        <tr>
+                                            <td colspan="4">Transport: <strong>{{ $bill->transport }}</strong></td>
+                                        </tr>
+                                        @endif
 
                                     </table>
                                 </td>

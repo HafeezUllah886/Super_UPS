@@ -345,6 +345,15 @@
                             <strong>{{ $total}}</strong>
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="5" class="text-right">
+                            <strong>Transport</strong>
+                        </td>
+                        <td>
+                            <strong>{{ $invoice->transport}}</strong>
+                        </td>
+                    </tr>
+
                     @if($invoice->discount > 0)
                     <tr>
                         <td colspan="5" class="text-right">
@@ -359,7 +368,7 @@
                             <strong>Net Total</strong>
                         </td>
                         <td>
-                            <strong>{{ $total - $invoice->discount }}</strong>
+                            <strong>{{ $total - $invoice->discount + $invoice->transport }}</strong>
                         </td>
                     </tr>
                     @endif
@@ -374,7 +383,7 @@
                         else{
 
                             if($invoice->amount == 0){
-                                $paidAmount = $total - ($invoice->amount + $invoice->discount);
+                                $paidAmount = $total - ($invoice->amount + $invoice->discount - $invoice->transport);
                             }
                         }
 
@@ -391,7 +400,7 @@
                             <strong>Remaining</strong>
                         </td>
                         <td>
-                            <h3> {{ $total - $paidAmount - $invoice->discount}}</h3>
+                            <h3> {{ $total - $paidAmount - $invoice->discount + $invoice->transport}}</h3>
                         </td>
                     </tr>
                     @endif

@@ -171,7 +171,7 @@ function getSaleBillTotal($id){
         $total += $amount;
     }
     $bill = sale::find($id);
-    $total = $total - $bill->discount;
+    $total = $total - $bill->discount + $bill->transport;
     return $total;
 }
 

@@ -213,18 +213,29 @@
                             </div>
                             <div class="col-md-6 ">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                    <div class="form-group">
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="discount">{{__('lang.Discount')}}</label>
-                                            <input type="number" name="discount" id="discount" class="form-control">
-                                            @error('discount')
-                                            <span class="text-danger">{{ $message }}</span>
-                                            @enderror
+                                            <div class="form-group">
+                                                <label for="discount">{{__('lang.Discount')}}</label>
+                                                <input type="number" name="discount" id="discount" class="form-control">
+                                                @error('discount')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <label for="transport">Transport Charges</label>
+                                                <input type="number" value="0" required name="transport" id="transport" class="form-control">
+                                                @error('transport')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="col-md-4">
                                     <button type="submit" class="btn btn-success btn-lg" style="margin-top: 30px">{{__('lang.Save')}}</button>
                                 </div>
                                 </div>
