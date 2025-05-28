@@ -262,15 +262,15 @@
     <div class="container">
         <div class="container1">
             <div class="sub-container">
-                {{-- <div class="logo" style="width: 37%;">
+                <div class="logo" style="width: 37%;">
                     <img src="{{ asset('assets/images/app_logo.png') }}" alt="logo">
                 </div>
-                <div3 id="myDiv">
+                <div id="myDiv">
 
                     <span class="dot">
                         <p style="margin-top: 15px;">خوشحال خان</p>
                     </span>
-                </div3> --}}
+                </div> 
                 <div class="text1">
                     <h1 class="m-query1">UPS / Battery Center</h1>
                     <h3 class="m-query2">Shop # 123, Abc Road, Quetta
